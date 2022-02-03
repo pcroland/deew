@@ -1,0 +1,4 @@
+ffmpeg_path = 'ffmpeg'
+dee_path = 'dee.exe'
+temp_path = '/mnt/x/github/deew/temp' # use full path
+logo = 1 # which logo (1-8) to display at start (0 to disable) ./deew.py --printlogos
