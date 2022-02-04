@@ -73,5 +73,5 @@ encode 7.1 DDP@1536
 `./deew.py -f dd -b 448 -d -27 -t 4 -i S01`\
 encode 5.1 DD@448 with -27 dialnorm using 4 threads
 
-`./deew.py -f thd *w64`\
+`./deew.py -f thd -i *w64`\
 encode 5.1 TrueHD
