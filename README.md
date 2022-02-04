@@ -11,6 +11,8 @@
 ```
 ## DDP encoding has never been so easy!
 
+![img](https://i.kek.sh/6RSDNILEvbb.gif)
+
 # Description
 This wrapper handles Dolby's XML input fuckery in the background,\
 giving you a proper CLI interface. The wrapper converts the input\
