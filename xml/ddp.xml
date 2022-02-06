@@ -22,7 +22,7 @@
           <measure_only>
             <metering_mode>1770-3</metering_mode>    <!-- One of: 1770-3, 1770-2, 1770-1, LeqA -->
             <dialogue_intelligence>true</dialogue_intelligence>    <!-- boolean: true or false -->
-            <speech_threshold>15</speech_threshold>    <!-- integer: from 0 to 100 -->
+            <speech_threshold>20</speech_threshold>    <!-- integer: from 0 to 100 -->
           </measure_only>
         </loudness>
         <encoder_mode>-</encoder_mode>    <!-- fixed value -->
@@ -30,7 +30,7 @@
         <downmix_config>off</downmix_config>    <!-- One of: off, mono, stereo, 5.1 -->
         <data_rate>-</data_rate>    <!-- One of: 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 144, 160, 176, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1008, 1024 -->
         <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
-        <start>first_frame_of_action</start>    <!-- string -->
+        <start>00:00:00.005333</start>    <!-- string -->
         <end>end_of_file</end>    <!-- string -->
         <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
         <prepend_silence_duration>0.0</prepend_silence_duration>    <!-- string -->
@@ -40,8 +40,8 @@
         <dolby_surround_ex_mode>not_indicated</dolby_surround_ex_mode>    <!-- One of: yes, no, not_indicated -->
         <user_data>-1</user_data>    <!-- integer: from -1 to 65535 -->
         <drc>
-          <line_mode_drc_profile>film_standard</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
-          <rf_mode_drc_profile>film_standard</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <line_mode_drc_profile>film_light</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <rf_mode_drc_profile>film_light</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
         </drc>
         <custom_dialnorm>-</custom_dialnorm>
         <lfe_lowpass_filter>true</lfe_lowpass_filter>    <!-- boolean: true or false -->

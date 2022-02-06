@@ -48,8 +48,8 @@ parser.add_argument('-c', '--channels',
                     help='number of channels in the input file (automatically downmixes to 5.1 when encoding DD from 7.1 input).\ndefault: 6')
 parser.add_argument('-d', '--dialnorm',
                     type=int,
-                    default=-31,
-                    help='default: -31')
+                    default=0,
+                    help='default: 0 (automatically sets dialnorm based on measurement)')
 parser.add_argument('-t', '--threads',
                     type=int,
                     default=cpu_count() - 1,
@@ -115,7 +115,6 @@ def encode(settings):
 
     xml['job_config']['input']['audio']['wav']['file_name'] = f'\"{basename(fl, "wav")}\"'
 
-    compensate = True
     if args.format.lower() == 'ddp':
         if args.channels == '8':
             xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(fl, "eb3")}\"'
@@ -126,7 +125,6 @@ def encode(settings):
         xml['job_config']['output']['ac3'] = xml['job_config']['output']['ec3']
         del xml['job_config']['output']['ec3']
     else:
-        compensate = False
         xml['job_config']['output']['mlp']['file_name'] = f'\"{basename(fl, "thd")}\"'
     savexml(os.path.join(config['temp_path'], basename(fl, 'xml')), xml)
 
@@ -134,9 +132,9 @@ def encode(settings):
         dee_out_path = f'{wpc(config["temp_path"])}\{basename(fl, "xml")}'
     else:
         dee_out_path = f'{config["temp_path"]}/{basename(fl, "xml")}'
-    ffmpeg_args = [config['ffmpeg_path'], '-y', '-i', fl, *(['-ss', '0.00533'] if compensate else []), '-c:a', 'pcm_s24le', '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
+    ffmpeg_args = [config['ffmpeg_path'], '-y', '-i', fl, '-ac', args.channels, '-c:a', 'pcm_s24le', '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
     dee_args = [config['dee_path'], '-x', dee_out_path]
-    ffmpeg_args_print = [f'[bold blue]{config["ffmpeg_path"]}[/bold blue]', '-y', '-i', f'[bold green]{fl}[/bold green]', *(['-ss', '[bold color(231)]0.00533[/bold color(231)]'] if compensate else []), '[not bold white]-c:a[/not bold white]', '[bold color(231)]pcm_s24le[/bold color(231)]', '-rf64', '[bold color(231)]always[/bold color(231)]', f'[bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]']
+    ffmpeg_args_print = [f'[bold blue]{config["ffmpeg_path"]}[/bold blue]', '-y', '-i', f'[bold green]{fl}[/bold green]', '-ac', args.channels, '[not bold white]-c:a[/not bold white]', '[bold color(231)]pcm_s24le[/bold color(231)]', '-rf64', '[bold color(231)]always[/bold color(231)]', f'[bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]']
     dee_args_print = [f'[bold blue]{config["dee_path"]}[/bold blue]', '-x', f'[bold magenta]{dee_out_path}[/bold magenta]']
 
     if not args.progress:
