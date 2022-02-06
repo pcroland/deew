@@ -132,9 +132,9 @@ def encode(settings):
         dee_out_path = f'{wpc(config["temp_path"])}\{basename(fl, "xml")}'
     else:
         dee_out_path = f'{config["temp_path"]}/{basename(fl, "xml")}'
-    ffmpeg_args = [config['ffmpeg_path'], '-y', '-i', fl, '-c:a', 'pcm_s24le', '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
+    ffmpeg_args = [config['ffmpeg_path'], '-y', '-i', fl, '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
     dee_args = [config['dee_path'], '-x', dee_out_path]
-    ffmpeg_args_print = [f'[bold blue]{config["ffmpeg_path"]}[/bold blue]', '-y', '-i', f'[bold green]{fl}[/bold green]', '[not bold white]-c:a[/not bold white]', '[bold color(231)]pcm_s24le[/bold color(231)]', '-rf64', '[bold color(231)]always[/bold color(231)]', f'[bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]']
+    ffmpeg_args_print = [f'[bold blue]{config["ffmpeg_path"]}[/bold blue]', '-y', '-i', f'[bold green]{fl}[/bold green]', '-rf64', '[bold color(231)]always[/bold color(231)]', f'[bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]']
     dee_args_print = [f'[bold blue]{config["dee_path"]}[/bold blue]', '-x', f'[bold magenta]{dee_out_path}[/bold magenta]']
 
     if not args.progress:
