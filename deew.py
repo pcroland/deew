@@ -134,9 +134,9 @@ def encode(settings):
         dee_out_path = f'{wpc(config["temp_path"])}\{basename(fl, "xml")}'
     else:
         dee_out_path = f'{config["temp_path"]}/{basename(fl, "xml")}'
-    ffmpeg_args = [config['ffmpeg_path'], '-y', '-i', fl, *(['-ss', '0.00533'] if compensate else []), '-ac', args.channels, '-c:a', 'pcm_s24le', '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
+    ffmpeg_args = [config['ffmpeg_path'], '-y', '-i', fl, *(['-ss', '0.00533'] if compensate else []), '-c:a', 'pcm_s24le', '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
     dee_args = [config['dee_path'], '-x', dee_out_path]
-    ffmpeg_args_print = [f'[bold blue]{config["ffmpeg_path"]}[/bold blue]', '-y', '-i', f'[bold green]{fl}[/bold green]', *(['-ss', '[bold color(231)]0.00533[/bold color(231)]'] if compensate else []), '-ac', args.channels, '[not bold white]-c:a[/not bold white]', '[bold color(231)]pcm_s24le[/bold color(231)]', '-rf64', '[bold color(231)]always[/bold color(231)]', f'[bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]']
+    ffmpeg_args_print = [f'[bold blue]{config["ffmpeg_path"]}[/bold blue]', '-y', '-i', f'[bold green]{fl}[/bold green]', *(['-ss', '[bold color(231)]0.00533[/bold color(231)]'] if compensate else []), '[not bold white]-c:a[/not bold white]', '[bold color(231)]pcm_s24le[/bold color(231)]', '-rf64', '[bold color(231)]always[/bold color(231)]', f'[bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]']
     dee_args_print = [f'[bold blue]{config["dee_path"]}[/bold blue]', '-x', f'[bold magenta]{dee_out_path}[/bold magenta]']
 
     if not args.progress:
@@ -185,10 +185,12 @@ def main():
                 xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'ddp'
         if args.format.lower() == 'dd':
             pformat = '[bold green]DD[/bold green]'
-            if args.channels == '8' or args.bitrate > 640:
-                printexit('[red]ERROR: channels for dd format has to be 6 and bitrate has to be 640 or lower.[/red]')
+            if args.bitrate > 640:
+                printexit('[red]ERROR: cbitrate for dd format has to be 640 or lower.[/red]')
             elif args.bitrate == 0:
                 args.bitrate = '640'
+            if args.channels == '8':
+                xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['downmix_config'] = '5.1'
             xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'dd'
         xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['data_rate'] = args.bitrate
     elif args.format.lower() == 'thd':
