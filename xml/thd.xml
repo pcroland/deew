@@ -21,7 +21,7 @@
         <loudness_measurement>
           <metering_mode>1770-4</metering_mode>    <!-- One of: 1770-4, 1770-3, 1770-2, 1770-1, LeqA -->
           <dialogue_intelligence>true</dialogue_intelligence>    <!-- boolean: true or false -->
-          <speech_threshold>15</speech_threshold>    <!-- integer: from 0 to 100 -->
+          <speech_threshold>20</speech_threshold>    <!-- integer: from 0 to 100 -->
         </loudness_measurement>
         <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
         <start>first_frame_of_action</start>    <!-- string -->
