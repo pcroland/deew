@@ -45,7 +45,7 @@ parser.add_argument('-b', '--bitrate',
                     help='default:\nDD5.1: 640\nDDP5.1: 1024\nDDP7.1: 1536')
 parser.add_argument('-c', '--channels',
                     default='6',
-                    help='default: 6')
+                    help='number of channels in the input file (automatically downmixes to 5.1 when encoding DD from 7.1 input).\ndefault: 6')
 parser.add_argument('-d', '--dialnorm',
                     type=int,
                     default=0,
@@ -183,10 +183,12 @@ def main():
                 xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'ddp'
         if args.format.lower() == 'dd':
             pformat = '[bold green]DD[/bold green]'
-            if args.channels == '8' or args.bitrate > 640:
-                printexit('[red]ERROR: channels for dd format has to be 6 and bitrate has to be 640 or lower.[/red]')
+            if args.bitrate > 640:
+                printexit('[red]ERROR: cbitrate for dd format has to be 640 or lower.[/red]')
             elif args.bitrate == 0:
                 args.bitrate = '640'
+            if args.channels == '8':
+                xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['downmix_config'] = '5.1'
             xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'dd'
         xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['data_rate'] = args.bitrate
     elif args.format.lower() == 'thd':
@@ -197,7 +199,12 @@ def main():
     xmlbase['job_config']['input']['audio']['wav']['storage']['local']['path'] = f'\"{wpc(config["temp_path"])}\"'
     xmlbase['job_config']['misc']['temp_dir']['path'] = f'\"{wpc(config["temp_path"])}\"'
 
-    pchannels = '[bold cyan]5.1[/bold cyan]' if args.channels == '6' else '[bold cyan]7.1[/bold cyan]'
+    if args.channels == '6':
+        pchannels = '[bold cyan]5.1[/bold cyan]'
+    elif args.channels == '8' and args.format.lower() == 'dd':
+        pchannels = '[bold cyan]5.1(downmixed from 7.1)[/bold cyan]'
+    else:
+        pchannels = '[bold cyan]7.1[/bold cyan]'
     pbitrate = f'[yellow]{args.bitrate} kbps[/yellow]'
     print(f'encoding {pformat}', end='', flush=True)
     if args.format.lower() != 'thd':

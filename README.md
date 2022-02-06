@@ -50,6 +50,7 @@ optional arguments:
                         DDP5.1: 1024
                         DDP7.1: 1536
   -c CHANNELS, --channels CHANNELS
+                        number of channels in the input file (automatically downmixes to 5.1 when encoding DD from 7.1 input).
                         default: 6
   -d DIALNORM, --dialnorm DIALNORM
                         default: 0 (automatically sets dialnorm based on measurement)
