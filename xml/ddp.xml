@@ -30,7 +30,7 @@
         <downmix_config>off</downmix_config>    <!-- One of: off, mono, stereo, 5.1 -->
         <data_rate>-</data_rate>    <!-- One of: 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 144, 160, 176, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1008, 1024 -->
         <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
-        <start>first_frame_of_action</start>    <!-- string -->
+        <start>00:00:00.005333</start>    <!-- string -->
         <end>end_of_file</end>    <!-- string -->
         <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
         <prepend_silence_duration>0.0</prepend_silence_duration>    <!-- string -->
