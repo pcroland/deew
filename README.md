@@ -52,7 +52,7 @@ optional arguments:
   -c CHANNELS, --channels CHANNELS
                         default: 6
   -d DIALNORM, --dialnorm DIALNORM
-                        default: -31
+                        default: 0 (automatically sets dialnorm based on measurement)
   -t THREADS, --threads THREADS
                         number of threads to use.
                         default: all threads-1

@@ -48,8 +48,8 @@ parser.add_argument('-c', '--channels',
                     help='default: 6')
 parser.add_argument('-d', '--dialnorm',
                     type=int,
-                    default=-31,
-                    help='default: -31')
+                    default=0,
+                    help='default: 0 (automatically sets dialnorm based on measurement)')
 parser.add_argument('-t', '--threads',
                     type=int,
                     default=cpu_count() - 1,
