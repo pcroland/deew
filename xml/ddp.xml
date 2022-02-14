@@ -37,7 +37,7 @@
         <append_silence_duration>0.0</append_silence_duration>    <!-- string -->
         <lfe_on>true</lfe_on>    <!-- boolean: true or false -->
         <dolby_surround_mode>not_indicated</dolby_surround_mode>    <!-- One of: yes, no, not_indicated -->
-        <dolby_surround_ex_mode>not_indicated</dolby_surround_ex_mode>    <!-- One of: yes, no, not_indicated -->
+        <dolby_surround_ex_mode>no</dolby_surround_ex_mode>    <!-- One of: yes, no, not_indicated -->
         <user_data>-1</user_data>    <!-- integer: from -1 to 65535 -->
         <drc>
           <line_mode_drc_profile>film_light</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
