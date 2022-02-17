@@ -179,7 +179,7 @@ def main():
     bitdepth_list = []
 
     for f in filelist:
-        probe_args = ['ffprobe', '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json', '-show_format', '-show_streams', f]
+        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json', '-show_format', '-show_streams', f]
         output = subprocess.check_output(probe_args)
         audio = json.loads(output)['streams'][0]
         samplerate_list.append(int(audio['sample_rate']))
@@ -283,6 +283,7 @@ if not os.path.exists(os.path.join(script_path, 'config.toml')): printexit('[red
 config = opentoml(os.path.join(script_path, 'config.toml'))
 if not os.path.exists(str(shutil.which(config['dee_path']))): printexit(f'[red]ERROR: [bold yellow]{config["dee_path"]}[/bold yellow] does not exist.[/red]')
 if not os.path.exists(str(shutil.which(config['ffmpeg_path']))): printexit(f'[red]ERROR: [bold yellow]{config["ffmpeg_path"]}[/bold yellow] does not exist.[/red]')
+if not os.path.exists(str(shutil.which(config['ffprobe_path']))): printexit(f'[red]ERROR: [bold yellow]{config["ffprobe_path"]}[/bold yellow] does not exist.[/red]')
 if not os.path.exists(config['temp_path']): printexit(f'[red]ERROR: [bold yellow]{config["temp_path"]}[/bold yellow] does not exist.[/red]')
 wsl = True if config['wsl'] else False
 
