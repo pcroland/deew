@@ -44,11 +44,11 @@ parser.add_argument('-b', '--bitrate',
 parser.add_argument('-m', '--mix',
                     type=int,
                     default=None,
-                    help='specify down/upmix (6/8),\nonly works for DDP.\ndefault: None')
+                    help='specify down/upmix (6/8),\nonly works for DDP\ndefault: None')
 parser.add_argument('-t', '--threads',
                     type=int,
                     default=cpu_count() - 1,
-                    help='number of threads to use.\ndefault: all threads-1')
+                    help='number of threads to use, only works for batch encoding,\nindividial encodes can\'t be parallelized\ndefault: all threads-1')
 parser.add_argument('-k', '--keeptemp',
                     action='store_true',
                     help='keep temp files')
