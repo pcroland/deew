@@ -1,4 +1,5 @@
 ffmpeg_path = 'ffmpeg'
+ffprobe_path = 'ffprobe'
 dee_path = 'dee.exe'
-temp_path = '/mnt/x/github/deew/temp' # use full path (make sure the folder exists)
-logo = 1 # which logo (1-8) to display at start (0 to disable) ./deew.py --printlogos
+temp_path = '/mnt/x/github/deew/temp'
+wsl = true

@@ -1,6 +1,5 @@
 __pycache__
+config.toml
 temp*
 test*
-*eb3
-*ac3
-*ec3
+*3

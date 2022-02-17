@@ -1,0 +1,5 @@
+ffmpeg_path = 'ffmpeg'
+ffprobe_path = 'ffprobe'
+dee_path = 'dee.exe'
+temp_path = '/path/to/temp/folder' # use full path (make sure the folder exists)
+wsl = false # set this to true if you run the script in Linux but use the Windows version of DEE
