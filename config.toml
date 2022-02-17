@@ -1,5 +1,0 @@
-ffmpeg_path = 'ffmpeg'
-ffprobe_path = 'ffprobe'
-dee_path = 'dee.exe'
-temp_path = '/mnt/x/github/deew/temp'
-wsl = true
