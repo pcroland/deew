@@ -38,7 +38,8 @@ options:
   -i [INPUT ...], --input [INPUT ...]
                         audio file(s) or folder(s)
   -f FORMAT, --format FORMAT
-                        dd/ddp/thd (default: ddp)
+                        dd/ddp/thd
+                        default: ddp
   -b BITRATE, --bitrate BITRATE
                         default:
                         DD5.1: 640

@@ -36,7 +36,7 @@ parser.add_argument('-i', '--input',
 parser.add_argument('-f', '--format',
                     type=str,
                     default='ddp',
-                    help='dd/ddp/thd (default: ddp)')
+                    help='dd/ddp/thd\ndefault: ddp')
 parser.add_argument('-b', '--bitrate',
                     type=int,
                     default=0,
@@ -132,8 +132,8 @@ def encode(settings):
         dee_out_path = f'{config["temp_path"]}/{basename(fl, "xml")}'
     ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', fl, '-c:a:0', f'pcm_s{bitdepth}le', '-rf64', 'always', os.path.join(config['temp_path'], basename(fl, 'wav'))]
     dee_args = [config['dee_path'], '-x', dee_out_path]
-    ffmpeg_args_print = f'[bold blue]{config["ffmpeg_path"]}[/bold blue] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{fl}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bitdepth}le[/bold color(231)] -rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]'
-    dee_args_print = f'[bold blue]{config["dee_path"]}[/bold blue] -x [bold magenta]{dee_out_path}[/bold magenta]'
+    ffmpeg_args_print = f'[bold blue]ffmpeg[/bold blue] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{fl}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bitdepth}le[/bold color(231)] -rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(fl, "wav"))}[/bold magenta]'
+    dee_args_print = f'[bold blue]dee[/bold blue] -x [bold magenta]{dee_out_path}[/bold magenta]'
 
     if not args.progress:
         time.sleep(random.uniform(0, 1))
