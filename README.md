@@ -36,7 +36,7 @@ options:
   -h, --help            shows this help message.
   -v, --version         shows version.
   -i [INPUT ...], --input [INPUT ...]
-                        audio file or folder inputs
+                        audio file(s) or folder(s)
   -f FORMAT, --format FORMAT
                         dd/ddp/thd (default: ddp)
   -b BITRATE, --bitrate BITRATE
@@ -44,9 +44,7 @@ options:
                         DD5.1: 640
                         DDP5.1: 1024
                         DDP7.1: 1536
-  -m MIX, --mix MIX     specify down/upmix (6/8),
-                        only works for DDP
-                        default: None
+  -m MIX, --mix MIX     specify down/upmix (6/8), only works for DDP
   -t THREADS, --threads THREADS
                         number of threads to use, only works for batch encoding,
                         individial encodes can't be parallelized

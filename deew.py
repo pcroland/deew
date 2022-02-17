@@ -32,7 +32,7 @@ parser.add_argument('-v', '--version',
 parser.add_argument('-i', '--input',
                     nargs='*',
                     default=argparse.SUPPRESS,
-                    help='audio file or folder inputs')
+                    help='audio file(s) or folder(s)')
 parser.add_argument('-f', '--format',
                     type=str,
                     default='ddp',
@@ -44,7 +44,7 @@ parser.add_argument('-b', '--bitrate',
 parser.add_argument('-m', '--mix',
                     type=int,
                     default=None,
-                    help='specify down/upmix (6/8),\nonly works for DDP\ndefault: None')
+                    help='specify down/upmix (6/8), only works for DDP')
 parser.add_argument('-t', '--threads',
                     type=int,
                     default=cpu_count() - 1,
