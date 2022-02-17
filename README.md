@@ -1,17 +1,13 @@
 ```sh
- ▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄  ▄▄▄  ▄▄▄  ▄▄▄
- ███  ███  ███      ███      ███  ███  ███
- ███  ███  ███      ███      ███  ███  ███
- ███  ███  ███▄▄▄   ███▄▄▄   ███  ███  ███
- █▓█  ███  █▓█      █▓█      █▓█  █▓█  █▓█
- █▒█  █▓█  █▒█      █▒█      █▒█  █▒█  █▒█
- █░█  █░█  █░█      █░█      █░█  █░█  █░█
- ▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀
-       Dolby Encoding Engine Wrapper
+ ▄▄▄▄▄  ▄▄▄▄▄ ▄▄▄▄▄ ▄▄  ▄▄  ▄▄
+ ██  ██ ██▄▄  ██▄▄  ██  ██  ██
+ ██  ██ ██    ██    ██  ██  ██
+ ▀▀▀▀▀  ▀▀▀▀▀ ▀▀▀▀▀  ▀▀▀▀▀▀▀▀
+ Dolby Encoding Engine Wrapper
 ```
 ## DDP encoding has never been so easy!
 
-![img](https://i.kek.sh/6RSDNILEvbb.gif)
+![img](https://i.kek.sh/gToEgEcaGFw.gif)
 
 # Description
 This wrapper handles Dolby's XML input fuckery in the background, giving you a proper CLI interface. The wrapper converts the input files to rf64 which DEE can understand. An XML file will be generated for each input file based on the settings. The tool utilizes thread pooling for batch encoding (all threads-1 by default). Supports WSL path conversion for the Win version of DEE. (see `config.toml`)
