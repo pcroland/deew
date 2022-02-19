@@ -113,8 +113,8 @@ def createdir(out):
     try:
         if not os.path.exists(out):
             os.makedirs(out)
-    except OSError as error:
-        print(f"Failed to create {out}. Error:\n{error}\nUsing default")
+    except OSError:
+        print(f'[yellow]WARNING: Failed to create [bold blue]{out}[/bold blue]. Using default path[/yellow]')
         return False
     else:
         if os.path.exists(out):
@@ -237,7 +237,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
         printexit('''[red]ERROR: sample rate for [bold yellow]thd[/bold yellow] can only be [bold yellow]48000[/bold yellow] or [bold yellow]96000[/bold yellow], use [bold blue]sox[/bold blue] for sample rate conversion:[/red]
 [white][bold blue]ffmpeg[/bold blue] -drc_scale [bold color(231)]0[/bold color(231)] -i [bold color(231)]input[/bold color(231)] -v [bold color(231)]quiet[/bold color(231)] -f [bold color(231)]sox[/bold color(231)] - | [bold blue]sox[/bold blue] -p -S -b [bold color(231)]16[/bold color(231)]/[bold color(231)]24[/bold color(231)]/[bold color(231)]32[/bold color(231)] output rate [bold color(231)]48000[/bold color(231)]/[bold color(231)]96000[/bold color(231)][/white]''')
 
-    # If output parameter is passed, create directory and set path
+    # If output parameter is passed, try to create directory and set path
     res = createdir(args.output) if args.output is not None else False
 
     if aformat in ['dd', 'ddp']:
@@ -265,7 +265,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
         xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['data_rate'] = bitrate
     elif aformat == 'thd':
         xmlbase = openxml(os.path.join(script_path, 'xml', 'thd.xml'))
-        # If output parameter is passed, create directory and set path
+        # If output parameter is passed, try to create directory and set path
         if res:
             xmlbase['job_config']['output']['mlp']['storage']['local']['path'] = f'\"{wpc(args.output)}\"'
         else:
