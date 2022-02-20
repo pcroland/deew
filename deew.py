@@ -36,7 +36,7 @@ parser.add_argument('-i', '--input',
 parser.add_argument('-o', '--output',
                     default=None,
                     nargs='?',
-                    help='output directory for files')
+                    help='output directory\ndefault: current directory')
 parser.add_argument('-f', '--format',
                     type=str,
                     default='ddp',
@@ -108,14 +108,12 @@ def printexit(text):
     sys.exit(1)
 
 
-# create directory from --output if not present
 def createdir(out):
     try:
         if not os.path.exists(out):
             os.makedirs(out)
     except OSError:
-        print(f'[yellow]WARNING: Failed to create [bold blue]{out}[/bold blue]. Using default path[/yellow]')
-        return False
+        printexit(f'[red]ERROR: Failed to create [bold yellow]{out}[/bold yellow].[/red]')
     else:
         if os.path.exists(out):
             return True
@@ -128,6 +126,7 @@ def encode(settings):
     xml = settings[1]
     channels = settings[2]
     bitdepth = settings[3]
+    output = settings[4]
     aformat = args.format.lower()
 
     xml['job_config']['input']['audio']['wav']['file_name'] = f'\"{basename(fl, "wav")}\"'
@@ -165,12 +164,8 @@ def encode(settings):
         os.remove(os.path.join(config['temp_path'], basename(fl, 'xml')))
 
     if aformat == 'thd':
-        if args.output is not None and os.path.exists(args.output):
-            os.remove(os.path.join(args.output, basename(fl, 'thd.log')))
-            os.remove(os.path.join(args.output, basename(fl, 'thd.mll')))
-        else:
-            os.remove(os.path.join(os.getcwd(), basename(fl, 'thd.log')))
-            os.remove(os.path.join(os.getcwd(), basename(fl, 'thd.mll')))
+        os.remove(os.path.join(output, basename(fl, 'thd.log')))
+        os.remove(os.path.join(output, basename(fl, 'thd.mll')))
 
 
 def main():
@@ -237,15 +232,15 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
         printexit('''[red]ERROR: sample rate for [bold yellow]thd[/bold yellow] can only be [bold yellow]48000[/bold yellow] or [bold yellow]96000[/bold yellow], use [bold blue]sox[/bold blue] for sample rate conversion:[/red]
 [white][bold blue]ffmpeg[/bold blue] -drc_scale [bold color(231)]0[/bold color(231)] -i [bold color(231)]input[/bold color(231)] -v [bold color(231)]quiet[/bold color(231)] -f [bold color(231)]sox[/bold color(231)] - | [bold blue]sox[/bold blue] -p -S -b [bold color(231)]16[/bold color(231)]/[bold color(231)]24[/bold color(231)]/[bold color(231)]32[/bold color(231)] output rate [bold color(231)]48000[/bold color(231)]/[bold color(231)]96000[/bold color(231)][/white]''')
 
-    # If output parameter is passed, try to create directory and set path
-    res = createdir(args.output) if args.output is not None else False
+    if args.output:
+        createdir(args.output)
+        output = args.output
+    else:
+        output = os.getcwd()
 
     if aformat in ['dd', 'ddp']:
         xmlbase = openxml(os.path.join(script_path, 'xml', 'ddp.xml'))
-        if res:
-            xmlbase['job_config']['output']['ec3']['storage']['local']['path'] = f'\"{wpc(args.output)}\"'
-        else:
-            xmlbase['job_config']['output']['ec3']['storage']['local']['path'] = f'\"{wpc(os.getcwd())}\"'
+        xmlbase['job_config']['output']['ec3']['storage']['local']['path'] = f'\"{wpc(output)}\"'
         if aformat == 'ddp':
             if (channels == 8 or mix == 8) and mix != 6:
                 if bitrate > 1664: printexit('[red]ERROR: bitrate for [bold yellow]7.1 ddp[/bold yellow] can only be [bold yellow]1664[/bold yellow] or lower.[/red]')
@@ -265,11 +260,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
         xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['data_rate'] = bitrate
     elif aformat == 'thd':
         xmlbase = openxml(os.path.join(script_path, 'xml', 'thd.xml'))
-        # If output parameter is passed, try to create directory and set path
-        if res:
-            xmlbase['job_config']['output']['mlp']['storage']['local']['path'] = f'\"{wpc(args.output)}\"'
-        else:
-            xmlbase['job_config']['output']['mlp']['storage']['local']['path'] = f'\"{wpc(os.getcwd())}\"'
+        xmlbase['job_config']['output']['mlp']['storage']['local']['path'] = f'\"{wpc(output)}\"'
 
     xmlbase['job_config']['input']['audio']['wav']['storage']['local']['path'] = f'\"{wpc(config["temp_path"])}\"'
     xmlbase['job_config']['misc']['temp_dir']['path'] = f'\"{wpc(config["temp_path"])}\"'
@@ -301,7 +292,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
 
     settings = []
     for i in range(len(filelist)):
-        settings.append([filelist[i], xmlbase, channels, bitdepth])
+        settings.append([filelist[i], xmlbase, channels, bitdepth, output])
 
     if args.progress:
         for audio in track(pool.imap_unordered(encode, settings), total=len(filelist), description='encoding...'):
