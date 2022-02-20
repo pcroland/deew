@@ -231,6 +231,8 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
         output = os.path.abspath(args.output)
     else:
         output = os.getcwd()
+    if wsl and not output.startswith('/mnt/'):
+        printexit(f'[red]ERROR: WSL path conversion doesn\'t work with [bold yellow]{output}[/bold yellow]\ncd into a /mnt/... folder or specify one with [bold yellow]-o /mnt/path/to/output/[/bold yellow][/red]')
 
     if aformat in ['dd', 'ddp']:
         xmlbase = openxml(os.path.join(script_path, 'xml', 'ddp.xml'))
