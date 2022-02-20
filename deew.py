@@ -11,7 +11,6 @@ import sys
 import time
 from glob import glob
 from multiprocessing import Pool, cpu_count
-from types import SimpleNamespace
 
 import toml
 import xmltodict
@@ -114,11 +113,6 @@ def createdir(out):
             os.makedirs(out)
     except OSError:
         printexit(f'[red]ERROR: Failed to create [bold yellow]{out}[/bold yellow].[/red]')
-    else:
-        if os.path.exists(out):
-            return True
-        else:
-            return False
 
 
 def encode(settings):
