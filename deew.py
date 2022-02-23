@@ -54,7 +54,7 @@ parser.add_argument('-m', '--mix',
 parser.add_argument('-drc',
                     type=str,
                     default='film_light',
-                    help='film_light, film_standard, music_light, music_standard, speech\ndrc profile\ndefault: film_light')
+                    help='film_light/film_standard/music_light/music_standard/speech\ndrc profile\ndefault: film_light')
 parser.add_argument('-t', '--threads',
                     type=int,
                     default=cpu_count() - 1,

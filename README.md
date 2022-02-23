@@ -7,10 +7,25 @@
 ```
 ## DDP encoding has never been so easy!
 
-![img](https://i.kek.sh/gToEgEcaGFw.gif)
+![img](https://i.kek.sh/mrgafOj2SXs.gif)
 
 # Description
-This wrapper handles Dolby's XML input fuckery in the background, giving you a proper CLI interface. The wrapper converts the input files to rf64 which DEE can understand. An XML file will be generated for each input file based on the settings. The tool utilizes thread pooling for batch encoding (all threads-1 by default). Supports WSL path conversion for the Win version of DEE. (see `config.toml`)
+- handles Dolby's XML input fuckery in the background, giving you a proper CLI interface
+- converts inputs to rf64 which DEE can use
+  - bit depth is parsed from source
+- an XML file will be generated for each input based on the settings
+- the script utilizes thread pooling for batch encoding (all threads-1 by default)
+- supports WSL path conversion for the Win version of DEE (see config)
+- in case of an invalid bitrate it will pick the closest valid one
+- automatic sample rate conversion using ffmpeg's soxr resampler in case of an unsupported sample rate
+  - for dd/ddp unsupported rates will be converted to 48000
+  - for thd unsupported rates will be converted to 48000 if source sample rate is lower than 72000, otherwise will be converted to 96000
+- automatic dialnorm setting
+- checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:
+  ./deew.py -f dd -b 448 -i input -k
+  ./deew.py -f dd -b 640 -i input -k
+  ./deew.py -f ddp -i input
+- works even with video inputs (first audio will be selected)
 
 # Requirements
 - ffmpeg
@@ -30,28 +45,35 @@ pip install -r requirements.txt
 # Usage
 ```ruby
 ./deew.py
-usage: deew.py [-h] [-v] [-i [INPUT ...]] [-f FORMAT] [-b BITRATE] [-m MIX] [-t THREADS] [-k] [-p]
+usage: deew.py [-h] [-v] [-i [INPUT ...]] [-o [OUTPUT]] [-f FORMAT] [-b BITRATE] [-m MIX] [-drc DRC] [-t THREADS] [-k] [-pl]
 
 options:
   -h, --help            shows this help message.
   -v, --version         shows version.
   -i [INPUT ...], --input [INPUT ...]
                         audio file(s) or folder(s)
+  -o [OUTPUT], --output [OUTPUT]
+                        output directory
+                        default: current directory
   -f FORMAT, --format FORMAT
                         dd/ddp/thd
                         default: ddp
   -b BITRATE, --bitrate BITRATE
-                        default:
+                        defaults:
                         DD5.1: 640
                         DDP5.1: 1024
                         DDP7.1: 1536
-  -m MIX, --mix MIX     specify down/upmix (6/8), only works for DDP
+  -m MIX, --mix MIX     6/8
+                        specify down/upmix, only works for DDP
+  -drc DRC              film_light/film_standard/music_light/music_standard/speech
+                        drc profile
+                        default: film_light
   -t THREADS, --threads THREADS
                         number of threads to use, only works for batch encoding,
                         individial encodes can't be parallelized
                         default: all threads-1
   -k, --keeptemp        keep temp files
-  -p, --progress        use progress bar instead of command printing
+  -pl, --printlogos     show all logo variants you can set in the config
 ```
 # Examples
 `./deew.py -i *thd`\
