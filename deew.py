@@ -340,9 +340,9 @@ if not config['temp_path']:
 config['temp_path'] = os.path.abspath(config['temp_path'])
 createdir(config['temp_path'])
 
-if not os.path.exists(str(shutil.which(config['dee_path']))): printexit(f'[red]ERROR: [bold yellow]{config["dee_path"]}[/bold yellow] does not exist.[/red]')
-if not os.path.exists(str(shutil.which(config['ffmpeg_path']))): printexit(f'[red]ERROR: [bold yellow]{config["ffmpeg_path"]}[/bold yellow] does not exist.[/red]')
-if not os.path.exists(str(shutil.which(config['ffprobe_path']))): printexit(f'[red]ERROR: [bold yellow]{config["ffprobe_path"]}[/bold yellow] does not exist.[/red]')
+if not shutil.which(config['dee_path']): printexit(f'[red]ERROR: [bold yellow]{config["dee_path"]}[/bold yellow] does not exist.[/red]')
+if not shutil.which(config['ffmpeg_path']): printexit(f'[red]ERROR: [bold yellow]{config["ffmpeg_path"]}[/bold yellow] does not exist.[/red]')
+if not shutil.which(config['ffprobe_path']): printexit(f'[red]ERROR: [bold yellow]{config["ffprobe_path"]}[/bold yellow] does not exist.[/red]')
 
 wsl = True if config['wsl'] else False
 
