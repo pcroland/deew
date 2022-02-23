@@ -38,9 +38,9 @@ git clone https://github.com/pcroland/deew
 cd deew
 pip install -r requirements.txt
 ```
-* rename `config.toml.example` to `config.toml` and edit the settings
-* install your DEE (if you use WSL use the Win version for better performance)
-* place your `license.lic` file next to the DEE binary
+- rename `config.toml.example` to `config.toml` and edit the settings
+- install your DEE (if you use WSL use the Win version for better performance)
+- place your `license.lic` file next to the DEE binary
 
 # Usage
 ```ruby
@@ -90,3 +90,7 @@ encode DD with 448kbps using 4 threads (input is a folder)
 
 `./deew.py -f thd -i *w64`\
 encode TrueHD
+
+# Todo
+- pyinstaller standalone exe
+- per encode progress bar
