@@ -62,8 +62,6 @@ options:
   -m MIX, --mix MIX                    6/8
                                        specify down/upmix, only works for DDP
                                        DD will be automatically downmixed to 5.1 in case of a 7.1 source
-  -d DIALNORM, --dialnorm DIALNORM     specify dialnorm value
-                                       default: 0 (automatically sets dialnorm based on measurement)
   -drc DRC                             film_light/film_standard/music_light/music_standard/speech
                                        drc profile
                                        default: film_light
