@@ -37,7 +37,6 @@ parser.add_argument('-i', '--input',
                     help='audio file(s) or folder(s)')
 parser.add_argument('-o', '--output',
                     default=None,
-                    nargs='?',
                     help='output directory\ndefault: current directory')
 parser.add_argument('-f', '--format',
                     type=str,
