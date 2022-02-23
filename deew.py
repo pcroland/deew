@@ -129,7 +129,6 @@ def encode(settings):
     ffmpeg_args = settings[2]
     dee_args = settings[3]
     intermediate_exists = settings[4]
-    aformat = args.format.lower()
 
     if not intermediate_exists:
         subprocess.run(ffmpeg_args, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
@@ -139,7 +138,7 @@ def encode(settings):
         os.remove(os.path.join(config['temp_path'], basename(fl, 'wav')))
         os.remove(os.path.join(config['temp_path'], basename(fl, 'xml')))
 
-    if aformat == 'thd':
+    if args.format.lower() == 'thd':
         os.remove(os.path.join(output, basename(fl, 'thd.log')))
         os.remove(os.path.join(output, basename(fl, 'thd.mll')))
 
@@ -284,9 +283,11 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
     for i in range(len(filelist)):
         dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml")}' 
         if aformat in ['dd', 'ddp'] and samplerate != 48000:
+            bitdepth = 32
             resample_args = ['-af', 'aresample=resampler=soxr', '-ar', '48000', '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
             resample_args_print = '-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]48000[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
         elif aformat == 'thd' and samplerate not in [48000, 96000]:
+            bitdepth = 32
             if samplerate < 72000:
                 resample_value = '48000'
             else:
