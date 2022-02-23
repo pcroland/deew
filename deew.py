@@ -49,7 +49,7 @@ parser.add_argument('-b', '--bitrate',
 parser.add_argument('-m', '--mix',
                     type=int,
                     default=None,
-                    help='6/8\nspecify down/upmix, only works for DDP')
+                    help='6/8\nspecify down/upmix, only works for DDP\nDD will be automatically downmixed to 5.1 in case of a 7.1 source')
 parser.add_argument('-drc',
                     type=str,
                     default='film_light',
@@ -150,7 +150,6 @@ def main():
     mix = args.mix
 
     if aformat not in ['dd', 'ddp', 'thd']: printexit('[red]ERROR: [bold yellow]-f[/bold yellow]/[bold yellow]--format[/bold yellow] can only be [bold yellow]dd[/bold yellow], [bold yellow]ddp[/bold yellow] or [bold yellow]thd[/bold yellow].[/red]')
-    if aformat != 'ddp' and mix: printexit('[red]ERROR: [bold yellow]-m[/bold yellow]/[bold yellow]--mix[/bold yellow] can only be used for [bold yellow]ddp[/bold yellow] encoding.[/red]')
     if mix and mix not in [6, 8]: printexit('[red]ERROR: [bold yellow]-m[/bold yellow]/[bold yellow]--mix[/bold yellow] can only be [bold yellow]6[/bold yellow] or [bold yellow]8[/bold yellow].[/red]')
     if args.drc not in ['film_light', 'film_standard', 'music_light', 'music_standard', 'speech']: printexit('[red]ERROR: allowed DRC values: [bold yellow]film_light[/bold yellow], [bold yellow]film_standard[/bold yellow], [bold yellow]music_light[/bold yellow], [bold yellow]music_standard[/bold yellow], [bold yellow]speech[/bold yellow].[/red]')
     if platform.system == 'Linux' and not wsl and aformat == 'thd': printexit('[red]Linux version of DEE does not support TrueHD encoding. set wsl to true in config and use Windows version.[/red]')
