@@ -197,7 +197,7 @@ def main():
         elif 16 < bit_depth < 24:
             bit_depth = 24
         else:
-            bit_depth: 32
+            bit_depth = 32
 
     if channels not in [6, 8]: print_exit('''[red]ERROR: number of channels can only be [bold yellow]6[/bold yellow] or [bold yellow]8[/bold yellow].
 For mono and stereo encoding use [bold blue]qaac[/bold blue] or [bold blue]opus[/bold blue].
