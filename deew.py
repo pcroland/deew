@@ -102,11 +102,6 @@ def savexml(fl, xml):
         fl.close()
 
 
-def opentoml(fl):
-    with open(fl, 'r') as fl:
-        return toml.load(fl)
-
-
 def basename(fl, format_):
     return os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
 
@@ -335,9 +330,9 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
 script_path = os.path.dirname(__file__)
 
 if os.path.exists(os.path.join(script_path, 'config.toml')):
-    config = opentoml(os.path.join(script_path, 'config.toml'))
+    config = toml.load(os.path.join(script_path, 'config.toml'))
 elif platform.system() == 'Linux' and os.path.exists(os.path.join(os.path.expanduser('~'), '.config', 'deew', 'config.toml')):
-    config = opentoml(os.path.join(os.path.expanduser('~'), '.config', 'deew', 'config.toml'))
+    config = toml.load(os.path.join(os.path.expanduser('~'), '.config', 'deew', 'config.toml'))
 else:
     printexit('''[red]ERROR: rename [bold yellow]config.toml.example[/bold yellow] to [bold yellow]config.toml[/bold yellow] and edit the settings.
 Config has to be next to the script or it can also be at [bold yellow]~/.config/deew/config.toml[/bold yellow] on Linux.[/red]''')
