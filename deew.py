@@ -20,7 +20,9 @@ from logos import logos
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-parser = argparse.ArgumentParser(add_help=False, formatter_class=argparse.RawTextHelpFormatter)
+parser = argparse.ArgumentParser(
+    add_help=False, formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, max_help_position=40)
+)
 parser.add_argument('-h', '--help',
                     action='help',
                     default=argparse.SUPPRESS,
