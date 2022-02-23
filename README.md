@@ -44,36 +44,31 @@ pip install -r requirements.txt
 
 # Usage
 ```ruby
-./deew.py
-usage: deew.py [-h] [-v] [-i [INPUT ...]] [-o [OUTPUT]] [-f FORMAT] [-b BITRATE] [-m MIX] [-drc DRC] [-t THREADS] [-k] [-pl]
+❯ ./deew.py --help
+usage: deew.py [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE] [-m MIX] [-drc DRC] [-t THREADS] [-k] [-pl]
 
 options:
-  -h, --help            shows this help message.
-  -v, --version         shows version.
-  -i [INPUT ...], --input [INPUT ...]
-                        audio file(s) or folder(s)
-  -o [OUTPUT], --output [OUTPUT]
-                        output directory
-                        default: current directory
-  -f FORMAT, --format FORMAT
-                        dd/ddp/thd
-                        default: ddp
-  -b BITRATE, --bitrate BITRATE
-                        defaults:
-                        DD5.1: 640
-                        DDP5.1: 1024
-                        DDP7.1: 1536
-  -m MIX, --mix MIX     6/8
-                        specify down/upmix, only works for DDP
-  -drc DRC              film_light/film_standard/music_light/music_standard/speech
-                        drc profile
-                        default: film_light
-  -t THREADS, --threads THREADS
-                        number of threads to use, only works for batch encoding,
-                        individial encodes can't be parallelized
-                        default: all threads-1
-  -k, --keeptemp        keep temp files
-  -pl, --printlogos     show all logo variants you can set in the config
+  -h, --help                           shows this help message.
+  -v, --version                        shows version.
+  -i [INPUT ...], --input [INPUT ...]  audio file(s) or folder(s)
+  -o OUTPUT, --output OUTPUT           output directory
+                                       default: current directory
+  -f FORMAT, --format FORMAT           dd/ddp/thd
+                                       default: ddp
+  -b BITRATE, --bitrate BITRATE        defaults:
+                                       DD5.1: 640
+                                       DDP5.1: 1024
+                                       DDP7.1: 1536
+  -m MIX, --mix MIX                    6/8
+                                       specify down/upmix, only works for DDP
+  -drc DRC                             film_light/film_standard/music_light/music_standard/speech
+                                       drc profile
+                                       default: film_light
+  -t THREADS, --threads THREADS        number of threads to use, only works for batch encoding,
+                                       individial encodes can't be parallelized
+                                       default: all threads-1
+  -k, --keeptemp                       keep temp files
+  -pl, --printlogos                    show all logo variants you can set in the config
 ```
 # Examples
 `./deew.py -i *thd`\
