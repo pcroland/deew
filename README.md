@@ -21,9 +21,9 @@
   - for dd/ddp unsupported rates will be converted to 48000
   - for thd unsupported rates will be converted to 48000 if source sample rate is lower than 72000, otherwise will be converted to 96000
 - automatic dialnorm setting
-- checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:
-  ./deew.py -f dd -b 448 -i input -k
-  ./deew.py -f dd -b 640 -i input -k
+- checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:\
+  ./deew.py -f dd -b 448 -i input -k\
+  ./deew.py -f dd -b 640 -i input -k\
   ./deew.py -f ddp -i input
 - works even with video inputs (first audio will be selected)
 
