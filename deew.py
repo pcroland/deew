@@ -50,6 +50,10 @@ parser.add_argument('-m', '--mix',
                     type=int,
                     default=None,
                     help='6/8\nspecify down/upmix, only works for DDP\nDD will be automatically downmixed to 5.1 in case of a 7.1 source')
+parser.add_argument('-d', '--dialnorm',
+                    type=int,
+                    default=0,
+                    help='sets dialnorm value\ndefault: 0 (automatically sets dialnorm based on measurement)')
 parser.add_argument('-drc',
                     type=str,
                     default='film_light',
@@ -205,6 +209,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
 
     if aformat in ['dd', 'ddp']:
         xmlbase = openxml(os.path.join(script_path, 'xml', 'ddp.xml'))
+        xmlbase['job_config']['filter']['audio']['pcm_to_ddp']['custom_dialnorm'] = clamp(args.dialnorm, -31, 0)
         xmlbase['job_config']['output']['ec3']['storage']['local']['path'] = f'\"{wpc(output)}\"'
         if aformat == 'ddp':
             if (channels == 8 or mix == 8) and mix != 6:
