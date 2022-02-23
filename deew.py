@@ -344,7 +344,7 @@ if not shutil.which(config['dee_path']): printexit(f'[red]ERROR: [bold yellow]{c
 if not shutil.which(config['ffmpeg_path']): printexit(f'[red]ERROR: [bold yellow]{config["ffmpeg_path"]}[/bold yellow] does not exist.[/red]')
 if not shutil.which(config['ffprobe_path']): printexit(f'[red]ERROR: [bold yellow]{config["ffprobe_path"]}[/bold yellow] does not exist.[/red]')
 
-wsl = True if config['wsl'] else False
+wsl = config['wsl']
 
 
 if __name__ == "__main__":
