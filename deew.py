@@ -99,7 +99,6 @@ def openxml(fl):
 def savexml(fl, xml):
     with open(fl, 'w') as fl:
         fl.write(xmltodict.unparse(xml, pretty=True, indent='  '))
-        fl.close()
 
 
 def basename(fl, format_):
