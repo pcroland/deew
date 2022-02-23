@@ -77,11 +77,11 @@ def clamp(inp: int, low: int, high: int) -> int:
     return min(max(inp, low), high)
 
 
-def find_closest_allowed(value, allowed_values) -> int:
+def find_closest_allowed(value: int, allowed_values: list) -> int:
     return min(allowed_values, key=lambda list_value: abs(list_value - value))
 
 
-def wpc(p):
+def wpc(p) -> str:
     if wsl:
         if not p.startswith('/mnt/'):
             print_exit(f'[red]ERROR: WSL path conversion doesn\'t work with [bold yellow]{p}[/bold yellow].[/red]')
