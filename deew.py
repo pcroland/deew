@@ -112,8 +112,7 @@ def printexit(text):
 
 def createdir(out):
     try:
-        if not os.path.exists(out):
-            os.makedirs(out)
+        os.makedirs(out, exist_ok=True)
     except OSError:
         printexit(f'[red]ERROR: Failed to create [bold yellow]{out}[/bold yellow].[/red]')
 
