@@ -30,16 +30,16 @@
         <prepend_silence_duration>0</prepend_silence_duration>    <!-- string -->
         <append_silence_duration>0</append_silence_duration>    <!-- string -->
         <atmos_presentation>
-          <drc_profile>film_light</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
           <spatial_clusters>12</spatial_clusters>    <!-- One of: 12, 14, 16 -->
           <legacy_authoring_compatibility>true</legacy_authoring_compatibility>    <!-- boolean: true or false -->
         </atmos_presentation>
         <presentation_8ch>
-          <drc_profile>film_light</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
           <surround_3db_attenuation>true</surround_3db_attenuation>    <!-- boolean: true or false -->
         </presentation_8ch>
         <presentation_6ch>
-          <drc_profile>film_light</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
           <surround_3db_attenuation>true</surround_3db_attenuation>    <!-- boolean: true or false -->
         </presentation_6ch>
         <presentation_2ch>

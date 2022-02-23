@@ -1,5 +1,10 @@
 ffmpeg_path = 'ffmpeg'
 ffprobe_path = 'ffprobe'
 dee_path = 'dee.exe'
-temp_path = '/path/to/temp/folder' # use full path (make sure the folder exists)
+temp_path = ''
+# empty: next to the script
+# relative path: from your current directory
+# you can also use fullpath
+# in any case will be created automatically if it doesn't exist already
 wsl = false # set this to true if you run the script in Linux but use the Windows version of DEE
+logo = 1 # set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo

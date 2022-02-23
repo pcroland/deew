@@ -40,8 +40,8 @@
         <dolby_surround_ex_mode>no</dolby_surround_ex_mode>    <!-- One of: yes, no, not_indicated -->
         <user_data>-1</user_data>    <!-- integer: from -1 to 65535 -->
         <drc>
-          <line_mode_drc_profile>film_light</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
-          <rf_mode_drc_profile>film_light</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <line_mode_drc_profile>-</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <rf_mode_drc_profile>-</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
         </drc>
         <lfe_lowpass_filter>true</lfe_lowpass_filter>    <!-- boolean: true or false -->
         <surround_90_degree_phase_shift>true</surround_90_degree_phase_shift>    <!-- boolean: true or false -->
