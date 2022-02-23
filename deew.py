@@ -172,8 +172,7 @@ def main():
     bit_depth_list = []
 
     for f in filelist:
-        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json',
-                      '-show_format', '-show_streams', f]
+        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json', '-show_format', '-show_streams', f]
         output = subprocess.check_output(probe_args)
         audio = json.loads(output)['streams'][0]
         samplerate_list.append(int(audio['sample_rate']))
@@ -222,7 +221,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
             else:
                 if bitrate == 0: bitrate = 1024
                 bitrate = find_closest_allowed(bitrate,
-                                               [192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336,
+                                                [192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336,
                                                 352, 368, 384, 400, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1008,
                                                 1024])
                 # having downmix 5.1 vs off in case of a 5.1 input results with the same hash
@@ -287,8 +286,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
         dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml")}'
         if aformat in ['dd', 'ddp'] and samplerate != 48000:
             bit_depth = 32
-            resample_args = ['-af', 'aresample=resampler=soxr', '-ar', '48000', '-precision', '28', '-cutoff', '1',
-                             '-dither_scale', '0']
+            resample_args = ['-af', 'aresample=resampler=soxr', '-ar', '48000', '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
             resample_args_print = '-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]48000[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
         elif aformat == 'thd' and samplerate not in [48000, 96000]:
             bit_depth = 32
@@ -296,16 +294,13 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
                 resample_value = '48000'
             else:
                 resample_value = '96000'
-            resample_args = ['-af', 'aresample=resampler=soxr', '-ar', resample_value, '-precision', '28', '-cutoff',
-                             '1', '-dither_scale', '0']
+            resample_args = ['-af', 'aresample=resampler=soxr', '-ar', resample_value, '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
             resample_args_print = f'-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]{resample_value}[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
         else:
             resample_args = []
             resample_args_print = ''
 
-        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0',
-                       f'pcm_s{bit_depth}le', *(resample_args), '-rf64', 'always',
-                       os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
+        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
         ffmpeg_args_print = f'[bold blue]ffmpeg[/bold blue] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
         dee_args = [config['dee_path'], '-x', dee_xml_input]
         dee_args_print = f'[bold blue]dee[/bold blue] -x [bold magenta]{dee_xml_input}[/bold magenta]'
