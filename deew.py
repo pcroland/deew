@@ -13,7 +13,7 @@ import sys
 from copy import copy
 from glob import glob
 from multiprocessing import Pool, cpu_count
-from typing import Any
+from typing import Any, NoReturn
 
 import toml
 import xmltodict
@@ -109,7 +109,7 @@ def basename(fl: str, format_: str) -> str:
     return os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
 
 
-def print_exit(text: str) -> None:
+def print_exit(text: str) -> NoReturn:
     print(text)
     sys.exit(1)
 
