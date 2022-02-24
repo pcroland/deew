@@ -329,8 +329,7 @@ or use [bold blue]ffmpeg[/bold blue] to remap them ([bold yellow]-ac 6[/bold yel
 
         settings.append([filelist[i], output, ffmpeg_args, dee_args, intermediate_exists])
 
-    for audio in track(pool.imap_unordered(encode, settings), total=len(filelist), description='encoding...'):
-        pass
+    list(track(pool.imap_unordered(encode, settings), total=len(filelist), description='encoding...'))
 
 
 script_path = os.path.dirname(__file__)
