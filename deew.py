@@ -85,13 +85,13 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
     return min(allowed_values, key=lambda list_value: abs(list_value - value))
 
 
-def wpc(p) -> str:
+def wpc(p: str) -> str:
     if wsl:
         if not p.startswith('/mnt/'):
             print_exit(f'[red]ERROR: WSL path conversion doesn\'t work with [bold yellow]{p}[/bold yellow].[/red]')
-        p = p.split('/')[2:]
-        p[0] = p[0].upper() + ':'
-        p = '\\'.join(p)
+        parts = p.split('/')[2:]
+        parts[0] = parts[0].upper() + ':'
+        p = '\\'.join(parts)
     return p
 
 
@@ -100,7 +100,7 @@ def open_xml(f: str) -> dict[str, Any]:
         return xmltodict.parse(fd.read())
 
 
-def save_xml(f: str, xml: dict[str, Any]):
+def save_xml(f: str, xml: dict[str, Any]) -> None:
     with open(f, 'w') as fd:
         fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
 
@@ -109,12 +109,12 @@ def basename(fl: str, format_: str) -> str:
     return os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
 
 
-def print_exit(text) -> None:
+def print_exit(text: str) -> None:
     print(text)
     sys.exit(1)
 
 
-def createdir(out) -> None:
+def createdir(out: str) -> None:
     try:
         os.makedirs(out, exist_ok=True)
     except OSError:
