@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+
+from __future__ import annotations
+
 import argparse
 import json
 import os
@@ -10,6 +13,7 @@ import sys
 from copy import copy
 from glob import glob
 from multiprocessing import Pool, cpu_count
+from typing import Any
 
 import toml
 import xmltodict
@@ -77,7 +81,7 @@ def clamp(inp: int, low: int, high: int) -> int:
     return min(max(inp, low), high)
 
 
-def find_closest_allowed(value: int, allowed_values: list) -> int:
+def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
     return min(allowed_values, key=lambda list_value: abs(list_value - value))
 
 
@@ -91,17 +95,17 @@ def wpc(p) -> str:
     return p
 
 
-def open_xml(fl):
-    with open(fl, 'r') as fl:
-        return xmltodict.parse(fl.read())
+def open_xml(f: str) -> dict[str, Any]:
+    with open(f, 'r') as fd:
+        return xmltodict.parse(fd.read())
 
 
-def save_xml(fl, xml):
-    with open(fl, 'w') as fl:
-        fl.write(xmltodict.unparse(xml, pretty=True, indent='  '))
+def save_xml(f: str, xml: dict[str, Any]):
+    with open(f, 'w') as fd:
+        fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
 
 
-def basename(fl, format_):
+def basename(fl: str, format_: str) -> str:
     return os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
 
 
@@ -110,19 +114,15 @@ def print_exit(text) -> None:
     sys.exit(1)
 
 
-def createdir(out):
+def createdir(out) -> None:
     try:
         os.makedirs(out, exist_ok=True)
     except OSError:
         print_exit(f'[red]ERROR: Failed to create [bold yellow]{out}[/bold yellow].[/red]')
 
 
-def encode(settings):
-    fl = settings[0]
-    output = settings[1]
-    ffmpeg_args = settings[2]
-    dee_args = settings[3]
-    intermediate_exists = settings[4]
+def encode(settings: list) -> None:
+    fl, output, ffmpeg_args, dee_args, intermediate_exists = settings
 
     if not intermediate_exists:
         subprocess.run(ffmpeg_args, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
@@ -137,7 +137,7 @@ def encode(settings):
         os.remove(os.path.join(output, basename(fl, 'thd.mll')))
 
 
-def main():
+def main() -> None:
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -173,7 +173,7 @@ def main():
 
     for f in filelist:
         probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json', '-show_format', '-show_streams', f]
-        output = subprocess.check_output(probe_args)
+        output = subprocess.check_output(probe_args, encoding='utf-8')
         audio = json.loads(output)['streams'][0]
         samplerate_list.append(int(audio['sample_rate']))
         channels_list.append(audio['channels'])
