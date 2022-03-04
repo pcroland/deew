@@ -89,4 +89,4 @@ encode TrueHD
 
 # Todo
 - pyinstaller standalone exe
-- per encode progress bar
+- multiple progress bars (currently encoding progress is only shown for a single input, for multiple inputs the progress bar counts the encoded files)
