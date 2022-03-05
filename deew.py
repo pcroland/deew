@@ -127,9 +127,11 @@ def encode(settings: list) -> None:
 
     if not intermediate_exists:
         subprocess.run(ffmpeg_args, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
-    process = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
 
-    if not multiple_files:
+    if multiple_files:
+        subprocess.run(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
+    else:
+        process = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
         with Progress() as pb:
             progress_fl_name = os.path.basename(fl)[:20]
             task = pb.add_task(f'[ [bold][cyan]dee[/cyan] [magenta]{progress_fl_name}[/magenta][/bold]...'.ljust(80, ' ') + ']', total=100)
