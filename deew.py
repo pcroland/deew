@@ -19,7 +19,7 @@ from typing import Any, NoReturn
 import toml
 import xmltodict
 from rich import print
-from rich.progress import Progress, track
+from rich.progress import Progress, BarColumn, TimeRemainingColumn, track
 
 from logos import logos
 
@@ -34,7 +34,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.1',
+                    version='deew 1.2.2',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -132,7 +132,7 @@ def encode(settings: list) -> None:
         subprocess.run(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
     else:
         process = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
-        with Progress() as pb:
+        with Progress( "{task.description}", BarColumn(), "[magenta]{task.percentage:>3.1f}%", TimeRemainingColumn()) as pb:
             progress_fl_name = os.path.basename(fl)[:20]
             task = pb.add_task(f'[ [bold][cyan]dee[/cyan] [magenta]{progress_fl_name}[/magenta][/bold]...'.ljust(80, ' ') + ']', total=100)
 
