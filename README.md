@@ -7,7 +7,7 @@
 ```
 ## DDP encoding has never been so easy!
 
-![img](https://i.kek.sh/mrgafOj2SXs.gif)
+![img](https://i.kek.sh/PUI0356sddC.gif)
 
 # Description
 - handles Dolby's XML input fuckery in the background, giving you a proper CLI interface
