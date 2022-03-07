@@ -15,6 +15,7 @@ from copy import copy
 from glob import glob
 from multiprocessing import Pool, cpu_count
 from typing import Any, NoReturn
+import time
 
 import toml
 import xmltodict
@@ -34,7 +35,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.2',
+                    version='deew 1.2.3',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -82,6 +83,11 @@ def clamp(inp: int, low: int, high: int) -> int:
     return min(max(inp, low), high)
 
 
+def stamp_to_sec(stamp):
+    l = stamp.split(':')
+    return int(l[0])*3600 + int(l[1])*60 + float(l[2])
+
+
 def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
     return min(allowed_values, key=lambda list_value: abs(list_value - value))
 
@@ -123,28 +129,51 @@ def createdir(out: str) -> None:
 
 
 def encode(settings: list) -> None:
-    fl, output, ffmpeg_args, dee_args, intermediate_exists, multiple_files = settings
-
-    if not intermediate_exists:
-        subprocess.run(ffmpeg_args, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+    fl, output, length, ffmpeg_args, dee_args, intermediate_exists, multiple_files = settings
 
     if multiple_files:
+        if not intermediate_exists:
+            subprocess.run(ffmpeg_args, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
         subprocess.run(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
     else:
-        process = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
-        with Progress( "{task.description}", BarColumn(), "[magenta]{task.percentage:>3.1f}%", TimeRemainingColumn()) as pb:
-            progress_fl_name = os.path.basename(fl)[:20]
-            task = pb.add_task(f'[ [bold][cyan]dee[/cyan] [magenta]{progress_fl_name}[/magenta][/bold]...'.ljust(80, ' ') + ']', total=100)
+        with Progress('{task.description}', BarColumn(), '[magenta]{task.percentage:>3.1f}%', TimeRemainingColumn(), refresh_per_second=10) as pb:
+            task = pb.add_task(f'[ [bold][cyan]starting[/cyan][/bold]...{" " * 24}]', total=100)
+            if not intermediate_exists:
+                progress_fl_name = f'[magenta]{fl[:23]}[/magenta]...' if len(fl) > 26 else f'[magenta]{fl.ljust(26)}[/magenta]'
+                pb.update(description=f'[ [bold][cyan]ffmpeg[/cyan][/bold] | {progress_fl_name}' + ']', task_id=task, completed=0)
+                ffmpeg = subprocess.Popen(ffmpeg_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf-8', errors='ignore')
+                percentage_length = length / 100
+                with ffmpeg.stdout:
+                    for _ in iter(ffmpeg.stdout.readline, ''):
+                        line = ffmpeg.stdout.readline()
+                        if '=' not in line: continue
+                        progress = re.search(r'time=([^\s]+)', line)
+                        if progress:
+                            timecode = stamp_to_sec(progress[1]) / percentage_length
+                            pb.update(task_id=task, completed=timecode)
+                pb.update(task_id=task, completed=100)
+                time.sleep(0.5)
 
-            with process.stdout:
-                for _ in iter(process.stdout.readline, ''):
-                    line = process.stdout.readline()
+            progress_fl_name = f'[magenta]{fl[:17]}[/magenta]...' if len(fl) > 20 else f'[magenta]{fl.ljust(20)}[/magenta]'
+            pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: measure | {progress_fl_name}' + ']', task_id=task, completed=0)
+            dee = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
+            with dee.stdout:
+                for _ in iter(dee.stdout.readline, ''):
+                    line = dee.stdout.readline()
+
+                    if re.search(r'(Step: encoding)', line):
+                        progress_fl_name = f'[magenta]{fl[:18]}[/magenta]...' if len(fl) > 21 else f'[magenta]{fl.ljust(21)}[/magenta]'
+                        pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: encode | {progress_fl_name}' + ']', task_id=task)
+
                     progress = re.search(r'Overall progress: ([0-9]+\.[0-9])', line)
                     if progress:
                         pb.update(task_id=task, completed=float(progress[1]))
 
                     if 'error' in line.lower():
                         print(line.rstrip().split(': ', 1)[1])
+            pb.update(task_id=task, completed=100)
+
+
 
     if not args.keeptemp:
         os.remove(os.path.join(config['temp_path'], basename(fl, 'wav')))
@@ -188,6 +217,7 @@ def main() -> None:
     samplerate_list = []
     channels_list = []
     bit_depth_list = []
+    length_list = []
 
     for f in filelist:
         probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json', '-show_format', '-show_streams', f]
@@ -195,6 +225,7 @@ def main() -> None:
         audio = json.loads(output)['streams'][0]
         samplerate_list.append(int(audio['sample_rate']))
         channels_list.append(audio['channels'])
+        length_list.append(float(audio.get('duration', 5400)))
         depth = int(audio.get('bits_per_sample', 0))
         if depth == 0: depth = int(audio.get('bits_per_raw_sample', 32))
         bit_depth_list.append(depth)
@@ -347,7 +378,7 @@ or use [bold cyan]ffmpeg[/bold cyan] to remap them ([bold yellow]-ac 6[/bold yel
             xml['job_config']['output']['mlp']['file_name'] = f'\"{basename(filelist[i], "thd")}\"'
         save_xml(os.path.join(config['temp_path'], basename(filelist[i], 'xml')), xml)
 
-        settings.append([filelist[i], output, ffmpeg_args, dee_args, intermediate_exists, multiple_files])
+        settings.append([filelist[i], output, length_list[i], ffmpeg_args, dee_args, intermediate_exists, multiple_files])
 
     if multiple_files:
         list(track(pool.imap_unordered(encode, settings), total=len(filelist), description='encoding...'))
