@@ -136,11 +136,12 @@ def encode(settings: list) -> None:
             subprocess.run(ffmpeg_args, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
         subprocess.run(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
     else:
+        fl_b = os.path.basename(fl)
         with Progress('{task.description}', BarColumn(), '[magenta]{task.percentage:>3.1f}%', TimeRemainingColumn(), refresh_per_second=10) as pb:
             task = pb.add_task(f'[ [bold][cyan]starting[/cyan][/bold]...{" " * 24}]', total=100)
             if not intermediate_exists:
-                progress_fl_name = f'[magenta]{fl[:23]}[/magenta]...' if len(fl) > 26 else f'[magenta]{fl.ljust(26)}[/magenta]'
-                pb.update(description=f'[ [bold][cyan]ffmpeg[/cyan][/bold] | {progress_fl_name}' + ']', task_id=task, completed=0)
+                task_name = f'[magenta]{fl_b[:23]}[/magenta]...' if len(fl_b) > 26 else f'[magenta]{fl_b.ljust(26)}[/magenta]'
+                pb.update(description=f'[ [bold][cyan]ffmpeg[/cyan][/bold] | {task_name}' + ']', task_id=task, completed=0)
                 ffmpeg = subprocess.Popen(ffmpeg_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf-8', errors='ignore')
                 percentage_length = length / 100
                 with ffmpeg.stdout:
@@ -154,16 +155,16 @@ def encode(settings: list) -> None:
                 pb.update(task_id=task, completed=100)
                 time.sleep(0.5)
 
-            progress_fl_name = f'[magenta]{fl[:17]}[/magenta]...' if len(fl) > 20 else f'[magenta]{fl.ljust(20)}[/magenta]'
-            pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: measure | {progress_fl_name}' + ']', task_id=task, completed=0)
+            task_name = f'[magenta]{fl_b[:17]}[/magenta]...' if len(fl_b) > 20 else f'[magenta]{fl_b.ljust(20)}[/magenta]'
+            pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: measure | {task_name}' + ']', task_id=task, completed=0)
             dee = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
             with dee.stdout:
                 for _ in iter(dee.stdout.readline, ''):
                     line = dee.stdout.readline()
 
                     if re.search(r'(Step: encoding)', line):
-                        progress_fl_name = f'[magenta]{fl[:18]}[/magenta]...' if len(fl) > 21 else f'[magenta]{fl.ljust(21)}[/magenta]'
-                        pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: encode | {progress_fl_name}' + ']', task_id=task)
+                        task_name = f'[magenta]{fl_b[:18]}[/magenta]...' if len(fl_b) > 21 else f'[magenta]{fl_b.ljust(21)}[/magenta]'
+                        pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: encode | {task_name}' + ']', task_id=task)
 
                     progress = re.search(r'Overall progress: ([0-9]+\.[0-9])', line)
                     if progress:
