@@ -35,7 +35,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.3',
+                    version='deew 1.2.4',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -145,8 +145,7 @@ def encode(settings: list) -> None:
                 ffmpeg = subprocess.Popen(ffmpeg_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf-8', errors='ignore')
                 percentage_length = length / 100
                 with ffmpeg.stdout:
-                    for _ in iter(ffmpeg.stdout.readline, ''):
-                        line = ffmpeg.stdout.readline()
+                    for line in iter(ffmpeg.stdout.readline, ''):
                         if '=' not in line: continue
                         progress = re.search(r'time=([^\s]+)', line)
                         if progress:
@@ -159,9 +158,7 @@ def encode(settings: list) -> None:
             pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: measure | {task_name}' + ']', task_id=task, completed=0)
             dee = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
             with dee.stdout:
-                for _ in iter(dee.stdout.readline, ''):
-                    line = dee.stdout.readline()
-
+                for line in iter(dee.stdout.readline, ''):
                     if re.search(r'(Step: encoding)', line):
                         task_name = f'[magenta]{fl_b[:18]}[/magenta]...' if len(fl_b) > 21 else f'[magenta]{fl_b.ljust(21)}[/magenta]'
                         pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: encode | {task_name}' + ']', task_id=task)
