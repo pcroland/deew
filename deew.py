@@ -11,7 +11,7 @@ import shutil
 import signal
 import subprocess
 import sys
-from copy import copy
+from copy import deepcopy
 from glob import glob
 from multiprocessing import Pool, cpu_count
 from typing import Any, NoReturn
@@ -35,7 +35,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.4',
+                    version='deew 1.2.5',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -170,8 +170,6 @@ def encode(settings: list) -> None:
                     if 'error' in line.lower():
                         print(line.rstrip().split(': ', 1)[1])
             pb.update(task_id=task, completed=100)
-
-
 
     if not args.keeptemp:
         os.remove(os.path.join(config['temp_path'], basename(fl, 'wav')))
@@ -361,7 +359,7 @@ or use [bold cyan]ffmpeg[/bold cyan] to remap them ([bold yellow]-ac 6[/bold yel
         else:
             print(f'{ffmpeg_args_print} && {dee_args_print}')
 
-        xml = copy(xml_base)
+        xml = deepcopy(xml_base)
         xml['job_config']['input']['audio']['wav']['file_name'] = f'\"{basename(filelist[i], "wav")}\"'
         if aformat == 'ddp':
             if channels == 8:
