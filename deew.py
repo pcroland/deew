@@ -198,7 +198,7 @@ def main() -> None:
         print_exit('[red]ERROR: [bold yellow]-m[/bold yellow]/[bold yellow]--mix[/bold yellow] can only be [bold yellow]6[/bold yellow] or [bold yellow]8[/bold yellow].[/red]')
     if args.drc not in ['film_light', 'film_standard', 'music_light', 'music_standard', 'speech']:
         print_exit('[red]ERROR: allowed DRC values: [bold yellow]film_light[/bold yellow], [bold yellow]film_standard[/bold yellow], [bold yellow]music_light[/bold yellow], [bold yellow]music_standard[/bold yellow], [bold yellow]speech[/bold yellow].[/red]')
-    if platform.system == 'Linux' and not wsl and aformat == 'thd':
+    if platform.system() == 'Linux' and not wsl and aformat == 'thd':
         print_exit('[red]Linux version of DEE does not support TrueHD encoding. set wsl to true in config and use Windows version of DEE.[/red]')
 
     filelist = []
