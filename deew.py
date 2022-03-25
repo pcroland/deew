@@ -11,16 +11,17 @@ import shutil
 import signal
 import subprocess
 import sys
+import time
 from copy import deepcopy
 from glob import glob
 from multiprocessing import Pool, cpu_count
 from typing import Any, NoReturn
-import time
 
+import requests
 import toml
 import xmltodict
 from rich import print
-from rich.progress import Progress, BarColumn, TimeRemainingColumn, track
+from rich.progress import BarColumn, Progress, TimeRemainingColumn, track
 
 from logos import logos
 
@@ -35,7 +36,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.5',
+                    version='deew 1.2.6',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -70,13 +71,38 @@ parser.add_argument('-k', '--keeptemp',
 parser.add_argument('-pl', '--printlogos',
                     action='store_true',
                     help='show all logo variants you can set in the config')
+parser.add_argument('-cl', '--changelog',
+                    action='store_true',
+                    help='print changelog')
 args = parser.parse_args()
+
+
+def print_changelog() -> None:
+    try:
+        changelog = requests.get('https://raw.githubusercontent.com/pcroland/deew/main/changelog.md').text.split('\n')
+    except Exception:
+        print_exit('[red]ERROR: couldn\'t fetch changelog from GitHub.[/red]')
+
+    for line in changelog:
+        if line.startswith('# '):
+            line = f'[bold color(231)]{line.replace("# ", "")}[/bold color(231)]'
+        code_number = line.count('`')
+        state_even = False
+        for _ in range(code_number):
+            if not state_even:
+                line = line.replace('`', '[bold yellow]', 1)
+                state_even = True
+            else:
+                line = line.replace('`', '[/bold yellow]', 1)
+                state_even = False
+        print(f'[not bold]{line}[/not bold]')
+    sys.exit(0)
 
 
 def print_logos() -> None:
     for i in range(len(logos)):
         print(f'logo {i + 1}:\n{logos[i]}')
-    sys.exit(1)
+    sys.exit(0)
 
 
 def clamp(inp: int, low: int, high: int) -> int:
@@ -184,6 +210,8 @@ def main() -> None:
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
+
+    if args.changelog: print_changelog()
 
     if args.printlogos: print_logos()
     if 0 < config['logo'] < len(logos) + 1: print(logos[config['logo'] - 1])
