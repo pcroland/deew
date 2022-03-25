@@ -84,6 +84,7 @@ def print_changelog() -> None:
         print_exit('[red]ERROR: couldn\'t fetch changelog from GitHub.[/red]')
 
     for line in changelog:
+        line = line.replace('\\', '')
         if line.startswith('# '):
             line = f'[bold color(231)]{line.replace("# ", "")}[/bold color(231)]'
         code_number = line.count('`')
