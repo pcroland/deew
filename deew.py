@@ -17,7 +17,6 @@ from glob import glob
 from multiprocessing import Pool, cpu_count
 from typing import Any, NoReturn
 
-import requests
 import toml
 import xmltodict
 from rich import print
@@ -78,6 +77,8 @@ args = parser.parse_args()
 
 
 def print_changelog() -> None:
+    import requests
+
     try:
         changelog = requests.get('https://raw.githubusercontent.com/pcroland/deew/main/changelog.md').text.split('\n')
     except Exception:
