@@ -35,7 +35,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.6',
+                    version='deew 1.2.7',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -342,6 +342,29 @@ or use [bold cyan]ffmpeg[/bold cyan] to remap them ([bold yellow]-ac 6[/bold yel
     pformat += '[/bold cyan]'
     print(f'encoding {pformat}[not bold white]...[/not bold white]\n')
 
+    if aformat in ['dd', 'ddp'] and samplerate != 48000:
+        bit_depth = 32
+        resample_args = ['-af', 'aresample=resampler=soxr', '-ar', '48000', '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
+        resample_args_print = '-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]48000[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
+    elif aformat == 'thd' and samplerate not in [48000, 96000]:
+        bit_depth = 32
+        if samplerate < 72000:
+            resample_value = '48000'
+        else:
+            resample_value = '96000'
+        resample_args = ['-af', 'aresample=resampler=soxr', '-ar', resample_value, '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
+        resample_args_print = f'-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]{resample_value}[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
+    else:
+        resample_args = []
+        resample_args_print = ''
+
+    if channels == 8:
+        channel_swap_args = ['-filter_complex', 'pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5']
+        channel_swap_args_print = '-filter_complex [bold color(231)]pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5[/bold color(231)] '
+    else:
+        channel_swap_args = []
+        channel_swap_args_print = ''
+
     if wsl or platform.system() == 'Windows':
         dee_xml_input_base = f'{wpc(config["temp_path"])}\\'
     else:
@@ -361,24 +384,9 @@ or use [bold cyan]ffmpeg[/bold cyan] to remap them ([bold yellow]-ac 6[/bold yel
 
     for i in range(len(filelist)):
         dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml")}'
-        if aformat in ['dd', 'ddp'] and samplerate != 48000:
-            bit_depth = 32
-            resample_args = ['-af', 'aresample=resampler=soxr', '-ar', '48000', '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
-            resample_args_print = '-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]48000[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
-        elif aformat == 'thd' and samplerate not in [48000, 96000]:
-            bit_depth = 32
-            if samplerate < 72000:
-                resample_value = '48000'
-            else:
-                resample_value = '96000'
-            resample_args = ['-af', 'aresample=resampler=soxr', '-ar', resample_value, '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
-            resample_args_print = f'-af [bold color(231)]aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]{resample_value}[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
-        else:
-            resample_args = []
-            resample_args_print = ''
 
-        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
-        ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
+        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(channel_swap_args),*(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
+        ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
         dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input]
         dee_args_print = f'[bold cyan]dee[/bold cyan] -x [bold magenta]{dee_xml_input}[/bold magenta]'
 
