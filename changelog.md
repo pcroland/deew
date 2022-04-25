@@ -1,3 +1,6 @@
+# deew 1.2.8:
+- set `<surround_3db_attenuation>` to `false` in `thd.xml`
+
 # deew 1.2.7:
 - prior to this version deew swapped Ls Rs with Lrs Rrs, now it passes\
   `-filter_complex pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5`\

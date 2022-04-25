@@ -36,11 +36,11 @@
         </atmos_presentation>
         <presentation_8ch>
           <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
-          <surround_3db_attenuation>true</surround_3db_attenuation>    <!-- boolean: true or false -->
+          <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- boolean: true or false -->
         </presentation_8ch>
         <presentation_6ch>
           <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
-          <surround_3db_attenuation>true</surround_3db_attenuation>    <!-- boolean: true or false -->
+          <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- boolean: true or false -->
         </presentation_6ch>
         <presentation_2ch>
           <drc_profile>film_light</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
