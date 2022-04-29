@@ -186,14 +186,19 @@ def encode(settings: list) -> None:
             pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: measure | {task_name}' + ']', task_id=task, completed=0)
             dee = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
             with dee.stdout:
+                encoding_step = False
                 for line in iter(dee.stdout.readline, ''):
-                    if re.search(r'(Step: encoding)', line):
+                    if not encoding_step and re.search(r'(Step: encoding)', line):
+                        encoding_step = True
                         task_name = f'[magenta]{fl_b[:18]}[/magenta]...' if len(fl_b) > 21 else f'[magenta]{fl_b.ljust(21)}[/magenta]'
-                        pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: encode | {task_name}' + ']', task_id=task)
+                        pb.update(description=f'[ [bold][cyan]dee[/cyan][/bold]: encode | {task_name}' + ']', task_id=task, completed=0)
 
                     progress = re.search(r'Overall progress: ([0-9]+\.[0-9])', line)
                     if progress:
-                        pb.update(task_id=task, completed=float(progress[1]))
+                        if not encoding_step:
+                            pb.update(task_id=task, completed=float(progress[1]) * 4)
+                        else:
+                            pb.update(task_id=task, completed=(float(progress[1]) - 25) * (4 / 3))
 
                     if 'error' in line.lower():
                         print(line.rstrip().split(': ', 1)[1])

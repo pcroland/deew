@@ -1,3 +1,8 @@
+# deew 1.2.9:
+- disabled `surround_90_degree_phase_shift`
+- `DEE`'s measure and encoding step's progress has been remapped,\
+  both step goes to 100% now.
+
 # deew 1.2.8:
 - set `<surround_3db_attenuation>` to `false` in `thd.xml`
 

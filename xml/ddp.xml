@@ -44,7 +44,7 @@
           <rf_mode_drc_profile>-</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
         </drc>
         <lfe_lowpass_filter>true</lfe_lowpass_filter>    <!-- boolean: true or false -->
-        <surround_90_degree_phase_shift>true</surround_90_degree_phase_shift>    <!-- boolean: true or false -->
+        <surround_90_degree_phase_shift>false</surround_90_degree_phase_shift>    <!-- boolean: true or false -->
         <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- One of: true, false -->
         <downmix>
           <loro_center_mix_level>-3</loro_center_mix_level>    <!-- One of: +3, +1.5, 0, -1.5, -3, -4.5, -6, -inf -->

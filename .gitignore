@@ -2,4 +2,11 @@ __pycache__
 config.toml
 temp*
 test*
-*3
+*eb3
+*ec3
+*thd
+*wav
+*w64
+*mp3
+*flac
+*dts
