@@ -1,3 +1,7 @@
+# deew 1.2.10:
+- switched `-af` to `-filter_complex` for resampling, so channel swapping\
+  and sample rate conversion works at the same time
+
 # deew 1.2.9:
 - disabled `surround_90_degree_phase_shift`
 - `DEE`'s measure and encoding step's progress has been remapped,\
