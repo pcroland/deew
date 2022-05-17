@@ -347,6 +347,7 @@ or use [bold cyan]ffmpeg[/bold cyan] to remap them ([bold yellow]-ac 6[/bold yel
     pformat += '[/bold cyan]'
     print(f'encoding {pformat}[not bold white]...[/not bold white]\n')
 
+    resample_value = ''
     if aformat in ['dd', 'ddp'] and samplerate != 48000:
         bit_depth = 32
         resample_value = '48000'

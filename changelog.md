@@ -1,3 +1,6 @@
+# deew 1.2.11:
+- fix variable
+
 # deew 1.2.10:
 - switched `-af` to `-filter_complex` for resampling, so channel swapping\
   and sample rate conversion works at the same time
