@@ -35,7 +35,7 @@ parser.add_argument('-h', '--help',
                     help='shows this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version='deew 1.2.9',
+                    version='deew 1.2.11',
                     help='shows version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
