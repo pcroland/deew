@@ -8,7 +8,7 @@
 <a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/DEE-5.1.0-blue?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg=="><a/>
 <hr>
 
-<p align="center"><img width="320" src="logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
+<p align="center"><img width="192" src="logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
 
 ## DDP encoding has never been so easy!
 
