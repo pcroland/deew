@@ -1,12 +1,26 @@
+# python
 __pycache__
+.python-version
+
+# pyinstaller
+build
+release
+dist
+*spec
+
+# terminalizer
+term_render.yml
+
+# deew
 config.toml
 temp*
 test*
-*eb3
-*ec3
-*thd
-*wav
-*w64
-*mp3
-*flac
-*dts
+*.eb3
+*.ec3
+*.thd
+*.wav
+*.w64
+*.mp3
+*.flac
+*.dts
+*.pcm

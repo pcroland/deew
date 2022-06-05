@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+xml_dd_ddp_base = '''<?xml version="1.0"?>
 <job_config>
   <input>
     <audio>
@@ -30,7 +30,7 @@
         <downmix_config>off</downmix_config>    <!-- One of: off, mono, stereo, 5.1 -->
         <data_rate>-</data_rate>    <!-- One of: 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 144, 160, 176, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1008, 1024 -->
         <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
-        <start>00:00:00.005333</start>    <!-- string -->
+        <start>00:00:00.0</start>    <!-- string -->
         <end>end_of_file</end>    <!-- string -->
         <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
         <prepend_silence_duration>0.0</prepend_silence_duration>    <!-- string -->
@@ -43,6 +43,7 @@
           <line_mode_drc_profile>-</line_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
           <rf_mode_drc_profile>-</rf_mode_drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
         </drc>
+		<custom_dialnorm>-</custom_dialnorm>
         <lfe_lowpass_filter>true</lfe_lowpass_filter>    <!-- boolean: true or false -->
         <surround_90_degree_phase_shift>false</surround_90_degree_phase_shift>    <!-- boolean: true or false -->
         <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- One of: true, false -->
@@ -77,4 +78,81 @@
       <path>-</path>
     </temp_dir>
   </misc>
-</job_config>
+</job_config>'''
+
+xml_thd_base = '''<?xml version="1.0"?>
+<job_config>
+  <input>
+    <audio>
+      <wav version="1">
+        <file_name>-</file_name>    <!-- string -->
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <offset>auto</offset>    <!-- string -->
+        <ffoa>auto</ffoa>    <!-- string -->
+        <storage>
+          <local>
+            <path>-</path>    <!-- string -->
+          </local>
+        </storage>
+      </wav>
+    </audio>
+  </input>
+  <filter>
+    <audio>
+      <encode_to_dthd version="1">
+        <loudness_measurement>
+          <metering_mode>1770-3</metering_mode>    <!-- One of: 1770-4, 1770-3, 1770-2, 1770-1, LeqA -->
+          <dialogue_intelligence>true</dialogue_intelligence>    <!-- boolean: true or false -->
+          <speech_threshold>20</speech_threshold>    <!-- integer: from 0 to 100 -->
+        </loudness_measurement>
+        <timecode_frame_rate>not_indicated</timecode_frame_rate>    <!-- One of: not_indicated, 23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60 -->
+        <start>first_frame_of_action</start>    <!-- string -->
+        <end>end_of_file</end>    <!-- string -->
+        <time_base>file_position</time_base>    <!-- One of: file_position, embedded_timecode -->
+        <prepend_silence_duration>0</prepend_silence_duration>    <!-- string -->
+        <append_silence_duration>0</append_silence_duration>    <!-- string -->
+        <atmos_presentation>
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <spatial_clusters>12</spatial_clusters>    <!-- One of: 12, 14, 16 -->
+          <legacy_authoring_compatibility>true</legacy_authoring_compatibility>    <!-- boolean: true or false -->
+        </atmos_presentation>
+        <presentation_8ch>
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- boolean: true or false -->
+        </presentation_8ch>
+        <presentation_6ch>
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- boolean: true or false -->
+        </presentation_6ch>
+        <presentation_2ch>
+          <drc_profile>film_light</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <drc_default_on>true</drc_default_on>    <!-- boolean: true or false -->
+          <format>stereo</format>    <!-- One of: stereo, dolby_surround_encoded, dolby_headphone_encoded -->
+        </presentation_2ch>
+        <optimize_data_rate>false</optimize_data_rate>    <!-- boolean: true or false -->
+        <embedded_timecodes>
+          <starting_timecode>off</starting_timecode>    <!-- string -->
+          <frame_rate>auto</frame_rate>    <!-- One of: auto, 23.976, 24, 25, 29.97, 30 -->
+        </embedded_timecodes>
+        <log_format>txt</log_format>    <!-- One of: txt, html -->
+		<custom_dialnorm>-</custom_dialnorm>
+      </encode_to_dthd>
+    </audio>
+  </filter>
+  <output>
+    <mlp version="1">
+      <file_name>-</file_name>    <!-- string -->
+      <storage>
+        <local>
+          <path>-</path>    <!-- string -->
+        </local>
+      </storage>
+    </mlp>
+  </output>
+  <misc>
+    <temp_dir>
+      <clean_temp>true</clean_temp>
+      <path>-</path>
+    </temp_dir>
+  </misc>
+</job_config>'''

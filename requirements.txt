@@ -1,3 +1,5 @@
+packaging
+requests
 rich
 toml
 xmltodict

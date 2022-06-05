@@ -4,7 +4,9 @@ dee_path = 'dee.exe'
 temp_path = ''
 # empty: next to the script
 # relative path: from your current directory
-# you can also use fullpath
-# in any case will be created automatically if it doesn't exist already
-wsl = false # set this to true if you run the script in Linux but use the Windows version of DEE
-logo = 1 # set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo
+# You can also use fullpath too.
+# In any case the folder will be created automatically if it doesn't exist already.
+wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
+logo = 1 # Set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo.
+show_summary = true
+threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.

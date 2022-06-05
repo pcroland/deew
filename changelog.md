@@ -1,5 +1,43 @@
+# deew 2.0.0:
+- colorized argparse
+- replaced `multiprocessing` with `ThreadPoolExecutor`
+    - multiple progress bars for batch encoding
+    - dee's percentage remapping is removed (reverted to 1.2.8 behaviour)\
+      because the TrueHD encoder works way differently
+    - spinning animation for ffmpeg when length can't be parsed
+    - removed `TimeRemainingColumn` because it can't be reset,\
+      and it only showed the first step's remaining time
+- proper error when `ffprobe` fails
+- added `-d`/`--delay` option
+    - supports ms, s and frame@fps
+    - value has to start with `m`/`-` or `p`/`+`
+    - fps can be int, float, division or `ntsc`/`pal`
+    - examples: -5.1ms, +1,52s, p5s, m5@pal, +10@24000/1001
+- added `mono` and `stereo` encoding with a warning prompt
+- added `-dn`/`--dialnorm` option with a warning prompt
+- added `-dm`/`--downmix` option
+- rewrote bitrate and `encoder_mode` selection
+- `bluray` `encoder_mode` (for bitrates > 1024) works on Linux/Mac now
+- better encoding summary using `rich.table`
+    - added `show_summary` option to config
+    - shows input/output settings
+    - shows if a new version is available
+- added `threads` option to config
+    - you can overwrite it with -t/--threads.
+    - the threads number will be clamped between 1 and `cpu_count() - 2`
+- dialnorm appears in the progress bar when the measuring step is done
+- added `-mo`/`--measure-only` option
+    - kills DEE when the dialnorm value gets written to the progress bar
+    - overwrites format with `ddp` if specified
+- `ffmpeg` and `DEE` arguments are printed just once with filename placeholders
+  - files that already have an intermediate file will be listed
+  - you can display the arguments for each file with actual filenames
+    with `-la`/`--long-argument`
+- standalone exe build
+- icon for the project
+
 # deew 1.2.11:
-- fix variable
+- fixed variable
 
 # deew 1.2.10:
 - switched `-af` to `-filter_complex` for resampling, so channel swapping\
@@ -8,7 +46,7 @@
 # deew 1.2.9:
 - disabled `surround_90_degree_phase_shift`
 - `DEE`'s measure and encoding step's progress has been remapped,\
-  both step goes to 100% now.
+  both step goes to 100% now
 
 # deew 1.2.8:
 - set `<surround_3db_attenuation>` to `false` in `thd.xml`
@@ -24,7 +62,7 @@
 - better argparse
 - added types and improvements by nyuszika7h
 - single input encodes shows a per encode progress bar that indicates both\
-  `ffmpeg`'s temp creation and `DEE`'s measuring and encoding step.
+  `ffmpeg`'s temp creation and `DEE`'s measuring and encoding step
 - fixed dd multithreading
 
 # deew 1.2:
