@@ -12,7 +12,8 @@
 
 ## DDP encoding has never been so easy!
 
-![img](https://i.kek.sh/PUI0356sddC.gif)
+![img](https://telegra.ph/file/70c800b153b9fe9a88509.gif)
+<!---https://i.kek.sh/KjLQCZoQpVx.gif--->
 
 # Description
 - handles Dolby's XML input fuckery in the background, giving you a proper CLI interface
