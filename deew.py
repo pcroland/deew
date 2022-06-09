@@ -112,6 +112,9 @@ parser.add_argument('-mo', '--measure-only',
 parser.add_argument('-la', '--long-argument',
                     action='store_true',
                     help='print ffmpeg and DEE arguments for each input')
+parser.add_argument('-np', '--no-prompt',
+                    action='store_true',
+                    help='disables prompt')
 parser.add_argument('-pl', '--printlogos',
                     action='store_true',
                     help='show all logo variants you can set in the config')
@@ -400,12 +403,18 @@ def main() -> None:
         outchannels = channels
 
     if outchannels in [1, 2]:
-        continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]dee[/bold cyan]?')
-        if not continue_enc: sys.exit(1)
+        if args.no_prompt:
+            print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
+        else:
+            continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]dee[/bold cyan]?')
+            if not continue_enc: sys.exit(1)
 
     if args.dialnorm != 0:
-        continue_enc = Confirm.ask('Consider leaving the dialnorm value at 0 (auto), setting it manually can be dangerous, are you sure you want to do it?')
-        if not continue_enc: sys.exit(1)
+        if args.no_prompt:
+            print('Consider leaving the dialnorm value at 0 (auto), setting it manually can be dangerous.')
+        else:
+            continue_enc = Confirm.ask('Consider leaving the dialnorm value at 0 (auto), setting it manually can be dangerous, are you sure you want to do it?')
+            if not continue_enc: sys.exit(1)
 
     if aformat == 'dd':
         if outchannels == 1:

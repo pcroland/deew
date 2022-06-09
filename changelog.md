@@ -1,3 +1,6 @@
+# deew 2.0.1:
+- added `-np`/`--no-prompt`
+
 # deew 2.0.0:
 - colorized argparse
 - replaced `multiprocessing` with `ThreadPoolExecutor`
