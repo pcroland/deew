@@ -1,3 +1,6 @@
+# deew 2.0.2:
+- completely disabled xml validation when DEE's platform is not Windows
+
 # deew 2.0.1:
 - added `-np`/`--no-prompt`
 

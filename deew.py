@@ -539,7 +539,7 @@ def main() -> None:
 
     xml_validation = []
     xml_validation_print = ''
-    if aformat != 'thd' and bitrate > 1024 and platform.system() != 'Windows' and not config['wsl']:
+    if platform.system() != 'Windows' and not config['wsl']:
         xml_validation = ['--disable-xml-validation']
         xml_validation_print = ' --disable-xml-validation'
 
