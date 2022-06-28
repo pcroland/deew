@@ -106,7 +106,7 @@ encode DDP
 `./deew.py -b 768 -i *flac`\
 encode DDP@768
 
-`./deew.oy -dm 2 -f dd -b 192 -i *.ec3`\
+`./deew.py -dm 2 -f dd -b 192 -i *.ec3`\
 encode DD@192 with stereo downmixing
 
 `./deew.py -f dd -b 448 -t 4 -i S01`\
