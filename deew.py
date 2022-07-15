@@ -42,6 +42,8 @@ col_option = 'green'
 col_caps = 'color(231)'
 col_prog = 'cyan'
 
+config_keys = ['ffmpeg_path', 'ffprobe_path', 'dee_path', 'temp_path', 'wsl', 'logo', 'show_summary', 'threads']
+
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
         if message:
@@ -615,6 +617,10 @@ if __name__ == '__main__':
         config = toml.load(os.path.join(os.path.expanduser('~'), '.config', 'deew', 'config.toml'))
     else:
         print_exit('config')
+    c_key_missing = []
+    for c_key in config_keys:
+        if c_key not in config: c_key_missing.append(c_key)
+    if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
 
     if not config['temp_path']:
         config['temp_path'] = os.path.join(script_path, 'temp')

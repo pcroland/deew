@@ -1,3 +1,6 @@
+# deew 2.0.3:
+- proper error handling for missing keys in config
+
 # deew 2.0.2:
 - completely disabled xml validation when DEE's platform is not Windows
 
