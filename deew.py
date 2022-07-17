@@ -12,6 +12,7 @@ import signal
 import subprocess
 import sys
 import time
+from base64 import b64decode
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import timedelta
@@ -32,9 +33,9 @@ from bitrates import allowed_bitrates
 from logos import logos
 from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
-from version import prog_version
 
 prog_name = 'deew'
+prog_version = '2.0.4'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -128,7 +129,9 @@ args = parser.parse_args()
 
 def print_changelog() -> None:
     try:
-        changelog = requests.get('https://raw.githubusercontent.com/pcroland/deew/main/changelog.md').text.split('\n')
+        r = requests.get('https://api.github.com/repos/pcroland/deew/contents/changelog.md')
+        changelog = json.loads(r.text)['content']
+        changelog = b64decode(changelog).decode().split('\n')
     except Exception:
         print_exit('changelog')
 
@@ -481,7 +484,8 @@ def main() -> None:
 
     if config['show_summary']:
         try:
-            latest_version = requests.get('https://raw.githubusercontent.com/pcroland/deew/main/version.py').text.split("'")[1]
+            r = requests.get('https://api.github.com/repos/pcroland/deew/releases/latest')
+            latest_version = json.loads(r.text)['tag_name']
             if version.parse(prog_version) < version.parse(latest_version):
                 latest_version = f'[bold green]{latest_version}[/bold green] !!!'
         except Exception:
