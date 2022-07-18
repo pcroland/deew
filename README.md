@@ -48,7 +48,7 @@ git clone https://github.com/pcroland/deew
 cd deew
 pip install -r requirements.txt
 ```
-- rename `config.toml.example` to `config.toml` and edit the settings
+- copy `config.toml.example` to `config.toml` and edit the settings
 - install your DEE (if you use WSL use the Win version for better performance)
 - place your `license.lic` file next to the DEE binary
 
