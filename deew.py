@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.0'
+prog_version = '2.1.1'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
