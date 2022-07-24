@@ -1,3 +1,6 @@
+# deew 2.1.1:
+- fix `ffprobe`'s name in summary
+
 # deew 2.1.0:
 - `title_style` for the summary to avoid padding being messed up in tmux
 - added filename sanitizing for xml temp files (for some reason

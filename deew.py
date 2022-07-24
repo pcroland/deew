@@ -537,7 +537,7 @@ def main() -> None:
 
         summary.add_row('[cyan]DEE version', simplens.dee_version)
         summary.add_row('[cyan]ffmpeg version', simplens.ffmpeg_version)
-        summary.add_row('[cyan]ffmpeg version', simplens.ffprobe_version, end_section=True)
+        summary.add_row('[cyan]ffprobe version', simplens.ffprobe_version, end_section=True)
 
         summary.add_row('[bold yellow]Output')
         summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
