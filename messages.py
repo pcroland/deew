@@ -15,7 +15,6 @@ error_messages = {
     'channel_mismatch' : 'each input has to have the same channel count:\n🤠',
     'bitdepth_mismatch': 'each input has to have the same bit depth:\n🤠',
     'channels'         : 'number of input channels can only be [bold yellow]1[/bold yellow], [bold yellow]2[/bold yellow], [bold yellow]6[/bold yellow] or [bold yellow]8[/bold yellow].',
-    'config'           : 'rename [bold yellow]config.toml.example[/bold yellow] to [bold yellow]config.toml[/bold yellow] and edit the settings.\nConfig has to be next to the script or it can also be at [bold yellow]~/.config/deew/config.toml[/bold yellow] on Linux.',
     'binary_exist'     : '[bold yellow]🤠[/bold yellow] does not exist.',
     'config_key'       : 'the following keys are missing from your config file: 🤠.'
 }

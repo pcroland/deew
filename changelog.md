@@ -1,3 +1,16 @@
+# deew 2.1.0:
+- `title_style` for the summary to avoid padding being messed up in tmux
+- added filename sanitizing for xml temp files (for some reason
+  dee can't handle weird characters in the xml's name)
+- added proper config location handling with ˙platformdirs˙
+- autogenerate config if it's missing
+- added build workflows for Github Actions
+- added `DEE`, `ffmpeg`, `ffprobe` versions in the encoding summary
+- implemented `DEE` version specific progress bar handling,
+  this fixes the bug where the progress bar goes from 0% to 100% during
+  the measuring step and stays there until the encoding step finishes
+  (this happened when DEE version was 5.2.0 or higher)
+
 # deew 2.0.3:
 - proper error handling for missing keys in config
 

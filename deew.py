@@ -18,16 +18,21 @@ from copy import deepcopy
 from datetime import timedelta
 from glob import glob
 from multiprocessing import cpu_count
+from types import SimpleNamespace
 from typing import Any, NoReturn
 
 import requests
 import toml
 import xmltodict
 from packaging import version
+from platformdirs import PlatformDirs
 from rich import print
+from rich.console import Console
 from rich.progress import BarColumn, Progress, TaskID
 from rich.prompt import Confirm
+from rich.syntax import Syntax
 from rich.table import Table
+from unidecode import unidecode
 
 from bitrates import allowed_bitrates
 from logos import logos
@@ -35,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.0.4'
+prog_version = '2.1.0'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -44,6 +49,19 @@ col_caps = 'color(231)'
 col_prog = 'cyan'
 
 config_keys = ['ffmpeg_path', 'ffprobe_path', 'dee_path', 'temp_path', 'wsl', 'logo', 'show_summary', 'threads']
+
+config_content = '''ffmpeg_path = 'ffmpeg'
+ffprobe_path = 'ffprobe'
+dee_path = 'dee.exe'
+temp_path = ''
+# empty: next to the script
+# relative path: from your current directory
+# You can also use fullpath too.
+# In any case the folder will be created automatically if it doesn't exist already.
+wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
+logo = 1 # Set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo.
+show_summary = true
+threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.'''
 
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
@@ -167,6 +185,9 @@ def trim_names(fl: str, compensate: int) -> str:
         fl = f'{fl[0:37 - compensate]}...'
     return fl.ljust(40 - compensate, ' ')
 
+def sanitize_xml_name(inp: str) -> str:
+    sanitized = re.sub(r'[^a-zA-Z0-9._-]', '', unidecode(inp))
+    return sanitized
 
 def stamp_to_sec(stamp):
     l = stamp.split(':')
@@ -311,8 +332,12 @@ def encode(task_id: TaskID, settings: list) -> None:
                 else:
                     pb.update(description=f'[bold][cyan]dee[/cyan][/bold]: encode | {trim_names(fl_b, 17 + len(measured_dn))} ({measured_dn} dB)', task_id=task_id)
 
-            progress = re.search(r'Overall progress: ([0-9]+\.[0-9])', line)
-            if progress: pb.update(task_id=task_id, completed=float(progress[1]))
+            progress = re.search(r'Stage progress: ([0-9]+\.[0-9])', line)
+            if progress and progress[1] != '100.0':
+                if aformat != 'thd' and version.parse(simplens.dee_version) >= version.parse('5.2.0') and not encoding_step:
+                    pb.update(task_id=task_id, completed=float(progress[1]) / 4)
+                else:
+                    pb.update(task_id=task_id, completed=float(progress[1]))
 
             if 'error' in line.lower():
                 print(line.rstrip().split(': ', 1)[1])
@@ -490,9 +515,29 @@ def main() -> None:
                 latest_version = f'[bold green]{latest_version}[/bold green] !!!'
         except Exception:
             latest_version = "[red]couldn't fetch"
-        summary = Table(title='[not italic bold magenta]Encoding summary')
-        summary.add_column('[bold cyan]Version\nLatest', style='green')
-        summary.add_column(f'[bold color(231)]{prog_version}\n{latest_version}', style='color(231)')
+
+        simplens.dee_version = subprocess.run(config['dee_path'], capture_output=True, encoding='utf-8')
+        simplens.dee_version = simplens.dee_version.stdout.split('\n')[0]
+        simplens.dee_version = re.search(r'Version ([0-9].[0-9].[0-9])', simplens.dee_version)[1]
+
+        simplens.ffmpeg_version = subprocess.run([config['ffmpeg_path'], '-version'], capture_output=True, encoding='utf-8')
+        simplens.ffmpeg_version = simplens.ffmpeg_version.stdout.split('\n')[0]
+        simplens.ffmpeg_version = re.search(r'ffmpeg version ([\d.-]+)(-[a-zA-Z])', simplens.ffmpeg_version)[1]
+
+        simplens.ffprobe_version = subprocess.run([config['ffprobe_path'], '-version'], capture_output=True, encoding='utf-8')
+        simplens.ffprobe_version = simplens.ffprobe_version.stdout.split('\n')[0]
+        simplens.ffprobe_version = re.search(r'ffprobe version ([\d.-]+)(-[a-zA-Z])', simplens.ffprobe_version)[1]
+
+        summary = Table(title='Encoding summary', title_style='not italic bold magenta', show_header=False)
+        summary.add_column(style='green')
+        summary.add_column(style='color(231)')
+
+        summary.add_row('[bold cyan]Version', prog_version)
+        summary.add_row('[bold cyan]Latest', latest_version, end_section=True)
+
+        summary.add_row('[cyan]DEE version', simplens.dee_version)
+        summary.add_row('[cyan]ffmpeg version', simplens.ffmpeg_version)
+        summary.add_row('[cyan]ffmpeg version', simplens.ffprobe_version, end_section=True)
 
         summary.add_row('[bold yellow]Output')
         summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
@@ -509,6 +554,8 @@ def main() -> None:
         summary.add_row('Delay', delay_print)
         print(summary)
         print()
+
+#    sys.exit(0)
 
     resample_value = ''
     if aformat in ['dd', 'ddp'] and samplerate != 48000:
@@ -554,7 +601,7 @@ def main() -> None:
     dee_print_list = []
     intermediate_exists_list = []
     for i in range(len(filelist)):
-        dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml")}'
+        dee_xml_input = f'{dee_xml_input_base}{sanitize_xml_name(basename(filelist[i], "xml"))}'
 
         ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(channel_swap_args), *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
         dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
@@ -586,7 +633,7 @@ def main() -> None:
             del xml['job_config']['output']['ec3']
         else:
             xml['job_config']['output']['mlp']['file_name'] = f'\"{basename(filelist[i], "thd")}\"'
-        save_xml(os.path.join(config['temp_path'], basename(filelist[i], 'xml')), xml)
+        save_xml(os.path.join(config['temp_path'], sanitize_xml_name(basename(filelist[i], 'xml'))), xml)
 
         settings.append([filelist[i], output, length_list[i], ffmpeg_args, dee_args, intermediate_exists, aformat])
 
@@ -609,22 +656,31 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    if getattr(sys, 'frozen', False):
-        script_path = os.path.dirname(sys.executable)
-    else:
-        script_path = os.path.dirname(__file__)
+    simplens = SimpleNamespace()
 
-    if os.path.exists(os.path.join(script_path, 'config.toml')):
-        config = toml.load(os.path.join(script_path, 'config.toml'))
-    elif platform.system() == 'Linux' and os.path.exists(
-            os.path.join(os.path.expanduser('~'), '.config', 'deew', 'config.toml')):
-        config = toml.load(os.path.join(os.path.expanduser('~'), '.config', 'deew', 'config.toml'))
-    else:
-        print_exit('config')
+    dirs = PlatformDirs('deew', False)
+    config_dir_path = dirs.user_config_dir
+    config_path = os.path.join(config_dir_path, 'config.toml')
+    if not os.path.exists(config_path):
+        print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]\n\n')
+        createdir(config_dir_path)
+        with open(config_path, 'w') as fl:
+            fl.write(config_content)
+        Console().print(Syntax(config_content, 'toml'))
+        print(f'\n\nThe above config has been created at: [bold yellow]{config_path}[/bold yellow]\nPlease edit your config file and rerun your command.')
+        sys.exit(1)
+
+    config = toml.load(config_path)
+
     c_key_missing = []
     for c_key in config_keys:
         if c_key not in config: c_key_missing.append(c_key)
     if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
+
+    if getattr(sys, 'frozen', False):
+        script_path = os.path.dirname(sys.executable)
+    else:
+        script_path = os.path.dirname(__file__)
 
     if not config['temp_path']:
         config['temp_path'] = os.path.join(script_path, 'temp')
