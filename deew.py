@@ -555,8 +555,6 @@ def main() -> None:
         print(summary)
         print()
 
-#    sys.exit(0)
-
     resample_value = ''
     if aformat in ['dd', 'ddp'] and samplerate != 48000:
         bit_depth = 32
