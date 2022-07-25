@@ -51,12 +51,12 @@
 - place your `license.lic` file next to the DEE binary
 
 # deew installation
-## with standalone build (Windows / Linux)
+### with standalone build (Windows / Linux)
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - `deew` will create a config file on the first run, choose where you want to keep it
 - run `deew`
 
-## with Python environment (Windows / Linux / macOS)
+### with Python environment (Windows / Linux / macOS)
 - install `python` and `pip` if you don't have it already
 ```sh
 git clone https://github.com/pcroland/deew
