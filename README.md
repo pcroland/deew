@@ -59,7 +59,7 @@ You can also grab a standalone exe from here: [https://github.com/pcroland/deew/
 # Usage
 ```
 ❯ ./deew.py -h
-deew 2.1.0
+deew 2.1.5
 
 USAGE: deew.py [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
                [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS]
