@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.4'
+prog_version = '2.1.5'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -674,7 +674,7 @@ if __name__ == '__main__':
     config_path = os.path.join(config_dir_path, 'config.toml')
     if standalone:
         config_path2 = os.path.join(script_path, 'config.toml')
-        if not os.path.exists(config_path) or not os.path.exists(config_path2):
+        if not os.path.exists(config_path) and not os.path.exists(config_path2):
             print(f'''[not bold white][bold yellow]config.toml[/bold yellow] is missing, creating one...
 Please choose config's location:
 [bold magenta]1[/bold magenta]: [bold yellow]{config_path}[/bold yellow]

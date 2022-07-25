@@ -1,3 +1,6 @@
+# deew 2.1.5:
+- fix config location search
+
 # deew 2.1.4:
 - readd local config support for standalone builds
 
