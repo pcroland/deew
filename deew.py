@@ -690,9 +690,8 @@ if __name__ == '__main__':
     config['temp_path'] = os.path.abspath(config['temp_path'])
     createdir(config['temp_path'])
 
-    if not shutil.which(config['dee_path']): print_exit('binary_exist', config['dee_path'])
-    if not shutil.which(config['ffmpeg_path']): print_exit('binary_exist', config['ffmpeg_path'])
-    if not shutil.which(config['ffprobe_path']): print_exit('binary_exist', config['ffprobe_path'])
+    for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
+        if not shutil.which(i): print_exit('binary_exist', i)
 
     pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
 
