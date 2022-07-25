@@ -1,3 +1,6 @@
+# deew 2.1.2:
+- move `ffmpeg` and `ffprobe` parsing to `try except`
+
 # deew 2.1.1:
 - fix `ffprobe`'s name in summary
 

@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.1'
+prog_version = '2.1.2'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -520,13 +520,19 @@ def main() -> None:
         simplens.dee_version = simplens.dee_version.stdout.split('\n')[0]
         simplens.dee_version = re.search(r'Version ([0-9].[0-9].[0-9])', simplens.dee_version)[1]
 
-        simplens.ffmpeg_version = subprocess.run([config['ffmpeg_path'], '-version'], capture_output=True, encoding='utf-8')
-        simplens.ffmpeg_version = simplens.ffmpeg_version.stdout.split('\n')[0]
-        simplens.ffmpeg_version = re.search(r'ffmpeg version ([\d.-]+)(-[a-zA-Z])', simplens.ffmpeg_version)[1]
+        try:
+            simplens.ffmpeg_version = subprocess.run([config['ffmpeg_path'], '-version'], capture_output=True, encoding='utf-8')
+            simplens.ffmpeg_version = simplens.ffmpeg_version.stdout.split('\n')[0]
+            simplens.ffmpeg_version = re.search(r'ffmpeg version ([\d.-]+)(-[a-zA-Z])', simplens.ffmpeg_version)[1]
+        except Exception:
+            simplens.ffmpeg_version = "[red]couldn't parse"
 
-        simplens.ffprobe_version = subprocess.run([config['ffprobe_path'], '-version'], capture_output=True, encoding='utf-8')
-        simplens.ffprobe_version = simplens.ffprobe_version.stdout.split('\n')[0]
-        simplens.ffprobe_version = re.search(r'ffprobe version ([\d.-]+)(-[a-zA-Z])', simplens.ffprobe_version)[1]
+        try:
+            simplens.ffprobe_version = subprocess.run([config['ffprobe_path'], '-version'], capture_output=True, encoding='utf-8')
+            simplens.ffprobe_version = simplens.ffprobe_version.stdout.split('\n')[0]
+            simplens.ffprobe_version = re.search(r'ffprobe version ([\d.-]+)(-[a-zA-Z])', simplens.ffprobe_version)[1]
+        except Exception:
+            simplens.ffprobe_version = "[red]couldn't parse"
 
         summary = Table(title='Encoding summary', title_style='not italic bold magenta', show_header=False)
         summary.add_column(style='green')
