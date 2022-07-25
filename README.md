@@ -4,7 +4,7 @@
 <a href="https://github.com/pcroland/deew/commits/main"><img src="https://img.shields.io/github/last-commit/pcroland/deew?color=487afa"></a>
 <a href="https://github.com/pcroland/deew/issues"><img src="https://img.shields.io/github/issues/pcroland/deew?color=487afa"></a>
 <br>
-<a href="https://t.me/deew_support"><img src="https://img.shields.io/endpoint?color=2aabee&url=https://tg.sumanjay.workers.dev/deew_support"></a>
+<a href="https://t.me/deew_support"><img src="https://img.shields.io/endpoint?color=2aabee&url=https://cadoth.net/tgmembercount?chat_id=deew_support%26name=Discussion%2520and%2520Support"></a>
 <a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/platform-win | linux | osx-eeeeee"></a>
 <a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/python-3.8 | 3.9 | 3.10-eeeeee?logo=Python&logoColor=eeeeee"></a>
 <a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/DEE-5.1.0--5.2.1-green?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg==&color=eeeeee"></a>
