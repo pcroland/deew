@@ -43,18 +43,28 @@
 - ffprobe
 - Dolby Encoding Engine
 
-# Installation
+# Dolby Encoding Engine installation
+- install your DEE
+  - for TrueHD encoding support you need the Windows version.
+  - if you use WSL1 use the Windows version for better performance.
+  - if you use the Windows version of DEE under Linux (and not from WSL) / macOS install `wine-binfmt`
+- place your `license.lic` file next to the DEE binary
+
+# deew installation
+## with standalone build (Windows / Linux)
+- grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- `deew` will create a config file on the first run, choose where you want to keep it
+- run `deew`
+
+## with Python environment (Windows / Linux / macOS)
+- install `python` and `pip` if you don't have it already
 ```sh
 git clone https://github.com/pcroland/deew
 cd deew
 pip install -r requirements.txt
 ```
-- copy `config.toml.example` to `config.toml` and edit the settings
-- install your DEE (if you use WSL use the Win version for better performance)
-- place your `license.lic` file next to the DEE binary
-
-You can also grab a standalone exe from here: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)\
-*(Doesn't require you to have Python and/or libraries installed)*
+- `deew` will create a config file on the first run
+- run `deew`
 
 # Usage
 ```
@@ -102,23 +112,23 @@ FLAGS:
   -cl, --changelog                     show changelog
 ```
 # Examples
-`./deew.py -i *thd`\
+`deew -i *thd`\
 encode DDP
 
-`./deew.py -b 768 -i *flac`\
+`deew -b 768 -i *flac`\
 encode DDP@768
 
-`./deew.py -dm 2 -f dd -b 192 -i *.ec3`\
+`deew -dm 2 -f dd -b 192 -i *.ec3`\
 encode DD@192 with stereo downmixing
 
-`./deew.py -f dd -b 448 -t 4 -i S01`\
+`deew -f dd -b 448 -t 4 -i S01`\
 encode DD@448 using 4 threads (input is a folder)
 
-`./deew.py -f thd -i *w64`\
+`deew -f thd -i *w64`\
 encode TrueHD
 
-`./deew.py -f dd -i *dts -k`\
-`./deew.py -f ddp -i *dts`\
+`deew -f dd -i *dts -k`\
+`deew -f ddp -i *dts`\
 encode multiple formats/bitrates while creating the temp file only once
 
 # Support
