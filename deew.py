@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.2'
+prog_version = '2.1.3'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -185,14 +185,27 @@ def trim_names(fl: str, compensate: int) -> str:
         fl = f'{fl[0:37 - compensate]}...'
     return fl.ljust(40 - compensate, ' ')
 
+
 def sanitize_xml_name(inp: str) -> str:
     sanitized = re.sub(r'[^a-zA-Z0-9._-]', '', unidecode(inp))
     return sanitized
+
 
 def stamp_to_sec(stamp):
     l = stamp.split(':')
     return int(l[0])*3600 + int(l[1])*60 + float(l[2])
 
+
+def parse_version_string(inp: list) -> str:
+    try:
+        v = subprocess.run(inp, capture_output=True, encoding='utf-8').stdout
+        v = v.split('\n')[0].split(' ')[2]
+        v = v.replace(',', '').replace('-static', '')
+        if len(v) > 20:
+            v = f'{v[0:17]}...'
+    except Exception:
+        v = "[red]couldn't parse"
+    return v
 
 def convert_delay_to_ms(inp, compensate):
     if not inp.startswith(('-', '+', 'm', 'p')): print_exit('delay')
@@ -516,23 +529,9 @@ def main() -> None:
         except Exception:
             latest_version = "[red]couldn't fetch"
 
-        simplens.dee_version = subprocess.run(config['dee_path'], capture_output=True, encoding='utf-8')
-        simplens.dee_version = simplens.dee_version.stdout.split('\n')[0]
-        simplens.dee_version = re.search(r'Version ([0-9].[0-9].[0-9])', simplens.dee_version)[1]
-
-        try:
-            simplens.ffmpeg_version = subprocess.run([config['ffmpeg_path'], '-version'], capture_output=True, encoding='utf-8')
-            simplens.ffmpeg_version = simplens.ffmpeg_version.stdout.split('\n')[0]
-            simplens.ffmpeg_version = re.search(r'ffmpeg version ([\d.-]+)(-[a-zA-Z])', simplens.ffmpeg_version)[1]
-        except Exception:
-            simplens.ffmpeg_version = "[red]couldn't parse"
-
-        try:
-            simplens.ffprobe_version = subprocess.run([config['ffprobe_path'], '-version'], capture_output=True, encoding='utf-8')
-            simplens.ffprobe_version = simplens.ffprobe_version.stdout.split('\n')[0]
-            simplens.ffprobe_version = re.search(r'ffprobe version ([\d.-]+)(-[a-zA-Z])', simplens.ffprobe_version)[1]
-        except Exception:
-            simplens.ffprobe_version = "[red]couldn't parse"
+        simplens.dee_version = parse_version_string([config['dee_path']])
+        simplens.ffmpeg_version = parse_version_string([config['ffmpeg_path'], '-version'])
+        simplens.ffprobe_version = parse_version_string([config['ffprobe_path'], '-version'])
 
         summary = Table(title='Encoding summary', title_style='not italic bold magenta', show_header=False)
         summary.add_column(style='green')

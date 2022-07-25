@@ -1,3 +1,6 @@
+# deew 2.1.3:
+- more robust version parsing for summary based on word index
+
 # deew 2.1.2:
 - move `ffmpeg` and `ffprobe` parsing to `try except`
 
