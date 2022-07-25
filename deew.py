@@ -29,7 +29,7 @@ from platformdirs import PlatformDirs
 from rich import print
 from rich.console import Console
 from rich.progress import BarColumn, Progress, TaskID
-from rich.prompt import Confirm
+from rich.prompt import Confirm, Prompt
 from rich.syntax import Syntax
 from rich.table import Table
 from unidecode import unidecode
@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.3'
+prog_version = '2.1.4'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -661,29 +661,54 @@ def main() -> None:
 if __name__ == '__main__':
     simplens = SimpleNamespace()
 
+
+    if getattr(sys, 'frozen', False):
+        script_path = os.path.dirname(sys.executable)
+        standalone = 1
+    else:
+        script_path = os.path.dirname(__file__)
+        standalone = 0
+
     dirs = PlatformDirs('deew', False)
     config_dir_path = dirs.user_config_dir
     config_path = os.path.join(config_dir_path, 'config.toml')
-    if not os.path.exists(config_path):
-        print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]\n\n')
-        createdir(config_dir_path)
-        with open(config_path, 'w') as fl:
-            fl.write(config_content)
-        Console().print(Syntax(config_content, 'toml'))
-        print(f'\n\nThe above config has been created at: [bold yellow]{config_path}[/bold yellow]\nPlease edit your config file and rerun your command.')
-        sys.exit(1)
+    if standalone:
+        config_path2 = os.path.join(script_path, 'config.toml')
+        if not os.path.exists(config_path) or not os.path.exists(config_path2):
+            print(f'''[not bold white][bold yellow]config.toml[/bold yellow] is missing, creating one...
+Please choose config's location:
+[bold magenta]1[/bold magenta]: [bold yellow]{config_path}[/bold yellow]
+[bold magenta]2[/bold magenta]: [bold yellow]{config_path2}[/bold yellow][/not bold white]''')
+            selected_location = Prompt.ask('Location', choices=['1','2'])
+            if selected_location == '1':
+                createdir(config_dir_path)
+                selected_location = config_path
+            else:
+                selected_location = config_path2
+            with open(selected_location, 'w') as fl:
+                fl.write(config_content)
+            Console().print(Syntax(config_content, 'toml'))
+            print(f'\n\nThe above config has been created at: [bold yellow]{selected_location}[/bold yellow]\nPlease edit your config file and rerun your command.')
+            sys.exit(1)
+    else:
+        if not os.path.exists(config_path):
+            print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]\n\n')
+            createdir(config_dir_path)
+            with open(config_path, 'w') as fl:
+                fl.write(config_content)
+            Console().print(Syntax(config_content, 'toml'))
+            print(f'\n\nThe above config has been created at: [bold yellow]{config_path}[/bold yellow]\nPlease edit your config file and rerun your command.')
+            sys.exit(1)
 
-    config = toml.load(config_path)
+    try:
+        config = toml.load(config_path)
+    except Exception:
+        config = toml.load(config_path2)
 
     c_key_missing = []
     for c_key in config_keys:
         if c_key not in config: c_key_missing.append(c_key)
     if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
-
-    if getattr(sys, 'frozen', False):
-        script_path = os.path.dirname(sys.executable)
-    else:
-        script_path = os.path.dirname(__file__)
 
     if not config['temp_path']:
         config['temp_path'] = os.path.join(script_path, 'temp')

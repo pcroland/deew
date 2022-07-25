@@ -1,3 +1,6 @@
+# deew 2.1.4:
+- readd local config support for standalone builds
+
 # deew 2.1.3:
 - more robust version parsing for summary based on word index
 
