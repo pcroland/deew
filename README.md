@@ -38,7 +38,7 @@
 - versatile delay option that supports ms, s and also frame@fps formats
 
 # Requirements
-- Python
+- Python *(you don't need it if you use a standlone build of deew)*
 - ffmpeg
 - ffprobe
 - Dolby Encoding Engine
