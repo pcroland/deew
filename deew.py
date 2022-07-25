@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.5'
+prog_version = '2.1.6'
 
 col_base = 'not bold white'
 col_usage = 'yellow'
@@ -49,19 +49,6 @@ col_caps = 'color(231)'
 col_prog = 'cyan'
 
 config_keys = ['ffmpeg_path', 'ffprobe_path', 'dee_path', 'temp_path', 'wsl', 'logo', 'show_summary', 'threads']
-
-config_content = '''ffmpeg_path = 'ffmpeg'
-ffprobe_path = 'ffprobe'
-dee_path = 'dee.exe'
-temp_path = ''
-# empty: next to the script
-# relative path: from your current directory
-# You can also use fullpath too.
-# In any case the folder will be created automatically if it doesn't exist already.
-wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
-logo = 1 # Set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo.
-show_summary = true
-threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.'''
 
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
@@ -174,6 +161,47 @@ def print_logos() -> None:
     for i, logo in enumerate(logos):
         print(f'logo {i + 1}:\n{logo}')
     sys.exit(0)
+
+
+def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> None:
+    config_content = '''ffmpeg_path = 'ffmpeg'
+ffprobe_path = 'ffprobe'
+dee_path = 'dee.exe'
+temp_path = ''
+# empty: next to the script
+# relative path: from your current directory
+# You can also use fullpath too.
+# In any case the folder will be created automatically if it doesn't exist already.
+wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
+logo = 1 # Set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo.
+show_summary = true
+threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.'''
+
+    if standalone:
+        print(f'''[not bold white][bold yellow]config.toml[/bold yellow] is missing, creating one...
+Please choose config's location:
+[bold magenta]1[/bold magenta]: [bold yellow]{conf1}[/bold yellow]
+[bold magenta]2[/bold magenta]: [bold yellow]{conf2}[/bold yellow][/not bold white]''')
+        c_loc = Prompt.ask('Location', choices=['1','2'])
+        if c_loc == '1':
+            createdir(conf_dir)
+            c_loc = conf1
+        else:
+            c_loc = conf2
+        with open(c_loc, 'w') as fl:
+            fl.write(config_content)
+        print()
+        Console().print(Syntax(config_content, 'toml'))
+        print(f'\nThe above config has been created at: [bold yellow]{c_loc}[/bold yellow]\nPlease edit your config file and rerun your command.')
+        sys.exit(1)
+    else:
+        print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]\n')
+        createdir(conf_dir)
+        with open(conf1, 'w') as fl:
+            fl.write(config_content)
+        Console().print(Syntax(config_content, 'toml'))
+        print(f'\nThe above config has been created at: [bold yellow]{conf1}[/bold yellow]\nPlease edit your config file and rerun your command.')
+        sys.exit(1)
 
 
 def clamp(inp: int, low: int, high: int) -> int:
@@ -661,7 +689,6 @@ def main() -> None:
 if __name__ == '__main__':
     simplens = SimpleNamespace()
 
-
     if getattr(sys, 'frozen', False):
         script_path = os.path.dirname(sys.executable)
         standalone = 1
@@ -671,37 +698,13 @@ if __name__ == '__main__':
 
     dirs = PlatformDirs('deew', False)
     config_dir_path = dirs.user_config_dir
-    config_path = os.path.join(config_dir_path, 'config.toml')
-    if standalone:
-        config_path2 = os.path.join(script_path, 'config.toml')
-        if not os.path.exists(config_path) and not os.path.exists(config_path2):
-            print(f'''[not bold white][bold yellow]config.toml[/bold yellow] is missing, creating one...
-Please choose config's location:
-[bold magenta]1[/bold magenta]: [bold yellow]{config_path}[/bold yellow]
-[bold magenta]2[/bold magenta]: [bold yellow]{config_path2}[/bold yellow][/not bold white]''')
-            selected_location = Prompt.ask('Location', choices=['1','2'])
-            if selected_location == '1':
-                createdir(config_dir_path)
-                selected_location = config_path
-            else:
-                selected_location = config_path2
-            with open(selected_location, 'w') as fl:
-                fl.write(config_content)
-            Console().print(Syntax(config_content, 'toml'))
-            print(f'\n\nThe above config has been created at: [bold yellow]{selected_location}[/bold yellow]\nPlease edit your config file and rerun your command.')
-            sys.exit(1)
-    else:
-        if not os.path.exists(config_path):
-            print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]\n\n')
-            createdir(config_dir_path)
-            with open(config_path, 'w') as fl:
-                fl.write(config_content)
-            Console().print(Syntax(config_content, 'toml'))
-            print(f'\n\nThe above config has been created at: [bold yellow]{config_path}[/bold yellow]\nPlease edit your config file and rerun your command.')
-            sys.exit(1)
+    config_path1 = os.path.join(config_dir_path, 'config.toml')
+    config_path2 = os.path.join(script_path, 'config.toml')
+    if not os.path.exists(config_path1) and not os.path.exists(config_path2):
+        generate_config(standalone, config_path1, config_path2, config_dir_path)
 
     try:
-        config = toml.load(config_path)
+        config = toml.load(config_path1)
     except Exception:
         config = toml.load(config_path2)
 

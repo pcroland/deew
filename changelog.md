@@ -1,3 +1,6 @@
+# deew 2.1.6:
+- refactor config code
+
 # deew 2.1.5:
 - fix config location search
 
