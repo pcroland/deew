@@ -40,27 +40,19 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.1.6'
-
-col_base = 'not bold white'
-col_usage = 'yellow'
-col_option = 'green'
-col_caps = 'color(231)'
-col_prog = 'cyan'
-
-config_keys = ['ffmpeg_path', 'ffprobe_path', 'dee_path', 'temp_path', 'wsl', 'logo', 'show_summary', 'threads']
+prog_version = '2.2.0'
 
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
         if message:
             if message.startswith('usage'):
-                message = f'[{col_prog}]{prog_name}[/{col_prog}] {prog_version}\n\n{message}'
-                message = re.sub(r'(-[a-z]+\s*|\[)([A-Z]+)(?=]|,|\s\s|\s\.)', r'\1[{}]\2[/{}]'.format(col_caps, col_caps), message)
-                message = re.sub(r'((-|--)[a-z]+)', r'[{}]\1[/{}]'.format(col_option, col_option), message)
-                message = message.replace('usage', f'[{col_usage}]USAGE[/{col_usage}]')
-                message = message.replace('options', f'[{col_usage}]FLAGS[/{col_usage}]')
-                message = message.replace(self.prog, f'[{col_prog}]{self.prog}[/{col_prog}]')
-            message = f'[{col_base}]{message.strip()}[/{col_base}]'
+                message = f'[bold cyan]{prog_name}[/bold cyan] {prog_version}\n\n{message}'
+                message = re.sub(r'(-[a-z]+\s*|\[)([A-Z]+)(?=]|,|\s\s|\s\.)', r'\1[{}]\2[/{}]'.format('color(231)', 'color(231)'), message)
+                message = re.sub(r'((-|--)[a-z]+)', r'[{}]\1[/{}]'.format('green', 'green'), message)
+                message = message.replace('usage', f'[yellow]USAGE[/yellow]')
+                message = message.replace('options', f'[yellow]FLAGS[/yellow]')
+                message = message.replace(self.prog, f'[bold cyan]{self.prog}[/bold cyan]')
+            message = f'[not bold white]{message.strip()}[/not bold white]'
             print(message)
 
 
@@ -74,7 +66,7 @@ parser.add_argument('-h', '--help',
                     help='show this help message.')
 parser.add_argument('-v', '--version',
                     action='version',
-                    version=f'[{col_prog}]{prog_name}[/{col_prog}] [not bold white]{prog_version}[/not bold white]',
+                    version=f'[bold cyan]{prog_name}[/bold cyan] [not bold white]{prog_version}[/not bold white]',
                     help='show version.')
 parser.add_argument('-i', '--input',
                     nargs='*',
@@ -90,7 +82,7 @@ parser.add_argument('-f', '--format',
 parser.add_argument('-b', '--bitrate',
                     type=int,
                     default=None,
-                    help='defaults:\nDD:  1.0: 128 kbps, 2.0: 256 kbps, 5.1: 640 kbps\nDDP: 1.0: 128 kbps, 2.0: 256 kbps, 5.1: 1024 kbps, 7.1: 1536 kbps')
+                    help='defaults: see config')
 parser.add_argument('-dm', '--downmix',
                     type=int,
                     default=None,
@@ -117,13 +109,22 @@ parser.add_argument('-k', '--keeptemp',
 parser.add_argument('-mo', '--measure-only',
                     action='store_true',
                     help='kills DEE when the dialnorm gets written to the progress bar\nthis option overwrites format with ddp')
+parser.add_argument('-fs', '--force-standard',
+                    action='store_true',
+                    help='forces standard profile for 7.1 DDP encoding (384-1024 kbps)')
+parser.add_argument('-fb', '--force-bluray',
+                    action='store_true',
+                    help='forces bluray profile for 7.1 DDP encoding (768-1536 kbps)')
+parser.add_argument('-lb', '--list-bitrates',
+                    action='store_true',
+                    help='lists bitrates that DEE can do for DD and DDP encoding')
 parser.add_argument('-la', '--long-argument',
                     action='store_true',
                     help='print ffmpeg and DEE arguments for each input')
 parser.add_argument('-np', '--no-prompt',
                     action='store_true',
                     help='disables prompt')
-parser.add_argument('-pl', '--printlogos',
+parser.add_argument('-pl', '--print-logos',
                     action='store_true',
                     help='show all logo variants you can set in the config')
 parser.add_argument('-cl', '--changelog',
@@ -163,6 +164,12 @@ def print_logos() -> None:
     sys.exit(0)
 
 
+def list_bitrates() -> None:
+    for codec, bitrates in allowed_bitrates.items():
+        print(f'[bold magenta]{codec}[/bold magenta]: [color(231)]{"[white], [/white]".join([str(int) for int in bitrates])}[/color(231)]')
+    sys.exit(0)
+
+
 def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> None:
     config_content = '''ffmpeg_path = 'ffmpeg'
 ffprobe_path = 'ffprobe'
@@ -173,9 +180,17 @@ temp_path = ''
 # You can also use fullpath too.
 # In any case the folder will be created automatically if it doesn't exist already.
 wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
-logo = 1 # Set between 1 and 10, use the -pl/--printlogos option to see the available logos, set to 0 to disable logo.
+logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
 show_summary = true
-threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.'''
+threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.
+[default_bitrates]
+    dd_1_0 = 128
+    dd_2_0 = 256
+    dd_5_1 = 640
+    ddp_1_0 = 128
+    ddp_2_0 = 256
+    ddp_5_1 = 1024
+    ddp_7_1 = 1536'''
 
     if standalone:
         print(f'''[not bold white][bold yellow]config.toml[/bold yellow] is missing, creating one...
@@ -317,9 +332,9 @@ def print_exit(message: str, insert: Any = None) -> NoReturn:
     if insert and '🤠' in error_messages[message]:
         message_split = error_messages[message].split('🤠')
         before, after = message_split[0], message_split[1]
-        exit_message = f'[red]ERROR:[/red] {before}{insert}{after}'
+        exit_message = f'[color(231) on red]ERROR:[/color(231) on red] {before}{insert}{after}'
     else:
-        exit_message = f'[red]ERROR:[/red] {error_messages[message]}'
+        exit_message = f'[color(231) on red]ERROR:[/color(231) on red] {error_messages[message]}'
     print(exit_message)
     sys.exit(1)
 
@@ -399,8 +414,8 @@ def main() -> None:
         sys.exit(1)
 
     if args.changelog: print_changelog()
-
-    if args.printlogos: print_logos()
+    if args.list_bitrates: list_bitrates()
+    if args.print_logos: print_logos()
     if 0 < config['logo'] < len(logos) + 1: print(logos[config['logo'] - 1])
 
     if args.threads:
@@ -489,27 +504,32 @@ def main() -> None:
 
     if aformat == 'dd':
         if outchannels == 1:
-            if not bitrate: bitrate = 128
+            if not bitrate: bitrate = config['default_bitrates']['dd_1_0']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['dd_10'])
         elif outchannels == 2:
-            if not bitrate: bitrate = 256
+            if not bitrate: bitrate = config['default_bitrates']['dd_2_0']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['dd_20'])
         elif outchannels == 6:
-            if not bitrate: bitrate = 640
+            if not bitrate: bitrate = config['default_bitrates']['dd_5_1']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['dd_51'])
     elif aformat == 'ddp':
         if outchannels == 1:
-            if not bitrate: bitrate = 128
+            if not bitrate: bitrate = config['default_bitrates']['ddp_1_0']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_10'])
         elif outchannels == 2:
-            if not bitrate: bitrate = 256
+            if not bitrate: bitrate = config['default_bitrates']['ddp_2_0']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_20'])
         elif outchannels == 6:
-            if not bitrate: bitrate = 1024
+            if not bitrate: bitrate = config['default_bitrates']['ddp_5_1']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_51'])
         elif outchannels == 8:
-            if not bitrate: bitrate = 1536
-            bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71'])
+            if not bitrate: bitrate = config['default_bitrates']['ddp_7_1']
+            if args.force_standard:
+                bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71_standard'])
+            elif args.force_bluray:
+                bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71_bluray'])
+            else:
+                bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71_combined'])
 
     if args.output:
         createdir(os.path.abspath(args.output))
@@ -525,6 +545,10 @@ def main() -> None:
             if outchannels == 8:
                 xml_base['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'ddp71'
                 if bitrate > 1024:
+                    xml_base['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'bluray'
+                if args.force_standard:
+                    xml_base['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'ddp71'
+                if args.force_bluray:
                     xml_base['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'bluray'
         if aformat == 'dd':
             xml_base['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'dd'
@@ -708,6 +732,17 @@ if __name__ == '__main__':
     except Exception:
         config = toml.load(config_path2)
 
+    config_keys = [
+                    'ffmpeg_path',
+                    'ffprobe_path',
+                    'dee_path',
+                    'temp_path',
+                    'wsl',
+                    'logo',
+                    'show_summary',
+                    'threads',
+                    'default_bitrates'
+                ]
     c_key_missing = []
     for c_key in config_keys:
         if c_key not in config: c_key_missing.append(c_key)

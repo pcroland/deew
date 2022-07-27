@@ -70,11 +70,11 @@ pip install -r requirements.txt
 # Usage
 ```
 ❯ ./deew.py -h
-deew 2.1.5
+deew 2.2.0
 
 USAGE: deew.py [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
                [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS]
-               [-k] [-mo] [-la] [-np] [-pl] [-cl]
+               [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl]
 
 FLAGS:
   -h, --help                           show this help message.
@@ -84,9 +84,7 @@ FLAGS:
                                        default: current directory
   -f FORMAT, --format FORMAT           dd / ddp / thd
                                        default: ddp
-  -b BITRATE, --bitrate BITRATE        defaults:
-                                       DD:  1.0: 128 kbps, 2.0: 256 kbps, 5.1: 640 kbps
-                                       DDP: 1.0: 128 kbps, 2.0: 256 kbps, 5.1: 1024 kbps, 7.1: 1536 kbps
+  -b BITRATE, --bitrate BITRATE        defaults: see config
   -dm DOWNMIX, --downmix DOWNMIX       1 / 2 / 6
                                        specifies down/upmix, only works for DD/DDP
                                        DD will be automatically downmixed to 5.1 in case of a 7.1 source
@@ -107,9 +105,12 @@ FLAGS:
   -k, --keeptemp                       keep temp files
   -mo, --measure-only                  kills DEE when the dialnorm gets written to the progress bar
                                        this option overwrites format with ddp
+  -fs, --force-standard                forces standard profile for 7.1 DDP encoding (384-1024 kbps)
+  -fb, --force-bluray                  forces bluray profile for 7.1 DDP encoding (768-1536 kbps)
+  -lb, --list-bitrates                 lists bitrates that DEE can do for DD and DDP encoding
   -la, --long-argument                 print ffmpeg and DEE arguments for each input
   -np, --no-prompt                     disables prompt
-  -pl, --printlogos                    show all logo variants you can set in the config
+  -pl, --print-logos                   show all logo variants you can set in the config
   -cl, --changelog                     show changelog
 ```
 # Examples
