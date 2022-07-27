@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.2.1'
+prog_version = '2.2.2'
 
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
@@ -681,6 +681,10 @@ def main() -> None:
             if bitrate > 1024:
                 xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "eb3")}\"'
             else:
+                xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "ec3")}\"'
+            if args.force_standard:
+                xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "eb3")}\"'
+            if args.force_bluray:
                 xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "ec3")}\"'
         elif aformat == 'dd':
             xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "ac3")}\"'

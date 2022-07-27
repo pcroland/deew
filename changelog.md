@@ -1,3 +1,6 @@
+# deew 2.2.2:
+- fix file extension selection when `-fs`/`-fb` is used
+
 # deew 2.2.1:
 - fix `help` of `--force-standard`
 
