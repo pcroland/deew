@@ -1,8 +1,11 @@
+# deew 2.2.1:
+- fix `help` of `--force-standard`
+
 # deew 2.2.0:
 - added `-fs`/`--force-standard` and `-fb`/`--force-bluray` options
   for DDP 7.1 encoding
     - `-fs` is forcing standard profile (384-1024 kbps)
-    - `-fb` is forcing bluray profile (1024-1536 kbps)
+    - `-fb` is forcing bluray profile (1024-1664 kbps)
     - without these options deew will prefer standard profile and will pick
       that if the bitrate isn't higher than standard's max (1024kbps)
 - added configurable default bitrates

@@ -40,7 +40,7 @@ from messages import error_messages
 from xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.2.0'
+prog_version = '2.2.1'
 
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
@@ -114,7 +114,7 @@ parser.add_argument('-fs', '--force-standard',
                     help='forces standard profile for 7.1 DDP encoding (384-1024 kbps)')
 parser.add_argument('-fb', '--force-bluray',
                     action='store_true',
-                    help='forces bluray profile for 7.1 DDP encoding (768-1536 kbps)')
+                    help='forces bluray profile for 7.1 DDP encoding (768-1664 kbps)')
 parser.add_argument('-lb', '--list-bitrates',
                     action='store_true',
                     help='lists bitrates that DEE can do for DD and DDP encoding')
