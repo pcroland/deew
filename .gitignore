@@ -13,7 +13,6 @@ dist
 term_render.yml
 
 # deew
-config.toml
 temp*
 test*
 *.eb3
