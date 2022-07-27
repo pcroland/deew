@@ -96,5 +96,11 @@ jobs:
           asset_content_type: application/zip
 
       - name: Send Telegram notification
-        run: |
-          curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage -d chat_id=-1001764725434 -d parse_mode=html -d text='New release available!%0A<a href="${{ steps.latest_release_info.outputs.html_url }}">deew ${{ steps.latest_release_info.outputs.tag_name }}</a>'
+        uses: appleboy/telegram-action@master
+        with:
+          to: '-1001764725434'
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          format: html
+          message: |
+            New release available!
+            <a href="${{ steps.latest_release_info.outputs.html_url }}">deew ${{ steps.latest_release_info.outputs.tag_name }}</a>
