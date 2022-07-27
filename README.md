@@ -106,7 +106,7 @@ FLAGS:
   -mo, --measure-only                  kills DEE when the dialnorm gets written to the progress bar
                                        this option overwrites format with ddp
   -fs, --force-standard                forces standard profile for 7.1 DDP encoding (384-1024 kbps)
-  -fb, --force-bluray                  forces bluray profile for 7.1 DDP encoding (768-1536 kbps)
+  -fb, --force-bluray                  forces bluray profile for 7.1 DDP encoding (768-1664 kbps)
   -lb, --list-bitrates                 lists bitrates that DEE can do for DD and DDP encoding
   -la, --long-argument                 print ffmpeg and DEE arguments for each input
   -np, --no-prompt                     disables prompt
