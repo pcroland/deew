@@ -1,3 +1,6 @@
+# deew 2.2.3:
+- fix file extension selection when `-fs`/`-fb` is used again
+
 # deew 2.2.2:
 - fix file extension selection when `-fs`/`-fb` is used
 
