@@ -21,8 +21,7 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install pyinstaller wheel
-          python -m pip install -r requirements.txt
+          python -m pip install .[dev]
 
       - name: Build
         run: |
@@ -71,8 +70,8 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install pyinstaller wheel
-          python -m pip install -r requirements.txt
+          python -m pip install poetry
+          python -m pip install .[dev]
 
       - name: Build
         run: |
@@ -95,11 +94,15 @@ jobs:
           asset_name: deew.exe
           asset_content_type: application/zip
 
+      - name: Upload release to PyPI
+        run: |
+          poetry publish -u '${{ secrets.PYPI_USERNAME }}' -p '${{ secrets.PYPI_TOKEN }}'
+
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
-          to: '-1001764725434'
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          to: '${{ secrets.TELEGRAM_CHANNEL }}'
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
           message: |
             New release available!
