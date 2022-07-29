@@ -273,8 +273,7 @@ def convert_delay_to_ms(inp, compensate):
     if not inp.startswith(('-', '+', 'm', 'p')): print_exit('delay')
     inp = inp.replace(',', '.')
 
-    negative = False
-    if inp.startswith(('-', 'm')): negative = True
+    negative = inp.startswith(('-', 'm'))
 
     if '@' in inp:
         frame = round(float(re.sub('[^0-9\.]', '', inp.split('@')[0])))
