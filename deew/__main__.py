@@ -36,6 +36,8 @@ from rich.syntax import Syntax
 from rich.table import Table
 from unidecode import unidecode
 
+sys.path.append('.')
+
 from deew.bitrates import allowed_bitrates
 from deew.logos import logos
 from deew.messages import error_messages
