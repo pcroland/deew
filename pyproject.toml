@@ -5,6 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "deew"
 version = "2.2.3"
+readme = 'README.md'
 description = "Dolby Encoding Engine Wrapper"
 authors = ["pcroland <pcroland@protonmail.ch>"]
 license = "MIT"
