@@ -441,10 +441,10 @@ def main() -> None:
         generate_config(standalone, config_path1, config_path2, config_dir_path)
 
     try:
-        simplens.config = toml.load(config_path1)
+        config = toml.load(config_path1)
     except Exception:
-        simplens.config = toml.load(config_path2)
-    config = simplens.config
+        config = toml.load(config_path2)
+    simplens.config = config
 
     config_keys = [
                     'ffmpeg_path',
@@ -769,6 +769,7 @@ def main() -> None:
     print()
 
     pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
+    simplens.pb = pb
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 

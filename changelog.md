@@ -1,3 +1,6 @@
+# deew 2.3.2:
+- fix `simplens.pb`
+
 # deew 2.3.1:
 - fix pip
 

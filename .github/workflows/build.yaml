@@ -104,4 +104,5 @@ jobs:
         run: |
           curl "https://gist.githubusercontent.com/pcroland/ada368375417e0e83129b774b4d9fa22/raw/59d4b69dc0581b382c72b14893c788c649e8ce7e/deew_tg_notification.py" > tg.py
           python tg.py "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHANNEL }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          sleep 3
           python tg.py "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHANNEL2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
