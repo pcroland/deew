@@ -726,56 +726,56 @@ def main() -> None:
                 pool.submit(encode, task_id, setting)
 
 
+if getattr(sys, 'frozen', False):
+    script_path = os.path.dirname(sys.executable)
+    standalone = 1
+else:
+    script_path = os.path.dirname(__file__)
+    standalone = 0
+
+dirs = PlatformDirs('deew', False)
+config_dir_path = dirs.user_config_dir
+config_path1 = os.path.join(config_dir_path, 'config.toml')
+config_path2 = os.path.join(script_path, 'config.toml')
+if not os.path.exists(config_path1) and not os.path.exists(config_path2):
+    generate_config(standalone, config_path1, config_path2, config_dir_path)
+
+try:
+    config = toml.load(config_path1)
+except Exception:
+    config = toml.load(config_path2)
+
+config_keys = [
+                'ffmpeg_path',
+                'ffprobe_path',
+                'dee_path',
+                'temp_path',
+                'logo',
+                'show_summary',
+                'threads',
+                'default_bitrates'
+            ]
+c_key_missing = []
+for c_key in config_keys:
+    if c_key not in config: c_key_missing.append(c_key)
+if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
+
+if not config['temp_path']:
+    config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
+    if config['temp_path'] == '/tmp':
+        config['temp_path'] = '/var/tmp'
+config['temp_path'] = os.path.abspath(config['temp_path'])
+createdir(config['temp_path'])
+
+for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
+    if not shutil.which(i): print_exit('binary_exist', i)
+
+with open(shutil.which(config['dee_path']), 'rb') as fd:
+    dee_is_exe = fd.read(2) == b'\x4d\x5a'
+
+pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
+
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 if __name__ == '__main__':
-    if getattr(sys, 'frozen', False):
-        script_path = os.path.dirname(sys.executable)
-        standalone = 1
-    else:
-        script_path = os.path.dirname(__file__)
-        standalone = 0
-
-    dirs = PlatformDirs('deew', False)
-    config_dir_path = dirs.user_config_dir
-    config_path1 = os.path.join(config_dir_path, 'config.toml')
-    config_path2 = os.path.join(script_path, 'config.toml')
-    if not os.path.exists(config_path1) and not os.path.exists(config_path2):
-        generate_config(standalone, config_path1, config_path2, config_dir_path)
-
-    try:
-        config = toml.load(config_path1)
-    except Exception:
-        config = toml.load(config_path2)
-
-    config_keys = [
-                    'ffmpeg_path',
-                    'ffprobe_path',
-                    'dee_path',
-                    'temp_path',
-                    'logo',
-                    'show_summary',
-                    'threads',
-                    'default_bitrates'
-                ]
-    c_key_missing = []
-    for c_key in config_keys:
-        if c_key not in config: c_key_missing.append(c_key)
-    if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
-
-    if not config['temp_path']:
-        config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
-        if config['temp_path'] == '/tmp':
-            config['temp_path'] = '/var/tmp'
-    config['temp_path'] = os.path.abspath(config['temp_path'])
-    createdir(config['temp_path'])
-
-    for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
-        if not shutil.which(i): print_exit('binary_exist', i)
-
-    with open(shutil.which(config['dee_path']), 'rb') as fd:
-        dee_is_exe = fd.read(2) == b'\x4d\x5a'
-
-    pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
-
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-
     main()
