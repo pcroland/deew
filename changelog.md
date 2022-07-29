@@ -1,3 +1,6 @@
+# deew 2.3.1:
+- fix pip
+
 # deew 2.3.0:
 - turned into proper python package
 - removed wsl option from config

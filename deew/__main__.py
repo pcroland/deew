@@ -327,7 +327,7 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
 
 
 def wpc(p: str) -> str:
-    if dee_is_exe and platform.system() != 'Windows':
+    if simplens.dee_is_exe and platform.system() != 'Windows':
         if not p.startswith('/mnt/'): print_exit('wsl_path', p)
         parts = p.split('/')[2:]
         parts[0] = parts[0].upper() + ':'
@@ -363,6 +363,7 @@ def createdir(out: str) -> None:
 
 
 def encode(task_id: TaskID, settings: list) -> None:
+    config, pb = simplens.config, simplens.pb
     fl, output, length, ffmpeg_args, dee_args, intermediate_exists, aformat = settings
     fl_b = os.path.basename(fl)
     pb.update(description=f'[bold][cyan]starting[/cyan][/bold]...{" " * 24}', task_id=task_id, visible=True)
@@ -425,6 +426,54 @@ def encode(task_id: TaskID, settings: list) -> None:
 
 
 def main() -> None:
+    if getattr(sys, 'frozen', False):
+        script_path = os.path.dirname(sys.executable)
+        standalone = 1
+    else:
+        script_path = os.path.dirname(__file__)
+        standalone = 0
+
+    dirs = PlatformDirs('deew', False)
+    config_dir_path = dirs.user_config_dir
+    config_path1 = os.path.join(config_dir_path, 'config.toml')
+    config_path2 = os.path.join(script_path, 'config.toml')
+    if not os.path.exists(config_path1) and not os.path.exists(config_path2):
+        generate_config(standalone, config_path1, config_path2, config_dir_path)
+
+    try:
+        simplens.config = toml.load(config_path1)
+    except Exception:
+        simplens.config = toml.load(config_path2)
+    config = simplens.config
+
+    config_keys = [
+                    'ffmpeg_path',
+                    'ffprobe_path',
+                    'dee_path',
+                    'temp_path',
+                    'logo',
+                    'show_summary',
+                    'threads',
+                    'default_bitrates'
+                ]
+    c_key_missing = []
+    for c_key in config_keys:
+        if c_key not in config: c_key_missing.append(c_key)
+    if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
+
+    if not config['temp_path']:
+        config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
+        if config['temp_path'] == '/tmp':
+            config['temp_path'] = '/var/tmp'
+    config['temp_path'] = os.path.abspath(config['temp_path'])
+    createdir(config['temp_path'])
+
+    for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
+        if not shutil.which(i): print_exit('binary_exist', i)
+
+    with open(shutil.which(config['dee_path']), 'rb') as fd:
+        simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -448,7 +497,7 @@ def main() -> None:
     if downmix and downmix not in [1, 2, 6]: print_exit('downmix')
     if downmix and aformat == 'thd': print_exit('thd_downmix')
     if args.drc not in ['film_light', 'film_standard', 'music_light', 'music_standard', 'speech']: print_exit('drc')
-    if not dee_is_exe and platform.system() == 'Linux' and aformat == 'thd': print_exit('linux_thd')
+    if not simplens.dee_is_exe and platform.system() == 'Linux' and aformat == 'thd': print_exit('linux_thd')
     if args.measure_only: aformat = 'ddp'
 
     filelist = []
@@ -656,13 +705,13 @@ def main() -> None:
         channel_swap_args = []
         channel_swap_args_print = ''
 
-    if dee_is_exe and platform.system() != 'Windows':
+    if simplens.dee_is_exe and platform.system() != 'Windows':
         dee_xml_input_base = f'{wpc(config["temp_path"])}\\'
     else:
         dee_xml_input_base = f'{config["temp_path"]}/'
 
-    xml_validation = [] if dee_is_exe else ['--disable-xml-validation']
-    xml_validation_print = '' if dee_is_exe else ' --disable-xml-validation'
+    xml_validation = [] if simplens.dee_is_exe else ['--disable-xml-validation']
+    xml_validation_print = '' if simplens.dee_is_exe else ' --disable-xml-validation'
 
     settings = []
     ffmpeg_print_list = []
@@ -719,63 +768,16 @@ def main() -> None:
 
     print()
 
+    pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
+
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+
     with pb:
         with ThreadPoolExecutor(max_workers=threads) as pool:
             for setting in settings:
                 task_id = pb.add_task('', visible=False, total=None)
                 pool.submit(encode, task_id, setting)
 
-
-if getattr(sys, 'frozen', False):
-    script_path = os.path.dirname(sys.executable)
-    standalone = 1
-else:
-    script_path = os.path.dirname(__file__)
-    standalone = 0
-
-dirs = PlatformDirs('deew', False)
-config_dir_path = dirs.user_config_dir
-config_path1 = os.path.join(config_dir_path, 'config.toml')
-config_path2 = os.path.join(script_path, 'config.toml')
-if not os.path.exists(config_path1) and not os.path.exists(config_path2):
-    generate_config(standalone, config_path1, config_path2, config_dir_path)
-
-try:
-    config = toml.load(config_path1)
-except Exception:
-    config = toml.load(config_path2)
-
-config_keys = [
-                'ffmpeg_path',
-                'ffprobe_path',
-                'dee_path',
-                'temp_path',
-                'logo',
-                'show_summary',
-                'threads',
-                'default_bitrates'
-            ]
-c_key_missing = []
-for c_key in config_keys:
-    if c_key not in config: c_key_missing.append(c_key)
-if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
-
-if not config['temp_path']:
-    config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
-    if config['temp_path'] == '/tmp':
-        config['temp_path'] = '/var/tmp'
-config['temp_path'] = os.path.abspath(config['temp_path'])
-createdir(config['temp_path'])
-
-for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
-    if not shutil.which(i): print_exit('binary_exist', i)
-
-with open(shutil.which(config['dee_path']), 'rb') as fd:
-    dee_is_exe = fd.read(2) == b'\x4d\x5a'
-
-pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
-
-signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 if __name__ == '__main__':
     main()
