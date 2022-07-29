@@ -98,7 +98,7 @@ jobs:
       - name: Upload release to PyPI
         run: |
           poetry build
-          poetry publish -u '${{ secrets.PYPI_USERNAME }}' -p '${{ secrets.PYPI_TOKEN }}'
+          poetry publish -u __token__ -p '${{ secrets.PYPI_TOKEN }}'
 
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
