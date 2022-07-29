@@ -42,7 +42,12 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = metadata.version('deew')
+try:
+    prog_version = metadata.version('deew')
+except metadata.PackageNotFoundError:
+    with open('pyproject.toml') as fd:
+        pyproject = toml.load(fd)
+        prog_version = pyproject['tool']['poetry']['version'] + '-dev'
 
 simplens = SimpleNamespace()
 
