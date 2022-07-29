@@ -185,8 +185,7 @@ def list_bitrates() -> None:
 
 
 def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> None:
-    config_content = '''\
-# These are required.
+    config_content = '''# These are required.
 # If only name is specified, it will look in PATH (which includes the current directory on Windows).
 # If full path is specified, that will be used.
 ffmpeg_path = 'ffmpeg'
@@ -197,7 +196,6 @@ dee_path = 'dee.exe'
 # You can also specify an absolute path or a path relative to the current directory.
 temp_path = ''
 
-wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
 logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
 show_summary = true
 threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.
@@ -329,7 +327,7 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
 
 
 def wpc(p: str) -> str:
-    if config['wsl']:
+    if dee_is_exe and platform.system() != 'Windows':
         if not p.startswith('/mnt/'): print_exit('wsl_path', p)
         parts = p.split('/')[2:]
         parts[0] = parts[0].upper() + ':'
@@ -450,7 +448,7 @@ def main() -> None:
     if downmix and downmix not in [1, 2, 6]: print_exit('downmix')
     if downmix and aformat == 'thd': print_exit('thd_downmix')
     if args.drc not in ['film_light', 'film_standard', 'music_light', 'music_standard', 'speech']: print_exit('drc')
-    if platform.system() == 'Linux' and not config['wsl'] and aformat == 'thd': print_exit('linux_thd')
+    if not dee_is_exe and platform.system() == 'Linux' and aformat == 'thd': print_exit('linux_thd')
     if args.measure_only: aformat = 'ddp'
 
     filelist = []
@@ -594,7 +592,7 @@ def main() -> None:
         try:
             r = requests.get('https://api.github.com/repos/pcroland/deew/releases/latest')
             latest_version = json.loads(r.text)['tag_name']
-            if version.parse(prog_version) < version.parse(latest_version):
+            if version.parse(prog_version.replace('-dev', '')) < version.parse(latest_version):
                 latest_version = f'[bold green]{latest_version}[/bold green] !!!'
         except Exception:
             latest_version = "[red]couldn't fetch"
@@ -607,7 +605,7 @@ def main() -> None:
         summary.add_column(style='green')
         summary.add_column(style='color(231)')
 
-        summary.add_row('[bold cyan]Version', prog_version)
+        summary.add_row('[bold cyan]Version', prog_version.replace('-dev', ''))
         summary.add_row('[bold cyan]Latest', latest_version, end_section=True)
 
         summary.add_row('[cyan]DEE version', simplens.dee_version)
@@ -658,16 +656,13 @@ def main() -> None:
         channel_swap_args = []
         channel_swap_args_print = ''
 
-    if config['wsl'] or platform.system() == 'Windows':
+    if dee_is_exe and platform.system() != 'Windows':
         dee_xml_input_base = f'{wpc(config["temp_path"])}\\'
     else:
         dee_xml_input_base = f'{config["temp_path"]}/'
 
-    xml_validation = []
-    xml_validation_print = ''
-    if platform.system() != 'Windows' and not config['wsl']:
-        xml_validation = ['--disable-xml-validation']
-        xml_validation_print = ' --disable-xml-validation'
+    xml_validation = [] if dee_is_exe else ['--disable-xml-validation']
+    xml_validation_print = '' if dee_is_exe else ' --disable-xml-validation'
 
     settings = []
     ffmpeg_print_list = []
@@ -756,7 +751,6 @@ if __name__ == '__main__':
                     'ffprobe_path',
                     'dee_path',
                     'temp_path',
-                    'wsl',
                     'logo',
                     'show_summary',
                     'threads',
@@ -776,6 +770,9 @@ if __name__ == '__main__':
 
     for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
         if not shutil.which(i): print_exit('binary_exist', i)
+
+    with open(shutil.which(config['dee_path']), 'rb') as fd:
+        dee_is_exe = fd.read(2) == b'\x4d\x5a'
 
     pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
 

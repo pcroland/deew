@@ -30,6 +30,7 @@
   - for thd unsupported rates will be converted to 48000 if source sample rate is lower than 72000, otherwise will be converted to 96000
 - automatic channel swapping for 7.1 sources (DEE swaps Ls Rs with Lrs Rrs for some reason)
 - automatic dialnorm setting
+- automatically compensates for DEE's 256 sample delay (DD and DDP encoding)
 - checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:\
   ./deew.py -f dd -b 448 -i input -k\
   ./deew.py -f dd -b 640 -i input -k\
@@ -54,23 +55,18 @@
 # deew installation
 ### with standalone build (Windows / Linux)
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
-- `deew` will create a config file on the first run, choose where you want to keep it
-- run `deew`
+- on the first run deew will create a config file, choose where you want to keep it
+*(run the binary from terminal, doubleclicking it won't work)*
 
 ### with Python environment (Windows / Linux / macOS)
 - install `python` and `pip` if you don't have it already
-```sh
-git clone https://github.com/pcroland/deew
-cd deew
-pip install .
-```
-- `deew` will create a config file on the first run
-- run `deew`
+- run `pip install deew`
+- on the first run `deew` will create a config file
 
 # Usage
 ```
 ❯ ./deew.py -h
-deew 2.2.0
+deew 2.3.0
 
 USAGE: deew.py [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
                [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS]

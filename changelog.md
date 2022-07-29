@@ -1,3 +1,8 @@
+# deew 2.3.0:
+- turned into proper python package
+- removed wsl option from config
+  (autosetup with platform and binary type without additional libraries)
+
 # deew 2.2.3:
 - fix file extension selection when `-fs`/`-fb` is used again
 
