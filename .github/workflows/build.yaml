@@ -21,7 +21,7 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install pyinstaller
+          python -m pip install pyinstaller wheel
           python -m pip install .
 
       - name: Build
@@ -71,7 +71,7 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install poetry pyinstaller
+          python -m pip install poetry pyinstaller wheel
           python -m pip install .
 
       - name: Build
@@ -97,6 +97,7 @@ jobs:
 
       - name: Upload release to PyPI
         run: |
+          poetry build
           poetry publish -u '${{ secrets.PYPI_USERNAME }}' -p '${{ secrets.PYPI_TOKEN }}'
 
       - name: Send Telegram notification
