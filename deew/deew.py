@@ -11,12 +11,14 @@ import shutil
 import signal
 import subprocess
 import sys
+import tempfile
 import time
 from base64 import b64decode
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import timedelta
 from glob import glob
+from importlib import metadata
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 from typing import Any, NoReturn
@@ -34,13 +36,15 @@ from rich.syntax import Syntax
 from rich.table import Table
 from unidecode import unidecode
 
-from bitrates import allowed_bitrates
-from logos import logos
-from messages import error_messages
-from xml_base import xml_dd_ddp_base, xml_thd_base
+from deew.bitrates import allowed_bitrates
+from deew.logos import logos
+from deew.messages import error_messages
+from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.2.3'
+prog_version = metadata.version('deew')
+
+simplens = SimpleNamespace()
 
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
@@ -171,18 +175,23 @@ def list_bitrates() -> None:
 
 
 def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> None:
-    config_content = '''ffmpeg_path = 'ffmpeg'
+    config_content = '''\
+# These are required.
+# If only name is specified, it will look in PATH (which includes the current directory on Windows).
+# If full path is specified, that will be used.
+ffmpeg_path = 'ffmpeg'
 ffprobe_path = 'ffprobe'
 dee_path = 'dee.exe'
+
+# If this is empty, the default OS temporary directory will be used (or `temp` next to the script if you use the exe).
+# You can also specify an absolute path or a path relative to the current directory.
 temp_path = ''
-# empty: next to the script
-# relative path: from your current directory
-# You can also use fullpath too.
-# In any case the folder will be created automatically if it doesn't exist already.
+
 wsl = false # Set this to true if you run the script in Linux but use the Windows version of DEE.
 logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
 show_summary = true
 threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.
+
 [default_bitrates]
     dd_1_0 = 128
     dd_2_0 = 256
@@ -409,6 +418,55 @@ def encode(task_id: TaskID, settings: list) -> None:
 
 
 def main() -> None:
+    if getattr(sys, 'frozen', False):
+        script_path = os.path.dirname(sys.executable)
+        standalone = 1
+    else:
+        script_path = os.path.dirname(__file__)
+        standalone = 0
+
+    dirs = PlatformDirs('deew', False)
+    config_dir_path = dirs.user_config_dir
+    config_path1 = os.path.join(config_dir_path, 'config.toml')
+    config_path2 = os.path.join(script_path, 'config.toml')
+    if not os.path.exists(config_path1) and not os.path.exists(config_path2):
+        generate_config(standalone, config_path1, config_path2, config_dir_path)
+
+    try:
+        config = toml.load(config_path1)
+    except Exception:
+        config = toml.load(config_path2)
+
+    config_keys = [
+                    'ffmpeg_path',
+                    'ffprobe_path',
+                    'dee_path',
+                    'temp_path',
+                    'wsl',
+                    'logo',
+                    'show_summary',
+                    'threads',
+                    'default_bitrates'
+                ]
+    c_key_missing = []
+    for c_key in config_keys:
+        if c_key not in config: c_key_missing.append(c_key)
+    if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
+
+    if not config['temp_path']:
+        config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
+        if config['temp_path'] == '/tmp':
+            config['temp_path'] = '/var/tmp'
+    config['temp_path'] = os.path.abspath(config['temp_path'])
+    createdir(config['temp_path'])
+
+    for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
+        if not shutil.which(i): print_exit('binary_exist', i)
+
+    pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
+
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -714,52 +772,4 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    simplens = SimpleNamespace()
-
-    if getattr(sys, 'frozen', False):
-        script_path = os.path.dirname(sys.executable)
-        standalone = 1
-    else:
-        script_path = os.path.dirname(__file__)
-        standalone = 0
-
-    dirs = PlatformDirs('deew', False)
-    config_dir_path = dirs.user_config_dir
-    config_path1 = os.path.join(config_dir_path, 'config.toml')
-    config_path2 = os.path.join(script_path, 'config.toml')
-    if not os.path.exists(config_path1) and not os.path.exists(config_path2):
-        generate_config(standalone, config_path1, config_path2, config_dir_path)
-
-    try:
-        config = toml.load(config_path1)
-    except Exception:
-        config = toml.load(config_path2)
-
-    config_keys = [
-                    'ffmpeg_path',
-                    'ffprobe_path',
-                    'dee_path',
-                    'temp_path',
-                    'wsl',
-                    'logo',
-                    'show_summary',
-                    'threads',
-                    'default_bitrates'
-                ]
-    c_key_missing = []
-    for c_key in config_keys:
-        if c_key not in config: c_key_missing.append(c_key)
-    if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
-
-    if not config['temp_path']:
-        config['temp_path'] = os.path.join(script_path, 'temp')
-    config['temp_path'] = os.path.abspath(config['temp_path'])
-    createdir(config['temp_path'])
-
-    for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
-        if not shutil.which(i): print_exit('binary_exist', i)
-
-    pb = Progress('[', '{task.description}', ']', BarColumn(), '[magenta]{task.percentage:>3.2f}%', refresh_per_second=8)
-
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
     main()

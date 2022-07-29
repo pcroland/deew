@@ -1,7 +1,0 @@
-packaging
-platformdirs
-requests
-rich
-toml
-unidecode
-xmltodict

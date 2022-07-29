@@ -62,7 +62,7 @@
 ```sh
 git clone https://github.com/pcroland/deew
 cd deew
-pip install -r requirements.txt
+pip install .
 ```
 - `deew` will create a config file on the first run
 - run `deew`
