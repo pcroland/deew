@@ -1,8 +1,12 @@
+# deew 2.3.3:
+- updated `wpc`'s path generaration (`C:` -> `C:\`)
+  (drive paths without subfolders couldn't be used before)
+
 # deew 2.3.2:
-- fix `simplens.pb`
+- fixed `simplens.pb`
 
 # deew 2.3.1:
-- fix pip
+- fixed pip
 
 # deew 2.3.0:
 - turned into proper python package
@@ -10,13 +14,13 @@
   (autosetup with platform and binary type without additional libraries)
 
 # deew 2.2.3:
-- fix file extension selection when `-fs`/`-fb` is used again
+- fixed file extension selection when `-fs`/`-fb` is used again
 
 # deew 2.2.2:
-- fix file extension selection when `-fs`/`-fb` is used
+- fixed file extension selection when `-fs`/`-fb` is used
 
 # deew 2.2.1:
-- fix `help` of `--force-standard`
+- fixed `help` of `--force-standard`
 
 # deew 2.2.0:
 - added `-fs`/`--force-standard` and `-fb`/`--force-bluray` options

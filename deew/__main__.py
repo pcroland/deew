@@ -329,9 +329,9 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
 def wpc(p: str) -> str:
     if simplens.dee_is_exe and platform.system() != 'Windows':
         if not p.startswith('/mnt/'): print_exit('wsl_path', p)
-        parts = p.split('/')[2:]
+        parts = list(filter(None, p.split('/')))[1:]
         parts[0] = parts[0].upper() + ':'
-        p = '\\'.join(parts)
+        p = '\\'.join(parts) + '\\'
     return p
 
 
@@ -706,9 +706,9 @@ def main() -> None:
         channel_swap_args_print = ''
 
     if simplens.dee_is_exe and platform.system() != 'Windows':
-        dee_xml_input_base = f'{wpc(config["temp_path"])}\\'
+        dee_xml_input_base = wpc(config['temp_path'])
     else:
-        dee_xml_input_base = f'{config["temp_path"]}/'
+        dee_xml_input_base = config['temp_path'] if config['temp_path'].endswith('/') else f'{config["temp_path"]}/'
 
     xml_validation = [] if simplens.dee_is_exe else ['--disable-xml-validation']
     xml_validation_print = '' if simplens.dee_is_exe else ' --disable-xml-validation'
