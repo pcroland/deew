@@ -76,7 +76,7 @@ jobs:
 
       - name: Build
         run: |
-          pyinstaller -F __main__.py -n deew --add-data pyproject.toml;. --icon logo/icon.ico
+          pyinstaller -F __main__.py -n deew --add-data "pyproject.toml;." --icon logo/icon.ico
 
       - name: Get latest release info
         id: latest_release_info
