@@ -1,16 +1,17 @@
-<a href="https://github.com/pcroland/deew/actions/workflows/build.yaml"><img src="https://img.shields.io/github/workflow/status/pcroland/deew/Build%20and%20publish"></a>
-<a href="https://github.com/pcroland/deew/releases"><img src="https://img.shields.io/github/v/release/pcroland/deew?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAYAAADtc08vAAACp0lEQVQokW2Tu29UVxDGf3Mfu3d3vWuvszKOke0iGAXHD4IESRqMDCJlqKBIR6SUkdLwD+RBS4ciuaWxKJIIN6AISzTYwhZBAsUyIWDjB8brZX33effeM9G9RoiCkY50Zs7Mp/m+mSPragiBLjhfQm4CeT5gBja32lxf8/WXvX00bCcx3gHk4fte5LcAZgUWQ6WWFT6Jk3YC7c5bcibncBQI7m/qV6u7LOdT4EiMcnBWDPz5WvXSRyKT+0a/Xg258mlK2O3Af4GSMoxNFOWPLwdkab+hY9s+j+UfY8hIQoECwhtVSiJ/+RHTDxoqp/PCCx/+bSoeUKnC9LBsZGy6Zx9ql+UDbQUbzopyp2US/suh0i6BZ8N8qFyu1KBehUoF7q7opG2T+/xj+cGKs30FoxwROGcOAHyUSE2MyxTKhBUgJsQt5ZA3PrvlGotH+vjJGhN5MiLyjSiLEaCaALgoohGJ12zpwmAXn02PyNr4YRkZKAjbe9xwHAqWB8fyMCTKvtGDeSWmoG/vJqLp2eQ8h/6MQ6aYBVvYiN8SChHUVXGFDwOoSdo3b+Na8aETMhC7zlakx8OItSxMWfZ7RRqrkEyYtM3Yyha36w1OBwFPN3ZhfJhvowjfCYW/gxAKLv3xUlgH9ZEqIppoEFiIU21QNx3ulcvQ101vXw9fPFnjR6fVgqANNVgX5WmrkwCkUbx6myYwaEO9x4WsCyYH507w0CjNpVWuOY+33yk/t1fTuVP9Sdcjro0820IbVXZ6c9DjgZfi2Jlxfk+7DN5aYLIZgHMoJfEOkHYYHfL0giv6qyIvsymYPCxXG03oL9I9OsRUJs1oTG/+ESfXX/OoWAB5WVViDUo5vsunmXlWVhkuykXbYub9n9kJ2dksc/35Dj+/qhBGsdgC/wNo0jVGqhwhLwAAAABJRU5ErkJggg==&color=important"></a>
-<a href="https://github.com/pcroland/deew/blob/master/LICENSE"><img src="https://img.shields.io/github/license/pcroland/deew?color=blueviolet"></a>
-<a href="https://github.com/pcroland/deew/commits/main"><img src="https://img.shields.io/github/last-commit/pcroland/deew?color=487afa"></a>
-<a href="https://github.com/pcroland/deew/issues"><img src="https://img.shields.io/github/issues/pcroland/deew?color=487afa"></a>
-<br>
-<a href="https://t.me/deew_support"><img src="https://img.shields.io/endpoint?color=2aabee&url=https://cadoth.net/tgmembercount%3Fchat_id=deew_support%26name=Discussion%2520and%2520Support"></a>
-<a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/platform-win | linux | osx-eeeeee"></a>
-<a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/python-3.7--3.11-eeeeee?logo=Python&logoColor=eeeeee"></a>
-<a href="https://github.com/pcroland/deew"><img src="https://img.shields.io/badge/DEE-5.1.0--5.2.1-green?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg==&color=eeeeee"></a>
+[![builds](https://img.shields.io/github/workflow/status/pcroland/deew/Build%20and%20publish?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
+[![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
+[![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
+[![license](https://img.shields.io/github/license/pcroland/deew?color=blueviolet&style=flat-square)](https://github.com/pcroland/deew/blob/master/LICENSE)
+\
+[![telegram](https://img.shields.io/endpoint?color=1d93d2&style=flat-square&url=https://cadoth.net/tgmembercount%3Fchat_id=deew_support%26name=Discussion%2520and%2520Support)](https://t.me/deew_support)
+[![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
+[![issues](https://img.shields.io/github/issues/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
+\
+[![name](https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20osx-eeeeee?style=flat-square)](https://github.com/pcroland/deew)
+[![name](https://img.shields.io/pypi/pyversions/deew?logo=Python&logoColor=eeeeee&color=eeeeee&style=flat-square)](https://github.com/pcroland/deew)
+[![name](https://img.shields.io/badge/DEE-5.1.0--5.2.1-green?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg==&color=eeeeee&style=flat-square)](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)
 <hr>
-
-<p align="center"><img width="192" src="logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
+<p align="center"><img width="192" src="https://raw.githubusercontent.com/pcroland/deew/main/logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
 
 ## DDP encoding has never been so easy!
 
@@ -55,12 +56,20 @@
 # deew installation
 ### with standalone build (Windows / Linux)
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- run with:
+```sh
+deew
+```
 - on the first run deew will create a config file, choose where you want to keep it
 *(run the binary from terminal, doubleclicking it won't work)*
 
 ### with Python environment (Windows / Linux / macOS)
 - install `python` and `pip` if you don't have it already
 - run `pip install deew`
+- run with:
+```sh
+deew
+```
 - on the first run `deew` will create a config file
 
 # Usage
@@ -68,9 +77,9 @@
 ❯ ./deew.py -h
 deew 2.3.0
 
-USAGE: deew.py [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
-               [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS]
-               [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl]
+USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
+            [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS]
+            [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl]
 
 FLAGS:
   -h, --help                           show this help message.
