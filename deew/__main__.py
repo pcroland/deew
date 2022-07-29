@@ -47,9 +47,12 @@ prog_name = 'deew'
 try:
     prog_version = metadata.version('deew')
 except metadata.PackageNotFoundError:
-    with open('pyproject.toml') as fd:
-        pyproject = toml.load(fd)
-        prog_version = pyproject['tool']['poetry']['version'] + '-dev'
+    pyproject_path = 'pyproject.toml'
+    is_pyinstaller = getattr(sys, 'frozen', False)
+    if is_pyinstaller:
+        pyproject_path = os.path.join(sys._MEIPASS, pyproject_path)
+    pyproject = toml.load(pyproject_path)
+    prog_version = pyproject['tool']['poetry']['version'] + ('' if is_pyinstaller else '-dev')
 
 simplens = SimpleNamespace()
 

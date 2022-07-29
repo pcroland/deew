@@ -11,7 +11,7 @@ authors = ["pcroland <pcroland@protonmail.ch>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.7,<3.11"
 importlib-metadata = {version = "^4.12.0", python = "<3.8"}
 packaging = "^21.3"
 platformdirs = "^2.5.2"
@@ -25,3 +25,4 @@ xmltodict = "^0.13.0"
 deew = "deew.__main__:main"
 
 [tool.poetry.dev-dependencies]
+pyinstaller = "^5.2"
