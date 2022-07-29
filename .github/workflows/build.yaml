@@ -21,7 +21,7 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install pyinstaller wheel
+          python -m pip install wheel pyinstaller
           python -m pip install .
 
       - name: Build
@@ -71,7 +71,7 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install poetry pyinstaller wheel
+          python -m pip install wheel poetry pyinstaller
           python -m pip install .
 
       - name: Build
