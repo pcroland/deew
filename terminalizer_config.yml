@@ -15,7 +15,7 @@ env:
 # Explicitly set the number of columns
 # or use `auto` to take the current
 # number of columns of your shell
-cols: 113
+cols: 105
 
 # Explicitly set the number of rows
 # or use `auto` to take the current
