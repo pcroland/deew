@@ -151,14 +151,17 @@ def print_changelog() -> None:
     try:
         r = requests.get('https://api.github.com/repos/pcroland/deew/contents/changelog.md')
         changelog = json.loads(r.text)['content']
-        changelog = b64decode(changelog).decode().split('\n')
+        changelog = b64decode(changelog).decode().split('\n\n')
+        changelog.reverse()
+        changelog = '\n\n'.join(changelog[-10:])
+        changelog = changelog.split('\n')
     except Exception:
         print_exit('changelog')
 
     for line in changelog:
-        line = line.replace('\\', '')
-        if line.startswith('# '):
-            line = f'[bold color(231)]{line.replace("# ", "")}[/bold color(231)]'
+        if line.endswith('\\'): line = line[:-1]
+        line = line.replace('\\', '\\\\')
+        if line.startswith('# '): line = f'[bold color(231)]{line.replace("# ", "")}[/bold color(231)]'
         code_number = line.count('`')
         state_even = False
         for _ in range(code_number):
@@ -168,7 +171,7 @@ def print_changelog() -> None:
             else:
                 line = line.replace('`', '[/bold yellow]', 1)
                 state_even = False
-        print(f'[not bold]{line}[/not bold]')
+        print(f'[not bold white]{line}[/not bold white]')
     sys.exit(0)
 
 
@@ -180,7 +183,7 @@ def print_logos() -> None:
 
 def list_bitrates() -> None:
     for codec, bitrates in allowed_bitrates.items():
-        print(f'[bold magenta]{codec}[/bold magenta]: [color(231)]{"[white], [/white]".join([str(int) for int in bitrates])}[/color(231)]')
+        print(f'[bold magenta]{codec}[/bold magenta]: [not bold color(231)]{"[white], [/white]".join([str(int) for int in bitrates])}[/not bold color(231)]')
     sys.exit(0)
 
 
@@ -426,6 +429,14 @@ def encode(task_id: TaskID, settings: list) -> None:
 
 
 def main() -> None:
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+
+    if args.changelog: print_changelog()
+    if args.list_bitrates: list_bitrates()
+    if args.print_logos: print_logos()
+
     if getattr(sys, 'frozen', False):
         script_path = os.path.dirname(sys.executable)
         standalone = 1
@@ -445,6 +456,8 @@ def main() -> None:
     except Exception:
         config = toml.load(config_path2)
     simplens.config = config
+
+    if 0 < config['logo'] < len(logos) + 1: print(logos[config['logo'] - 1])
 
     config_keys = [
                     'ffmpeg_path',
@@ -473,15 +486,6 @@ def main() -> None:
 
     with open(shutil.which(config['dee_path']), 'rb') as fd:
         simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
-
-    if len(sys.argv) == 1:
-        parser.print_help(sys.stderr)
-        sys.exit(1)
-
-    if args.changelog: print_changelog()
-    if args.list_bitrates: list_bitrates()
-    if args.print_logos: print_logos()
-    if 0 < config['logo'] < len(logos) + 1: print(logos[config['logo'] - 1])
 
     if args.threads:
         threads = clamp(args.threads, 1, cpu_count() - 2)

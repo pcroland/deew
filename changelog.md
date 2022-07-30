@@ -1,3 +1,10 @@
+# deew 2.4.0:
+- updated `-cl`/`--changelog`
+  - reversed order
+  - only print last 10 elements
+  - print `\` characters properly
+- moved logo, help, bitrate and changelog printing to a more appropriate place
+
 # deew 2.3.3:
 - updated `wpc`'s path generaration (`C:` -> `C:\`)
   (drive paths without subfolders couldn't be used before)
