@@ -33,9 +33,9 @@
 - automatic dialnorm setting
 - automatically compensates for DEE's 256 sample delay (DD and DDP encoding)
 - checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:\
-  ./deew.py -f dd -b 448 -i input -k\
-  ./deew.py -f dd -b 640 -i input -k\
-  ./deew.py -f ddp -i input
+  `deew -f dd -b 448 -i input -k`\
+  `deew -f dd -b 640 -i input -k`\
+  `deew -f ddp -i input`
 - works even with video inputs (first audio will be selected)
 - fancy terminal output using rich
 - versatile delay option that supports ms, s and also frame@fps formats
