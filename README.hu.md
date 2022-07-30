@@ -59,29 +59,17 @@
 
 # deew telepítése standalone buildet használva (Windows/Linux)
 - tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
-- futtasd:
-```sh
-deew
-```
-- az első futtatáskor készíteni fog egy config fájlt, válaszd ki, hogy melyik elérést szeretnéd használni\
+- futtasd: `deew`\
 *(terminálból futtasd, duplaklikk nem fog működni)*
-
-### Frissítés
-- tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- az első futtatáskor készíteni fog egy config fájlt, válaszd ki hogy melyik elérést szeretnéd használni
+- frissítés: tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 
 # deew telepítése Python környezetet használva (Windows/Linux/macOS)
-- telepítsd a `python`-t és `pip`-et, ha még nincs fent
+- telepítsd a Python-t és pip-et, ha még nincs fent
 - futtasd a következő parancsot: `pip install deew`
-- futtasd:
-```sh
-deew
-```
+- futtasd: `deew`
 - az első futtatáskor készíteni fog egy config fájlt
-
-### Frissítés
-```sh
-pip install deew --upgrade
-```
+- frissítés: `pip install deew --upgrade`
 
 # Használat
 ```

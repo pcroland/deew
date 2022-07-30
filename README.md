@@ -59,29 +59,17 @@
 
 # deew installation with standalone build (Windows/Linux)
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
-- run with:
-```sh
-deew
-```
-- on the first run it will create a config file, choose where you want to keep it\
+- run with: `deew`\
 *(run the binary from terminal, doubleclicking it won't work)*
-
-### Updating
-- grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- on the first run it will create a config file, choose where you want to keep it
+- updating: grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 
 # deew installation with Python environment (Windows/Linux/macOS)
-- install `python` and `pip` if you don't have it already
-- run `pip install deew`
-- run with:
-```sh
-deew
-```
+- install Python and pip if you don't have it already
+- run: `pip install deew`
+- run with: `deew`
 - on the first run it will create a config file
-
-### Updating
-```sh
-pip install deew --upgrade
-```
+- updating: `pip install deew --upgrade`
 
 # Usage
 ```
