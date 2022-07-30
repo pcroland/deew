@@ -75,11 +75,11 @@ deew
 # Usage
 ```
 ❯ ./deew.py -h
-deew 2.3.0
+deew 2.3.3
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
-            [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS]
-            [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl]
+            [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS] [-k]
+            [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl]
 
 FLAGS:
   -h, --help                           show this help message.
