@@ -57,17 +57,19 @@
   - if you use the Windows version of DEE under Linux (and not from WSL) / macOS install `wine-binfmt`
 - place your `license.lic` file next to the DEE binary (`dee.exe` under Windows, `dee` under Linux/macOS)
 
-# deew installation
-### with standalone build (Windows / Linux)
+# deew installation with standalone build (Windows/Linux)
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - run with:
 ```sh
 deew
 ```
-- on the first run it will create a config file, choose where you want to keep it
+- on the first run it will create a config file, choose where you want to keep it\
 *(run the binary from terminal, doubleclicking it won't work)*
 
-### with Python environment (Windows / Linux / macOS)
+### Updating
+- grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+
+# deew installation with Python environment (Windows/Linux/macOS)
 - install `python` and `pip` if you don't have it already
 - run `pip install deew`
 - run with:
@@ -75,6 +77,11 @@ deew
 deew
 ```
 - on the first run it will create a config file
+
+### Updating
+```sh
+pip install deew --upgrade
+```
 
 # Usage
 ```

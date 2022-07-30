@@ -23,7 +23,7 @@
 <!---https://i.kek.sh/KjLQCZoQpVx.gif--->
 
 # Leírás
-- kezeli Dolby XML input baromságát a háttérben, rendes CLI felületet adva
+- kezeli Dolby XML input baromságait a háttérben, rendes CLI felületet adva
 - átkonvertálja az inputokat rf64-re, amit már DEE is tud kezelni
   - a bitmélységet, csatornák számát és egyéb infókat a forrásból parse-olja
 - minden input fájlhoz generál egy XML fájlt a beállítások alapján
@@ -45,7 +45,7 @@
 - sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
 
 # Követelmények
-- Python *(nincs rá szükséged, ha a standalone build-et használod)*
+- Python *(nincs rá szükséged, ha a standalone buildet használod)*
 - ffmpeg
 - ffprobe
 - Dolby Encoding Engine
@@ -57,17 +57,19 @@
   - ha a Windows verziót használod Linux (és nem WSL) vagy macOS alól, telepítsd fel a `wine-binfmt`-t
 - másold a `license.lic` fájlod a DEE binárisod mellé (Windowson `dee.exe`, Linux/maxOS-en `dee`)
 
-# deew telepítése
-### a standalone build-et használva (Windows / Linux)
+# deew telepítése standalone buildet használva (Windows/Linux)
 - tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - futtasd:
 ```sh
 deew
 ```
-- az első futtatáskor készíteni fog egy config fájlt, válaszd ki, hogy melyik elérést szeretnéd használni
+- az első futtatáskor készíteni fog egy config fájlt, válaszd ki, hogy melyik elérést szeretnéd használni\
 *(terminálból futtasd, duplaklikk nem fog működni)*
 
-### Python környezetet használva (Windows / Linux / macOS)
+### Frissítés
+- tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+
+# deew telepítése Python környezetet használva (Windows/Linux/macOS)
 - telepítsd a `python`-t és `pip`-et, ha még nincs fent
 - futtasd a következő parancsot: `pip install deew`
 - futtasd:
@@ -75,6 +77,11 @@ deew
 deew
 ```
 - az első futtatáskor készíteni fog egy config fájlt
+
+### Frissítés
+```sh
+pip install deew --upgrade
+```
 
 # Használat
 ```
