@@ -17,66 +17,66 @@
 <p align="center"><a href="https://github.com/pcroland/deew/blob/main/README.md">English readme</a>
  • <a href="https://github.com/pcroland/deew/blob/main/README.hu.md">Magyar readme</a></p>
 
-## DDP encoding has never been so easy!
+## DDP encode-olás még sosem volt ilyen egyszerű!
 
 ![img](https://telegra.ph/file/70c800b153b9fe9a88509.gif)
 <!---https://i.kek.sh/KjLQCZoQpVx.gif--->
 
-# Description
-- handles Dolby's XML input fuckery in the background, giving you a proper CLI interface
-- converts inputs to rf64 which DEE can use
-  - bit depth, number of channels and other infos are parsed from the source
-- an XML file will be generated for each input based on the settings
-- the script utilizes thread pooling for batch encoding (see config)
-- supports WSL path conversion for the Win version of DEE (see config)
-- in case of an invalid bitrate it will pick the closest allowed one
-- automatic sample rate conversion using ffmpeg's soxr resampler in case of an unsupported sample rate
-  - for dd/ddp unsupported rates will be converted to 48000
-  - for thd unsupported rates will be converted to 48000 if source sample rate is lower than 72000, otherwise will be converted to 96000
-- automatic channel swapping for 7.1 sources (DEE swaps Ls Rs with Lrs Rrs for some reason)
-- automatic dialnorm setting
-- automatically compensates for DEE's 256 sample delay (DD and DDP encoding)
-- checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:\
+# Leírás
+- kezeli Dolby XML input baromságát a háttérben, rendes CLI felületet adva
+- átkonvertálja az inputokat rf64-re, amit már DEE is tud kezelni
+  - a bitmélységet, csatornák számát és egyéb infókat a forrásból parse-olja
+- minden input fájlhoz generál egy XML fájlt a beállítások alapján
+- a script thread poolingot használ batch encodingra (lásd config)
+- támogatja a WSL útvonalak konvertálását a DEE Win verziójához (lásd config)
+- hibás bitráta megadása esetén kiválasztja a legközelebbi megengedettet
+- automatikus mintavételezési ráta konvertálás ffmpeg soxr resamplerét használva nem támogatott mintavételezési ráta esetén
+  - dd/dddp esetén a mintavételezési rátát 48000-re konvertálja
+  - thd esetén a mintavételezési rátát 48000-re konvertálja, ha a forrásé kisebb mint 72000, fölötte 96000-re
+- automatikus csatorna felcserélés 7.1-es forrásoknál (DEE valamiért megcseréli az Ls Rs csatornák az Lrs Rrs-sel)
+- automatikus dialnorm beállítás
+- automatikusan kompenzálja DEE 256 mintavételezési eltolását (DD és DDP encoding esetén)
+- ellenőrzi, hogy az ideiglenes fájl már létezik-e, ezzel lehetővé téve különböző formátumok/bitráták kódolását anélkül, hogy mindegyiknél új ideiglenes fájlt generálnánk, például:\
   `deew -f dd -b 448 -i input -k`\
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
-- works even with video inputs (first audio will be selected)
-- fancy terminal output using rich
-- versatile delay option that supports ms, s and also frame@fps formats
+- akár videó inputokkal is működik (az első audió kerül kiválasztásra)
+- csicsás terminál kimenet rich-csel
+- sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
 
-# Requirements
-- Python *(you don't need it if you use a standalone build of deew)*
+# Követelmények
+- Python *(nincs rá szükséged, ha a standalone build-et használod)*
 - ffmpeg
 - ffprobe
 - Dolby Encoding Engine
 
-# Dolby Encoding Engine installation
-- install your DEE
-  - for TrueHD encoding support you need the Windows version
-  - if you use WSL1 use the Windows version for better performance
-  - if you use the Windows version of DEE under Linux (and not from WSL) / macOS install `wine-binfmt`
-- place your `license.lic` file next to the DEE binary (`dee.exe` under Windows, `dee` under Linux/macOS)
+# Dolby Encoding Engine telepítése
+- telepítsd fel a DEE-t
+  - TrueHD encode-oláshoz csak a Windows verzió használható
+  - ha WSL1-et használsz, használd a Windows verziót a jobb teljesítményért
+  - ha a Windows verziót használod Linux (és nem WSL) vagy macOS alól, telepítsd fel a `wine-binfmt`-t
+- másold a `license.lic` fájlod a DEE binárisod mellé (Windowson `dee.exe`, Linux/maxOS-en `dee`)
 
-# deew installation
-### with standalone build (Windows / Linux)
-- grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
-- run with:
+# deew telepítése
+### a standalone build-et használva (Windows / Linux)
+- tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- futtasd:
 ```sh
 deew
 ```
-- on the first run it will create a config file, choose where you want to keep it
-*(run the binary from terminal, doubleclicking it won't work)*
+- az első futtatáskor készíteni fog egy config fájlt, válaszd ki, hogy melyik elérést szeretnéd használni
+*(terminálból futtasd, duplaklikk nem fog működni)*
 
-### with Python environment (Windows / Linux / macOS)
-- install `python` and `pip` if you don't have it already
-- run `pip install deew`
-- run with:
+### Python környezetet használva (Windows / Linux / macOS)
+- telepítsd a `python`-t és `pip`-et, ha még nincs fent
+- futtasd a következő parancsot: `pip install deew`
+- futtasd:
 ```sh
 deew
 ```
-- on the first run it will create a config file
+- az első futtatáskor készíteni fog egy config fájlt
 
-# Usage
+# Használat
 ```
 ❯ ./deew.py -h
 deew 2.3.3
@@ -122,26 +122,26 @@ FLAGS:
   -pl, --print-logos                   show all logo variants you can set in the config
   -cl, --changelog                     show changelog
 ```
-# Examples
+# Példák
 `deew -i *thd`\
-encode DDP
+DDP encode-olása
 
 `deew -b 768 -i *flac`\
-encode DDP@768
+DDP@768 encode-olása
 
 `deew -dm 2 -f dd -b 192 -i *.ec3`\
-encode DD@192 with stereo downmixing
+DD@192 encode-olása stereo downmixeléssel
 
 `deew -f dd -b 448 -t 4 -i S01`\
-encode DD@448 using 4 threads (input is a folder)
+DD@448 encode-olása 4 threadet használva (az input egy mappa)
 
 `deew -f thd -i *w64`\
-encode TrueHD
+TrueHD encode-olása
 
 `deew -f dd -i *dts -k`\
 `deew -f ddp -i *dts`\
-encode multiple formats/bitrates while creating the temp file only once
+több formátum/bitráta kódolása egy ideiglenes fájl készítésével
 
 # Support
 [https://t.me/deew_support](https://t.me/deew_support)\
-*(You can ask for help in this group.)*
+*(Ebben a csoportban tudsz segítséget kérni.)*
