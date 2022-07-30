@@ -74,8 +74,8 @@
 
 # Usage
 ```
-❯ ./deew.py -h
-deew 2.3.3
+❯ deew -h
+deew 2.4.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS] [-k]
@@ -138,6 +138,5 @@ encode TrueHD
 `deew -f ddp -i *dts`\
 encode multiple formats/bitrates while creating the temp file only once
 
-# Support
-[https://t.me/deew_support](https://t.me/deew_support)\
-*(You can ask for help in this group.)*
+# Discussion and Support
+[https://t.me/deew_support](https://t.me/deew_support)
