@@ -52,7 +52,7 @@
 - Dolby Encoding Engine
 
 # Dolby Encoding Engine telepítése
-- telepítsd fel a DEE-t
+- telepítsd fel a [DEE](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)-t
   - TrueHD encode-oláshoz csak a Windows-verzió használható
   - ha WSL1-et használsz, használd a Windows-verziót a jobb teljesítményért
   - ha a Windows-verziót használod Linux (és nem WSL) vagy macOS alól, telepítsd fel a `wine-binfmt`-t
