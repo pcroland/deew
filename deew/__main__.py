@@ -390,9 +390,9 @@ def encode(task_id: TaskID, settings: list) -> None:
         time.sleep(0.5)
 
     if args.dialnorm != 0 and aformat == 'thd':
-        pb.update(description=f'[bold][cyan]dee[/cyan][/bold]: encode | {trim_names(fl_b, 11)}', task_id=task_id, completed=0, total=100)
+        pb.update(description=f'[bold cyan]DEE[/bold cyan]: encode | {trim_names(fl_b, 11)}', task_id=task_id, completed=0, total=100)
     else:
-        pb.update(description=f'[bold][cyan]dee[/cyan][/bold]: measure | {trim_names(fl_b, 12)}', task_id=task_id, completed=0, total=100)
+        pb.update(description=f'[bold cyan]DEE[/bold cyan]: measure | {trim_names(fl_b, 12)}', task_id=task_id, completed=0, total=100)
     dee = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
     with dee.stdout:
         encoding_step = False
@@ -403,10 +403,10 @@ def encode(task_id: TaskID, settings: list) -> None:
                 measured_dn = round(float(measured_dn[3].strip('.')))
                 measured_dn = str(clamp(measured_dn, -31, 0))
                 if args.measure_only:
-                    pb.update(description=f'[bold][cyan]dee[/cyan][/bold]: measure | {trim_names(fl_b, 18 + len(measured_dn))} ({measured_dn} dB)', task_id=task_id, completed=100)
+                    pb.update(description=f'[bold cyan]DEE[/bold cyan]: measure | {trim_names(fl_b, 18 + len(measured_dn))} ({measured_dn} dB)', task_id=task_id, completed=100)
                     dee.kill()
                 else:
-                    pb.update(description=f'[bold][cyan]dee[/cyan][/bold]: encode | {trim_names(fl_b, 17 + len(measured_dn))} ({measured_dn} dB)', task_id=task_id)
+                    pb.update(description=f'[bold cyan]DEE[/bold cyan]: encode | {trim_names(fl_b, 17 + len(measured_dn))} ({measured_dn} dB)', task_id=task_id)
 
             progress = re.search(r'Stage progress: ([0-9]+\.[0-9])', line)
             if progress and progress[1] != '100.0':
@@ -561,7 +561,7 @@ def main() -> None:
         if args.no_prompt:
             print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
         else:
-            continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]dee[/bold cyan]?')
+            continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
             if not continue_enc: sys.exit(1)
 
     if args.dialnorm != 0:
