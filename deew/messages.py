@@ -8,7 +8,7 @@ error_messages = {
     'downmix_mismatch' : 'downmix value has to be lower than the number of input channels.',
     'thd_downmix'      : '[bold yellow]-m[/bold yellow]/[bold yellow]--mix[/bold yellow] can only be used for [bold yellow]DD[/bold yellow]/[bold yellow]DDP[/bold yellow] encoding.',
     'drc'              : 'allowed DRC values: [bold yellow]film_light[/bold yellow], [bold yellow]film_standard[/bold yellow], [bold yellow]music_light[/bold yellow], [bold yellow]music_standard[/bold yellow], [bold yellow]speech[/bold yellow].',
-    'linux_thd'        : 'Linux version of DEE does not support TrueHD encoding. set wsl to true in config and use Windows version of DEE.',
+    'linux_thd'        : 'Linux version of DEE does not support TrueHD encoding.',
     'path'             : 'path [bold yellow]🤠[/bold yellow] does not exist.',
     'ffprobe'          : 'input file couldn\'t be parsed by ffprobe, try to extract/remux it with ffmpeg or mkvmerge.',
     'sample_mismatch'  : 'each input has to have the same sample rate:\n🤠',
