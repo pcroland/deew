@@ -100,7 +100,7 @@ parser.add_argument('-b', '--bitrate',
 parser.add_argument('-dm', '--downmix',
                     type=int,
                     default=None,
-                    help='1 / 2 / 6\nspecifies down/upmix, only works for DD/DDP\nDD will be automatically downmixed to 5.1 in case of a 7.1 source')
+                    help='1 / 2 / 6\nspecifies downmix, only works for DD/DDP\nDD will be automatically downmixed to 5.1 in case of a 7.1 source')
 parser.add_argument('-d', '--delay',
                     type=str,
                     default='+0ms',

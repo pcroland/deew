@@ -75,7 +75,7 @@
 # Usage
 ```
 ❯ deew -h
-deew 2.4.0
+deew 2.4.1
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS] [-k]
@@ -91,7 +91,7 @@ FLAGS:
                                        default: ddp
   -b BITRATE, --bitrate BITRATE        defaults: see config
   -dm DOWNMIX, --downmix DOWNMIX       1 / 2 / 6
-                                       specifies down/upmix, only works for DD/DDP
+                                       specifies downmix, only works for DD/DDP
                                        DD will be automatically downmixed to 5.1 in case of a 7.1 source
   -d DELAY, --delay DELAY              specifies delay as ms, s or frame@FPS
                                        FPS can be a number, division or ntsc / pal

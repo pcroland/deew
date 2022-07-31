@@ -1,3 +1,6 @@
+# deew 2.4.1
+- fixed help of `--downmix`
+
 # deew 2.4.0:
 - updated `-cl`/`--changelog`
   - reversed order
