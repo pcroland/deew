@@ -125,13 +125,13 @@ parser.add_argument('-mo', '--measure-only',
                     help='kills DEE when the dialnorm gets written to the progress bar\nthis option overwrites format with ddp')
 parser.add_argument('-fs', '--force-standard',
                     action='store_true',
-                    help='forces standard profile for 7.1 DDP encoding (384-1024 kbps)')
+                    help='force standard profile for 7.1 DDP encoding (384-1024 kbps)')
 parser.add_argument('-fb', '--force-bluray',
                     action='store_true',
-                    help='forces bluray profile for 7.1 DDP encoding (768-1664 kbps)')
+                    help='force bluray profile for 7.1 DDP encoding (768-1664 kbps)')
 parser.add_argument('-lb', '--list-bitrates',
                     action='store_true',
-                    help='lists bitrates that DEE can do for DD and DDP encoding')
+                    help='list bitrates that DEE can do for DD and DDP encoding')
 parser.add_argument('-la', '--long-argument',
                     action='store_true',
                     help='print ffmpeg and DEE arguments for each input')
@@ -144,6 +144,12 @@ parser.add_argument('-pl', '--print-logos',
 parser.add_argument('-cl', '--changelog',
                     action='store_true',
                     help='show changelog')
+parser.add_argument('-c', '--config',
+                    action='store_true',
+                    help='show config and config location(s)')
+parser.add_argument('-gc', '--generate-config',
+                    action='store_true',
+                    help='generate a new config')
 args = parser.parse_args()
 
 
@@ -213,30 +219,25 @@ threads = 6 # You can overwrite this with -t/--threads. The threads number will 
     ddp_7_1 = 1536'''
 
     if standalone:
-        print(f'''[not bold white][bold yellow]config.toml[/bold yellow] is missing, creating one...
-Please choose config's location:
-[bold magenta]1[/bold magenta]: [bold yellow]{conf1}[/bold yellow]
-[bold magenta]2[/bold magenta]: [bold yellow]{conf2}[/bold yellow][/not bold white]''')
+        print(f'''Please choose config's location:
+[bold magenta]1[/bold magenta]: {conf1}
+[bold magenta]2[/bold magenta]: {conf2}''')
         c_loc = Prompt.ask('Location', choices=['1','2'])
         if c_loc == '1':
             createdir(conf_dir)
             c_loc = conf1
         else:
             c_loc = conf2
-        with open(c_loc, 'w') as fl:
-            fl.write(config_content)
-        print()
-        Console().print(Syntax(config_content, 'toml'))
-        print(f'\nThe above config has been created at: [bold yellow]{c_loc}[/bold yellow]\nPlease edit your config file and rerun your command.')
-        sys.exit(1)
     else:
-        print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]\n')
+        c_loc = conf1
         createdir(conf_dir)
-        with open(conf1, 'w') as fl:
-            fl.write(config_content)
-        Console().print(Syntax(config_content, 'toml'))
-        print(f'\nThe above config has been created at: [bold yellow]{conf1}[/bold yellow]\nPlease edit your config file and rerun your command.')
-        sys.exit(1)
+
+    with open(c_loc, 'w') as fl:
+        fl.write(config_content)
+    print()
+    Console().print(Syntax(config_content, 'toml'))
+    print(f'\n[bold cyan]The above config has been created at:[/bold cyan]\n{c_loc}')
+    sys.exit(1)
 
 
 def clamp(inp: int, low: int, high: int) -> int:
@@ -448,7 +449,34 @@ def main() -> None:
     config_dir_path = dirs.user_config_dir
     config_path1 = os.path.join(config_dir_path, 'config.toml')
     config_path2 = os.path.join(script_path, 'config.toml')
+
+    if args.config:
+        if standalone:
+            print(f'[bold cyan]Your config locations:[/bold cyan]\n{config_path1}\n{config_path2}\n\n[bold cyan]Your current config:[/bold cyan]')
+            if os.path.exists(config_path1):
+                current_conf = config_path1
+            elif os.path.exists(config_path2):
+                current_conf = config_path2
+            else:
+                print('You don\'t have a config currently.')
+                sys.exit(0)
+        else:
+            print(f'[bold cyan]Your config location:[/bold cyan]\n{config_path1}\n\n[bold cyan]Your current config:[/bold cyan]')
+            if os.path.exists(config_path1):
+                current_conf = config_path1
+            else:
+                print('You don\'t have a config currently.')
+                sys.exit(0)
+        with open(current_conf, 'r') as conf:
+            Console().print(Syntax(conf.read(), 'toml'))
+        sys.exit(0)
+
+    if args.generate_config:
+        generate_config(standalone, config_path1, config_path2, config_dir_path)
+        sys.exit(0)
+
     if not os.path.exists(config_path1) and not os.path.exists(config_path2):
+        print(f'[bold yellow]config.toml[/bold yellow] [not bold white]is missing, creating one...[/not bold white]')
         generate_config(standalone, config_path1, config_path2, config_dir_path)
 
     try:

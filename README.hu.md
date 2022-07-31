@@ -75,11 +75,11 @@
 # Használat
 ```
 ❯ deew -h
-deew 2.4.1
+deew 2.5.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS] [-k]
-            [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl]
+            [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc]
 
 FLAGS:
   -h, --help                           show this help message.
@@ -110,13 +110,15 @@ FLAGS:
   -k, --keeptemp                       keep temp files
   -mo, --measure-only                  kills DEE when the dialnorm gets written to the progress bar
                                        this option overwrites format with ddp
-  -fs, --force-standard                forces standard profile for 7.1 DDP encoding (384-1024 kbps)
-  -fb, --force-bluray                  forces bluray profile for 7.1 DDP encoding (768-1664 kbps)
-  -lb, --list-bitrates                 lists bitrates that DEE can do for DD and DDP encoding
+  -fs, --force-standard                force standard profile for 7.1 DDP encoding (384-1024 kbps)
+  -fb, --force-bluray                  force bluray profile for 7.1 DDP encoding (768-1664 kbps)
+  -lb, --list-bitrates                 list bitrates that DEE can do for DD and DDP encoding
   -la, --long-argument                 print ffmpeg and DEE arguments for each input
   -np, --no-prompt                     disables prompt
   -pl, --print-logos                   show all logo variants you can set in the config
   -cl, --changelog                     show changelog
+  -c, --config                         show config and config location(s)
+  -gc, --generate-config               generate a new config
 ```
 # Példák
 `deew -i *thd`\

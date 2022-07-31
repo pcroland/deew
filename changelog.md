@@ -1,4 +1,8 @@
-# deew 2.4.1
+# deew 2.5.0:
+- added `-c`/`--changelog`: show config and config location(s)
+- added `-gc`/`--generate-config`: generate a new config
+
+# deew 2.4.1:
 - fixed help of `--downmix`
 
 # deew 2.4.0:
