@@ -52,7 +52,7 @@
 - Dolby Encoding Engine
 
 # Dolby Encoding Engine installation
-- install your [DEE](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)
+- install [DEE](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4) (if you use macOS, install [DME](https://customer.dolby.com/content-creation-and-delivery/dolby-media-encoder-with-ac-4))
   - for TrueHD encoding support you need the Windows version
   - if you use WSL1 use the Windows version for better performance
   - if you use the Windows version of DEE under Linux (and not from WSL) / macOS install `wine-binfmt`
