@@ -3,7 +3,7 @@
 
 
 # Additions of this fork
-- process isolated date spoofing to bypass expired license (use -spoof)
+- process isolated date spoofing to bypass expired license (use -spoof, currently only works on Linux)
 
 
 Below is the same Readme, with changes to include -spoof usage
