@@ -1,3 +1,15 @@
+
+
+
+
+# Additions of this fork
+- process isolated date spoofing to bypass expired license (use -spoof)
+
+
+Below is the same Readme
+
+
+---
 [![builds](https://img.shields.io/github/workflow/status/pcroland/deew/Build%20and%20publish?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
 [![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
 [![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
@@ -22,12 +34,6 @@
 
 ![img](https://telegra.ph/file/efd2a1d3519bdf87fca03.gif)
 <!---https://i.kek.sh/Mk3qQ0QGWUj.gif--->
-
-
-
-# Additions of this fork
-- process isolated date spoofing to bypass expired license (use -spoof)
-
 
 
 # Description
