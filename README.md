@@ -1,15 +1,3 @@
-
-
-
-
-# Additions of this fork
-- process isolated date spoofing to bypass expired license (use -spoof, currently only works on Linux, requires libfaketime)
-
-
-Below is the same Readme, with changes to include -spoof usage
-
-
----
 [![builds](https://img.shields.io/github/workflow/status/pcroland/deew/Build%20and%20publish?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
 [![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
 [![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
