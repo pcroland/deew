@@ -23,6 +23,13 @@
 ![img](https://telegra.ph/file/efd2a1d3519bdf87fca03.gif)
 <!---https://i.kek.sh/Mk3qQ0QGWUj.gif--->
 
+
+
+# Additions of this fork
+- process isolated date spoofing to bypass expired license (use -spoof)
+
+
+
 # Description
 - handles Dolby's XML input fuckery in the background, giving you a proper CLI interface
 - converts inputs to rf64 which DEE can use
@@ -46,10 +53,11 @@
 - versatile delay option that supports ms, s and also frame@fps formats
 
 # Requirements
-- Python *(you don't need it if you use a standalone build of deew)*
+- Python
 - ffmpeg
 - ffprobe
 - Dolby Encoding Engine
+- libfaketime (Linux only) for licence date spoofing
 
 # Dolby Encoding Engine installation
 - install your [DEE](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)
@@ -75,11 +83,11 @@
 # Usage
 ```
 ❯ deew -h
-deew 2.5.0
+deew 2.5.0-spoof-edition
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-t THREADS] [-k]
-            [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc]
+            [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc] [-spoof]
 
 FLAGS:
   -h, --help                           show this help message.
@@ -119,6 +127,7 @@ FLAGS:
   -cl, --changelog                     show changelog
   -c, --config                         show config and config location(s)
   -gc, --generate-config               generate a new config
+  -spoof, --spoof-datetime             automatically spoof date to bypass expired license
 ```
 # Examples
 `deew -i *thd`\

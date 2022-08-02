@@ -22,7 +22,10 @@ from importlib import metadata
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 from typing import Any, NoReturn
+import errno
 
+
+import time
 import requests
 import toml
 import xmltodict
@@ -42,7 +45,6 @@ from deew.bitrates import allowed_bitrates
 from deew.logos import logos
 from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
-
 prog_name = 'deew'
 try:
     prog_version = metadata.version('deew')
@@ -150,6 +152,9 @@ parser.add_argument('-c', '--config',
 parser.add_argument('-gc', '--generate-config',
                     action='store_true',
                     help='generate a new config')
+parser.add_argument('-spoof','--spoof-datetime',
+                    action='store_true',
+                    help='automatically spoof date to bypass expired license')
 args = parser.parse_args()
 
 
@@ -270,6 +275,14 @@ def parse_version_string(inp: list) -> str:
     except Exception:
         v = "[red]couldn't parse"
     return v
+
+def is_tool(name):
+    try:
+        devnull = open(os.devnull)
+        subprocess.Popen([name], stdout=devnull, stderr=devnull).communicate()
+    except OSError as err:
+            return False
+    return True
 
 def convert_delay_to_ms(inp, compensate):
     if not inp.startswith(('-', '+', 'm', 'p')): print_exit('delay')
@@ -394,7 +407,11 @@ def encode(task_id: TaskID, settings: list) -> None:
         pb.update(description=f'[bold cyan]DEE[/bold cyan]: encode | {trim_names(fl_b, 11)}', task_id=task_id, completed=0, total=100)
     else:
         pb.update(description=f'[bold cyan]DEE[/bold cyan]: measure | {trim_names(fl_b, 12)}', task_id=task_id, completed=0, total=100)
+    
+    
+
     dee = subprocess.Popen(dee_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8', errors='ignore')
+
     with dee.stdout:
         encoding_step = False
         for line in iter(dee.stdout.readline, ''):
@@ -430,6 +447,10 @@ def encode(task_id: TaskID, settings: list) -> None:
 
 
 def main() -> None:
+
+    
+    
+    
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -585,12 +606,7 @@ def main() -> None:
     else:
         outchannels = channels
 
-    if outchannels in [1, 2]:
-        if args.no_prompt:
-            print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
-        else:
-            continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
-            if not continue_enc: sys.exit(1)
+
 
     if args.dialnorm != 0:
         if args.no_prompt:
@@ -753,7 +769,19 @@ def main() -> None:
         dee_xml_input = f'{dee_xml_input_base}{sanitize_xml_name(basename(filelist[i], "xml"))}'
 
         ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(channel_swap_args), *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
-        dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
+        
+        if args.spoof:
+            if platform.system() != 'Windows':
+                if is_tool('faketime'): 
+                     dee_args = ['faketime','2015-01-01 00:00:01',config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
+                else:
+                    print("[bold red][ERROR][/bold red] : libfaketime is not installed/accesible, please check if you have facetime installed.")
+                    exit()
+            else:
+                print("[bold red][ERROR][/bold red] : [bold cyan]-spoof[/bold cyan] on Non-Unix platforms is currently not supported.")
+                exit()
+        else:
+            dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
 
         ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
         dee_args_print = f'[bold cyan]dee[/bold cyan] -x [bold magenta]{dee_xml_input}[/bold magenta]{xml_validation_print}'

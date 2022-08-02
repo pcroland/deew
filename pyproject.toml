@@ -4,10 +4,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "deew"
-version = "2.5.0"
+version = "2.5.0-spoof-edition"
 readme = 'README.md'
-description = "Dolby Encoding Engine Wrapper"
-authors = ["pcroland <pcroland@protonmail.ch>"]
+description = "Dolby Encoding Engine Wrapper - Spoof edition"
 license = "MIT"
 
 [tool.poetry.dependencies]

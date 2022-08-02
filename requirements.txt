@@ -1,0 +1,6 @@
+rich
+toml
+xmltodict
+packaging
+platformdirs
+unidecode
