@@ -116,7 +116,7 @@ parser.add_argument('-dn', '--dialnorm',
 parser.add_argument('-t', '--threads',
                     type=int,
                     default=None,
-                    help='number of threads to use, only works for batch encoding,\nindividial encodes can\'t be parallelized\ndefault: all threads-1')
+                    help='number of threads to use, only works for batch encoding,\nindividial encodes can\'t be parallelized\n(this option overwrites the config\'s number)')
 parser.add_argument('-k', '--keeptemp',
                     action='store_true',
                     help='keep temp files')
