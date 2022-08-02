@@ -6,7 +6,7 @@
 - process isolated date spoofing to bypass expired license (use -spoof)
 
 
-Below is the same Readme
+Below is the same Readme, with changes to include -spoof usage
 
 
 ---
