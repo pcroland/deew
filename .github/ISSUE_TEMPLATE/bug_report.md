@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: "[BUG]"
+about: Create a bug report to help improve deew
+title: "[BUG] "
 labels: bug
 assignees: ''
 
@@ -11,5 +11,6 @@ assignees: ''
 
 
 **Version**
+
 
 **OS**
