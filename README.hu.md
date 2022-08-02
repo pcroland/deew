@@ -58,19 +58,38 @@
   - ha a Windows-verziót használod Linux (és nem WSL) vagy macOS alól, telepítsd fel a `wine-binfmt`-t
 - másold a `license.lic` fájlod a DEE binárisod mellé (Windowson `dee.exe`, Linux/maxOS-en `dee`)
 
-# deew telepítése standalone buildet használva (Windows/Linux)
+# deew telepítése
+### standalone buildet használva (Windows/Linux):
 - tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - futtasd: `deew`\
 *(terminálból futtasd, duplaklikk nem fog működni)*
 - az első futtatáskor készíteni fog egy config fájlt, válaszd ki, hogy melyik elérést szeretnéd használni
 - frissítés: tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 
-# deew telepítése Python környezetet használva (Windows/Linux/macOS)
+### Python környezetet használva (Windows/Linux/macOS):
 - telepítsd a Pythont és pip-et, ha még nincs fent
 - futtasd a következő parancsot: `pip install deew`
 - futtasd: `deew`
 - az első futtatáskor készíteni fog egy config fájlt
 - frissítés: `pip install deew --upgrade`
+
+# Rendszer PATH változók beállítása
+Ha nem szeretnéd a teljes elérési utat használni a binárisokhoz a configban, vagy amikor CLI-ből használod őket, javaslom a rendszer PATH változók beállítását
+### Windows:
+- nyisd meg `cmd.exe`-t adminként
+- futtasd: `setx /m PATH "%PATH%;[location]"` *(a `[location]`-t cseréld le az elérési útra, ahol a DEE és az ffmpeg van)*
+- például ha a DEE a `C:\bin\dee`, ffmpeg és ffprobe pedig a `C:\bin\ffmpeg` mappában van, akkor ezt a két parancsot futtasd:
+```bat
+setx /m PATH "%PATH%;C:\bin\dee"
+setx /m PATH "%PATH%;C:\bin\ffmpeg"
+```
+### Linux/macOS:
+- a `~/.bashrc` vagy `~/.zshrc` fájlodba tedd be a következőt: `PATH="[location]:$PATH"` *(a `[location]`-t cseréld le az elérési útra, ahol a DEE és az ffmpeg van)*
+- például ha a DEE a `/usr/local/bin/dee`, ffmpeg és ffprobe pedig a `/usr/local/bin/ffmpeg` mappában van telepítve, akkor ezt a két sort rakd az rc fájlodba:
+```sh
+PATH="/usr/local/bin/dee:$PATH"
+PATH="/usr/local/bin/ffmpeg:$PATH"
+```
 
 # Használat
 ```

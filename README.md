@@ -58,19 +58,38 @@
   - if you use the Windows version of DEE under Linux (and not from WSL) / macOS install `wine-binfmt`
 - place your `license.lic` file next to the DEE binary (`dee.exe` under Windows, `dee` under Linux/macOS)
 
-# deew installation with standalone build (Windows/Linux)
+# deew installation
+### with standalone build (Windows/Linux):
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - run with: `deew`\
 *(run the binary from terminal, doubleclicking it won't work)*
 - on the first run it will create a config file, choose where you want to keep it
 - updating: grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 
-# deew installation with Python environment (Windows/Linux/macOS)
+### with Python environment (Windows/Linux/macOS):
 - install Python and pip if you don't have it already
 - run: `pip install deew`
 - run with: `deew`
 - on the first run it will create a config file
 - updating: `pip install deew --upgrade`
+
+# Setup system PATH variable
+If you don't want to use full paths for the binaries in your config or when you use them from CLI, I suggest to setup system PATH variables
+### Windows:
+- open `cmd.exe` as administrator
+- run: `setx /m PATH "%PATH%;[location]"` *(replace `[location]` with the path where DEE and ffmpeg is)*
+- for example if you have DEE installed in `C:\bin\dee` and ffmpeg and ffprobe in `C:\bin\ffmpeg`, run these two commands:
+```bat
+setx /m PATH "%PATH%;C:\bin\dee"
+setx /m PATH "%PATH%;C:\bin\ffmpeg"
+```
+### Linux/macOS:
+- in your `~/.bashrc` or `~/.zshrc` file put `PATH="[location]:$PATH"` *(replace `[location]` with the path where DEE and ffmpeg is)*
+- for example if you have DEE installed in `/usr/local/bin/dee` and ffmpeg and ffprobe in `/usr/local/bin/ffmpeg`, put these two lines in your rc file:
+```sh
+PATH="/usr/local/bin/dee:$PATH"
+PATH="/usr/local/bin/ffmpeg:$PATH"
+```
 
 # Usage
 ```
