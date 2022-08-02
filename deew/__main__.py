@@ -210,8 +210,8 @@ logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the ava
 show_summary = true
 
 # You can overwrite this setting with -t/--threads. The number will be clamped between 1 and cpu_count().
-# Due to a DEE limitation it will be clamped between 1 and cpu_count() - 1.
-threads = 6 
+# Due to a DEE limitation it will be clamped between 1 and cpu_count() - 2 if you use the Windows version of DEE.
+threads = 10
 
 [default_bitrates]
     dd_1_0 = 128
@@ -525,7 +525,7 @@ def main() -> None:
         threads = config['threads']
 
     if simplens.dee_is_exe:
-        threads = clamp(threads, 1, cpu_count() - 1)
+        threads = clamp(threads, 1, cpu_count() - 2)
     else:
         threads = clamp(threads, 1, cpu_count())
     if threads == 0: threads = 1

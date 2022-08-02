@@ -1,3 +1,6 @@
+# deew 2.5.2:
+- revert clamping to `cpu_count() - 2` for Windows DEE
+
 # deew 2.5.1:
 - better thread clamping, the previous `cpu_count() - 2` has been changed to
   `cpu_count()` for Linux/macOS and `cpu_count() - 1` for Windows
