@@ -195,7 +195,8 @@ def list_bitrates() -> None:
 
 def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> None:
     config_content = '''# These are required.
-# If only name is specified, it will look in PATH (which includes the current directory on Windows).
+# If only name is specified, it will look in your system PATH variable, which includes the current directory on Windows.
+# Setup instructions: https://github.com/pcroland/deew#setup-system-path-variable
 # If full path is specified, that will be used.
 ffmpeg_path = 'ffmpeg'
 ffprobe_path = 'ffprobe'
@@ -207,7 +208,10 @@ temp_path = ''
 
 logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
 show_summary = true
-threads = 6 # You can overwrite this with -t/--threads. The threads number will be clamped between 1 and cpu_count() - 2.
+
+# You can overwrite this setting with -t/--threads. The number will be clamped between 1 and cpu_count().
+# Due to a DEE limitation it will be clamped between 1 and cpu_count() - 1.
+threads = 6 
 
 [default_bitrates]
     dd_1_0 = 128
@@ -516,9 +520,15 @@ def main() -> None:
         simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
 
     if args.threads:
-        threads = clamp(args.threads, 1, cpu_count() - 2)
+        threads = args.threads
     else:
-        threads = clamp(config['threads'], 1, cpu_count() - 2)
+        threads = config['threads']
+
+    if simplens.dee_is_exe:
+        threads = clamp(threads, 1, cpu_count() - 1)
+    else:
+        threads = clamp(threads, 1, cpu_count())
+    if threads == 0: threads = 1
 
     aformat = args.format.lower()
     bitrate = args.bitrate

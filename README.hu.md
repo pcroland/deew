@@ -16,7 +16,7 @@
 
 
 <p align="center"><a href="https://github.com/pcroland/deew/blob/main/README.md">English readme</a>
- • <a href="https://github.com/pcroland/deew/blob/main/README.hu.md">Magyar readme</a></p>
+ • <a href="https://github.com/pcroland/deew/blob/main/README.hu.md">Magyar leírás</a></p>
 
 ## DDP encode-olás még sosem volt ilyen egyszerű!
 

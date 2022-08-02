@@ -1,3 +1,8 @@
+# deew 2.5.1:
+- better thread clamping, the previous `cpu_count() - 2` has been changed to
+  `cpu_count()` for Linux/macOS and `cpu_count() - 1` for Windows
+  (for some reason you can only run 7 instances of DEE on a cpu with 8 threads)
+
 # deew 2.5.0:
 - added `-c`/`--changelog`: show config and config location(s)
 - added `-gc`/`--generate-config`: generate a new config
