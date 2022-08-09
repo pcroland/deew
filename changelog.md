@@ -1,3 +1,7 @@
+# deew 2.5.3:
+- specified xml encoding as `utf-8`, this fixes errors with weird characters
+- fixed xml's `os.remove`
+
 # deew 2.5.2:
 - revert clamping to `cpu_count() - 2` for Windows DEE
 

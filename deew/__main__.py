@@ -344,7 +344,7 @@ def wpc(p: str) -> str:
 
 
 def save_xml(f: str, xml: dict[str, Any]) -> None:
-    with open(f, 'w') as fd:
+    with open(f, 'w', encoding='utf-8') as fd:
         fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
 
 
@@ -426,7 +426,7 @@ def encode(task_id: TaskID, settings: list) -> None:
 
     if not args.keeptemp:
         os.remove(os.path.join(config['temp_path'], basename(fl, 'wav')))
-        os.remove(os.path.join(config['temp_path'], basename(fl, 'xml')))
+        os.remove(os.path.join(config['temp_path'], sanitize_xml_name(basename(fl, 'xml'))))
 
     if args.format.lower() == 'thd':
         os.remove(os.path.join(output, basename(fl, 'thd.log')))
