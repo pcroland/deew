@@ -1,3 +1,6 @@
+# deew 2.6.1:
+- fixed typo in help
+
 # deew 2.6.0:
 - changed default DRC to `music_light`, which is closer to the missing
   `none` preset: https://forum.doom9.org/showpost.php?p=1972689&postcount=136

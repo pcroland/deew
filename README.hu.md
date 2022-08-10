@@ -96,7 +96,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.6.0
+deew 2.6.1
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
@@ -111,7 +111,7 @@ FLAGS:
                                   specifies output directory
   -f FORMAT, --format FORMAT      options: dd / ddp / thd
                                   default: ddp
-  -b BITRATE, --bitrate BITRATE   default:: see config
+  -b BITRATE, --bitrate BITRATE   default: see config
   -dm DOWNMIX, --downmix DOWNMIX  options: 1 / 2 / 6
                                   specifies downmix, only works for DD/DDP
                                   DD will be automatically downmixed to 5.1 in case of a 7.1 source

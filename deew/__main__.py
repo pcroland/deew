@@ -44,15 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-try:
-    prog_version = metadata.version('deew')
-except metadata.PackageNotFoundError:
-    pyproject_path = 'pyproject.toml'
-    is_pyinstaller = getattr(sys, 'frozen', False)
-    if is_pyinstaller:
-        pyproject_path = os.path.join(sys._MEIPASS, pyproject_path)
-    pyproject = toml.load(pyproject_path)
-    prog_version = pyproject['tool']['poetry']['version'] + ('' if is_pyinstaller else '-dev')
+prog_version = '2.6.1'
 
 simplens = SimpleNamespace()
 
@@ -98,7 +90,7 @@ parser.add_argument('-f', '--format',
 parser.add_argument('-b', '--bitrate',
                     type=int,
                     default=None,
-                    help='[underline magenta]default:[/underline magenta]: see config')
+                    help='[underline magenta]default:[/underline magenta] see config')
 parser.add_argument('-dm', '--downmix',
                     type=int,
                     default=None,
