@@ -1,3 +1,11 @@
+# deew 2.6.0:
+- changed default DRC to `music_light`, which is closer to the missing
+  `none` preset: https://forum.doom9.org/showpost.php?p=1972689&postcount=136
+- fixed DRC option not being applied for stereo TrueHD encodes
+- colorized argparse help's a little bit
+- renamed `-t`/`--threads` to `-in`/`--instances` to be more accurate,
+  since one DEE instance can use 2 threads. see `-h` for more info
+
 # deew 2.5.3:
 - specified xml encoding as `utf-8`, this fixes errors with weird characters
 - fixed xml's `os.remove`

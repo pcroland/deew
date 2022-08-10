@@ -61,10 +61,10 @@ class RParse(argparse.ArgumentParser):
         if message:
             if message.startswith('usage'):
                 message = f'[bold cyan]{prog_name}[/bold cyan] {prog_version}\n\n{message}'
-                message = re.sub(r'(-[a-z]+\s*|\[)([A-Z]+)(?=]|,|\s\s|\s\.)', r'\1[{}]\2[/{}]'.format('color(231)', 'color(231)'), message)
+                message = re.sub(r'(-[a-z]+\s*|\[)([A-Z]+)(?=]|,|\s\s|\s\.)', r'\1[{}]\2[/{}]'.format('bold color(231)', 'bold color(231)'), message)
                 message = re.sub(r'((-|--)[a-z]+)', r'[{}]\1[/{}]'.format('green', 'green'), message)
                 message = message.replace('usage', f'[yellow]USAGE[/yellow]')
-                message = message.replace('options', f'[yellow]FLAGS[/yellow]')
+                message = message.replace('options', f'[yellow]FLAGS[/yellow]', 1)
                 message = message.replace(self.prog, f'[bold cyan]{self.prog}[/bold cyan]')
             message = f'[not bold white]{message.strip()}[/not bold white]'
             print(message)
@@ -72,7 +72,7 @@ class RParse(argparse.ArgumentParser):
 
 parser = RParse(
     add_help=False,
-    formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=80, max_help_position=40)
+    formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=80, max_help_position=34)
 )
 parser.add_argument('-h', '--help',
                     action='help',
@@ -88,35 +88,57 @@ parser.add_argument('-i', '--input',
                     help='audio file(s) or folder(s)')
 parser.add_argument('-o', '--output',
                     default=None,
-                    help='output directory\ndefault: current directory')
+                    help='[underline magenta]default:[/underline magenta] current directory\nspecifies output directory')
 parser.add_argument('-f', '--format',
                     type=str,
                     default='ddp',
-                    help='dd / ddp / thd\ndefault: ddp')
+                    help=
+'''[underline magenta]options:[/underline magenta] [bold color(231)]dd[/bold color(231)] / [bold color(231)]ddp[/bold color(231)] / [bold color(231)]thd[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]ddp[/bold color(231)]''')
 parser.add_argument('-b', '--bitrate',
                     type=int,
                     default=None,
-                    help='defaults: see config')
+                    help='[underline magenta]default:[/underline magenta]: see config')
 parser.add_argument('-dm', '--downmix',
                     type=int,
                     default=None,
-                    help='1 / 2 / 6\nspecifies downmix, only works for DD/DDP\nDD will be automatically downmixed to 5.1 in case of a 7.1 source')
+                    help=
+'''[underline magenta]options:[/underline magenta] [bold color(231)]1[/bold color(231)] / [bold color(231)]2[/bold color(231)] / [bold color(231)]6[/bold color(231)]
+specifies downmix, only works for DD/DDP
+DD will be automatically downmixed to 5.1 in case of a 7.1 source''')
 parser.add_argument('-d', '--delay',
                     type=str,
                     default='+0ms',
-                    help='specifies delay as ms, s or frame@FPS\nFPS can be a number, division or ntsc / pal\n+ / - can also be defined as p / m\nexamples: -5.1ms, +1,52s, p5s, m5@pal, +10@24000/1001\ndefault: 0ms')
+                    help=
+'''[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], [bold color(231)]p5s[/bold color(231)], [bold color(231)]m24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)]
+specifies delay as ms, s or frame@FPS
+FPS can be a number, division or ntsc / pal
++ / - can also be defined as p / m''')
 parser.add_argument('-drc',
                     type=str,
-                    default='film_light',
-                    help='film_light / film_standard / music_light / music_standard / speech\ndrc profile\ndefault: film_light')
+                    default='music_light',
+                    help=
+'''[underline magenta]options:[/underline magenta] [bold color(231)]film_light[/bold color(231)] / [bold color(231)]film_standard[/bold color(231)] / [bold color(231)]music_light[/bold color(231)] / [bold color(231)]music_standard[/bold color(231)] / [bold color(231)]speech[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]music_light[/bold color(231)] (this is the closes to the missing none preset)
+specifies drc profile''')
 parser.add_argument('-dn', '--dialnorm',
                     type=int,
                     default=0,
-                    help='applied dialnorm value between -31 and 0\n0 means auto (DEE\'s measurement will be used)\ndefault: 0')
-parser.add_argument('-t', '--threads',
-                    type=int,
+                    help=
+'''[underline magenta]options:[/underline magenta] between [bold color(231)]-31[/bold color(231)] and [bold color(231)]0[/bold color(231)] (in case of [bold color(231)]0[/bold color(231)] DEE\'s measurement will be used)
+[underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
+applied dialnorm value between''')
+parser.add_argument('-in', '--instances',
+                    type=str,
                     default=None,
-                    help='number of threads to use, only works for batch encoding,\nindividial encodes can\'t be parallelized\n(this option overwrites the config\'s number)')
+                    help=
+'''[underline magenta]examples:[/underline magenta] [bold color(231)]1[/bold color(231)], [bold color(231)]4[/bold color(231)], [bold color(231)]50%%[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]50%%[/bold color(231)]
+specifies how many encodes can run at the same time
+[bold color(231)]50%%[/bold color(231)] means [bold color(231)]4[/bold color(231)] on a cpu with 8 threads
+one DEE can use 2 threads so [bold color(231)]50%%[/bold color(231)] can utilize all threads
+(this option overwrites the config\'s number)''')
 parser.add_argument('-k', '--keeptemp',
                     action='store_true',
                     help='keep temp files')
@@ -209,9 +231,14 @@ temp_path = ''
 logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
 show_summary = true
 
-# You can overwrite this setting with -t/--threads. The number will be clamped between 1 and cpu_count().
+# Specifies how many encodes can run at the same time.
+# It can be a number or a % compared to your number of threads (so '50%' means 4 on an 8 thread cpu).
+# One DEE can use 2 threads so setting '50%' can utilize all threads.
+# You can overwrite this setting with -in/--instances.
+# The number will be clamped between 1 and cpu_count().
 # Due to a DEE limitation it will be clamped between 1 and cpu_count() - 2 if you use the Windows version of DEE.
-threads = 10
+# examples: 1, 4, '50%'
+max_instances = '50%'
 
 [default_bitrates]
     dd_1_0 = 128
@@ -220,7 +247,8 @@ threads = 10
     ddp_1_0 = 128
     ddp_2_0 = 256
     ddp_5_1 = 1024
-    ddp_7_1 = 1536'''
+    ddp_7_1 = 1536
+'''
 
     if standalone:
         print(f'''Please choose config's location:
@@ -498,7 +526,7 @@ def main() -> None:
                     'temp_path',
                     'logo',
                     'show_summary',
-                    'threads',
+                    'max_instances',
                     'default_bitrates'
                 ]
     c_key_missing = []
@@ -519,16 +547,20 @@ def main() -> None:
     with open(shutil.which(config['dee_path']), 'rb') as fd:
         simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
 
-    if args.threads:
-        threads = args.threads
+    cpu__count = cpu_count()
+    if args.instances:
+        instances = args.instances
     else:
-        threads = config['threads']
-
+        instances = config['max_instances']
+    if isinstance(instances, str) and instances.endswith('%'):
+        instances = cpu__count * (int(instances.replace('%', '')) / 100)
+    else:
+        instances = int(instances)
     if simplens.dee_is_exe:
-        threads = clamp(threads, 1, cpu_count() - 2)
+        instances = clamp(instances, 1, cpu__count - 2)
     else:
-        threads = clamp(threads, 1, cpu_count())
-    if threads == 0: threads = 1
+        instances = clamp(instances, 1, cpu__count)
+    if instances == 0: instances = 1
 
     aformat = args.format.lower()
     bitrate = args.bitrate
@@ -672,6 +704,7 @@ def main() -> None:
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['atmos_presentation']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_8ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_6ch']['drc_profile'] = args.drc
+        xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_2ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['custom_dialnorm'] = args.dialnorm
         delay_print, delay_xml, delay_mode = convert_delay_to_ms(args.delay, compensate=False)
         xml_base['job_config']['filter']['audio']['encode_to_dthd'][delay_mode] = delay_xml
@@ -714,7 +747,7 @@ def main() -> None:
         summary.add_row('Bit depth', str(bit_depth), end_section=True)
         summary.add_row('[bold yellow]Other')
         summary.add_row('Files', str(len(filelist)))
-        summary.add_row('Max threads', str(threads))
+        summary.add_row('Max instances', str(f'{instances:g}'))
         summary.add_row('Delay', delay_print)
         print(summary)
         print()
@@ -816,7 +849,7 @@ def main() -> None:
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
     with pb:
-        with ThreadPoolExecutor(max_workers=threads) as pool:
+        with ThreadPoolExecutor(max_workers=instances) as pool:
             for setting in settings:
                 task_id = pb.add_task('', visible=False, total=None)
                 pool.submit(encode, task_id, setting)

@@ -125,7 +125,7 @@ xml_thd_base = '''<?xml version="1.0"?>
           <surround_3db_attenuation>false</surround_3db_attenuation>    <!-- boolean: true or false -->
         </presentation_6ch>
         <presentation_2ch>
-          <drc_profile>film_light</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
+          <drc_profile>-</drc_profile>    <!-- One of: film_standard, film_light, music_standard, music_light, speech -->
           <drc_default_on>true</drc_default_on>    <!-- boolean: true or false -->
           <format>stereo</format>    <!-- One of: stereo, dolby_surround_encoded, dolby_headphone_encoded -->
         </presentation_2ch>
