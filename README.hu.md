@@ -98,7 +98,7 @@ deew 2.6.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
-			[-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc]
+            [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc]
 
 FLAGS:
   -h, --help                      show this help message.
