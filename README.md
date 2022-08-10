@@ -93,17 +93,6 @@ PATH="/usr/local/bin/dee:$PATH"
 PATH="/usr/local/bin/ffmpeg:$PATH"
 ```
 
-
-- nyisd meg `cmd.exe`-t adminként
-- futtas egy `setx /m PATH "%PATH%;[location]"` parancsot minden mappával, amiben binary van\
-  *(a `[location]`-t cseréld le az elérési útra)*
-- például:
-
-- adj hozzá egy `PATH="[location]:$PATH"` sort a `~/.bashrc` vagy `~/.zshrc` fájlodhoz, minden mappával, amiben binary van\
-  *(a `[location]`-t cseréld le az elérési útra)*
-- például:
-
-
 # Usage
 ```
 ❯ deew -h
