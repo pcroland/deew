@@ -112,7 +112,7 @@ parser.add_argument('-drc',
                     default='music_light',
                     help=
 '''[underline magenta]options:[/underline magenta] [bold color(231)]film_light[/bold color(231)] / [bold color(231)]film_standard[/bold color(231)] / [bold color(231)]music_light[/bold color(231)] / [bold color(231)]music_standard[/bold color(231)] / [bold color(231)]speech[/bold color(231)]
-[underline magenta]default:[/underline magenta] [bold color(231)]music_light[/bold color(231)] (this is the closes to the missing none preset)
+[underline magenta]default:[/underline magenta] [bold color(231)]music_light[/bold color(231)] (this is the closest to the missing none preset)
 specifies drc profile''')
 parser.add_argument('-dn', '--dialnorm',
                     type=int,
