@@ -77,19 +77,32 @@
 If you don't want to use full paths for the binaries in your config or when you use them from CLI, I suggest to setup system PATH variables
 ### Windows:
 - open `cmd.exe` as administrator
-- run: `setx /m PATH "%PATH%;[location]"` *(replace `[location]` with the path where DEE and ffmpeg is)*
-- for example if you have DEE installed in `C:\bin\dee` and ffmpeg and ffprobe in `C:\bin\ffmpeg`, run these two commands:
+- run a `setx /m PATH "%PATH%;[location]"` command for each path that contains binaries\
+  *(replace `[location]` with the path)*
+- for example:
 ```bat
 setx /m PATH "%PATH%;C:\bin\dee"
 setx /m PATH "%PATH%;C:\bin\ffmpeg"
 ```
 ### Linux/macOS:
-- in your `~/.bashrc` or `~/.zshrc` file put `PATH="[location]:$PATH"` *(replace `[location]` with the path where DEE and ffmpeg is)*
-- for example if you have DEE installed in `/usr/local/bin/dee` and ffmpeg and ffprobe in `/usr/local/bin/ffmpeg`, put these two lines in your rc file:
+- add a `PATH="[location]:$PATH"` line in your `~/.bashrc` or `~/.zshrc` file for each path that contains a binary\
+  *(replace `[location]` with the path)*
+- for example:
 ```sh
 PATH="/usr/local/bin/dee:$PATH"
 PATH="/usr/local/bin/ffmpeg:$PATH"
 ```
+
+
+- nyisd meg `cmd.exe`-t adminként
+- futtas egy `setx /m PATH "%PATH%;[location]"` parancsot minden mappával, amiben binary van\
+  *(a `[location]`-t cseréld le az elérési útra)*
+- például:
+
+- adj hozzá egy `PATH="[location]:$PATH"` sort a `~/.bashrc` vagy `~/.zshrc` fájlodhoz, minden mappával, amiben binary van\
+  *(a `[location]`-t cseréld le az elérési útra)*
+- például:
+
 
 # Usage
 ```

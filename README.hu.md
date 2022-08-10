@@ -77,15 +77,17 @@
 Ha nem szeretnéd a teljes elérési utat használni a binárisokhoz a configban, vagy amikor CLI-ből használod őket, javaslom a rendszer PATH változók beállítását
 ### Windows:
 - nyisd meg `cmd.exe`-t adminként
-- futtasd: `setx /m PATH "%PATH%;[location]"` *(a `[location]`-t cseréld le az elérési útra, ahol a DEE és az ffmpeg van)*
-- például ha a DEE a `C:\bin\dee`, ffmpeg és ffprobe pedig a `C:\bin\ffmpeg` mappában van, akkor ezt a két parancsot futtasd:
+- futtas egy `setx /m PATH "%PATH%;[location]"` parancsot minden mappával, amiben binary van\
+  *(a `[location]`-t cseréld le az elérési útra)*
+- például:
 ```bat
 setx /m PATH "%PATH%;C:\bin\dee"
 setx /m PATH "%PATH%;C:\bin\ffmpeg"
 ```
 ### Linux/macOS:
-- a `~/.bashrc` vagy `~/.zshrc` fájlodba tedd be a következőt: `PATH="[location]:$PATH"` *(a `[location]`-t cseréld le az elérési útra, ahol a DEE és az ffmpeg van)*
-- például ha a DEE a `/usr/local/bin/dee`, ffmpeg és ffprobe pedig a `/usr/local/bin/ffmpeg` mappában van telepítve, akkor ezt a két sort rakd az rc fájlodba:
+- adj hozzá egy `PATH="[location]:$PATH"` sort a `~/.bashrc` vagy `~/.zshrc` fájlodhoz, minden mappával, amiben binary van\
+  *(a `[location]`-t cseréld le az elérési útra)*
+- például:
 ```sh
 PATH="/usr/local/bin/dee:$PATH"
 PATH="/usr/local/bin/ffmpeg:$PATH"
