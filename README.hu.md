@@ -96,7 +96,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.6.1
+deew 2.6.2
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
@@ -121,7 +121,7 @@ FLAGS:
                                   FPS can be a number, division or ntsc / pal
                                   + / - can also be defined as p / m
   -drc DRC                        options: film_light / film_standard / music_light / music_standard / speech
-                                  default: music_light (this is the closes to the missing none preset)
+                                  default: music_light (this is the closest to the missing none preset)
                                   specifies drc profile
   -dn DIALNORM, --dialnorm DIALNORM
                                   options: between -31 and 0 (in case of 0 DEE's measurement will be used)

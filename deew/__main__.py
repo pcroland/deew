@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.6.1'
+prog_version = '2.6.2'
 
 simplens = SimpleNamespace()
 
@@ -220,7 +220,8 @@ dee_path = 'dee.exe'
 # You can also specify an absolute path or a path relative to the current directory.
 temp_path = ''
 
-logo = 1 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
+# Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
+logo = 1
 show_summary = true
 
 # Specifies how many encodes can run at the same time.
@@ -228,7 +229,7 @@ show_summary = true
 # One DEE can use 2 threads so setting '50%' can utilize all threads.
 # You can overwrite this setting with -in/--instances.
 # The number will be clamped between 1 and cpu_count().
-# Due to a DEE limitation it will be clamped between 1 and cpu_count() - 2 if you use the Windows version of DEE.
+# With the Windows version of DEE the max will be cpu_count() - 2 or 6 due to a limitation.
 # examples: 1, 4, '50%'
 max_instances = '50%'
 
@@ -550,6 +551,7 @@ def main() -> None:
         instances = int(instances)
     if simplens.dee_is_exe:
         instances = clamp(instances, 1, cpu__count - 2)
+        instances = clamp(instances, 1, 6)
     else:
         instances = clamp(instances, 1, cpu__count)
     if instances == 0: instances = 1
