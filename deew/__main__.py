@@ -48,6 +48,7 @@ prog_version = '2.6.2'
 
 simplens = SimpleNamespace()
 
+
 class RParse(argparse.ArgumentParser):
     def _print_message(self, message, file=None):
         if message:
@@ -62,9 +63,19 @@ class RParse(argparse.ArgumentParser):
             print(message)
 
 
+class CustomHelpFormatter(argparse.RawTextHelpFormatter):
+    def _format_action(self, action):
+        old = super()._format_action(action)
+        metavar = ''
+        m = re.search(r'--?[\w-]+ ([A-Z]+)', old)
+        if m:
+            metavar = m.group(1)
+        return re.sub(r'(-[\w-]+) ([A-Z]+), (--[\w-]+) \2', fr'\1, \3 \2{" " * (len(metavar) + 1)}', old)
+
+
 parser = RParse(
     add_help=False,
-    formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=80, max_help_position=36)
+    formatter_class=lambda prog: CustomHelpFormatter(prog, width=80, max_help_position=36)
 )
 parser.add_argument('-h', '--help',
                     action='help',
