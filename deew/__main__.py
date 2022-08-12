@@ -75,7 +75,7 @@ class CustomHelpFormatter(argparse.RawTextHelpFormatter):
 
 parser = RParse(
     add_help=False,
-    formatter_class=lambda prog: CustomHelpFormatter(prog, width=80, max_help_position=36)
+    formatter_class=lambda prog: CustomHelpFormatter(prog, width=80, max_help_position=32)
 )
 parser.add_argument('-h', '--help',
                     action='help',
@@ -91,6 +91,7 @@ parser.add_argument('-i', '--input',
                     help='audio file(s) or folder(s)')
 parser.add_argument('-o', '--output',
                     default=None,
+                    metavar='DIRECTORY',
                     help='[underline magenta]default:[/underline magenta] current directory\nspecifies output directory')
 parser.add_argument('-f', '--format',
                     type=str,
@@ -107,6 +108,7 @@ parser.add_argument('-b', '--bitrate',
 parser.add_argument('-dm', '--downmix',
                     type=int,
                     default=None,
+                    metavar='CHANNELS',
                     help=
 '''[underline magenta]options:[/underline magenta] [bold color(231)]1[/bold color(231)] / [bold color(231)]2[/bold color(231)] / [bold color(231)]6[/bold color(231)]
 specifies downmix, only works for DD/DDP
