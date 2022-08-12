@@ -67,10 +67,10 @@ class CustomHelpFormatter(argparse.RawTextHelpFormatter):
     def _format_action(self, action):
         old = super()._format_action(action)
         metavar = ''
-        m = re.search(r'--?[\w-]+ ([A-Z]+)', old)
+        m = re.search(r'--?[\w-]+ ([A-Z. \[\]]+)', old)
         if m:
             metavar = m.group(1)
-        return re.sub(r'(-[\w-]+) ([A-Z]+), (--[\w-]+) \2', fr'\1, \3 \2{" " * (len(metavar) + 1)}', old)
+        return re.sub(r'(-[\w-]+) ([A-Z. \[\]]+), (--[\w-]+) \2', fr'\1, \3 \2{" " * (len(metavar) + 1)}', old)
 
 
 parser = RParse(
