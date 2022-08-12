@@ -64,7 +64,7 @@ class RParse(argparse.ArgumentParser):
 
 parser = RParse(
     add_help=False,
-    formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=80, max_help_position=34)
+    formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=80, max_help_position=36)
 )
 parser.add_argument('-h', '--help',
                     action='help',
@@ -90,7 +90,9 @@ parser.add_argument('-f', '--format',
 parser.add_argument('-b', '--bitrate',
                     type=int,
                     default=None,
-                    help='[underline magenta]default:[/underline magenta] see config')
+                    help=
+'''[underline magenta]options:[/underline magenta] run [green]-lb[/green]/[green]--list-bitrates[/green]
+[underline magenta]default:[/underline magenta] run [green]-c[/green]/[green]--config[/green]''')
 parser.add_argument('-dm', '--downmix',
                     type=int,
                     default=None,
@@ -710,7 +712,7 @@ def main() -> None:
         try:
             r = requests.get('https://api.github.com/repos/pcroland/deew/releases/latest')
             latest_version = json.loads(r.text)['tag_name']
-            if version.parse(prog_version.replace('-dev', '')) < version.parse(latest_version):
+            if version.parse(prog_version) < version.parse(latest_version):
                 latest_version = f'[bold green]{latest_version}[/bold green] !!!'
         except Exception:
             latest_version = "[red]couldn't fetch"
@@ -723,7 +725,7 @@ def main() -> None:
         summary.add_column(style='green')
         summary.add_column(style='color(231)')
 
-        summary.add_row('[bold cyan]Version', prog_version.replace('-dev', ''))
+        summary.add_row('[bold cyan]Version', prog_version)
         summary.add_row('[bold cyan]Latest', latest_version, end_section=True)
 
         summary.add_row('[cyan]DEE version', simplens.dee_version)
