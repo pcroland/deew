@@ -1,3 +1,10 @@
+# deew 2.7.0:
+- fixed first metavar removal for argparse's `--input`
+- fixed exception printing in threads
+- use a Windows path by default under WSL
+- temp path added to the summary
+- better instructions on config error
+
 # deew 2.6.2:
 - added additional instance clamping for Windows DEE (6),
   it seems like you can't do more than 6 even on a 16 thread cpu

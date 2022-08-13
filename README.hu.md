@@ -96,56 +96,54 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.6.2
+deew 2.7.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
             [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc]
 
 FLAGS:
-  -h, --help                      show this help message.
-  -v, --version                   show version.
-  -i [INPUT ...], --input [INPUT ...]
-                                  audio file(s) or folder(s)
-  -o OUTPUT, --output OUTPUT      default: current directory
-                                  specifies output directory
-  -f FORMAT, --format FORMAT      options: dd / ddp / thd
-                                  default: ddp
-  -b BITRATE, --bitrate BITRATE   default: see config
-  -dm DOWNMIX, --downmix DOWNMIX  options: 1 / 2 / 6
-                                  specifies downmix, only works for DD/DDP
-                                  DD will be automatically downmixed to 5.1 in case of a 7.1 source
-  -d DELAY, --delay DELAY         examples: -5.1ms, +1,52s, p5s, m24@pal, +10@24000/1001
-                                  default: 0ms
-                                  specifies delay as ms, s or frame@FPS
-                                  FPS can be a number, division or ntsc / pal
-                                  + / - can also be defined as p / m
-  -drc DRC                        options: film_light / film_standard / music_light / music_standard / speech
-                                  default: music_light (this is the closest to the missing none preset)
-                                  specifies drc profile
-  -dn DIALNORM, --dialnorm DIALNORM
-                                  options: between -31 and 0 (in case of 0 DEE's measurement will be used)
-                                  default: 0
-                                  applied dialnorm value between
-  -in INSTANCES, --instances INSTANCES
-                                  examples: 1, 4, 50%
-                                  default: 50%
-                                  specifies how many encodes can run at the same time
-                                  50% means 4 on a cpu with 8 threads
-                                  one DEE can use 2 threads so 50% can utilize all threads
-                                  (this option overwrites the config's number)
-  -k, --keeptemp                  keep temp files
-  -mo, --measure-only             kills DEE when the dialnorm gets written to the progress bar
-                                  this option overwrites format with ddp
-  -fs, --force-standard           force standard profile for 7.1 DDP encoding (384-1024 kbps)
-  -fb, --force-bluray             force bluray profile for 7.1 DDP encoding (768-1664 kbps)
-  -lb, --list-bitrates            list bitrates that DEE can do for DD and DDP encoding
-  -la, --long-argument            print ffmpeg and DEE arguments for each input
-  -np, --no-prompt                disables prompt
-  -pl, --print-logos              show all logo variants you can set in the config
-  -cl, --changelog                show changelog
-  -c, --config                    show config and config location(s)
-  -gc, --generate-config          generate a new config
+  -h, --help                    show this help message.
+  -v, --version                 show version.
+  -i, --input [INPUT ...]       audio file(s) or folder(s)
+  -o, --output DIRECTORY        default: current directory
+                                specifies output directory
+  -f, --format FORMAT           options: dd / ddp / thd
+                                default: ddp
+  -b, --bitrate BITRATE         options: run -lb/--list-bitrates
+                                default: run -c/--config
+  -dm, --downmix CHANNELS       options: 1 / 2 / 6
+                                specifies downmix, only works for DD/DDP
+                                DD will be automatically downmixed to 5.1 in case of a 7.1 source
+  -d, --delay DELAY             examples: -5.1ms, +1,52s, p5s, m24@pal, +10@24000/1001
+                                default: 0ms
+                                specifies delay as ms, s or frame@FPS
+                                FPS can be a number, division or ntsc / pal
+                                + / - can also be defined as p / m
+  -r, --drc DRC                 options: film_light / film_standard / music_light / music_standard / speech
+                                default: music_light (this is the closest to the missing none preset)
+                                specifies drc profile
+  -dn, --dialnorm DIALNORM      options: between -31 and 0 (in case of 0 DEE's measurement will be used)
+                                default: 0
+                                applied dialnorm value between
+  -in, --instances INSTANCES    examples: 1, 4, 50%
+                                default: 50%
+                                specifies how many encodes can run at the same time
+                                50% means 4 on a cpu with 8 threads
+                                one DEE can use 2 threads so 50% can utilize all threads
+                                (this option overwrites the config's number)
+  -k, --keeptemp                keep temp files
+  -mo, --measure-only           kills DEE when the dialnorm gets written to the progress bar
+                                this option overwrites format with ddp
+  -fs, --force-standard         force standard profile for 7.1 DDP encoding (384-1024 kbps)
+  -fb, --force-bluray           force bluray profile for 7.1 DDP encoding (768-1664 kbps)
+  -lb, --list-bitrates          list bitrates that DEE can do for DD and DDP encoding
+  -la, --long-argument          print ffmpeg and DEE arguments for each input
+  -np, --no-prompt              disables prompt
+  -pl, --print-logos            show all logo variants you can set in the config
+  -cl, --changelog              show changelog
+  -c, --config                  show config and config location(s)
+  -gc, --generate-config        generate a new config
 ```
 # Példák
 `deew -i *thd`\
