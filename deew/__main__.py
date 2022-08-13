@@ -371,11 +371,11 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
 
 
 def wpc(p: str) -> str:
-    if simplens.dee_is_exe and platform.system() != 'Windows':
-        if not p.startswith('/mnt/'): print_exit('wsl_path', p)
-        parts = list(filter(None, p.split('/')))[1:]
-        parts[0] = parts[0].upper() + ':'
-        p = '\\'.join(parts) + '\\'
+    if not simplens.is_wsl: return p
+    if not p.startswith('/mnt/'): print_exit('wsl_path', p)
+    parts = list(filter(None, p.split('/')))[1:]
+    parts[0] = parts[0].upper() + ':'
+    p = '\\'.join(parts) + '\\'
     return p
 
 
@@ -554,6 +554,7 @@ def main() -> None:
 
     with open(shutil.which(config['dee_path']), 'rb') as fd:
         simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
+    simplens.is_wsl = simplens.dee_is_exe and platform.system() != 'Windows'
 
     cpu__count = cpu_count()
     if args.instances:
@@ -789,7 +790,7 @@ def main() -> None:
         channel_swap_args = []
         channel_swap_args_print = ''
 
-    if simplens.dee_is_exe and platform.system() != 'Windows':
+    if simplens.is_wsl:
         dee_xml_input_base = wpc(config['temp_path'])
     else:
         dee_xml_input_base = config['temp_path'] if config['temp_path'].endswith('/') else f'{config["temp_path"]}/'
