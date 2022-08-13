@@ -122,7 +122,7 @@ parser.add_argument('-d', '--delay',
 specifies delay as ms, s or frame@FPS
 FPS can be a number, division or ntsc / pal
 + / - can also be defined as p / m''')
-parser.add_argument('-drc',
+parser.add_argument('-r', '--drc',
                     type=str,
                     default='music_light',
                     help=
