@@ -857,11 +857,14 @@ def main() -> None:
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
+    jobs = []
     with pb:
         with ThreadPoolExecutor(max_workers=instances) as pool:
             for setting in settings:
                 task_id = pb.add_task('', visible=False, total=None)
-                pool.submit(encode, task_id, setting)
+                jobs.append(pool.submit(encode, task_id, setting))
+    for job in jobs:
+        job.result()
 
 
 if __name__ == '__main__':
