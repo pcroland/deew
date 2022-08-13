@@ -13,6 +13,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from builtins import print as oprint
 from base64 import b64decode
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
@@ -461,7 +462,7 @@ def encode(task_id: TaskID, settings: list) -> None:
                     pb.update(task_id=task_id, completed=float(progress[1]))
 
             if 'error' in line.lower():
-                print(line.rstrip().split(': ', 1)[1])
+                oprint(line.rstrip().split(': ', 1)[1])
     pb.update(task_id=task_id, completed=100)
 
     if not args.keeptemp:
