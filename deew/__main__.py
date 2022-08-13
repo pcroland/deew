@@ -766,7 +766,7 @@ def main() -> None:
         summary.add_row('Files', str(len(filelist)))
         summary.add_row('Max instances', str(f'{instances:g}'))
         summary.add_row('Delay', delay_print)
-        summary.add_row('Temp path', wpc(config['temp_path']))
+        summary.add_row('Temp path', config['temp_path'])
         print(summary)
         print()
 
