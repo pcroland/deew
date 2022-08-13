@@ -379,6 +379,10 @@ def wpc(p: str) -> str:
     return p
 
 
+def rwpc(p: str) -> str:
+    return re.sub(r'^([a-z]):/', lambda m: f'/mnt/{m.group(1).lower()}/', p.replace('\\', '/'), flags=re.IGNORECASE)
+
+
 def save_xml(f: str, xml: dict[str, Any]) -> None:
     with open(f, 'w', encoding='utf-8') as fd:
         fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
@@ -542,19 +546,22 @@ def main() -> None:
         if c_key not in config: c_key_missing.append(c_key)
     if len(c_key_missing) > 0: print_exit('config_key', f'[bold yellow]{"[not bold white], [/not bold white]".join(c_key_missing)}[/bold yellow]')
 
-    if not config['temp_path']:
-        config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
-        if config['temp_path'] == '/tmp':
-            config['temp_path'] = '/var/tmp'
-    config['temp_path'] = os.path.abspath(config['temp_path'])
-    createdir(config['temp_path'])
-
     for i in config['dee_path'], config['ffmpeg_path'], config['ffprobe_path']:
         if not shutil.which(i): print_exit('binary_exist', i)
 
     with open(shutil.which(config['dee_path']), 'rb') as fd:
         simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
     simplens.is_wsl = simplens.dee_is_exe and platform.system() != 'Windows'
+
+    if not config['temp_path']:
+        if simplens.is_wsl:
+            config['temp_path'] = rwpc(subprocess.run(['powershell.exe', "(gi $env:TEMP).fullname"], capture_output=True, encoding='utf-8').stdout.strip())
+        else:
+            config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
+            if config['temp_path'] == '/tmp':
+                config['temp_path'] = '/var/tmp'
+    config['temp_path'] = os.path.abspath(config['temp_path'])
+    createdir(config['temp_path'])
 
     cpu__count = cpu_count()
     if args.instances:
