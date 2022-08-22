@@ -1,3 +1,6 @@
+# deew 2.8.1:
+- fixed version in tool itself
+
 # deew 2.8.0:
 - added `summary_sections` to config
 - parsing delay from filenames too
