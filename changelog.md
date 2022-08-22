@@ -1,3 +1,7 @@
+# deew 2.8.3:
+- moved binary version parsing to another place to avoid error
+  if `binaries` is set to false in config
+
 # deew 2.8.2:
 - removed `m`/`p` delay support and updated help to avoid confusion
 

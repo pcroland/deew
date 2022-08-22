@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.8.2'
+prog_version = '2.8.3'
 
 simplens = SimpleNamespace()
 
@@ -731,6 +731,10 @@ def main() -> None:
     xml_base['job_config']['input']['audio']['wav']['storage']['local']['path'] = f'\"{wpc(config["temp_path"])}\"'
     xml_base['job_config']['misc']['temp_dir']['path'] = f'\"{wpc(config["temp_path"])}\"'
 
+    simplens.dee_version = parse_version_string([config['dee_path']])
+    simplens.ffmpeg_version = parse_version_string([config['ffmpeg_path'], '-version'])
+    simplens.ffprobe_version = parse_version_string([config['ffprobe_path'], '-version'])
+
     if not all(x is False for x in config["summary_sections"].values()):
         summary = Table(title='Encoding summary', title_style='not italic bold magenta', show_header=False)
         summary.add_column(style='green')
@@ -748,9 +752,6 @@ def main() -> None:
             summary.add_row('[bold cyan]Latest', latest_version, end_section=True)
 
         if config['summary_sections']['binaries']:
-            simplens.dee_version = parse_version_string([config['dee_path']])
-            simplens.ffmpeg_version = parse_version_string([config['ffmpeg_path'], '-version'])
-            simplens.ffprobe_version = parse_version_string([config['ffprobe_path'], '-version'])
             summary.add_row('[cyan]DEE version', simplens.dee_version)
             summary.add_row('[cyan]ffmpeg version', simplens.ffmpeg_version)
             summary.add_row('[cyan]ffprobe version', simplens.ffprobe_version, end_section=True)
