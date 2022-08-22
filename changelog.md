@@ -1,3 +1,6 @@
+# deew 2.8.4:
+- fixed unnecessary newlines in argparse
+
 # deew 2.8.3:
 - moved binary version parsing to another place to avoid error
   if `binaries` is set to false in config

@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.8.3'
+prog_version = '2.8.4'
 
 simplens = SimpleNamespace()
 
@@ -64,13 +64,12 @@ class RParse(argparse.ArgumentParser):
 
 
 class CustomHelpFormatter(argparse.RawTextHelpFormatter):
-    def _format_action(self, action):
-        old = super()._format_action(action)
-        metavar = ''
-        m = re.search(r'--?[\w-]+ ([A-Z. \[\]]+)', old)
-        if m:
-            metavar = m.group(1)
-        return re.sub(r'(-[\w-]+) ([A-Z. \[\]]+), (--[\w-]+) \2', fr'\1, \3 \2{" " * (len(metavar) + 1)}', old)
+    def _format_action_invocation(self, action):
+        if not action.option_strings or action.nargs == 0:
+            return super()._format_action_invocation(action)
+        default = self._get_default_metavar_for_optional(action)
+        args_string = self._format_args(action, default)
+        return ', '.join(action.option_strings) + ' ' + args_string
 
 
 parser = RParse(
