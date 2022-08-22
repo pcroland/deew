@@ -237,7 +237,6 @@ temp_path = ''
 
 # Set between 1 and 10, use the -pl/--print-logos option to see the available logos, set to 0 to disable logo.
 logo = 1
-show_summary = true
 
 # Specifies how many encodes can run at the same time.
 # It can be a number or a % compared to your number of threads (so '50%' means 4 on an 8 thread cpu).
@@ -256,6 +255,14 @@ max_instances = '50%'
     ddp_2_0 = 256
     ddp_5_1 = 1024
     ddp_7_1 = 1536
+
+# You can toggle what sections you would like to see in the encoding summary
+[summary_sections]
+    deew_info = true
+    binaries = true
+    input_info = true
+    output_info = true
+    other = true
 '''
 
     if standalone:
@@ -537,9 +544,9 @@ def main() -> None:
                     'dee_path',
                     'temp_path',
                     'logo',
-                    'show_summary',
                     'max_instances',
-                    'default_bitrates'
+                    'default_bitrates',
+                    'summary_sections'
                 ]
     c_key_missing = []
     for c_key in config_keys:
@@ -729,44 +736,49 @@ def main() -> None:
     xml_base['job_config']['input']['audio']['wav']['storage']['local']['path'] = f'\"{wpc(config["temp_path"])}\"'
     xml_base['job_config']['misc']['temp_dir']['path'] = f'\"{wpc(config["temp_path"])}\"'
 
-    if config['show_summary']:
-        try:
-            r = requests.get('https://api.github.com/repos/pcroland/deew/releases/latest')
-            latest_version = json.loads(r.text)['tag_name']
-            if version.parse(prog_version) < version.parse(latest_version):
-                latest_version = f'[bold green]{latest_version}[/bold green] !!!'
-        except Exception:
-            latest_version = "[red]couldn't fetch"
-
-        simplens.dee_version = parse_version_string([config['dee_path']])
-        simplens.ffmpeg_version = parse_version_string([config['ffmpeg_path'], '-version'])
-        simplens.ffprobe_version = parse_version_string([config['ffprobe_path'], '-version'])
-
+    if not all(x is False for x in config["summary_sections"].values()):
         summary = Table(title='Encoding summary', title_style='not italic bold magenta', show_header=False)
         summary.add_column(style='green')
         summary.add_column(style='color(231)')
 
-        summary.add_row('[bold cyan]Version', prog_version)
-        summary.add_row('[bold cyan]Latest', latest_version, end_section=True)
+        if config['summary_sections']['deew_info']:
+            try:
+                r = requests.get('https://api.github.com/repos/pcroland/deew/releases/latest')
+                latest_version = json.loads(r.text)['tag_name']
+                if version.parse(prog_version) < version.parse(latest_version):
+                    latest_version = f'[bold green]{latest_version}[/bold green] !!!'
+            except Exception:
+                latest_version = "[red]couldn't fetch"
+            summary.add_row('[bold cyan]Version', prog_version)
+            summary.add_row('[bold cyan]Latest', latest_version, end_section=True)
 
-        summary.add_row('[cyan]DEE version', simplens.dee_version)
-        summary.add_row('[cyan]ffmpeg version', simplens.ffmpeg_version)
-        summary.add_row('[cyan]ffprobe version', simplens.ffprobe_version, end_section=True)
+        if config['summary_sections']['binaries']:
+            simplens.dee_version = parse_version_string([config['dee_path']])
+            simplens.ffmpeg_version = parse_version_string([config['ffmpeg_path'], '-version'])
+            simplens.ffprobe_version = parse_version_string([config['ffprobe_path'], '-version'])
+            summary.add_row('[cyan]DEE version', simplens.dee_version)
+            summary.add_row('[cyan]ffmpeg version', simplens.ffmpeg_version)
+            summary.add_row('[cyan]ffprobe version', simplens.ffprobe_version, end_section=True)
 
-        summary.add_row('[bold yellow]Output')
-        summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
-        summary.add_row('Channels', channel_number_to_name(outchannels))
-        summary.add_row('Bitrate', 'N/A' if aformat == 'thd' else f'{str(bitrate)} kbps')
-        summary.add_row('Dialnorm', 'auto (0)' if args.dialnorm == 0 else f'{str(args.dialnorm)} dB', end_section=True)
+        if config['summary_sections']['input_info']:
+            summary.add_row('[bold yellow]Input')
+            summary.add_row('Channels', channel_number_to_name(channels))
+            summary.add_row('Bit depth', str(bit_depth), end_section=True)
 
-        summary.add_row('[bold yellow]Input')
-        summary.add_row('Channels', channel_number_to_name(channels))
-        summary.add_row('Bit depth', str(bit_depth), end_section=True)
-        summary.add_row('[bold yellow]Other')
-        summary.add_row('Files', str(len(filelist)))
-        summary.add_row('Max instances', str(f'{instances:g}'))
-        summary.add_row('Delay', delay_print)
-        summary.add_row('Temp path', config['temp_path'])
+        if config['summary_sections']['output_info']:
+            summary.add_row('[bold yellow]Output')
+            summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
+            summary.add_row('Channels', channel_number_to_name(outchannels))
+            summary.add_row('Bitrate', 'N/A' if aformat == 'thd' else f'{str(bitrate)} kbps')
+            summary.add_row('Dialnorm', 'auto (0)' if args.dialnorm == 0 else f'{str(args.dialnorm)} dB', end_section=True)
+
+        if config['summary_sections']['other']:
+            summary.add_row('[bold yellow]Other')
+            summary.add_row('Files', str(len(filelist)))
+            summary.add_row('Max instances', str(f'{instances:g}'))
+            summary.add_row('Delay', delay_print)
+            summary.add_row('Temp path', config['temp_path'])
+
         print(summary)
         print()
 
