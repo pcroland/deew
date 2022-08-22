@@ -19,7 +19,6 @@ from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import timedelta
 from glob import glob
-from importlib import metadata
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 from typing import Any, NoReturn
