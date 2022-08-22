@@ -97,7 +97,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.8.1
+deew 2.8.2
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
@@ -116,11 +116,11 @@ FLAGS:
   -dm, --downmix CHANNELS       options: 1 / 2 / 6
                                 specifies downmix, only works for DD/DDP
                                 DD will be automatically downmixed to 5.1 in case of a 7.1 source
-  -d, --delay DELAY             examples: -5.1ms, +1,52s, p5s, m24@pal, +10@24000/1001
+  -d, --delay DELAY             examples: -5.1ms, +1,52s, -24@pal, +10@24000/1001
                                 default: 0ms or parsed from filename
                                 specifies delay as ms, s or frame@FPS
                                 FPS can be a number, division or ntsc / pal
-                                + / - can also be defined as p / m
+                                you have to specify negative values as -d=-0ms
   -r, --drc DRC                 options: film_light / film_standard / music_light / music_standard / speech
                                 default: music_light (this is the closest to the missing none preset)
                                 specifies drc profile

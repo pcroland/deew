@@ -1,3 +1,6 @@
+# deew 2.8.2:
+- removed `m`/`p` delay support and updated help to avoid confusion
+
 # deew 2.8.1:
 - fixed version in tool itself
 

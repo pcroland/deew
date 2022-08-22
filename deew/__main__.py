@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.8.1'
+prog_version = '2.8.2'
 
 simplens = SimpleNamespace()
 
@@ -117,11 +117,11 @@ parser.add_argument('-d', '--delay',
                     type=str,
                     default=None,
                     help=
-'''[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], [bold color(231)]p5s[/bold color(231)], [bold color(231)]m24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
+'''[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], [bold color(231)]-24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
 [underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)] or parsed from filename
 specifies delay as ms, s or frame@FPS
 FPS can be a number, division or ntsc / pal
-+ / - can also be defined as p / m''')
+you have to specify negative values as [bold color(231)]-[/bold color(231)][bold color(231)]d=-0ms[/bold color(231)]''')
 parser.add_argument('-r', '--drc',
                     type=str,
                     default='music_light',
@@ -319,10 +319,10 @@ def parse_version_string(inp: list) -> str:
     return v
 
 def convert_delay_to_ms(inp, compensate):
-    if not inp.startswith(('-', '+', 'm', 'p')): print_exit('delay')
+    if not inp.startswith(('-', '+')): print_exit('delay')
     inp = inp.replace(',', '.')
 
-    negative = inp.startswith(('-', 'm'))
+    negative = inp.startswith(('-'))
 
     if '@' in inp:
         frame = round(float(re.sub('[^0-9\.]', '', inp.split('@')[0])))
