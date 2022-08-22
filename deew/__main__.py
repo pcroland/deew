@@ -115,10 +115,10 @@ specifies downmix, only works for DD/DDP
 DD will be automatically downmixed to 5.1 in case of a 7.1 source''')
 parser.add_argument('-d', '--delay',
                     type=str,
-                    default='+0ms',
+                    default=None,
                     help=
 '''[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], [bold color(231)]p5s[/bold color(231)], [bold color(231)]m24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
-[underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)] or parsed from filename
 specifies delay as ms, s or frame@FPS
 FPS can be a number, division or ntsc / pal
 + / - can also be defined as p / m''')
@@ -720,8 +720,6 @@ def main() -> None:
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['drc']['line_mode_drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['drc']['rf_mode_drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['custom_dialnorm'] = args.dialnorm
-        delay_print, delay_xml, delay_mode = convert_delay_to_ms(args.delay, compensate=True)
-        xml_base['job_config']['filter']['audio']['pcm_to_ddp'][delay_mode] = delay_xml
     elif aformat == 'thd':
         xml_base = xmltodict.parse(xml_thd_base)
         xml_base['job_config']['output']['mlp']['storage']['local']['path'] = f'\"{wpc(output)}\"'
@@ -730,9 +728,6 @@ def main() -> None:
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_6ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_2ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['custom_dialnorm'] = args.dialnorm
-        delay_print, delay_xml, delay_mode = convert_delay_to_ms(args.delay, compensate=False)
-        xml_base['job_config']['filter']['audio']['encode_to_dthd'][delay_mode] = delay_xml
-
     xml_base['job_config']['input']['audio']['wav']['storage']['local']['path'] = f'\"{wpc(config["temp_path"])}\"'
     xml_base['job_config']['misc']['temp_dir']['path'] = f'\"{wpc(config["temp_path"])}\"'
 
@@ -773,10 +768,12 @@ def main() -> None:
             summary.add_row('Dialnorm', 'auto (0)' if args.dialnorm == 0 else f'{str(args.dialnorm)} dB', end_section=True)
 
         if config['summary_sections']['other']:
+            if args.delay:
+                delay_print, delay_xml, delay_mode = convert_delay_to_ms(args.delay, compensate=False)
             summary.add_row('[bold yellow]Other')
             summary.add_row('Files', str(len(filelist)))
             summary.add_row('Max instances', str(f'{instances:g}'))
-            summary.add_row('Delay', delay_print)
+            summary.add_row('Delay', delay_print if args.delay else '0 ms or parsed from filename')
             summary.add_row('Temp path', config['temp_path'])
 
         print(summary)
@@ -842,6 +839,16 @@ def main() -> None:
         dee_print_list.append(dee_args_print)
         if intermediate_exists: intermediate_exists_list.append(filelist[i])
 
+        delay_in_filename = re.match(r'.+DELAY ([-|+]?[0-9]+m?s)\..+', filelist[i])
+        if delay_in_filename:
+            delay = delay_in_filename[1]
+            if not delay.startswith(('-', '+')):
+                delay = f'+{delay}'
+        else:
+            delay = '+0ms'
+        if args.delay:
+            delay = args.delay
+
         xml = deepcopy(xml_base)
         xml['job_config']['input']['audio']['wav']['file_name'] = f'\"{basename(filelist[i], "wav")}\"'
         if aformat == 'ddp':
@@ -858,6 +865,14 @@ def main() -> None:
             del xml['job_config']['output']['ec3']
         else:
             xml['job_config']['output']['mlp']['file_name'] = f'\"{basename(filelist[i], "thd")}\"'
+
+        if aformat in ['dd', 'ddp']:
+            delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=True)
+            xml['job_config']['filter']['audio']['pcm_to_ddp'][delay_mode] = delay_xml
+        else:
+            delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=False)
+            xml['job_config']['filter']['audio']['encode_to_dthd'][delay_mode] = delay_xml
+
         save_xml(os.path.join(config['temp_path'], sanitize_xml_name(basename(filelist[i], 'xml'))), xml)
 
         settings.append([filelist[i], output, length_list[i], ffmpeg_args, dee_args, intermediate_exists, aformat])
