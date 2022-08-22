@@ -1,3 +1,7 @@
+# deew 2.8.0:
+- added `summary_sections` to config
+- parsing delay from filenames too
+
 # deew 2.7.0:
 - fixed first metavar removal for argparse's `--input`
 - fixed exception printing in threads

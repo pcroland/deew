@@ -44,6 +44,7 @@
 - works even with video inputs (first audio will be selected)
 - fancy terminal output using rich
 - versatile delay option that supports ms, s and also frame@fps formats
+- parsing delay from filenames
 
 # Requirements
 - Python *(you don't need it if you use a standalone build of deew)*
@@ -96,7 +97,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Usage
 ```
 ❯ deew -h
-deew 2.7.0
+deew 2.8.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
@@ -116,7 +117,7 @@ FLAGS:
                                 specifies downmix, only works for DD/DDP
                                 DD will be automatically downmixed to 5.1 in case of a 7.1 source
   -d, --delay DELAY             examples: -5.1ms, +1,52s, p5s, m24@pal, +10@24000/1001
-                                default: 0ms
+                                default: 0ms or parsed from filename
                                 specifies delay as ms, s or frame@FPS
                                 FPS can be a number, division or ntsc / pal
                                 + / - can also be defined as p / m

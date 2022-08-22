@@ -44,6 +44,7 @@
 - akár videó inputokkal is működik (az első audió kerül kiválasztásra)
 - csicsás terminálkimenet rich használatával
 - sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
+- delay parse-olása fájlnévből
 
 # Követelmények
 - Python *(nincs rá szükséged, ha a standalone buildet használod)*
@@ -96,7 +97,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.7.0
+deew 2.8.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
@@ -116,7 +117,7 @@ FLAGS:
                                 specifies downmix, only works for DD/DDP
                                 DD will be automatically downmixed to 5.1 in case of a 7.1 source
   -d, --delay DELAY             examples: -5.1ms, +1,52s, p5s, m24@pal, +10@24000/1001
-                                default: 0ms
+                                default: 0ms or parsed from filename
                                 specifies delay as ms, s or frame@FPS
                                 FPS can be a number, division or ntsc / pal
                                 + / - can also be defined as p / m
