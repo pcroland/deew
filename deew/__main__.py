@@ -296,11 +296,6 @@ def trim_names(fl: str, compensate: int) -> str:
     return fl.ljust(40 - compensate, ' ')
 
 
-def sanitize_xml_name(inp: str) -> str:
-    sanitized = re.sub(r'[^a-zA-Z0-9._-]', '', unidecode(inp))
-    return sanitized
-
-
 def stamp_to_sec(stamp):
     l = stamp.split(':')
     return int(l[0])*3600 + int(l[1])*60 + float(l[2])
@@ -376,12 +371,13 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
     return min(allowed_values, key=lambda list_value: abs(list_value - value))
 
 
-def wpc(p: str) -> str:
+def wpc(p: str, quote: bool=False) -> str:
     if not simplens.is_wsl: return p
     if not p.startswith('/mnt/'): print_exit('wsl_path', p)
     parts = list(filter(None, p.split('/')))[1:]
     parts[0] = parts[0].upper() + ':'
     p = '\\'.join(parts) + '\\'
+    p = f'\"{p}\"' if quote else p
     return p
 
 
@@ -394,8 +390,11 @@ def save_xml(f: str, xml: dict[str, Any]) -> None:
         fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
 
 
-def basename(fl: str, format_: str) -> str:
-    return os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
+def basename(fl: str, format_: str, quote: bool=False, sanitize: bool=False) -> str:
+    name = os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
+    name = unidecode(name).replace(' ', '_') if sanitize else name
+    name = f'\"{name}\"' if quote else name
+    return name
 
 
 def print_exit(message: str, insert: Any = None) -> NoReturn:
@@ -472,7 +471,7 @@ def encode(task_id: TaskID, settings: list) -> None:
 
     if not args.keeptemp:
         os.remove(os.path.join(config['temp_path'], basename(fl, 'wav')))
-        os.remove(os.path.join(config['temp_path'], sanitize_xml_name(basename(fl, 'xml'))))
+        os.remove(os.path.join(config['temp_path'], basename(fl, 'xml', sanitize=True)))
 
     if args.format.lower() == 'thd':
         os.remove(os.path.join(output, basename(fl, 'thd.log')))
@@ -701,7 +700,7 @@ def main() -> None:
 
     if aformat in ['dd', 'ddp']:
         xml_base = xmltodict.parse(xml_dd_ddp_base)
-        xml_base['job_config']['output']['ec3']['storage']['local']['path'] = f'\"{wpc(output)}\"'
+        xml_base['job_config']['output']['ec3']['storage']['local']['path'] = wpc(output, quote=True)
         if aformat == 'ddp':
             xml_base['job_config']['filter']['audio']['pcm_to_ddp']['encoder_mode'] = 'ddp'
             if outchannels == 8:
@@ -721,14 +720,14 @@ def main() -> None:
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['custom_dialnorm'] = args.dialnorm
     elif aformat == 'thd':
         xml_base = xmltodict.parse(xml_thd_base)
-        xml_base['job_config']['output']['mlp']['storage']['local']['path'] = f'\"{wpc(output)}\"'
+        xml_base['job_config']['output']['mlp']['storage']['local']['path'] = wpc(output, quote=True)
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['atmos_presentation']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_8ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_6ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['presentation_2ch']['drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['encode_to_dthd']['custom_dialnorm'] = args.dialnorm
-    xml_base['job_config']['input']['audio']['wav']['storage']['local']['path'] = f'\"{wpc(config["temp_path"])}\"'
-    xml_base['job_config']['misc']['temp_dir']['path'] = f'\"{wpc(config["temp_path"])}\"'
+    xml_base['job_config']['input']['audio']['wav']['storage']['local']['path'] = wpc(config['temp_path'], quote=True)
+    xml_base['job_config']['misc']['temp_dir']['path'] = wpc(config['temp_path'], quote=True)
 
     simplens.dee_version = parse_version_string([config['dee_path']])
     simplens.ffmpeg_version = parse_version_string([config['ffmpeg_path'], '-version'])
@@ -820,7 +819,7 @@ def main() -> None:
     dee_print_list = []
     intermediate_exists_list = []
     for i in range(len(filelist)):
-        dee_xml_input = f'{dee_xml_input_base}{sanitize_xml_name(basename(filelist[i], "xml"))}'
+        dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml", sanitize=True)}'
 
         ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(channel_swap_args), *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
         dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
@@ -850,21 +849,21 @@ def main() -> None:
             delay = args.delay
 
         xml = deepcopy(xml_base)
-        xml['job_config']['input']['audio']['wav']['file_name'] = f'\"{basename(filelist[i], "wav")}\"'
+        xml['job_config']['input']['audio']['wav']['file_name'] = basename(filelist[i], 'wav', quote=True)
         if aformat == 'ddp':
-            xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "ec3")}\"'
+            xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ec3', quote=True)
             if bitrate > 1024:
-                xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "eb3")}\"'
+                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'eb3', quote=True)
             if args.force_standard:
-                xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "ec3")}\"'
+                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ec3', quote=True)
             if args.force_bluray:
-                xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "eb3")}\"'
+                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'eb3', quote=True)
         elif aformat == 'dd':
-            xml['job_config']['output']['ec3']['file_name'] = f'\"{basename(filelist[i], "ac3")}\"'
+            xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ac3', quote=True)
             xml['job_config']['output']['ac3'] = xml['job_config']['output']['ec3']
             del xml['job_config']['output']['ec3']
         else:
-            xml['job_config']['output']['mlp']['file_name'] = f'\"{basename(filelist[i], "thd")}\"'
+            xml['job_config']['output']['mlp']['file_name'] = basename(filelist[i], 'thd', quote=True)
 
         if aformat in ['dd', 'ddp']:
             delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=True)
@@ -873,7 +872,7 @@ def main() -> None:
             delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=False)
             xml['job_config']['filter']['audio']['encode_to_dthd'][delay_mode] = delay_xml
 
-        save_xml(os.path.join(config['temp_path'], sanitize_xml_name(basename(filelist[i], 'xml'))), xml)
+        save_xml(os.path.join(config['temp_path'], basename(filelist[i], 'xml', sanitize=True)), xml)
 
         settings.append([filelist[i], output, length_list[i], ffmpeg_args, dee_args, intermediate_exists, aformat])
 
