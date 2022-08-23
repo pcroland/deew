@@ -60,7 +60,7 @@
 - place your `license.lic` file next to the DEE binary (`dee.exe` under Windows, `dee` under Linux/macOS)
 
 # deew installation
-### with standalone build (Windows/Linux):
+### with standalone build (Windows 8-11/Linux):
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - run with: `deew`\
 *(run the binary from terminal, doubleclicking it won't work)*

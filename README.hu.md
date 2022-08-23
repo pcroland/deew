@@ -60,7 +60,7 @@
 - másold a `license.lic` fájlod a DEE binárisod mellé (Windowson `dee.exe`, Linux/maxOS-en `dee`)
 
 # deew telepítése
-### standalone buildet használva (Windows/Linux):
+### standalone buildet használva (Windows 8-11/Linux):
 - tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - futtasd: `deew`\
 *(terminálból futtasd, duplaklikk nem fog működni)*
