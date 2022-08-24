@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.8.4'
+prog_version = '2.8.5'
 
 simplens = SimpleNamespace()
 
@@ -144,13 +144,13 @@ parser.add_argument('-in', '--instances',
 specifies how many encodes can run at the same time
 [bold color(231)]50%%[/bold color(231)] means [bold color(231)]4[/bold color(231)] on a cpu with 8 threads
 one DEE can use 2 threads so [bold color(231)]50%%[/bold color(231)] can utilize all threads
-(this option overwrites the config\'s number)''')
+(this option overrides the config\'s number)''')
 parser.add_argument('-k', '--keeptemp',
                     action='store_true',
                     help='keep temp files')
 parser.add_argument('-mo', '--measure-only',
                     action='store_true',
-                    help='kills DEE when the dialnorm gets written to the progress bar\nthis option overwrites format with ddp')
+                    help='kills DEE when the dialnorm gets written to the progress bar\nthis option overrides format with ddp')
 parser.add_argument('-fs', '--force-standard',
                     action='store_true',
                     help='force standard profile for 7.1 DDP encoding (384-1024 kbps)')
@@ -240,7 +240,7 @@ logo = 1
 # Specifies how many encodes can run at the same time.
 # It can be a number or a % compared to your number of threads (so '50%' means 4 on an 8 thread cpu).
 # One DEE can use 2 threads so setting '50%' can utilize all threads.
-# You can overwrite this setting with -in/--instances.
+# You can override this setting with -in/--instances.
 # The number will be clamped between 1 and cpu_count().
 # With the Windows version of DEE the max will be cpu_count() - 2 or 6 due to a limitation.
 # examples: 1, 4, '50%'

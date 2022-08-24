@@ -97,7 +97,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Usage
 ```
 ❯ deew -h
-deew 2.8.4
+deew 2.8.5
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
             [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
@@ -132,10 +132,10 @@ FLAGS:
                               specifies how many encodes can run at the same time
                               50% means 4 on a cpu with 8 threads
                               one DEE can use 2 threads so 50% can utilize all threads
-                              (this option overwrites the config's number)
+                              (this option overrides the config's number)
   -k, --keeptemp              keep temp files
   -mo, --measure-only         kills DEE when the dialnorm gets written to the progress bar
-                              this option overwrites format with ddp
+                              this option overrides format with ddp
   -fs, --force-standard       force standard profile for 7.1 DDP encoding (384-1024 kbps)
   -fb, --force-bluray         force bluray profile for 7.1 DDP encoding (768-1664 kbps)
   -lb, --list-bitrates        list bitrates that DEE can do for DD and DDP encoding
