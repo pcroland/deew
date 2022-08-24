@@ -71,7 +71,8 @@ jobs:
 
       - name: Set up libraries
         run: |
-          python -m pip install wheel poetry pyinstaller
+          python -m pip install wheel poetry
+          python -m pip install "https://yt-dlp.github.io/Pyinstaller-Builds/x86_64/pyinstaller-5.2-py3-none-any.whl"
           python -m pip install .
 
       - name: Build

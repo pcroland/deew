@@ -1,3 +1,7 @@
+# deew 2.8.5:
+- fix spelling in override everywhere
+- use custom pyinstaller build to avoid anti-viruses going crazy
+
 # deew 2.8.4:
 - fixed unnecessary newlines in argparse
 
