@@ -138,6 +138,7 @@ applied dialnorm value between''')
 parser.add_argument('-ti', '--track-index',
                     type=int,
                     default=0,
+                    metavar='INDEX',
                     help=
 '''[underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
 select audio track index of input(s)''')
