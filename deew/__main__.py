@@ -135,6 +135,12 @@ parser.add_argument('-dn', '--dialnorm',
 '''[underline magenta]options:[/underline magenta] between [bold color(231)]-31[/bold color(231)] and [bold color(231)]0[/bold color(231)] (in case of [bold color(231)]0[/bold color(231)] DEE\'s measurement will be used)
 [underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
 applied dialnorm value between''')
+parser.add_argument('-ti', '--track-index',
+                    type=int,
+                    default=0,
+                    help=
+'''[underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
+select audio track index of input(s)''')
 parser.add_argument('-in', '--instances',
                     type=str,
                     default=None,
@@ -178,10 +184,6 @@ parser.add_argument('-c', '--config',
 parser.add_argument('-gc', '--generate-config',
                     action='store_true',
                     help='generate a new config')
-parser.add_argument('-at', '--audiotrack',
-                    type=int,
-                    default=0,
-                    help='select audio track index of input source')                    
 args = parser.parse_args()
 
 
@@ -592,7 +594,7 @@ def main() -> None:
     bitrate = args.bitrate
     downmix = args.downmix
     args.dialnorm = clamp(args.dialnorm, -31, 0)
-    audiotrack = args.audiotrack
+    trackindex = max(0, args.track_index)
 
     if aformat not in ['dd', 'ddp', 'thd']: print_exit('format')
     if downmix and downmix not in [1, 2, 6]: print_exit('downmix')
@@ -615,7 +617,7 @@ def main() -> None:
     length_list = []
 
     for f in filelist:
-        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', f'a:{audiotrack}', '-print_format', 'json', '-show_format', '-show_streams', f]
+        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', f'a:{trackindex}', '-print_format', 'json', '-show_format', '-show_streams', f]
         try:
             output = subprocess.check_output(probe_args, encoding='utf-8')
         except subprocess.CalledProcessError:
@@ -826,12 +828,12 @@ def main() -> None:
     for i in range(len(filelist)):
         dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml", sanitize=True)}'
 
-        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], f'-c:a:{audiotrack}', f'pcm_s{bit_depth}le', *(channel_swap_args), *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
+        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], f'-c:a:{trackindex}', f'pcm_s{bit_depth}le', *(channel_swap_args), *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
         dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
 
-        ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:{audiotrack}[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
+        ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:{trackindex}[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
         dee_args_print = f'[bold cyan]dee[/bold cyan] -x [bold magenta]{dee_xml_input}[/bold magenta]{xml_validation_print}'
-        ffmpeg_args_print_short = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]\[input][/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:{audiotrack}[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]\[output][/bold magenta]'
+        ffmpeg_args_print_short = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]\[input][/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:{trackindex}[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]\[output][/bold magenta]'
         dee_args_print_short = f'[bold cyan]dee[/bold cyan] -x [bold magenta]\[input][/bold magenta]{xml_validation_print}'
 
         intermediate_exists = False
