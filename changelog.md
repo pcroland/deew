@@ -1,4 +1,4 @@
-# deew 2.9.0:
+# deew 2.9.1:
 - added `-ti`/`--track-index`
 - strip delay from output filenames
 

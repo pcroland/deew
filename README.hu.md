@@ -97,7 +97,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.9.0
+deew 2.9.1
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o OUTPUT] [-f FORMAT]
             [-b BITRATE] [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM]
