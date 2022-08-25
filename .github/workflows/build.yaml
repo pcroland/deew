@@ -31,7 +31,7 @@ jobs:
       - name: Create release description
         run: |
           python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> release_description.txt
-          python -c "print(open('changelog.md', 'r').read().split('\n\n')[0].replace('# deew', 'deew'))" > changelog.txt
+          python -c "print(open('changelog.md', 'r').read().split('\n\n')[0].replace('# deew', 'deew'))" >> changelog.txt
 
       - name: Create release
         id: create_release
