@@ -1,3 +1,7 @@
+# deew 2.9.0:
+- added `-ti`/`--track-index`
+- strip delay from output filenames
+
 # deew 2.8.5:
 - fix spelling in override everywhere
 - use custom pyinstaller build to avoid anti-viruses going crazy

@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.8.5'
+prog_version = '2.9.0'
 
 simplens = SimpleNamespace()
 
@@ -88,6 +88,13 @@ parser.add_argument('-i', '--input',
                     nargs='*',
                     default=argparse.SUPPRESS,
                     help='audio file(s) or folder(s)')
+parser.add_argument('-ti', '--track-index',
+                    type=int,
+                    default=0,
+                    metavar='INDEX',
+                    help=
+'''[underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
+select audio track index of input(s)''')
 parser.add_argument('-o', '--output',
                     default=None,
                     metavar='DIRECTORY',
@@ -116,7 +123,8 @@ parser.add_argument('-d', '--delay',
                     type=str,
                     default=None,
                     help=
-'''[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], [bold color(231)]-24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
+'''[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], \
+[bold color(231)]-24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
 [underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)] or parsed from filename
 specifies delay as ms, s or frame@FPS
 FPS can be a number, division or ntsc / pal
@@ -125,14 +133,16 @@ parser.add_argument('-r', '--drc',
                     type=str,
                     default='music_light',
                     help=
-'''[underline magenta]options:[/underline magenta] [bold color(231)]film_light[/bold color(231)] / [bold color(231)]film_standard[/bold color(231)] / [bold color(231)]music_light[/bold color(231)] / [bold color(231)]music_standard[/bold color(231)] / [bold color(231)]speech[/bold color(231)]
+'''[underline magenta]options:[/underline magenta] [bold color(231)]film_light[/bold color(231)] / [bold color(231)]film_standard[/bold color(231)] / \
+[bold color(231)]music_light[/bold color(231)] / [bold color(231)]music_standard[/bold color(231)] / [bold color(231)]speech[/bold color(231)]
 [underline magenta]default:[/underline magenta] [bold color(231)]music_light[/bold color(231)] (this is the closest to the missing none preset)
 specifies drc profile''')
 parser.add_argument('-dn', '--dialnorm',
                     type=int,
                     default=0,
                     help=
-'''[underline magenta]options:[/underline magenta] between [bold color(231)]-31[/bold color(231)] and [bold color(231)]0[/bold color(231)] (in case of [bold color(231)]0[/bold color(231)] DEE\'s measurement will be used)
+'''[underline magenta]options:[/underline magenta] between [bold color(231)]-31[/bold color(231)] and [bold color(231)]0[/bold color(231)] \
+(in case of [bold color(231)]0[/bold color(231)] DEE\'s measurement will be used)
 [underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
 applied dialnorm value between''')
 parser.add_argument('-in', '--instances',
@@ -390,10 +400,11 @@ def save_xml(f: str, xml: dict[str, Any]) -> None:
         fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
 
 
-def basename(fl: str, format_: str, quote: bool=False, sanitize: bool=False) -> str:
+def basename(fl: str, format_: str, quote: bool=False, sanitize: bool=False, stripdelay: bool=False) -> str:
     name = os.path.basename(os.path.splitext(fl)[0]) + f'.{format_}'
-    name = unidecode(name).replace(' ', '_') if sanitize else name
-    name = f'\"{name}\"' if quote else name
+    if stripdelay: name = re.sub(r' ?DELAY [-|+]?[0-9]+m?s', '', name)
+    if sanitize: name = unidecode(name).replace(' ', '_')
+    if quote: name = f'\"{name}\"'
     return name
 
 
@@ -588,6 +599,7 @@ def main() -> None:
     bitrate = args.bitrate
     downmix = args.downmix
     args.dialnorm = clamp(args.dialnorm, -31, 0)
+    trackindex = max(0, args.track_index)
 
     if aformat not in ['dd', 'ddp', 'thd']: print_exit('format')
     if downmix and downmix not in [1, 2, 6]: print_exit('downmix')
@@ -610,7 +622,7 @@ def main() -> None:
     length_list = []
 
     for f in filelist:
-        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', 'a:0', '-print_format', 'json', '-show_format', '-show_streams', f]
+        probe_args = [config["ffprobe_path"], '-v', 'quiet', '-select_streams', f'a:{trackindex}', '-print_format', 'json', '-show_format', '-show_streams', f]
         try:
             output = subprocess.check_output(probe_args, encoding='utf-8')
         except subprocess.CalledProcessError:
@@ -651,9 +663,11 @@ def main() -> None:
 
     if outchannels in [1, 2]:
         if args.no_prompt:
-            print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
+            print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
+[bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
         else:
-            continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
+            continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
+[bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
             if not continue_enc: sys.exit(1)
 
     if args.dialnorm != 0:
@@ -793,15 +807,24 @@ def main() -> None:
             channel_swap = 'pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5,'
         else:
             channel_swap = ''
-        resample_args = ['-filter_complex', f'{channel_swap}aresample=resampler=soxr', '-ar', resample_value, '-precision', '28', '-cutoff', '1', '-dither_scale', '0']
-        resample_args_print = f'-filter_complex [bold color(231)]{channel_swap}aresample=resampler=soxr[/bold color(231)] -ar [bold color(231)]{resample_value}[/bold color(231)] -precision [bold color(231)]28[/bold color(231)] -cutoff [bold color(231)]1[/bold color(231)] -dither_scale [bold color(231)]0[/bold color(231)] '
+        resample_args = [
+            '-filter_complex', f'[a:{trackindex}]{channel_swap}aresample=resampler=soxr',
+            '-ar', resample_value,
+            '-precision', '28',
+            '-cutoff', '1',
+            '-dither_scale', '0']
+        resample_args_print = f'-filter_complex [bold color(231)]"\[a:{trackindex}]{channel_swap}aresample=resampler=soxr"[/bold color(231)] \
+-ar [bold color(231)]{resample_value}[/bold color(231)] \
+-precision [bold color(231)]28[/bold color(231)] \
+-cutoff [bold color(231)]1[/bold color(231)] \
+-dither_scale [bold color(231)]0[/bold color(231)] '
     else:
         resample_args = []
         resample_args_print = ''
 
     if channels == 8 and not resample_args:
-        channel_swap_args = ['-filter_complex', 'pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5']
-        channel_swap_args_print = '-filter_complex [bold color(231)]pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5[/bold color(231)] '
+        channel_swap_args = ['-filter_complex', f'[a:{trackindex}]pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5']
+        channel_swap_args_print = f'-filter_complex [bold color(231)]"\[a:{trackindex}]pan=7.1|c0=c0|c1=c1|c2=c2|c3=c3|c4=c6|c5=c7|c6=c4|c7=c5"[/bold color(231)] '
     else:
         channel_swap_args = []
         channel_swap_args_print = ''
@@ -821,12 +844,46 @@ def main() -> None:
     for i in range(len(filelist)):
         dee_xml_input = f'{dee_xml_input_base}{basename(filelist[i], "xml", sanitize=True)}'
 
-        ffmpeg_args = [config['ffmpeg_path'], '-y', '-drc_scale', '0', '-i', filelist[i], '-c:a:0', f'pcm_s{bit_depth}le', *(channel_swap_args), *(resample_args), '-rf64', 'always', os.path.join(config['temp_path'], basename(filelist[i], 'wav'))]
-        dee_args = [config['dee_path'], '--progress-interval', '500', '--diagnostics-interval', '90000', '-x', dee_xml_input, *(xml_validation)]
+        ffmpeg_args = [
+            config['ffmpeg_path'],
+            '-y',
+            '-drc_scale', '0',
+            '-i', filelist[i],
+            '-map', f'0:a:{trackindex}',
+            '-c', f'pcm_s{bit_depth}le',
+            *(channel_swap_args), *(resample_args),
+            '-rf64', 'always',
+            os.path.join(config['temp_path'], basename(filelist[i], 'wav'))
+        ]
+        dee_args = [
+            config['dee_path'],
+            '--progress-interval', '500',
+            '--diagnostics-interval', '90000',
+            '-x', dee_xml_input,
+            *(xml_validation)
+        ]
 
-        ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]{filelist[i]}[/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
+        ffmpeg_args_print = f'[bold cyan]ffmpeg[/bold cyan] \
+-y \
+-drc_scale [bold color(231)]0[/bold color(231)] \
+-i [bold green]{filelist[i]}[/bold green] \
+-map [bold color(231)]0:a[/bold color(231)]' + f'[bold color(231)]:{trackindex}[/bold color(231)] \
+-c [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] \
+{channel_swap_args_print}{resample_args_print}\
+-rf64 [bold color(231)]always[/bold color(231)] \
+[bold magenta]{os.path.join(config["temp_path"], basename(filelist[i], "wav"))}[/bold magenta]'
+
+        ffmpeg_args_print_short = f'[bold cyan]ffmpeg[/bold cyan] \
+-y \
+-drc_scale [bold color(231)]0[/bold color(231)] \
+-i [bold green]\[input][/bold green] \
+-map [bold color(231)]0:a[/bold color(231)]' + f'[bold color(231)]:{trackindex}[/bold color(231)] \
+-c [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] \
+{channel_swap_args_print}{resample_args_print}\
+-rf64 [bold color(231)]always[/bold color(231)] \
+[bold magenta]\[output][/bold magenta]'
+
         dee_args_print = f'[bold cyan]dee[/bold cyan] -x [bold magenta]{dee_xml_input}[/bold magenta]{xml_validation_print}'
-        ffmpeg_args_print_short = f'[bold cyan]ffmpeg[/bold cyan] -y -drc_scale [bold color(231)]0[/bold color(231)] -i [bold green]\[input][/bold green] [not bold white]-c:a[/not bold white]' + f'[not bold white]:0[/not bold white] [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] {channel_swap_args_print}{resample_args_print}-rf64 [bold color(231)]always[/bold color(231)] [bold magenta]\[output][/bold magenta]'
         dee_args_print_short = f'[bold cyan]dee[/bold cyan] -x [bold magenta]\[input][/bold magenta]{xml_validation_print}'
 
         intermediate_exists = False
@@ -851,19 +908,19 @@ def main() -> None:
         xml = deepcopy(xml_base)
         xml['job_config']['input']['audio']['wav']['file_name'] = basename(filelist[i], 'wav', quote=True)
         if aformat == 'ddp':
-            xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ec3', quote=True)
+            xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ec3', quote=True, stripdelay=True)
             if bitrate > 1024:
-                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'eb3', quote=True)
+                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'eb3', quote=True, stripdelay=True)
             if args.force_standard:
-                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ec3', quote=True)
+                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ec3', quote=True, stripdelay=True)
             if args.force_bluray:
-                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'eb3', quote=True)
+                xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'eb3', quote=True, stripdelay=True)
         elif aformat == 'dd':
-            xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ac3', quote=True)
+            xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ac3', quote=True, stripdelay=True)
             xml['job_config']['output']['ac3'] = xml['job_config']['output']['ec3']
             del xml['job_config']['output']['ec3']
         else:
-            xml['job_config']['output']['mlp']['file_name'] = basename(filelist[i], 'thd', quote=True)
+            xml['job_config']['output']['mlp']['file_name'] = basename(filelist[i], 'thd', quote=True, stripdelay=True)
 
         if aformat in ['dd', 'ddp']:
             delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=True)
@@ -882,7 +939,8 @@ def main() -> None:
             print(f'{ff} && {d}')
     else:
         if intermediate_exists_list:
-            print(f'[bold color(231)]Intermediate already exists for the following file(s):[/bold color(231)] [bold magenta]{"[not bold white],[/not bold white] ".join(intermediate_exists_list)}[bold magenta]')
+            print(f'[bold color(231)]Intermediate already exists for the following file(s):[/bold color(231)] \
+[bold magenta]{"[not bold white],[/not bold white] ".join(intermediate_exists_list)}[bold magenta]')
         print(f'[bold color(231)]Running the following commands:[/bold color(231)]\n{ffmpeg_args_print_short} && {dee_args_print_short}')
 
     print()

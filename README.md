@@ -97,16 +97,19 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Usage
 ```
 ❯ deew -h
-deew 2.8.5
+deew 2.9.0
 
-USAGE: deew [-h] [-v] [-i [INPUT ...]] [-o OUTPUT] [-f FORMAT] [-b BITRATE]
-            [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM] [-in INSTANCES]
-            [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl] [-cl] [-c] [-gc]
+USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o OUTPUT] [-f FORMAT]
+            [-b BITRATE] [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM]
+            [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl]
+            [-cl] [-c] [-gc]
 
 FLAGS:
   -h, --help                  show this help message.
   -v, --version               show version.
   -i, --input [INPUT ...]     audio file(s) or folder(s)
+  -ti, --track-index INDEX    default: 0
+                              select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
   -f, --format FORMAT         options: dd / ddp / thd

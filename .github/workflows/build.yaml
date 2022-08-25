@@ -30,7 +30,7 @@ jobs:
 
       - name: Create release description
         run: |
-          python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> release_description.txt
+          python -c "print(open('changelog.md', 'r').read().split('\n\n')[0].replace('# deew', 'deew'))" > changelog.txt
 
       - name: Create release
         id: create_release
@@ -101,8 +101,7 @@ jobs:
           poetry build
           poetry publish -u __token__ -p '${{ secrets.PYPI_TOKEN }}'
 
-      - name: Send Telegram notification
+      - name: Send Telegram notifications
         run: |
-          curl "https://gist.githubusercontent.com/pcroland/ada368375417e0e83129b774b4d9fa22/raw/59d4b69dc0581b382c72b14893c788c649e8ce7e/deew_tg_notification.py" > tg.py
-          python tg.py "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHANNEL }}" "${{ steps.latest_release_info.outputs.tag_name }}"
-          python tg.py "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHANNEL2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python notification/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python notification/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
