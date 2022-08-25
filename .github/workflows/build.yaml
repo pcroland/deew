@@ -28,10 +28,9 @@ jobs:
         run: |
           pyinstaller -F __main__.py -n deew --icon logo/icon.ico
 
-      - name: Create release description
+      - name: Create changelog file
         run: |
-          python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> release_description.txt
-          python -c "print(open('changelog.md', 'r').read().split('\n\n')[0].replace('# deew', 'deew'))" >> changelog.txt
+          python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> changelog.txt
 
       - name: Create release
         id: create_release
@@ -41,7 +40,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body_path: release_description.txt
+          body_path: changelog.txt
           draft: false
           prerelease: false
 
@@ -101,6 +100,10 @@ jobs:
         run: |
           poetry build
           poetry publish -u __token__ -p '${{ secrets.PYPI_TOKEN }}'
+
+      - name: Create changelog file
+        run: |
+          python -c "print(open('changelog.md', 'r').read().split('\n\n')[0].replace('# deew', 'deew'))" >> changelog.txt
 
       - name: Send Telegram notifications
         run: |

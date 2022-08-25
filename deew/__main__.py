@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.9.1'
+prog_version = '2.9.2'
 
 simplens = SimpleNamespace()
 
