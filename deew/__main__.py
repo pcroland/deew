@@ -73,6 +73,7 @@ class CustomHelpFormatter(argparse.RawTextHelpFormatter):
 
 
 parser = RParse(
+    prog=prog_name,
     add_help=False,
     formatter_class=lambda prog: CustomHelpFormatter(prog, width=80, max_help_position=32)
 )

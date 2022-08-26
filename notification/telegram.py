@@ -9,7 +9,6 @@ version = sys.argv[3]
 with open('changelog.txt', 'r') as fl:
     changelog = fl.read()
     changelog = changelog.split('\n')[1:]
-    changelog = list(filter(None, changelog))
     changelog = '\n'.join(changelog).replace('`', '"')
 
 r = requests.post(
