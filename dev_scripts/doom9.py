@@ -62,7 +62,7 @@ data = {
     'loggedinuser': '219960',
 }
 
-#session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=data)
+session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=data)
 
 # update first post
 with open('dev_scripts/description_en.txt', encoding='utf-8') as fl:
@@ -70,7 +70,7 @@ with open('dev_scripts/description_en.txt', encoding='utf-8') as fl:
     description = '\n'.join([line.rstrip('\\') for line in description.splitlines()])
     description = description.replace('`', '"')
 
-with open('dev_scripts/doom9_template.txt', encoding='utf-8') as fl:
+with open('dev_scripts/doom9_template.bb', encoding='utf-8') as fl:
     template = fl.read()
 
 _help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout

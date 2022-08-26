@@ -16,7 +16,7 @@
 
 
 <p align="center"><a href="https://github.com/pcroland/deew/blob/main/README.md">English readme</a>
- • <a href="https://github.com/pcroland/deew/blob/main/README.hu.md">Magyar leírás</a></p>
+ • <a href="https://github.com/pcroland/deew/blob/main/README_hu.md">Magyar leírás</a></p>
 
 ## DDP encode-olás még sosem volt ilyen egyszerű!
 
@@ -37,7 +37,7 @@
 - automatikus csatornafelcserélés 7.1-es forrásoknál (DEE valamiért megcseréli az Ls, Rs csatornákat az Lrs, Rrs-sel)
 - automatikus dialnorm beállítás
 - automatikusan kompenzálja a DEE 256 mintavételezés eltolását (DD és DDP encoding esetén)
-- ellenőrzi, hogy az ideiglenes fájl létezik-e már, ezzel lehetővé téve különböző formátumok/bitráták kódolásását anélkül, hogy mindegyiknél új ideiglenes fájlt generálnánk, például:\
+- ellenőrzi, hogy az ideiglenes fájl létezik-e már, lehetővé téve különböző formátumok/bitráták kódolásását egyetlen ideiglenes fájl készítésével, például:\
   `deew -f dd -b 448 -i input -k`\
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
@@ -99,8 +99,8 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 ❯ deew -h
 deew 2.9.2
 
-USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o OUTPUT] [-f FORMAT]
-            [-b BITRATE] [-dm DOWNMIX] [-d DELAY] [-drc DRC] [-dn DIALNORM]
+USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
+            [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
             [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl]
             [-cl] [-c] [-gc]
 
