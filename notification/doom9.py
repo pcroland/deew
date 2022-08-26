@@ -6,7 +6,7 @@ from hashlib import md5
 
 with open('changelog.txt', 'r') as fl:
     changelog = fl.read().replace('`', '"')
-    changelog = f'[code]{changelog}[/code]aa'
+    changelog = f'[code]{changelog}[/code]'
 
 password = sys.argv[1]
 md5 = md5(password.encode()).hexdigest()
@@ -93,4 +93,4 @@ data = {
     'postcount': '1',
 }
 
-session.post('https://forum.doom9.org/editpost.php?do=updatepost&postid=undefined', data=data)
+# session.post('https://forum.doom9.org/editpost.php?do=updatepost&postid=undefined', data=data)
