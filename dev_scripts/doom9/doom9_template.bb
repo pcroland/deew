@@ -1,7 +1,8 @@
 [center][img]https://telegra.ph/file/e66f2d948015024ed148d.png[/img]
-Dolby Encoding Engine Wrapper[/center]
-[b]deew:[/b] [url]https://github.com/pcroland/deew[/url] [i](Installation instructions on the github page.)[/i]
+Dolby Encoding Engine Wrapper
 
+[b]deew:[/b] [url]https://github.com/pcroland/deew[/url]
+[i](Installation instructions on the github page.)[/i][/center]
 [code]Description:
 description_placeholder
 

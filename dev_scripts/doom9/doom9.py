@@ -5,8 +5,10 @@ import subprocess
 import sys
 from hashlib import md5
 
-with open('changelog.txt', 'r') as fl:
-    changelog = fl.read().replace('`', '"')
+with open('changelog.md', 'r') as fl:
+    changelog = fl.read()
+    changelog = changelog.split('\n\n# deew')[0]
+    changelog = changelog.replace('# deew', 'deew').replace('`', '"').replace('\\\n', '\n')
     changelog = f'[code]{changelog}[/code]'
 
 password = sys.argv[1]
@@ -65,15 +67,14 @@ data = {
 session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=data)
 
 # update first post
-with open('dev_scripts/description_en.txt', encoding='utf-8') as fl:
+with open('dev_scripts/readme/description_en.txt', encoding='utf-8') as fl:
     description = fl.read()
-    description = '\n'.join([line.rstrip('\\') for line in description.splitlines()])
-    description = description.replace('`', '"')
+    description = description.replace('`', '"').replace('\\\n', '\n')
 
-with open('dev_scripts/doom9_template.bb', encoding='utf-8') as fl:
+with open('dev_scripts/doom9/doom9_template.bb', encoding='utf-8') as fl:
     template = fl.read()
 
-_help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout
+_help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout.rstrip('\n')
 
 template = re.sub('description_placeholder', description, template)
 template = re.sub('help_placeholder', _help, template)

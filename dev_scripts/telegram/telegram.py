@@ -6,10 +6,10 @@ token = sys.argv[1]
 to = sys.argv[2]
 version = sys.argv[3]
 
-with open('changelog.txt', 'r') as fl:
+with open('changelog.md', 'r') as fl:
     changelog = fl.read()
-    changelog = changelog.split('\n')[1:]
-    changelog = '\n'.join(changelog).replace('`', '"')
+    changelog = changelog.split('\n\n# deew')[0].split('\n')[1:]
+    changelog = '\n'.join(changelog).replace('`', '"').replace('\\\n', '\n')
 
 r = requests.post(
     url=f'https://api.telegram.org/bot{token}/sendMessage',

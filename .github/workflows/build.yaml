@@ -101,15 +101,11 @@ jobs:
           poetry build
           poetry publish -u __token__ -p '${{ secrets.PYPI_TOKEN }}'
 
-      - name: Create changelog file
-        run: |
-          python -c "print(open('changelog.md', 'r').read().split('\n\n')[0].replace('# deew', 'deew'), end='')" >> changelog.txt
-
       - name: Send Telegram notifications
         run: |
-          python dev_scripts/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
-          python dev_scripts/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python dev_scripts/telegram/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python dev_scripts/telegram/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
 
-      - name: Post changelog on Doom9
+      - name: Post changelog and update OP on Doom9
         run: |
-          python dev_scripts/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
+          python dev_scripts/doom9/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
