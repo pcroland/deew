@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import re
 import requests
+import subprocess
 import sys
 from hashlib import md5
 
@@ -61,9 +62,22 @@ data = {
     'loggedinuser': '219960',
 }
 
-session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=data)
+#session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=data)
 
 # update first post
+with open('dev_scripts/description_en.txt', encoding='utf-8') as fl:
+    description = fl.read()
+    description = '\n'.join([line.rstrip('\\') for line in description.splitlines()])
+    description = description.replace('`', '"')
+
+with open('dev_scripts/doom9_template.txt', encoding='utf-8') as fl:
+    template = fl.read()
+
+_help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout
+
+template = re.sub('description_placeholder', description, template)
+template = re.sub('help_placeholder', _help, template)
+
 session.headers = {
     'Accept': '*/*',
     'Accept-Language': 'hu-HU,hu;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6',
@@ -88,9 +102,9 @@ data = {
     'ajax': '1',
     'postid': '1969949',
     'wysiwyg': '0',
-    'message': 'testest2222555552',
+    'message': template,
     'reason': '',
     'postcount': '1',
 }
 
-# session.post('https://forum.doom9.org/editpost.php?do=updatepost&postid=undefined', data=data)
+session.post('https://forum.doom9.org/editpost.php?do=updatepost&postid=undefined', data=data)

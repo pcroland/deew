@@ -107,9 +107,9 @@ jobs:
 
       - name: Send Telegram notifications
         run: |
-          python notification/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
-          python notification/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python dev_scripts/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python dev_scripts/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
 
       - name: Post changelog on Doom9
         run: |
-          python notification/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
+          python dev_scripts/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
