@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-import re
 import requests
-import subprocess
 import sys
-from hashlib import md5
 
 h_url = sys.argv[1]
+h_password = sys.argv[2]
+h_totp = sys.argv[3]
 
 session = requests.session()
 
-captcha = session.get(f'https://{h_url}/login')
-
-print(captcha.text)
+session.get(f'https://{h_url}/login')

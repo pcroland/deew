@@ -102,10 +102,32 @@ jobs:
           poetry publish -u __token__ -p '${{ secrets.PYPI_TOKEN }}'
 
       - name: Send Telegram notifications
+        continue-on-error: true
         run: |
           python dev_scripts/telegram/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
           python dev_scripts/telegram/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
 
       - name: Post changelog and update OP on Doom9
+        continue-on-error: true
         run: |
           python dev_scripts/doom9/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
+
+      # - name: Post changelog and update OP on H**
+      #   continue-on-error: true
+      #   run: |
+      #     python -m pip install pyotp
+      #     python dev_scripts/h/h.py "${{ secrets.H_URL }}" "${{ secrets.H_PASSWORD }}" "${{ secrets.H_TOTP }}"
+
+      # - name: Post changelog and update OP on P**
+      #   continue-on-error: true
+      #   run: |
+      #     python dev_scripts/p/p.py "${{ secrets.P_URL }}" "${{ secrets.P_PASSWORD }}"
+
+      # - name: Post changelog and update OP on B**
+      #   continue-on-error: true
+      #   run: |
+      #     python dev_scripts/b/b.py "${{ secrets.B_URL }}" "${{ secrets.B_PASSWORD }}"
+
+      - name: Post changelog and update OP on B**
+        run: |
+          python -c "print('Workflow finished')"
