@@ -6,7 +6,7 @@ with open('changelog.md') as fl:
     version = fl.read().split('\n')[0]
     version = re.match(r'# deew ([0-9\.]+):', version)[1]
 
-print(version)
+subprocess.run(['poetry', 'version', version])
 
 with open('deew/__main__.py', 'r+') as fl:
     main = fl.read()
@@ -14,8 +14,6 @@ with open('deew/__main__.py', 'r+') as fl:
     fl.seek(0)
     fl.truncate()
     fl.write(main)
-
-subprocess.run(['poetry', 'version', version])
 
 _help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout.rstrip('\n')
 
