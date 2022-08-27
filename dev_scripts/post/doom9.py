@@ -71,7 +71,7 @@ with open('dev_scripts/readme/description_en.txt', encoding='utf-8') as fl:
     description = fl.read()
     description = description.replace('`', '"').replace('\\\n', '\n')
 
-with open('dev_scripts/doom9/doom9_template.bb', encoding='utf-8') as fl:
+with open('dev_scripts/post/doom9_template.bb', encoding='utf-8') as fl:
     template = fl.read()
 
 _help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout.rstrip('\n')
