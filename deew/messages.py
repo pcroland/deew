@@ -16,5 +16,5 @@ error_messages = {
     'bitdepth_mismatch': 'each input has to have the same bit depth:\n🤠',
     'channels'         : 'number of input channels can only be [bold yellow]1[/bold yellow], [bold yellow]2[/bold yellow], [bold yellow]6[/bold yellow] or [bold yellow]8[/bold yellow].',
     'binary_exist'     : '[bold yellow]🤠[/bold yellow] does not exist.',
-    'config_key'       : 'the following keys are missing from your config file: 🤠.\n Update your config file.'
+    'config_key'       : 'the following keys are missing from your config file: 🤠.\nUpdate your config file.'
 }
