@@ -5,6 +5,19 @@ import subprocess
 import sys
 from hashlib import md5
 
+template = '''[center][img]https://telegra.ph/file/e66f2d948015024ed148d.png[/img]
+Dolby Encoding Engine Wrapper
+
+[b]deew:[/b] [url]https://github.com/pcroland/deew[/url]
+[i](Installation instructions on the github page.)[/i][/center]
+[code]Description:
+description_placeholder
+
+Help:
+❯ deew -h
+help_placeholder[/code]
+[img]https://telegra.ph/file/efd2a1d3519bdf87fca03.gif[/img]'''
+
 with open('changelog.md', 'r') as fl:
     changelog = fl.read()
     changelog = changelog.split('\n\n# deew')[0]
@@ -70,9 +83,6 @@ session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=
 with open('dev_scripts/readme/description_en.txt', encoding='utf-8') as fl:
     description = fl.read()
     description = description.replace('`', '"').replace('\\\n', '\n')
-
-with open('dev_scripts/post/doom9_template.bb', encoding='utf-8') as fl:
-    template = fl.read()
 
 _help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout.rstrip('\n')
 
