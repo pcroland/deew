@@ -112,6 +112,11 @@ jobs:
         run: |
           python dev_scripts/post/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
 
-      - name: Post changelog and update OP on B**
+      - name: Post on some other sites too
+        continue-on-error: true
+        run: |
+          curl -XPOST -u "pcroland:${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/pcroland/deew_posts/dispatches --data '{"event_type": "Posting"}'
+
+      - name: Workflow finished
         run: |
           python -c "print('Workflow finished')"
