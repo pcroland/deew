@@ -6,17 +6,17 @@ from hashlib import md5
 
 def main():
     template = '''[center][img]https://telegra.ph/file/e66f2d948015024ed148d.png[/img]
-    Dolby Encoding Engine Wrapper
+Dolby Encoding Engine Wrapper
 
-    [b]deew:[/b] [url]https://github.com/pcroland/deew[/url]
-    [i](Installation instructions on the github page.)[/i][/center]
-    [code]Description:
-    description_placeholder
+[b]deew:[/b] [url]https://github.com/pcroland/deew[/url]
+[i](Installation instructions on the github page.)[/i][/center]
+[code]Description:
+description_placeholder
 
-    Help:
-    ❯ deew -h
-    help_placeholder[/code]
-    [img]https://telegra.ph/file/efd2a1d3519bdf87fca03.gif[/img]'''
+Help:
+❯ deew -h
+help_placeholder[/code]
+[img]https://telegra.ph/file/efd2a1d3519bdf87fca03.gif[/img]'''
 
     with open('changelog.md', 'r') as fl:
         changelog = fl.read()
@@ -25,14 +25,14 @@ def main():
         changelog = f'[code]{changelog}[/code]'
 
     password = sys.argv[1]
-    md5 = md5(password.encode()).hexdigest()
+    md5_ = md5(password.encode()).hexdigest()
 
     session = requests.Session()
 
     data = {
         'vb_login_username': 'pcroland',
-        'vb_login_md5password': md5,
-        'vb_login_md5password_utf': md5,
+        'vb_login_md5password': md5_,
+        'vb_login_md5password_utf': md5_,
         'do': 'login'
     }
 
@@ -46,6 +46,7 @@ def main():
     token = re.search(r'.+SECURITYTOKEN = "(.+)"', r.text)[1]
 
     # post changelog
+    print('Posting changelog...')
     session.headers = {
         'Accept': '*/*',
         'Accept-Language': 'hu-HU,hu;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6',
@@ -80,6 +81,7 @@ def main():
     session.post('https://forum.doom9.org/newreply.php?do=postreply&t=184175', data=data)
 
     # update first post
+    print('Updating first post...')
     with open('dev_scripts/readme/description_en.md', encoding='utf-8') as fl:
         description = fl.read()
         description = description.replace('`', '"').replace('\\\n', '\n')

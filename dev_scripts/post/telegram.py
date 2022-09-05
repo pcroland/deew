@@ -12,6 +12,7 @@ def main():
         changelog = changelog.split('\n\n# deew')[0].split('\n')[1:]
         changelog = '\n'.join(changelog).replace('`', '"').replace('\\\n', '\n')
 
+    print('Sending notification...')
     r = requests.post(
         url=f'https://api.telegram.org/bot{token}/sendMessage',
         data={

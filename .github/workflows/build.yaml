@@ -107,7 +107,7 @@ jobs:
           python dev_scripts/post/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
           python dev_scripts/post/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
 
-      - name: Post changelog and update OP on Doom9
+      - name: Post changelog and update first post on Doom9
         continue-on-error: true
         run: |
           python dev_scripts/post/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
