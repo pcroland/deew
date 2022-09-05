@@ -44,7 +44,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.9.2'
+prog_version = '2.9.3'
 
 simplens = SimpleNamespace()
 
@@ -383,12 +383,14 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
 
 
 def wpc(p: str, quote: bool=False) -> str:
-    if not simplens.is_wsl: return p
+    if not simplens.is_wsl:
+        if quote: p = f'\"{p}\"'
+        return p
     if not p.startswith('/mnt/'): print_exit('wsl_path', p)
     parts = list(filter(None, p.split('/')))[1:]
     parts[0] = parts[0].upper() + ':'
     p = '\\'.join(parts) + '\\'
-    p = f'\"{p}\"' if quote else p
+    if quote: p = f'\"{p}\"'
     return p
 
 

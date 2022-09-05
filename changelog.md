@@ -1,3 +1,7 @@
+# deew 2.9.3:
+- fixed spaces in paths
+  (`quote` parameter was not working in `wpc()` if `is_wsl` was true)
+
 # deew 2.9.2:
 - added `-ti`/`--track-index`
 - strip delay from output filenames
