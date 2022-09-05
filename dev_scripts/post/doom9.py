@@ -84,10 +84,11 @@ with open('dev_scripts/readme/description_en.txt', encoding='utf-8') as fl:
     description = fl.read()
     description = description.replace('`', '"').replace('\\\n', '\n')
 
-_help = subprocess.run(['python', '-m', 'deew'], capture_output=True, encoding='utf-8').stdout.rstrip('\n')
+with open('dev_scripts/readme/help.txt', encoding='utf-8') as fl:
+    help_ = fl.read()
 
 template = re.sub('description_placeholder', description, template)
-template = re.sub('help_placeholder', _help, template)
+template = re.sub('help_placeholder', help_, template)
 
 session.headers = {
     'Accept': '*/*',

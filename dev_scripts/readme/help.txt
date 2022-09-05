@@ -1,0 +1,51 @@
+deew 2.9.2
+
+USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
+            [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
+            [-in INSTANCES] [-k] [-mo] [-fs] [-fb] [-lb] [-la] [-np] [-pl]
+            [-cl] [-c] [-gc]
+
+FLAGS:
+  -h, --help                  show this help message.
+  -v, --version               show version.
+  -i, --input [INPUT ...]     audio file(s) or folder(s)
+  -ti, --track-index INDEX    default: 0
+                              select audio track index of input(s)
+  -o, --output DIRECTORY      default: current directory
+                              specifies output directory
+  -f, --format FORMAT         options: dd / ddp / thd
+                              default: ddp
+  -b, --bitrate BITRATE       options: run -lb/--list-bitrates
+                              default: run -c/--config
+  -dm, --downmix CHANNELS     options: 1 / 2 / 6
+                              specifies downmix, only works for DD/DDP
+                              DD will be automatically downmixed to 5.1 in case of a 7.1 source
+  -d, --delay DELAY           examples: -5.1ms, +1,52s, -24@pal, +10@24000/1001
+                              default: 0ms or parsed from filename
+                              specifies delay as ms, s or frame@FPS
+                              FPS can be a number, division or ntsc / pal
+                              you have to specify negative values as -d=-0ms
+  -r, --drc DRC               options: film_light / film_standard / music_light / music_standard / speech
+                              default: music_light (this is the closest to the missing none preset)
+                              specifies drc profile
+  -dn, --dialnorm DIALNORM    options: between -31 and 0 (in case of 0 DEE's measurement will be used)
+                              default: 0
+                              applied dialnorm value between
+  -in, --instances INSTANCES  examples: 1, 4, 50%
+                              default: 50%
+                              specifies how many encodes can run at the same time
+                              50% means 4 on a cpu with 8 threads
+                              one DEE can use 2 threads so 50% can utilize all threads
+                              (this option overrides the config's number)
+  -k, --keeptemp              keep temp files
+  -mo, --measure-only         kills DEE when the dialnorm gets written to the progress bar
+                              this option overrides format with ddp
+  -fs, --force-standard       force standard profile for 7.1 DDP encoding (384-1024 kbps)
+  -fb, --force-bluray         force bluray profile for 7.1 DDP encoding (768-1664 kbps)
+  -lb, --list-bitrates        list bitrates that DEE can do for DD and DDP encoding
+  -la, --long-argument        print ffmpeg and DEE arguments for each input
+  -np, --no-prompt            disables prompt
+  -pl, --print-logos          show all logo variants you can set in the config
+  -cl, --changelog            show changelog
+  -c, --config                show config and config location(s)
+  -gc, --generate-config      generate a new config
