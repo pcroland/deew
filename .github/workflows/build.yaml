@@ -115,7 +115,7 @@ jobs:
       - name: Post on some other sites too
         continue-on-error: true
         run: |
-          curl -XPOST -u "pcroland:${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/pcroland/deew_posts/dispatches --data '{"event_type": "Posting"}'
+          curl -XPOST -u "pcroland:${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/pcroland/deew_posts/dispatches --data '{\"event_type\": \"Posting\"}'
 
       - name: Workflow finished
         run: |
