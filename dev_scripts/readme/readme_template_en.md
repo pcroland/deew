@@ -20,6 +20,7 @@ description_placeholder
   - if you use WSL1 use the Windows version for better performance
   - if you use the Windows version of DEE under Linux (and not from WSL) / macOS install `wine-binfmt`
 - place your `license.lic` file next to the DEE binary (`dee.exe` under Windows, `dee` under Linux/macOS)
+- if it DEE throws `Failed to load library "...dll".` errors when you run deew install [VisualCppRedist AIO](https://github.com/abbodi1406/vcredist/releases)
 
 # deew installation
 ### with standalone build (Windows 8-11/Linux):

@@ -20,6 +20,7 @@ description_placeholder
   - ha WSL1-et használsz, használd a Windows-verziót a jobb teljesítményért
   - ha a Windows-verziót használod Linux (és nem WSL) vagy macOS alól, telepítsd fel a `wine-binfmt`-t
 - másold a `license.lic` fájlod a DEE binárisod mellé (Windowson `dee.exe`, Linux/maxOS-en `dee`)
+- ha DEE `Failed to load library "...dll".` hibákat dob deew használatakor, telepítsd fel a [VisualCppRedist AIO](https://github.com/abbodi1406/vcredist/releases)-t
 
 # deew telepítése
 ### standalone buildet használva (Windows 8-11/Linux):
