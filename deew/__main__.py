@@ -574,11 +574,14 @@ def main() -> None:
 
     if not config['temp_path']:
         if simplens.is_wsl:
-            config['temp_path'] = rwpc(subprocess.run(['powershell.exe', "(gi $env:TEMP).fullname"], capture_output=True, encoding='utf-8').stdout.strip())
+            config['temp_path'] = os.path.join(
+                rwpc(subprocess.run(['powershell.exe', "(gi $env:TEMP).fullname"], capture_output=True, encoding='utf-8').stdout.strip()),
+                'deew',
+            )
         else:
             config['temp_path'] = os.path.join(script_path, 'temp') if standalone else tempfile.gettempdir()
             if config['temp_path'] == '/tmp':
-                config['temp_path'] = '/var/tmp'
+                config['temp_path'] = '/var/tmp/deew'
     config['temp_path'] = os.path.abspath(config['temp_path'])
     createdir(config['temp_path'])
 
