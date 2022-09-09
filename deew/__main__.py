@@ -384,7 +384,7 @@ def find_closest_allowed(value: int, allowed_values: list[int]) -> int:
 
 
 def wpc(p: str, quote: bool=False) -> str:
-    if not simplens.is_wsl:
+    if not simplens.is_nonnative_exe:
         if quote: p = f'\"{p}\"'
         return p
     if not p.startswith('/mnt/'): print_exit('wsl_path', p)
@@ -571,10 +571,10 @@ def main() -> None:
 
     with open(shutil.which(config['dee_path']), 'rb') as fd:
         simplens.dee_is_exe = fd.read(2) == b'\x4d\x5a'
-    simplens.is_wsl = simplens.dee_is_exe and platform.system() != 'Windows'
+    simplens.is_nonnative_exe = simplens.dee_is_exe and platform.system() != 'Windows'
 
     if not config['temp_path']:
-        if simplens.is_wsl:
+        if simplens.is_nonnative_exe:
             config['temp_path'] = rwpc(ntpath.join(
                 subprocess.run(['powershell.exe', "(gi $env:TEMP).fullname"], capture_output=True, encoding='utf-8').stdout.strip(),
                 'deew',
@@ -836,7 +836,7 @@ def main() -> None:
         channel_swap_args = []
         channel_swap_args_print = ''
 
-    if simplens.is_wsl:
+    if simplens.is_nonnative_exe:
         dee_xml_input_base = wpc(config['temp_path'])
     else:
         dee_xml_input_base = config['temp_path'] if config['temp_path'].endswith('/') else f'{config["temp_path"]}/'
