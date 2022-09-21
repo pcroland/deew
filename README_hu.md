@@ -80,7 +80,7 @@ Ha nem szeretnéd a teljes elérési utat használni a binárisokhoz a configban
 ### Windows:
 - nyisd meg `cmd.exe`-t adminként
 - futtas egy `setx /m PATH "%PATH%;[location]"` parancsot minden mappával, amiben binary van\
-  *(a `[location]`-t cseréld le az elérési útra)*
+  *(a* `[location]`*-t cseréld le az elérési útra)*
 - például:
 ```bat
 setx /m PATH "%PATH%;C:\bin\dee"
@@ -88,7 +88,7 @@ setx /m PATH "%PATH%;C:\bin\ffmpeg"
 ```
 ### Linux/macOS:
 - adj hozzá egy `PATH="[location]:$PATH"` sort a `~/.bashrc` vagy `~/.zshrc` fájlodhoz, minden mappával, amiben binary van\
-  *(a `[location]`-t cseréld le az elérési útra)*
+  *(a* `[location]`*-t cseréld le az elérési útra)*
 - például:
 ```sh
 PATH="/usr/local/bin/dee:$PATH"

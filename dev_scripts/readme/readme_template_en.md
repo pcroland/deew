@@ -42,7 +42,7 @@ If you don't want to use full paths for the binaries in your config or when you 
 ### Windows:
 - open `cmd.exe` as administrator
 - run a `setx /m PATH "%PATH%;[location]"` command for each path that contains binaries\
-  *(replace `[location]` with the path)*
+  *(replace* `[location]` *with the path)*
 - for example:
 ```bat
 setx /m PATH "%PATH%;C:\bin\dee"
@@ -50,7 +50,7 @@ setx /m PATH "%PATH%;C:\bin\ffmpeg"
 ```
 ### Linux/macOS:
 - add a `PATH="[location]:$PATH"` line in your `~/.bashrc` or `~/.zshrc` file for each path that contains a binary\
-  *(replace `[location]` with the path)*
+  *(replace* `[location]` *with the path)*
 - for example:
 ```sh
 PATH="/usr/local/bin/dee:$PATH"
