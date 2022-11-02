@@ -1,3 +1,6 @@
+# deew 2.9.4:
+- allow new python version to be used
+
 # deew 2.9.3:
 - fixed spaces in paths
   (`quote` parameter was not working in `wpc()` if `is_wsl` was false)
