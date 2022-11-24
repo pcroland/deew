@@ -1,6 +1,6 @@
 # deew 2.9.5:
 - remove `-map 0:a:index` from `ffmpeg_args` if `-filter_complex` is present
-  somewhere in the command, so new ffmpeg versions can be used.
+  somewhere in the command, so new ffmpeg versions can be used
 
 # deew 2.9.4:
 - allow new python version to be used

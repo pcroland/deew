@@ -10,7 +10,7 @@ description_placeholder
 
 # Requirements
 - Python *(you don't need it if you use a standalone build of deew)*
-- ffmpeg 5.1.2 or older *(they messed up something in w64/rf64 and new versions can't be used currently for DEE)*
+- ffmpeg
 - ffprobe
 - Dolby Encoding Engine
 
