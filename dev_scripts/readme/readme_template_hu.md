@@ -10,7 +10,7 @@ description_placeholder
 
 # Követelmények
 - Python *(nincs rá szükséged, ha a standalone buildet használod)*
-- ffmpeg
+- ffmpeg 5.1.2 vagy régebbi *(valamit elrontottak w64/rf64-ben és az új verziókat nem lehet haszálni DEE-hez)*
 - ffprobe
 - Dolby Encoding Engine
 
