@@ -45,7 +45,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '2.9.4'
+prog_version = '2.9.5'
 
 simplens = SimpleNamespace()
 
@@ -844,6 +844,13 @@ def main() -> None:
     xml_validation = [] if simplens.dee_is_exe else ['--disable-xml-validation']
     xml_validation_print = '' if simplens.dee_is_exe else ' --disable-xml-validation'
 
+    if '-filter_complex' in resample_args or '-filter_complex' in channel_swap_args:
+        map_args = []
+        map_args_print = ''
+    else:
+        map_args = ['-map', f'0:a:{trackindex}']
+        map_args_print = '-map [bold color(231)]0:a[/bold color(231)]' + f'[bold color(231)]:{trackindex}[/bold color(231)] '
+
     settings = []
     ffmpeg_print_list = []
     dee_print_list = []
@@ -856,7 +863,7 @@ def main() -> None:
             '-y',
             '-drc_scale', '0',
             '-i', filelist[i],
-            '-map', f'0:a:{trackindex}',
+            *(map_args),
             '-c', f'pcm_s{bit_depth}le',
             *(channel_swap_args), *(resample_args),
             '-rf64', 'always',
@@ -874,7 +881,7 @@ def main() -> None:
 -y \
 -drc_scale [bold color(231)]0[/bold color(231)] \
 -i [bold green]{filelist[i]}[/bold green] \
--map [bold color(231)]0:a[/bold color(231)]' + f'[bold color(231)]:{trackindex}[/bold color(231)] \
+{map_args_print}\
 -c [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] \
 {channel_swap_args_print}{resample_args_print}\
 -rf64 [bold color(231)]always[/bold color(231)] \
@@ -884,7 +891,7 @@ def main() -> None:
 -y \
 -drc_scale [bold color(231)]0[/bold color(231)] \
 -i [bold green]\[input][/bold green] \
--map [bold color(231)]0:a[/bold color(231)]' + f'[bold color(231)]:{trackindex}[/bold color(231)] \
+{map_args_print}\
 -c [bold color(231)]pcm_s{bit_depth}le[/bold color(231)] \
 {channel_swap_args_print}{resample_args_print}\
 -rf64 [bold color(231)]always[/bold color(231)] \
