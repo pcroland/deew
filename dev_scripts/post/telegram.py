@@ -19,7 +19,7 @@ def main():
             'chat_id': to,
             'parse_mode': 'html',
             'disable_web_page_preview': 'true',
-            'text': f'New release!\n<a href="https://github.com/pcroland/deew/releases/tag/{version}">deew {version}</a>:\n<pre>{changelog}</pre>'
+            'text': f'<a href="https://github.com/pcroland/deew/releases/tag/{version}">{version}</a> is out!\n\nChangelog:\n<pre>{changelog}</pre>'
         }
     )
     r.raise_for_status()
