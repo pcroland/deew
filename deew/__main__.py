@@ -318,8 +318,8 @@ def parse_version_string(inp: list) -> str:
         v = subprocess.run(inp, capture_output=True, encoding='utf-8').stdout
         v = v.split('\n')[0].split(' ')[2]
         v = v.replace(',', '').replace('-static', '')
-        if len(v) > 20:
-            v = f'{v[0:17]}...'
+        if len(v) > 30:
+            v = f'{v[0:27]}...'
     except Exception:
         v = "[red]couldn't parse"
     return v
