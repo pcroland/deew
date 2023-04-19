@@ -31,7 +31,7 @@
 - támogatja a WSL útvonalak konvertálását a DEE Windows verziójához (lásd config)
 - hibás bitráta megadása esetén kiválasztja a legközelebbi megengedettet
 - automatikus mintavételezésiráta-konvertálás ffmpeg soxr resamplerét használva nem támogatott mintavételezési ráta esetén
-  - DD/DDP esetén a mintavételezési rátát 48 kHz-re konvertálja
+  - DD/DDP/AC4 esetén a mintavételezési rátát 48 kHz-re konvertálja
   - TrueHD esetén a mintavételezési rátát 48 kHz-re konvertálja, ha a forrásé kisebb mint 72 kHz, fölötte 96 kHz-re
 - automatikus csatornafelcserélés 7.1-es forrásoknál (DEE valamiért megcseréli az Ls, Rs csatornákat az Lrs, Rrs-sel)
 - automatikus dialnorm beállítás
@@ -112,7 +112,7 @@ FLAGS:
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
-  -f, --format FORMAT         options: dd / ddp / thd
+  -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
