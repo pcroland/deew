@@ -42,7 +42,7 @@ sys.path.append('.')
 from deew.bitrates import allowed_bitrates
 from deew.logos import logos
 from deew.messages import error_messages
-from deew.xml_base import xml_dd_ddp_base, xml_thd_base
+from deew.xml_base import xml_dd_ddp_base, xml_thd_base, xml_ac4_base
 
 prog_name = 'deew'
 prog_version = '2.9.5'
@@ -105,7 +105,7 @@ parser.add_argument('-f', '--format',
                     type=str,
                     default='ddp',
                     help=
-'''[underline magenta]options:[/underline magenta] [bold color(231)]dd[/bold color(231)] / [bold color(231)]ddp[/bold color(231)] / [bold color(231)]thd[/bold color(231)]
+'''[underline magenta]options:[/underline magenta] [bold color(231)]dd[/bold color(231)] / [bold color(231)]ddp[/bold color(231)] / [bold color(231)]ac4[/bold color(231)] / [bold color(231)]thd[/bold color(231)]
 [underline magenta]default:[/underline magenta] [bold color(231)]ddp[/bold color(231)]''')
 parser.add_argument('-b', '--bitrate',
                     type=int,
@@ -266,6 +266,7 @@ max_instances = '50%'
     ddp_2_0 = 256
     ddp_5_1 = 1024
     ddp_7_1 = 1536
+    ac4_2_0 = 64
 
 # You can toggle what sections you would like to see in the encoding summary
 [summary_sections]
@@ -608,10 +609,10 @@ def main() -> None:
     args.dialnorm = clamp(args.dialnorm, -31, 0)
     trackindex = max(0, args.track_index)
 
-    if aformat not in ['dd', 'ddp', 'thd']: print_exit('format')
+    if aformat not in ['dd', 'ddp', 'thd', 'ac4']: print_exit('format')
     if downmix and downmix not in [1, 2, 6]: print_exit('downmix')
     if downmix and aformat == 'thd': print_exit('thd_downmix')
-    if args.drc not in ['film_light', 'film_standard', 'music_light', 'music_standard', 'speech']: print_exit('drc')
+    if args.drc not in ['film_light', 'film_standard', 'music_light', 'music_standard', 'speech', 'none']: print_exit('drc')
     if not simplens.dee_is_exe and platform.system() == 'Linux' and aformat == 'thd': print_exit('linux_thd')
     if args.measure_only: aformat = 'ddp'
 
@@ -660,6 +661,7 @@ def main() -> None:
     if channels not in [1, 2, 6, 8]: print_exit('channels')
     if downmix and downmix >= channels: print_exit('downmix_mismatch')
     if not downmix and aformat == 'dd' and channels == 8: downmix = 6
+    if not downmix and aformat == 'ac4' and channels <= 8: downmix = 2
 
     downmix_config = 'off'
     if downmix:
@@ -672,6 +674,8 @@ def main() -> None:
         if args.no_prompt:
             print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
+        elif aformat == 'ac4':
+            print('[bold yellow]Warn:[/bold yellow] The encoder can only encode [bold cyan]stereo immersive[/bold cyan] channels.')
         else:
             continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
@@ -694,7 +698,7 @@ def main() -> None:
         elif outchannels == 6:
             if not bitrate: bitrate = config['default_bitrates']['dd_5_1']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['dd_51'])
-    elif aformat == 'ddp':
+    if aformat == 'ddp':
         if outchannels == 1:
             if not bitrate: bitrate = config['default_bitrates']['ddp_1_0']
             bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_10'])
@@ -712,6 +716,10 @@ def main() -> None:
                 bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71_bluray'])
             else:
                 bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71_combined'])
+    elif aformat == 'ac4':
+        if outchannels == 2:
+            if not bitrate: bitrate = config['default_bitrates']['ac4_2_0']
+            bitrate = find_closest_allowed(bitrate, allowed_bitrates['ac4_20'])
 
     if args.output:
         createdir(os.path.abspath(args.output))
@@ -739,6 +747,15 @@ def main() -> None:
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['drc']['line_mode_drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['drc']['rf_mode_drc_profile'] = args.drc
         xml_base['job_config']['filter']['audio']['pcm_to_ddp']['custom_dialnorm'] = args.dialnorm
+    elif aformat in ['ac4']:
+        xml_base = xmltodict.parse(xml_ac4_base)
+        xml_base['job_config']['output']['ac4']['storage']['local']['path'] = wpc(output, quote=True)
+        xml_base['job_config']['filter']['audio']['encode_to_ims_ac4']['data_rate'] = bitrate
+        xml_base['job_config']['filter']['audio']['encode_to_ims_ac4']['drc']['ddp_drc_profile'] = args.drc
+        xml_base['job_config']['filter']['audio']['encode_to_ims_ac4']['drc']['flat_panel_drc_profile'] = args.drc
+        xml_base['job_config']['filter']['audio']['encode_to_ims_ac4']['drc']['home_theatre_drc_profile'] = args.drc
+        xml_base['job_config']['filter']['audio']['encode_to_ims_ac4']['drc']['portable_hp_drc_profile'] = args.drc
+        xml_base['job_config']['filter']['audio']['encode_to_ims_ac4']['drc']['portable_spkr_drc_profile'] = args.drc
     elif aformat == 'thd':
         xml_base = xmltodict.parse(xml_thd_base)
         xml_base['job_config']['output']['mlp']['storage']['local']['path'] = wpc(output, quote=True)
@@ -800,7 +817,7 @@ def main() -> None:
         print()
 
     resample_value = ''
-    if aformat in ['dd', 'ddp'] and samplerate != 48000:
+    if aformat in ['dd', 'ddp', 'ac4'] and samplerate != 48000:
         bit_depth = 32
         resample_value = '48000'
     elif aformat == 'thd' and samplerate not in [48000, 96000]:
@@ -933,12 +950,17 @@ def main() -> None:
             xml['job_config']['output']['ec3']['file_name'] = basename(filelist[i], 'ac3', quote=True, stripdelay=True)
             xml['job_config']['output']['ac3'] = xml['job_config']['output']['ec3']
             del xml['job_config']['output']['ec3']
+        elif aformat == 'ac4':
+            xml['job_config']['output']['ac4']['file_name'] = basename(filelist[i], 'ac4', quote=True, stripdelay=True)
         else:
             xml['job_config']['output']['mlp']['file_name'] = basename(filelist[i], 'thd', quote=True, stripdelay=True)
 
         if aformat in ['dd', 'ddp']:
             delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=True)
             xml['job_config']['filter']['audio']['pcm_to_ddp'][delay_mode] = delay_xml
+        elif aformat in ['ac4']:
+            delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=True)
+            xml['job_config']['filter']['audio']['encode_to_ims_ac4'][delay_mode] = delay_xml
         else:
             delay_print, delay_xml, delay_mode = convert_delay_to_ms(delay, compensate=False)
             xml['job_config']['filter']['audio']['encode_to_dthd'][delay_mode] = delay_xml

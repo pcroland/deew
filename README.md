@@ -31,7 +31,7 @@
 - supports WSL path conversion for the Windows version of DEE (see config)
 - in case of an invalid bitrate it will pick the closest allowed one
 - automatic sample rate conversion using ffmpeg's soxr resampler in case of an unsupported sample rate
-  - for DD/DDP unsupported rates will be converted to 48 kHz
+  - for DD/DDP/AC4 unsupported rates will be converted to 48 kHz
   - for TrueHD unsupported rates will be converted to 48 kHz if source sample rate is lower than 72 kHz, otherwise will be converted to 96 kHz
 - automatic channel swapping for 7.1 sources (DEE swaps Ls Rs with Lrs Rrs for some reason)
 - automatic dialnorm setting
@@ -112,7 +112,7 @@ FLAGS:
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
-  -f, --format FORMAT         options: dd / ddp / thd
+  -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
