@@ -661,7 +661,8 @@ def main() -> None:
     if channels not in [1, 2, 6, 8]: print_exit('channels')
     if downmix and downmix >= channels: print_exit('downmix_mismatch')
     if not downmix and aformat == 'dd' and channels == 8: downmix = 6
-    if not downmix and aformat == 'ac4' and channels <= 8: downmix = 2
+    if aformat == 'ac4' and channels != 6: print_exit('ac4_input_channels')
+    if aformat == 'ac4': downmix = 2
 
     downmix_config = 'off'
     if downmix:
@@ -670,7 +671,7 @@ def main() -> None:
     else:
         outchannels = channels
 
-    if outchannels in [1, 2]:
+    if outchannels in [1, 2] and aformat != 'ac4':
         if args.no_prompt:
             print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
@@ -715,9 +716,8 @@ def main() -> None:
             else:
                 bitrate = find_closest_allowed(bitrate, allowed_bitrates['ddp_71_combined'])
     elif aformat == 'ac4':
-        if outchannels == 2:
-            if not bitrate: bitrate = config['default_bitrates']['ac4_2_0']
-            bitrate = find_closest_allowed(bitrate, allowed_bitrates['ac4_20'])
+        if not bitrate: bitrate = config['default_bitrates']['ac4_2_0']
+        bitrate = find_closest_allowed(bitrate, allowed_bitrates['ac4_20'])
 
     if args.output:
         createdir(os.path.abspath(args.output))
