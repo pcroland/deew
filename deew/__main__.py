@@ -663,6 +663,7 @@ def main() -> None:
     if not downmix and aformat == 'dd' and channels == 8: downmix = 6
     if aformat == 'ac4' and channels != 6: print_exit('ac4_input_channels')
     if aformat == 'ac4': downmix = 2
+    if aformat == 'thd' and channels == 1: print_exit('thd_mono_input')
 
     downmix_config = 'off'
     if downmix:
