@@ -1,5 +1,5 @@
 # deew 3.0.0:
-- added AC4 immersive stere support by MartinEesmaa
+- added AC4 immersive stereo support by MartinEesmaa
   - add `dee_audio_filter_ac4_ims.dll` and `Object_0000.exe` from the AC4
     zip to your DEE installation path and add `ac4_2_0 = 320` under the
     `[default_bitrates]` section in your config file.
