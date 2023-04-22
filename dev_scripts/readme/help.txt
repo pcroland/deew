@@ -1,4 +1,4 @@
-deew 2.9.5
+deew 3.0.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
             [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
@@ -13,7 +13,7 @@ FLAGS:
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
-  -f, --format FORMAT         options: dd / ddp / thd
+  -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
