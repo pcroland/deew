@@ -674,8 +674,6 @@ def main() -> None:
         if args.no_prompt:
             print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
-        elif aformat == 'ac4':
-            print('[bold yellow]Warn:[/bold yellow] The encoder can only encode [bold cyan]stereo immersive[/bold cyan] channels.')
         else:
             continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
