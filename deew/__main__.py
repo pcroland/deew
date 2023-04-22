@@ -798,7 +798,7 @@ def main() -> None:
         if config['summary_sections']['output_info']:
             summary.add_row('[bold yellow]Output')
             summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
-            summary.add_row('Channels', channel_number_to_name(outchannels))
+            summary.add_row('Channels', 'immersive stereo' if aformat == 'ac4' else channel_number_to_name(outchannels))
             summary.add_row('Bitrate', 'N/A' if aformat == 'thd' else f'{str(bitrate)} kbps')
             summary.add_row('Dialnorm', 'auto (0)' if args.dialnorm == 0 else f'{str(args.dialnorm)} dB', end_section=True)
 
