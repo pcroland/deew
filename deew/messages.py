@@ -3,7 +3,7 @@ error_messages = {
     'delay'             : 'unsupported delay value.',
     'wsl_path'          : 'WSL path conversion doesn\'t work with [bold yellow]🤠[/bold yellow].',
     'create_dir'        : 'failed to create [bold yellow]🤠[/bold yellow].',
-    'format'            : '[bold yellow]-f[/bold yellow]/[bold yellow]--format[/bold yellow] can only be [bold yellow]dd[/bold yellow], [bold yellow]ddp[/bold yellow] or [bold yellow]thd[/bold yellow].',
+    'format'            : '[bold yellow]-f[/bold yellow]/[bold yellow]--format[/bold yellow] can only be [bold yellow]dd[/bold yellow], [bold yellow]ddp[/bold yellow], [bold yellow]ac4[/bold yellow] or [bold yellow]thd[/bold yellow].',
     'downmix'           : '[bold yellow]-dm[/bold yellow]/[bold yellow]--downmix[/bold yellow] can only be [bold yellow]1[/bold yellow], [bold yellow]2[/bold yellow] or [bold yellow]6[/bold yellow].',
     'downmix_mismatch'  : 'downmix value has to be lower than the number of input channels.',
     'thd_downmix'       : '[bold yellow]-m[/bold yellow]/[bold yellow]--mix[/bold yellow] can only be used for [bold yellow]DD[/bold yellow]/[bold yellow]DDP[/bold yellow] encoding.',
