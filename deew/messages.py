@@ -7,7 +7,7 @@ error_messages = {
     'downmix'           : '[bold yellow]-dm[/bold yellow]/[bold yellow]--downmix[/bold yellow] can only be [bold yellow]1[/bold yellow], [bold yellow]2[/bold yellow] or [bold yellow]6[/bold yellow].',
     'downmix_mismatch'  : 'downmix value has to be lower than the number of input channels.',
     'thd_downmix'       : '[bold yellow]-m[/bold yellow]/[bold yellow]--mix[/bold yellow] can only be used for [bold yellow]DD[/bold yellow]/[bold yellow]DDP[/bold yellow] encoding.',
-    'thd_mono_input'    : 'input channels for TrueHD encoding can only be [bold yellow]2[/bold yellow]/[bold yellow]6[/bold yellow]/[bold yellow]8[/bold yellow].',
+    'thd_mono_input'    : 'input channels for TrueHD encoding can only be [bold yellow]2[/bold yellow]/[bold yellow]6[/bold yellow]/[bold yellow]8[/bold yellow]. ',
     'drc'               : 'allowed DRC values: [bold yellow]film_light[/bold yellow], [bold yellow]film_standard[/bold yellow], [bold yellow]music_light[/bold yellow], [bold yellow]music_standard[/bold yellow], [bold yellow]speech[/bold yellow].',
     'linux_thd'         : 'Linux version of DEE does not support TrueHD encoding.',
     'path'              : 'path [bold yellow]🤠[/bold yellow] does not exist.',

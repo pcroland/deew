@@ -672,7 +672,7 @@ def main() -> None:
     else:
         outchannels = channels
 
-    if outchannels in [1, 2] and aformat != 'ac4':
+    if outchannels in [1, 2] and aformat in ['dd', 'ddp']:
         if args.no_prompt:
             print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
@@ -680,6 +680,16 @@ def main() -> None:
             continue_enc = Confirm.ask('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
             if not continue_enc: sys.exit(1)
+
+    if outchannels == 2 and aformat == 'thd':
+        if args.no_prompt:
+            print('Consider using [bold cyan]FLAC[/bold cyan] for lossless \
+[bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
+        else:
+            continue_enc = Confirm.ask('Consider using [bold cyan]FLAC[/bold cyan] for lossless \
+[bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
+            if not continue_enc: sys.exit(1)
+
 
     if args.dialnorm != 0:
         if args.no_prompt:
