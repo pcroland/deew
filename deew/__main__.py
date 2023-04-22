@@ -266,7 +266,7 @@ max_instances = '50%'
     ddp_2_0 = 256
     ddp_5_1 = 1024
     ddp_7_1 = 1536
-    ac4_2_0 = 64
+    ac4_2_0 = 320
 
 # You can toggle what sections you would like to see in the encoding summary
 [summary_sections]
