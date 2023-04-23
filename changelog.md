@@ -1,3 +1,7 @@
+# deew 3.0.1:
+- added ac4 to format error message
+- fixed `allowed_bitrates` in `ac4_20`
+
 # deew 3.0.0:
 - added AC4 immersive stereo support by MartinEesmaa
   - add `dee_audio_filter_ac4_ims.dll` and `Object_0000.exe` from the AC4

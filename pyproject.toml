@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "deew"
-version = "3.0.0"
+version = "3.0.1"
 readme = 'README.md'
 description = "Dolby Encoding Engine Wrapper"
 authors = ["pcroland <pcroland@protonmail.ch>"]
