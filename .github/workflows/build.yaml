@@ -9,6 +9,8 @@ jobs:
   linux-build:
     name: Linux
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.fetch.outputs.RELEASE_VERSION }}
 
     steps:
       - name: Checkout source
@@ -17,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Set up libraries
         run: |
@@ -25,35 +27,29 @@ jobs:
           python -m pip install .
 
       - name: Build
-        run: |
-          pyinstaller -F __main__.py -n deew --icon logo/icon.ico
+        run: pyinstaller -F __main__.py -n deew --icon logo/icon.ico
 
       - name: Create changelog file
+        run: python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> changelog.txt
+
+      - name: Fetch changelog and version
         run: |
           python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> changelog.txt
+          version=$(python -c "print(open('changelog.md', 'r').read().split('\n')[0].split(' ')[2].replace(':', ''))")
+          changelog=$(cat changelog.txt)
+          echo -e "Version: $version\n\nChangelog:\n$changelog"
+          echo "RELEASE_VERSION=$version" >> "$GITHUB_OUTPUT"
 
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Move dist/deew to deew_linux
+        run: mv dist/deew deew_linux
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          token: ${{ secrets.GH_TOKEN }}
+          tag_name: ${{ steps.fetch.outputs.RELEASE_VERSION }}
           body_path: changelog.txt
-          draft: false
-          prerelease: false
-
-      - name: Upload release to GitHub
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/deew
-          asset_name: deew_linux
-          asset_content_type: application/zip
+          files: deew_linux
 
   windows-build:
     name: Windows
@@ -67,7 +63,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Set up libraries
         run: |
@@ -79,38 +75,30 @@ jobs:
         run: |
           pyinstaller -F __main__.py -n deew --icon logo/icon.ico
 
-      - name: Get latest release info
-        id: latest_release_info
-        uses: jossef/action-latest-release-info@v1.1.0
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Move dist/deew.exe to deew.exe
+        run: mv dist/deew.exe deew.exe
 
-      - name: Upload release to GitHub
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload release
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ steps.latest_release_info.outputs.upload_url }}
-          asset_path: dist/deew.exe
-          asset_name: deew.exe
-          asset_content_type: application/zip
+          token: ${{ secrets.GH_TOKEN }}
+          tag_name: ${{ needs.linux-build.outputs.version }}
+          files: deew.exe
 
       - name: Upload release to PyPI
         run: |
           poetry build
-          poetry publish -u __token__ -p '${{ secrets.PYPI_TOKEN }}'
+          poetry publish -u __token__ -p "${{ secrets.PYPI_TOKEN }}""
 
       - name: Send Telegram notifications
         continue-on-error: true
         run: |
-          python dev_scripts/post/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
-          python dev_scripts/post/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}" "${{ steps.latest_release_info.outputs.tag_name }}"
+          python dev_scripts/post/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH1 }}"
+          python dev_scripts/post/telegram.py "${{ secrets.TG_TOKEN }}" "${{ secrets.TG_CH2 }}"
 
       - name: Post changelog and update first post on Doom9
         continue-on-error: true
-        run: |
-          python dev_scripts/post/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
+        run: python dev_scripts/post/doom9.py "${{ secrets.DOOM9_PASSWORD }}"
 
       - name: Post on some other sites too
         continue-on-error: true
@@ -118,5 +106,4 @@ jobs:
           curl -XPOST -u "pcroland:${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/pcroland/deew_posts/dispatches --data '{\"event_type\": \"Posting\"}'
 
       - name: Workflow finished
-        run: |
-          python -c "print('Workflow finished')"
+        run: echo "Workflow finished."
