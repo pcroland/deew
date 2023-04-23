@@ -1,9 +1,6 @@
 name: Build and publish
 
-on:
-  push:
-    tags:
-      - "*"
+on: repository_dispatch
 
 jobs:
   linux-build:
