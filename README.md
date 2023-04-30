@@ -159,8 +159,8 @@ encode DDP@768
 `deew -dm 2 -f dd -b 192 -i *.ec3`\
 encode DD@192 with stereo downmixing
 
-`deew -f dd -b 448 -t 4 -i S01`\
-encode DD@448 using 4 threads (input is a folder)
+`deew -f dd -b 448 -in 4 -i S01`\
+encode DD@448 using 4 instances (input is a folder)
 
 `deew -f thd -i *w64`\
 encode TrueHD
