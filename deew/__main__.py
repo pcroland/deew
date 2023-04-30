@@ -325,6 +325,7 @@ def parse_version_string(inp: list) -> str:
         v = "[red]couldn't parse"
     return v
 
+
 def convert_delay_to_ms(inp, compensate):
     if not inp.startswith(('-', '+')): print_exit('delay')
     inp = inp.replace(',', '.')
@@ -689,7 +690,6 @@ def main() -> None:
             continue_enc = Confirm.ask('Consider using [bold cyan]FLAC[/bold cyan] for lossless \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding, are you sure you want to use [bold cyan]DEE[/bold cyan]?')
             if not continue_enc: sys.exit(1)
-
 
     if args.dialnorm != 0:
         if args.no_prompt:
