@@ -19,8 +19,8 @@
 
 ## DDP encode-olás még sosem volt ilyen egyszerű!
 
-![img](https://telegra.ph/file/efd2a1d3519bdf87fca03.gif)
-<!---https://i.kek.sh/Mk3qQ0QGWUj.gif--->
+![img](https://telegra.ph/file/4e75ac457c8f122dfc9a9.gif)
+<!---https://i.kek.sh/f2Iv7nZ2ucf.gif--->
 
 # Leírás
 - kezeli a Dolby XML input baromságait a háttérben, rendes CLI felületet adva
