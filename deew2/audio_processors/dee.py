@@ -1,6 +1,6 @@
 from subprocess import Popen, PIPE, STDOUT
-from deeaw2.utils.utils import PrintSameLine
-from deeaw2.enums.shared import ProgressMode
+from deew2.utils.utils import PrintSameLine
+from deew2.enums.shared import ProgressMode
 import re
 
 

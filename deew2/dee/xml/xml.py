@@ -2,11 +2,11 @@ import xmltodict
 from pathlib import Path
 from typing import Union
 
-from deeaw2.audio_encoders.dee.xml.dd_ddp_base_xml import xml_audio_base_ddp
-from deeaw2.enums.shared import DeeFPS, DeeDelay, DeeDRC
-from deeaw2.enums.dd import DolbyDigitalChannels
-from deeaw2.enums.ddp import DolbyDigitalPlusChannels
-from deeaw2.exceptions import XMLFileNotFoundError
+from deew2.dee.xml.dd_ddp_base_xml import xml_audio_base_ddp
+from deew2.enums.shared import DeeFPS, DeeDelay, DeeDRC
+from deew2.enums.dd import DolbyDigitalChannels
+from deew2.enums.ddp import DolbyDigitalPlusChannels
+from deew2.exceptions import XMLFileNotFoundError
 
 
 class DeeXMLGenerator:

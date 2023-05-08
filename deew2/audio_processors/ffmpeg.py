@@ -1,8 +1,8 @@
 from typing import Union
 from subprocess import Popen, PIPE, STDOUT
 import re
-from deeaw2.utils.utils import PrintSameLine
-from deeaw2.enums.shared import ProgressMode
+from deew2.utils.utils import PrintSameLine
+from deew2.enums.shared import ProgressMode
 
 
 # TODO Modify this to work with more than just DEE, for now hard coded to DEE's uses

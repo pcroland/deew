@@ -1,7 +1,7 @@
 import re
 from datetime import timedelta
-from deeaw2.exceptions import InvalidDelayError
-from deeaw2.enums.shared import DeeDelay, DeeDelayModes
+from deew2.exceptions import InvalidDelayError
+from deew2.enums.shared import DeeDelay, DeeDelayModes
 
 
 class DelayGenerator:

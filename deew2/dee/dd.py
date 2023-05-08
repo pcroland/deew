@@ -2,16 +2,16 @@ from pathlib import Path
 import tempfile
 import shutil
 
-from deeaw2.audio_encoders.dee.base import BaseDeeAudioEncoder
-from deeaw2.audio_encoders.dee.bitrates import dee_dd_bitrates
-from deeaw2.audio_encoders.dee.xml.xml import DeeXMLGenerator
-from deeaw2.audio_processors.dee import ProcessDEE
-from deeaw2.audio_processors.ffmpeg import ProcessFFMPEG
-from deeaw2.enums.dd import DolbyDigitalChannels
-from deeaw2.enums.shared import StereoDownmix
-from deeaw2.exceptions import InvalidExtensionError, OutputFileNotFoundError
-from deeaw2.track_info.mediainfo import MediainfoParser
-from deeaw2.audio_encoders.delay import DelayGenerator
+from deew2.dee.base import BaseDeeAudioEncoder
+from deew2.dee.bitrates import dee_dd_bitrates
+from deew2.dee.xml.xml import DeeXMLGenerator
+from deew2.audio_processors.dee import ProcessDEE
+from deew2.audio_processors.ffmpeg import ProcessFFMPEG
+from deew2.enums.dd import DolbyDigitalChannels
+from deew2.enums.shared import StereoDownmix
+from deew2.exceptions import InvalidExtensionError, OutputFileNotFoundError
+from deew2.track_info.mediainfo import MediainfoParser
+from deew2.dee.delay import DelayGenerator
 
 
 class DDEncoderDEE(BaseDeeAudioEncoder):
