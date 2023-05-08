@@ -1,4 +1,4 @@
-# temp
+# temp, this must be initiated first due to the way the program is setup right now
 from deew import main_code_temp
 
 import argparse

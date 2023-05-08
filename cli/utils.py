@@ -49,34 +49,41 @@ class CustomHelpFormatter(argparse.RawTextHelpFormatter):
 
 
 def print_exit(message: str, insert: Any = None) -> NoReturn:
-    if insert and '🤠' in error_messages[message]:
-        message_split = error_messages[message].split('🤠')
+    if insert and "🤠" in error_messages[message]:
+        message_split = error_messages[message].split("🤠")
         before, after = message_split[0], message_split[1]
-        exit_message = f'[color(231) on red]ERROR:[/color(231) on red] {before}{insert}{after}'
+        exit_message = (
+            f"[color(231) on red]ERROR:[/color(231) on red] {before}{insert}{after}"
+        )
     else:
-        exit_message = f'[color(231) on red]ERROR:[/color(231) on red] {error_messages[message]}'
+        exit_message = (
+            f"[color(231) on red]ERROR:[/color(231) on red] {error_messages[message]}"
+        )
     print(exit_message)
     sys.exit(1)
 
 
 def print_logos() -> None:
     for i, logo in enumerate(logos):
-        print(f'logo {i + 1}:\n{logo}')
+        print(f"logo {i + 1}:\n{logo}")
     sys.exit(0)
 
 
 def list_bitrates() -> None:
     for codec, bitrates in allowed_bitrates.items():
-        print(f'[bold magenta]{codec}[/bold magenta]: [not bold color(231)]{"[white], [/white]".join([str(int) for int in bitrates])}[/not bold color(231)]')
+        print(
+            f'[bold magenta]{codec}[/bold magenta]: [not bold color(231)]{"[white], [/white]".join([str(int) for int in bitrates])}[/not bold color(231)]'
+        )
     sys.exit(0)
-    
+
+
 def parse_version_string(inp: list) -> str:
     try:
-        v = subprocess.run(inp, capture_output=True, encoding='utf-8').stdout
-        v = v.split('\n')[0].split(' ')[2]
-        v = v.replace(',', '').replace('-static', '')
+        v = subprocess.run(inp, capture_output=True, encoding="utf-8").stdout
+        v = v.split("\n")[0].split(" ")[2]
+        v = v.replace(",", "").replace("-static", "")
         if len(v) > 30:
-            v = f'{v[0:27]}...'
+            v = f"{v[0:27]}..."
     except Exception:
         v = "[red]couldn't parse"
     return v
@@ -86,11 +93,11 @@ def createdir(out: str) -> None:
     try:
         os.makedirs(out, exist_ok=True)
     except OSError:
-        print_exit('create_dir', out)
+        print_exit("create_dir", out)
 
 
 def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> None:
-        config_content = '''# These are required.
+    config_content = """# These are required.
     # If only name is specified, it will look in your system PATH variable, which includes the current directory on Windows.
     # Setup instructions: https://github.com/pcroland/deew#setup-system-path-variable
     # If full path is specified, that will be used.
@@ -131,54 +138,59 @@ def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> 
         input_info = true
         output_info = true
         other = true
-    '''
+    """
 
-        if standalone:
-            print(f'''Please choose config's location:
+    if standalone:
+        print(
+            f"""Please choose config's location:
     [bold magenta]1[/bold magenta]: {conf1}
-    [bold magenta]2[/bold magenta]: {conf2}''')
-            c_loc = Prompt.ask('Location', choices=['1','2'])
-            if c_loc == '1':
-                createdir(conf_dir)
-                c_loc = conf1
-            else:
-                c_loc = conf2
-        else:
-            c_loc = conf1
+    [bold magenta]2[/bold magenta]: {conf2}"""
+        )
+        c_loc = Prompt.ask("Location", choices=["1", "2"])
+        if c_loc == "1":
             createdir(conf_dir)
+            c_loc = conf1
+        else:
+            c_loc = conf2
+    else:
+        c_loc = conf1
+        createdir(conf_dir)
 
-        with open(c_loc, 'w') as fl:
-            fl.write(config_content)
-        print()
-        Console().print(Syntax(config_content, 'toml'))
-        print(f'\n[bold cyan]The above config has been created at:[/bold cyan]\n{c_loc}')
-        sys.exit(1)
-        
-        
-        
+    with open(c_loc, "w") as fl:
+        fl.write(config_content)
+    print()
+    Console().print(Syntax(config_content, "toml"))
+    print(f"\n[bold cyan]The above config has been created at:[/bold cyan]\n{c_loc}")
+    sys.exit(1)
+
+
 def print_changelog() -> None:
     try:
-        r = requests.get('https://api.github.com/repos/pcroland/deew/contents/changelog.md')
-        changelog = json.loads(r.text)['content']
-        changelog = b64decode(changelog).decode().split('\n\n')
+        r = requests.get(
+            "https://api.github.com/repos/pcroland/deew/contents/changelog.md"
+        )
+        changelog = json.loads(r.text)["content"]
+        changelog = b64decode(changelog).decode().split("\n\n")
         changelog.reverse()
-        changelog = '\n\n'.join(changelog[-10:])
-        changelog = changelog.split('\n')
+        changelog = "\n\n".join(changelog[-10:])
+        changelog = changelog.split("\n")
     except Exception:
-        print_exit('changelog')
+        print_exit("changelog")
 
     for line in changelog:
-        if line.endswith('\\'): line = line[:-1]
-        line = line.replace('\\', '\\\\')
-        if line.startswith('# '): line = f'[bold color(231)]{line.replace("# ", "")}[/bold color(231)]'
-        code_number = line.count('`')
+        if line.endswith("\\"):
+            line = line[:-1]
+        line = line.replace("\\", "\\\\")
+        if line.startswith("# "):
+            line = f'[bold color(231)]{line.replace("# ", "")}[/bold color(231)]'
+        code_number = line.count("`")
         state_even = False
         for _ in range(code_number):
             if not state_even:
-                line = line.replace('`', '[bold yellow]', 1)
+                line = line.replace("`", "[bold yellow]", 1)
                 state_even = True
             else:
-                line = line.replace('`', '[/bold yellow]', 1)
+                line = line.replace("`", "[/bold yellow]", 1)
                 state_even = False
-        print(f'[not bold white]{line}[/not bold white]')
+        print(f"[not bold white]{line}[/not bold white]")
     sys.exit(0)
