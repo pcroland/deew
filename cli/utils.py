@@ -8,7 +8,7 @@ import subprocess
 from base64 import b64decode
 from deew._version import ProgramInfo
 from rich import print
-from rich.prompt import Confirm, Prompt
+from rich.prompt import Prompt
 from rich.console import Console
 from rich.syntax import Syntax
 from deew.messages import error_messages
@@ -18,7 +18,7 @@ from typing import Any, NoReturn
 
 
 class RParse(argparse.ArgumentParser):
-    def _print_message(self, message, file=None):
+    def _print_message(self, message, _):
         if message:
             if message.startswith("usage"):
                 message = f"[bold cyan]{ProgramInfo.prog_name}[/bold cyan] {ProgramInfo.prog_version}\n\n{message}"
