@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from deew import main
+from cli import deew_cli
 
 if __name__ == '__main__':
-    main()
+    deew_cli()
