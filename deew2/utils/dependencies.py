@@ -28,7 +28,6 @@ class FindDependencies:
 
     def get_dependencies(self, base_wd: Path):
         ffmpeg, dee = self._locate_beside_program(base_wd)
-        print(ffmpeg, dee)
 
         # TODO re-implement this
         # if None in [self.ffmpeg, self.mkvextract, self.dee, self.gst_launch]:
@@ -37,7 +36,6 @@ class FindDependencies:
 
         if None in [ffmpeg, dee]:
             ffmpeg, dee = self._locate_on_path(ffmpeg, dee)
-            print(ffmpeg, dee)
 
         self._verify_dependencies([ffmpeg, dee])
 
