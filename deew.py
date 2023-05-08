@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from deew.__main__ import main
+from deew import main
 
 if __name__ == '__main__':
     main()
