@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from cli import cli_parser
+from deew2cli import cli_parser
 from deew2.utils.utils import _get_working_dir
 
 if __name__ == '__main__':
