@@ -28,6 +28,7 @@ class FindDependencies:
 
     def get_dependencies(self, base_wd: Path):
         ffmpeg, dee = self._locate_beside_program(base_wd)
+        print(ffmpeg, dee)
 
         # TODO re-implement this
         # if None in [self.ffmpeg, self.mkvextract, self.dee, self.gst_launch]:
@@ -35,7 +36,8 @@ class FindDependencies:
         #     self._locate_in_config()
 
         if None in [ffmpeg, dee]:
-            self._locate_on_path()
+            ffmpeg, dee = self._locate_on_path(ffmpeg, dee)
+            print(ffmpeg, dee)
 
         self._verify_dependencies([ffmpeg, dee])
 
@@ -50,13 +52,15 @@ class FindDependencies:
         ffmpeg_path = Path(base_wd / "apps/ffmpeg/ffmpeg.exe")
         dee_path = Path(base_wd / "apps/dee/dee.exe")
 
-        found_paths = [str(path) for path in [ffmpeg_path, dee_path] if path.exists()]
+        if ffmpeg_path.exists():
+            ffmpeg_path = ffmpeg_path
+        else:
+            ffmpeg_path = None
 
-        for path in found_paths:
-            if str(path) == str(ffmpeg_path):
-                ffmpeg_path = str(path)
-            elif str(path) == str(dee_path):
-                dee_path = str(path)
+        if dee_path.exists():
+            dee_path = dee_path
+        else:
+            dee_path = None
 
         return ffmpeg_path, dee_path
 
@@ -69,7 +73,7 @@ class FindDependencies:
     #             setattr(self, attr_name, str(value))
 
     @staticmethod
-    def _locate_on_path():
+    def _locate_on_path(ffmpeg, dee):
         if ffmpeg is None:
             ffmpeg = shutil.which("ffmpeg")
         if dee is None:

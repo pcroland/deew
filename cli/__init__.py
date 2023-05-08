@@ -2,8 +2,8 @@ import argparse
 from pathlib import Path
 
 from cli.utils import CustomHelpFormatter
-from deew2.dee.dd import DDEncoderDEE
-from deew2.dee.ddp import DDPEncoderDEE
+from deew2.audio_encoders.dee.dd import DDEncoderDEE
+from deew2.audio_encoders.dee.ddp import DDPEncoderDEE
 from deew2.enums import case_insensitive_enum, enum_choices
 from deew2.enums.dd import DolbyDigitalChannels
 from deew2.enums.ddp import DolbyDigitalPlusChannels
@@ -14,6 +14,7 @@ from deew2.payloads.ddp import DDPPayload
 from deew2.utils.dependencies import DependencyNotFoundError, FindDependencies
 from deew2.utils.exit import _exit_application, exit_fail, exit_success
 from deew2.utils.file_parser import FileParser
+from deew2.utils._version import program_name, __version__
 
 
 def cli_parser(base_wd: Path):
@@ -30,9 +31,9 @@ def cli_parser(base_wd: Path):
     parser = argparse.ArgumentParser(prog=program_name)
 
     # Add a global -v flag
-    # parser.add_argument(
-    #     "-v", "--version", action="version", version=f"%(prog)s {__version__}"
-    # )
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"%(prog)s {__version__}"
+    )
 
     # Sub-command parser
     subparsers = parser.add_subparsers(dest="sub_command")
