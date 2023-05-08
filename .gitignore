@@ -33,3 +33,6 @@ test*
 
 # vscode
 /.vscode
+
+# apps
+/apps
