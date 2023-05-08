@@ -6,9 +6,6 @@ from cli.utils import RParse, CustomHelpFormatter
 from deew._version import ProgramInfo
 
 
-
-
-
 def deew_cli():
     parser = RParse(
         prog=ProgramInfo.prog_name,
@@ -174,6 +171,6 @@ def deew_cli():
         "-gc", "--generate-config", action="store_true", help="generate a new config"
     )
     args = parser.parse_args()
-    
+
     # temp, we should be handling this with a payload
     main_code_temp(args, parser)
