@@ -30,3 +30,6 @@ test*
 *.pcm
 *.mka
 *.mkv
+
+# vscode
+/.vscode
