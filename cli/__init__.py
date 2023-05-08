@@ -14,7 +14,6 @@ from deew2.payloads.ddp import DDPPayload
 from deew2.utils.dependencies import DependencyNotFoundError, FindDependencies
 from deew2.utils.exit import _exit_application, exit_fail, exit_success
 from deew2.utils.file_parser import FileParser
-from deew2.utils._version import program_name, __version__
 
 
 def cli_parser(base_wd: Path):
@@ -28,12 +27,12 @@ def cli_parser(base_wd: Path):
     dee_path = Path(tools.dee)
 
     # Top-level parser
-    parser = argparse.ArgumentParser(prog=program_name)
+    parser = argparse.ArgumentParser()
 
     # Add a global -v flag
-    parser.add_argument(
-        "-v", "--version", action="version", version=f"%(prog)s {__version__}"
-    )
+    # parser.add_argument(
+    #     "-v", "--version", action="version", version=f"%(prog)s {__version__}"
+    # )
 
     # Sub-command parser
     subparsers = parser.add_subparsers(dest="sub_command")
