@@ -4,7 +4,6 @@ from deew.payloads import DeePayload
 
 import argparse
 from cli.utils import RParse, CustomHelpFormatter
-from cli.file_parser import FileParser
 from deew._version import ProgramInfo
 import sys
 
@@ -188,13 +187,6 @@ one DEE can use 2 threads so [bold color(231)]50%%[/bold color(231)] can utilize
         elif not hasattr(args, "input"):
             pass
             sys.exit(1)
-
-    # parse file inputs
-    # TODO here we can collect all inputs in a list, including globs
-    # directories, direct files etc and loop through them and create payloads
-    # or pass them into the main payload. We can decide this later, but this works
-    # perfect.
-    file_inputs = FileParser().parse_input_s(args.input)
 
     # init payload
     # TODO this payload is fine as is, but it needs split up as we can

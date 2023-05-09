@@ -1,8 +1,6 @@
 class DeePayload:
-    # TODO This needs to be split up, but can't be until everything else is
     file_input = None
     track_index = None
-    # file_output = None
     output_dir = None
     encoder_format = None
     bitrate = None
@@ -15,7 +13,6 @@ class DeePayload:
     force_standard = None
     force_bluray = None
     keeptemp = None
-
     list_bitrates = None
     long_argument = None
     no_prompt = None
@@ -23,10 +20,3 @@ class DeePayload:
     changelog = None
     config = None
     generate_config = None
-
-    # temp_dir = None
-    # keep_temp = None
-    # progress_mode = None
-    # stereo_mix = None
-    # ffmpeg_path = None
-    # dee_path = None

@@ -1,4 +1,3 @@
-from types import SimpleNamespace
 from cli.utils import print_exit
 import os
 import re
