@@ -1,5 +1,5 @@
 # temp, this must be initiated first due to the way the program is setup right now
-from deew import main_code_temp
+from deew import main
 from deew.payloads import DeePayload
 
 import argparse
@@ -178,7 +178,7 @@ def deew_cli():
 
     # here we should see what's missing for the CLI and deal with it
     # TODO go over all this code
-    if not hasattr(args, "version"):
+    if not hasattr(args, "version") or not args.input:
         parser.print_help(sys.stderr)
         sys.exit(1)
 
@@ -224,4 +224,4 @@ def deew_cli():
     # main code block, for now needs split up, however for now
     # it's accepting only the payload. We want it dry, not
     # to know argparser exists
-    main_code_temp(payload)
+    main(payload)

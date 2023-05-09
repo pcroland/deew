@@ -2,11 +2,10 @@ from types import SimpleNamespace
 from cli.utils import print_exit
 import os
 import re
-import unidecode
+from unidecode import unidecode
 from datetime import timedelta
 
-# TODO not sure why simplens is used
-simplens = SimpleNamespace()
+from deew.simplens import simplens
 
 
 def clamp(inp: int, low: int, high: int) -> int:

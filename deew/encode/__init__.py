@@ -148,6 +148,6 @@ def encode(
         os.remove(os.path.join(config["temp_path"], basename(fl, "wav")))
         os.remove(os.path.join(config["temp_path"], basename(fl, "xml", sanitize=True)))
 
-    if payload.format.lower() == "thd":
+    if payload.encoder_format.lower() == "thd":
         os.remove(os.path.join(output, basename(fl, "thd.log")))
         os.remove(os.path.join(output, basename(fl, "thd.mll")))
