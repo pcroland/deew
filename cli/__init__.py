@@ -46,7 +46,7 @@ def deew_cli():
         default=0,
         metavar="INDEX",
         help="""[underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
-    select audio track index of input(s)""",
+select audio track index of input(s)""",
     )
     parser.add_argument(
         "-o",
@@ -61,7 +61,7 @@ def deew_cli():
         type=str,
         default="ddp",
         help="""[underline magenta]options:[/underline magenta] [bold color(231)]dd[/bold color(231)] / [bold color(231)]ddp[/bold color(231)] / [bold color(231)]ac4[/bold color(231)] / [bold color(231)]thd[/bold color(231)]
-    [underline magenta]default:[/underline magenta] [bold color(231)]ddp[/bold color(231)]""",
+[underline magenta]default:[/underline magenta] [bold color(231)]ddp[/bold color(231)]""",
     )
     parser.add_argument(
         "-b",
@@ -69,7 +69,7 @@ def deew_cli():
         type=int,
         default=None,
         help="""[underline magenta]options:[/underline magenta] run [green]-lb[/green]/[green]--list-bitrates[/green]
-    [underline magenta]default:[/underline magenta] run [green]-c[/green]/[green]--config[/green]""",
+[underline magenta]default:[/underline magenta] run [green]-c[/green]/[green]--config[/green]""",
     )
     parser.add_argument(
         "-dm",
@@ -78,8 +78,8 @@ def deew_cli():
         default=None,
         metavar="CHANNELS",
         help="""[underline magenta]options:[/underline magenta] [bold color(231)]1[/bold color(231)] / [bold color(231)]2[/bold color(231)] / [bold color(231)]6[/bold color(231)]
-    specifies downmix, only works for DD/DDP
-    DD will be automatically downmixed to 5.1 in case of a 7.1 source""",
+specifies downmix, only works for DD/DDP
+DD will be automatically downmixed to 5.1 in case of a 7.1 source""",
     )
     parser.add_argument(
         "-d",
@@ -87,11 +87,11 @@ def deew_cli():
         type=str,
         default=None,
         help="""[underline magenta]examples:[/underline magenta] [bold color(231)]-5.1ms[/bold color(231)], [bold color(231)]+1,52s[/bold color(231)], \
-    [bold color(231)]-24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
-    [underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)] or parsed from filename
-    specifies delay as ms, s or frame@FPS
-    FPS can be a number, division or ntsc / pal
-    you have to specify negative values as [bold color(231)]-[/bold color(231)][bold color(231)]d=-0ms[/bold color(231)]""",
+[bold color(231)]-24@pal[/bold color(231)], [bold color(231)]+10@24000/1001[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]0ms[/bold color(231)] or parsed from filename
+specifies delay as ms, s or frame@FPS
+FPS can be a number, division or ntsc / pal
+you have to specify negative values as [bold color(231)]-[/bold color(231)][bold color(231)]d=-0ms[/bold color(231)]""",
     )
     parser.add_argument(
         "-r",
@@ -99,9 +99,9 @@ def deew_cli():
         type=str,
         default="music_light",
         help="""[underline magenta]options:[/underline magenta] [bold color(231)]film_light[/bold color(231)] / [bold color(231)]film_standard[/bold color(231)] / \
-    [bold color(231)]music_light[/bold color(231)] / [bold color(231)]music_standard[/bold color(231)] / [bold color(231)]speech[/bold color(231)]
-    [underline magenta]default:[/underline magenta] [bold color(231)]music_light[/bold color(231)] (this is the closest to the missing none preset)
-    specifies drc profile""",
+[bold color(231)]music_light[/bold color(231)] / [bold color(231)]music_standard[/bold color(231)] / [bold color(231)]speech[/bold color(231)]
+[underline magenta]default:[/underline magenta] [bold color(231)]music_light[/bold color(231)] (this is the closest to the missing none preset)
+specifies drc profile""",
     )
     parser.add_argument(
         "-dn",
@@ -109,9 +109,9 @@ def deew_cli():
         type=int,
         default=0,
         help="""[underline magenta]options:[/underline magenta] between [bold color(231)]-31[/bold color(231)] and [bold color(231)]0[/bold color(231)] \
-    (in case of [bold color(231)]0[/bold color(231)] DEE\'s measurement will be used)
-    [underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
-    applied dialnorm value between""",
+(in case of [bold color(231)]0[/bold color(231)] DEE\'s measurement will be used)
+[underline magenta]default:[/underline magenta] [bold color(231)]0[/bold color(231)]
+applied dialnorm value between""",
     )
     parser.add_argument(
         "-in",
@@ -119,11 +119,11 @@ def deew_cli():
         type=str,
         default=None,
         help="""[underline magenta]examples:[/underline magenta] [bold color(231)]1[/bold color(231)], [bold color(231)]4[/bold color(231)], [bold color(231)]50%%[/bold color(231)]
-    [underline magenta]default:[/underline magenta] [bold color(231)]50%%[/bold color(231)]
-    specifies how many encodes can run at the same time
-    [bold color(231)]50%%[/bold color(231)] means [bold color(231)]4[/bold color(231)] on a cpu with 8 threads
-    one DEE can use 2 threads so [bold color(231)]50%%[/bold color(231)] can utilize all threads
-    (this option overrides the config\'s number)""",
+[underline magenta]default:[/underline magenta] [bold color(231)]50%%[/bold color(231)]
+specifies how many encodes can run at the same time
+[bold color(231)]50%%[/bold color(231)] means [bold color(231)]4[/bold color(231)] on a cpu with 8 threads
+one DEE can use 2 threads so [bold color(231)]50%%[/bold color(231)] can utilize all threads
+(this option overrides the config\'s number)""",
     )
     parser.add_argument("-k", "--keeptemp", action="store_true", help="keep temp files")
     parser.add_argument(
@@ -178,15 +178,16 @@ def deew_cli():
 
     # here we should see what's missing for the CLI and deal with it
     # TODO go over all this code
-    if not hasattr(args, "version") or not args.input:
-        parser.print_help(sys.stderr)
-        sys.exit(1)
+    if not args.input:
+        if not hasattr(args, "version"):
+            parser.print_help(sys.stderr)
+            sys.exit(1)
 
-    # if no input deal with it here
-    # TODO do what ever for missing input
-    if not hasattr(args, "input") or not args.input:
-        pass
-        sys.exit(1)
+        #     # if no input deal with it here
+        #     # TODO do what ever for missing input
+        elif not hasattr(args, "input"):
+            pass
+            sys.exit(1)
 
     # parse file inputs
     # TODO here we can collect all inputs in a list, including globs
