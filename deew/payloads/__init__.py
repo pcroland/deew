@@ -14,6 +14,7 @@ class DeePayload:
     measure_only = None
     force_standard = None
     force_bluray = None
+    keeptemp = None
 
     list_bitrates = None
     long_argument = None

@@ -214,6 +214,7 @@ one DEE can use 2 threads so [bold color(231)]50%%[/bold color(231)] can utilize
     payload.measure_only = args.measure_only
     payload.force_standard = args.force_standard
     payload.force_bluray = args.force_bluray
+    payload.keeptemp = args.keeptemp
     payload.list_bitrates = args.list_bitrates
     payload.long_argument = args.long_argument
     payload.no_prompt = args.no_prompt
