@@ -20,7 +20,7 @@ from datetime import timedelta
 from glob import glob
 from multiprocessing import cpu_count
 from types import SimpleNamespace
-from typing import Any, NoReturn
+from typing import Any
 
 import requests
 import toml
@@ -30,11 +30,16 @@ from platformdirs import PlatformDirs
 from rich import print
 from rich.console import Console
 from rich.progress import BarColumn, Progress, TaskID
-from rich.prompt import Confirm, Prompt
+from rich.prompt import Confirm
 from rich.syntax import Syntax
 from rich.table import Table
 from unidecode import unidecode
 
+# TODO this is generally frowned upon in Python, although
+# in rare circumstances okay for us to use.
+# We can likely achieve what you was wanting ultimately
+# by using the function _get_working_dir() inside
+# deew > deew2 > utils > utils.py
 sys.path.append(".")
 
 from deew.bitrates import allowed_bitrates
@@ -49,13 +54,14 @@ from cli.utils import (
     parse_version_string,
 )
 from deew._version import ProgramInfo
+from deew.payloads import DeePayload
 
 
 # temp
 from cli.utils import print_exit
 
 
-def main_code_temp(args, parser):
+def main_code_temp(payload: DeePayload):
     simplens = SimpleNamespace()
 
     def clamp(inp: int, low: int, high: int) -> int:
@@ -230,7 +236,7 @@ def main_code_temp(args, parser):
             pb.update(task_id=task_id, completed=100)
             time.sleep(0.5)
 
-        if args.dialnorm != 0 and aformat == "thd":
+        if payload.dialnorm != 0 and aformat == "thd":
             pb.update(
                 description=f"[bold cyan]DEE[/bold cyan]: encode | {trim_names(fl_b, 11)}",
                 task_id=task_id,
@@ -265,7 +271,7 @@ def main_code_temp(args, parser):
                     )
                     measured_dn = round(float(measured_dn[3].strip(".")))
                     measured_dn = str(clamp(measured_dn, -31, 0))
-                    if args.measure_only:
+                    if payload.measure_only:
                         pb.update(
                             description=f"[bold cyan]DEE[/bold cyan]: measure | {trim_names(fl_b, 18 + len(measured_dn))} ({measured_dn} dB)",
                             task_id=task_id,
@@ -294,26 +300,22 @@ def main_code_temp(args, parser):
                     oprint(line.rstrip().split(": ", 1)[1])
         pb.update(task_id=task_id, completed=100)
 
-        if not args.keeptemp:
+        if not payload.keeptemp:
             os.remove(os.path.join(config["temp_path"], basename(fl, "wav")))
             os.remove(
                 os.path.join(config["temp_path"], basename(fl, "xml", sanitize=True))
             )
 
-        if args.format.lower() == "thd":
+        if payload.format.lower() == "thd":
             os.remove(os.path.join(output, basename(fl, "thd.log")))
             os.remove(os.path.join(output, basename(fl, "thd.mll")))
 
-    def main(parser) -> None:
-        if len(sys.argv) == 1:
-            parser.print_help(sys.stderr)
-            sys.exit(1)
-
-        if args.changelog:
+    def main() -> None:
+        if payload.changelog:
             print_changelog()
-        if args.list_bitrates:
+        if payload.list_bitrates:
             list_bitrates()
-        if args.print_logos:
+        if payload.print_logos:
             print_logos()
 
         if getattr(sys, "frozen", False):
@@ -328,7 +330,7 @@ def main_code_temp(args, parser):
         config_path1 = os.path.join(config_dir_path, "config.toml")
         config_path2 = os.path.join(script_path, "config.toml")
 
-        if args.config:
+        if payload.config:
             if standalone:
                 print(
                     f"[bold cyan]Your config locations:[/bold cyan]\n{config_path1}\n{config_path2}\n\n[bold cyan]Your current config:[/bold cyan]"
@@ -353,7 +355,7 @@ def main_code_temp(args, parser):
                 Console().print(Syntax(conf.read(), "toml"))
             sys.exit(0)
 
-        if args.generate_config:
+        if payload.generate_config:
             generate_config(standalone, config_path1, config_path2, config_dir_path)
             sys.exit(0)
 
@@ -426,8 +428,8 @@ def main_code_temp(args, parser):
         createdir(config["temp_path"])
 
         cpu__count = cpu_count()
-        if args.instances:
-            instances = args.instances
+        if payload.instances:
+            instances = payload.instances
         else:
             instances = config["max_instances"]
         if isinstance(instances, str) and instances.endswith("%"):
@@ -442,11 +444,11 @@ def main_code_temp(args, parser):
         if instances == 0:
             instances = 1
 
-        aformat = args.format.lower()
-        bitrate = args.bitrate
-        downmix = args.downmix
-        args.dialnorm = clamp(args.dialnorm, -31, 0)
-        trackindex = max(0, args.track_index)
+        aformat = payload.format.lower()
+        bitrate = payload.bitrate
+        downmix = payload.downmix
+        payload.dialnorm = clamp(payload.dialnorm, -31, 0)
+        trackindex = max(0, payload.track_index)
 
         if aformat not in ["dd", "ddp", "thd", "ac4"]:
             print_exit("format")
@@ -454,7 +456,7 @@ def main_code_temp(args, parser):
             print_exit("downmix")
         if downmix and aformat == "thd":
             print_exit("thd_downmix")
-        if args.drc not in [
+        if payload.drc not in [
             "film_light",
             "film_standard",
             "music_light",
@@ -469,11 +471,11 @@ def main_code_temp(args, parser):
             and aformat == "thd"
         ):
             print_exit("linux_thd")
-        if args.measure_only:
+        if payload.measure_only:
             aformat = "ddp"
 
         filelist = []
-        for f in args.input:
+        for f in payload.file_input:
             if not os.path.exists(f):
                 print_exit("path", f)
             if os.path.isdir(f):
@@ -551,7 +553,7 @@ def main_code_temp(args, parser):
             outchannels = channels
 
         if outchannels in [1, 2] and aformat in ["dd", "ddp"]:
-            if args.no_prompt:
+            if payload.no_prompt:
                 print(
                     "Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
     [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding."
@@ -565,7 +567,7 @@ def main_code_temp(args, parser):
                     sys.exit(1)
 
         if outchannels == 2 and aformat == "thd":
-            if args.no_prompt:
+            if payload.no_prompt:
                 print(
                     "Consider using [bold cyan]FLAC[/bold cyan] for lossless \
     [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding."
@@ -578,8 +580,8 @@ def main_code_temp(args, parser):
                 if not continue_enc:
                     sys.exit(1)
 
-        if args.dialnorm != 0:
-            if args.no_prompt:
+        if payload.dialnorm != 0:
+            if payload.no_prompt:
                 print(
                     "Consider leaving the dialnorm value at 0 (auto), setting it manually can be dangerous."
                 )
@@ -619,11 +621,11 @@ def main_code_temp(args, parser):
             elif outchannels == 8:
                 if not bitrate:
                     bitrate = config["default_bitrates"]["ddp_7_1"]
-                if args.force_standard:
+                if payload.force_standard:
                     bitrate = find_closest_allowed(
                         bitrate, allowed_bitrates["ddp_71_standard"]
                     )
-                elif args.force_bluray:
+                elif payload.force_bluray:
                     bitrate = find_closest_allowed(
                         bitrate, allowed_bitrates["ddp_71_bluray"]
                     )
@@ -636,9 +638,9 @@ def main_code_temp(args, parser):
                 bitrate = config["default_bitrates"]["ac4_2_0"]
             bitrate = find_closest_allowed(bitrate, allowed_bitrates["ac4_20"])
 
-        if args.output:
-            createdir(os.path.abspath(args.output))
-            output = os.path.abspath(args.output)
+        if payload.output_dir:
+            createdir(os.path.abspath(payload.output_dir))
+            output = os.path.abspath(payload.output_dir)
         else:
             output = os.getcwd()
 
@@ -659,11 +661,11 @@ def main_code_temp(args, parser):
                         xml_base["job_config"]["filter"]["audio"]["pcm_to_ddp"][
                             "encoder_mode"
                         ] = "bluray"
-                    if args.force_standard:
+                    if payload.force_standard:
                         xml_base["job_config"]["filter"]["audio"]["pcm_to_ddp"][
                             "encoder_mode"
                         ] = "ddp71"
-                    if args.force_bluray:
+                    if payload.force_bluray:
                         xml_base["job_config"]["filter"]["audio"]["pcm_to_ddp"][
                             "encoder_mode"
                         ] = "bluray"
@@ -679,13 +681,13 @@ def main_code_temp(args, parser):
             ] = bitrate
             xml_base["job_config"]["filter"]["audio"]["pcm_to_ddp"]["drc"][
                 "line_mode_drc_profile"
-            ] = args.drc
+            ] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["pcm_to_ddp"]["drc"][
                 "rf_mode_drc_profile"
-            ] = args.drc
+            ] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["pcm_to_ddp"][
                 "custom_dialnorm"
-            ] = args.dialnorm
+            ] = payload.dialnorm
         elif aformat in ["ac4"]:
             xml_base = xmltodict.parse(xml_ac4_base)
             xml_base["job_config"]["output"]["ac4"]["storage"]["local"]["path"] = wpc(
@@ -696,19 +698,19 @@ def main_code_temp(args, parser):
             ] = bitrate
             xml_base["job_config"]["filter"]["audio"]["encode_to_ims_ac4"]["drc"][
                 "ddp_drc_profile"
-            ] = args.drc
+            ] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_ims_ac4"]["drc"][
                 "flat_panel_drc_profile"
-            ] = args.drc
+            ] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_ims_ac4"]["drc"][
                 "home_theatre_drc_profile"
-            ] = args.drc
+            ] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_ims_ac4"]["drc"][
                 "portable_hp_drc_profile"
-            ] = args.drc
+            ] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_ims_ac4"]["drc"][
                 "portable_spkr_drc_profile"
-            ] = args.drc
+            ] = payload.drc
         elif aformat == "thd":
             xml_base = xmltodict.parse(xml_thd_base)
             xml_base["job_config"]["output"]["mlp"]["storage"]["local"]["path"] = wpc(
@@ -716,19 +718,19 @@ def main_code_temp(args, parser):
             )
             xml_base["job_config"]["filter"]["audio"]["encode_to_dthd"][
                 "atmos_presentation"
-            ]["drc_profile"] = args.drc
+            ]["drc_profile"] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_dthd"][
                 "presentation_8ch"
-            ]["drc_profile"] = args.drc
+            ]["drc_profile"] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_dthd"][
                 "presentation_6ch"
-            ]["drc_profile"] = args.drc
+            ]["drc_profile"] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_dthd"][
                 "presentation_2ch"
-            ]["drc_profile"] = args.drc
+            ]["drc_profile"] = payload.drc
             xml_base["job_config"]["filter"]["audio"]["encode_to_dthd"][
                 "custom_dialnorm"
-            ] = args.dialnorm
+            ] = payload.dialnorm
         xml_base["job_config"]["input"]["audio"]["wav"]["storage"]["local"][
             "path"
         ] = wpc(config["temp_path"], quote=True)
@@ -798,21 +800,23 @@ def main_code_temp(args, parser):
                 )
                 summary.add_row(
                     "Dialnorm",
-                    "auto (0)" if args.dialnorm == 0 else f"{str(args.dialnorm)} dB",
+                    "auto (0)"
+                    if payload.dialnorm == 0
+                    else f"{str(payload.dialnorm)} dB",
                     end_section=True,
                 )
 
             if config["summary_sections"]["other"]:
-                if args.delay:
+                if payload.delay:
                     delay_print, delay_xml, delay_mode = convert_delay_to_ms(
-                        args.delay, compensate=False
+                        payload.delay, compensate=False
                     )
                 summary.add_row("[bold yellow]Other")
                 summary.add_row("Files", str(len(filelist)))
                 summary.add_row("Max instances", str(f"{instances:g}"))
                 summary.add_row(
                     "Delay",
-                    delay_print if args.delay else "0 ms or parsed from filename",
+                    delay_print if payload.delay else "0 ms or parsed from filename",
                 )
                 summary.add_row("Temp path", config["temp_path"])
 
@@ -881,7 +885,10 @@ def main_code_temp(args, parser):
             "" if simplens.dee_is_exe else " --disable-xml-validation"
         )
 
-        if "-filter_complex" in resample_args or "-filter_complex" in channel_swap_args:
+        if (
+            "-filter_complex" in resample_args
+            or "-filter_complex" in channel_swap_args
+        ):
             map_args = []
             map_args_print = ""
         else:
@@ -969,8 +976,8 @@ def main_code_temp(args, parser):
                     delay = f"+{delay}"
             else:
                 delay = "+0ms"
-            if args.delay:
-                delay = args.delay
+            if payload.delay:
+                delay = payload.delay
 
             xml = deepcopy(xml_base)
             xml["job_config"]["input"]["audio"]["wav"]["file_name"] = basename(
@@ -984,11 +991,11 @@ def main_code_temp(args, parser):
                     xml["job_config"]["output"]["ec3"]["file_name"] = basename(
                         filelist[i], "eb3", quote=True, stripdelay=True
                     )
-                if args.force_standard:
+                if payload.force_standard:
                     xml["job_config"]["output"]["ec3"]["file_name"] = basename(
                         filelist[i], "ec3", quote=True, stripdelay=True
                     )
-                if args.force_bluray:
+                if payload.force_bluray:
                     xml["job_config"]["output"]["ec3"]["file_name"] = basename(
                         filelist[i], "eb3", quote=True, stripdelay=True
                     )
@@ -1048,7 +1055,7 @@ def main_code_temp(args, parser):
                 ]
             )
 
-        if args.long_argument:
+        if payload.long_argument:
             print("[bold color(231)]Running the following commands:[/bold color(231)]")
             for ff, d in zip(ffmpeg_print_list, dee_print_list):
                 print(f"{ff} && {d}")
@@ -1086,4 +1093,4 @@ def main_code_temp(args, parser):
             job.result()
 
     # temporary until restructured
-    main(parser)
+    main()
