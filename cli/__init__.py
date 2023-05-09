@@ -1,9 +1,12 @@
 # temp, this must be initiated first due to the way the program is setup right now
 from deew import main_code_temp
+from deew.payloads import DeePayload
 
 import argparse
 from cli.utils import RParse, CustomHelpFormatter
+from cli.file_parser import FileParser
 from deew._version import ProgramInfo
+import sys
 
 
 def deew_cli():
@@ -32,7 +35,8 @@ def deew_cli():
         "-i",
         "--input",
         nargs="*",
-        default=argparse.SUPPRESS,
+        # TODO Do we need argparse.SUPPRESS? - We can handle missing input differently
+        # default=argparse.SUPPRESS,
         help="audio file(s) or folder(s)",
     )
     parser.add_argument(
@@ -172,5 +176,52 @@ def deew_cli():
     )
     args = parser.parse_args()
 
-    # temp, we should be handling this with a payload
-    main_code_temp(args, parser)
+    # here we should see what's missing for the CLI and deal with it
+    # TODO go over all this code
+    if not hasattr(args, "version"):
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+
+    # if no input deal with it here
+    # TODO do what ever for missing input
+    if not hasattr(args, "input") or not args.input:
+        pass
+        sys.exit(1)
+
+    # parse file inputs
+    # TODO here we can collect all inputs in a list, including globs
+    # directories, direct files etc and loop through them and create payloads
+    # or pass them into the main payload. We can decide this later, but this works
+    # perfect.
+    file_inputs = FileParser().parse_input_s(args.input)
+
+    # init payload
+    # TODO this payload is fine as is, but it needs split up as we can
+    # split up other parts of the code
+    payload = DeePayload()
+    # right now we're only passing the input how you had it
+    payload.file_input = args.input
+    payload.track_index = args.track_index
+    payload.output_dir = args.output
+    payload.encoder_format = args.format
+    payload.bitrate = args.bitrate
+    payload.downmix = args.downmix
+    payload.delay = args.delay
+    payload.drc = args.drc
+    payload.dialnorm = args.dialnorm
+    payload.instances = args.instances
+    payload.measure_only = args.measure_only
+    payload.force_standard = args.force_standard
+    payload.force_bluray = args.force_bluray
+    payload.list_bitrates = args.list_bitrates
+    payload.long_argument = args.long_argument
+    payload.no_prompt = args.no_prompt
+    payload.print_logos = args.print_logos
+    payload.changelog = args.changelog
+    payload.config = args.config
+    payload.generate_config = args.generate_config
+
+    # main code block, for now needs split up, however for now
+    # it's accepting only the payload. We want it dry, not
+    # to know argparser exists
+    main_code_temp(payload)
