@@ -14,7 +14,7 @@ Dolby Encoding Engine Wrapper
 description_placeholder
 
 Help:
-❯ deew -h
+> deew -h
 help_placeholder[/code]
 [img]https://telegra.ph/file/efd2a1d3519bdf87fca03.gif[/img]'''
 

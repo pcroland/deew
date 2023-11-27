@@ -1,3 +1,22 @@
+# deew 3.0.1:
+- added ac4 to format error message
+- fixed `allowed_bitrates` in `ac4_20`
+
+# deew 3.0.0:
+- added AC4 immersive stereo support by MartinEesmaa
+  - add `dee_audio_filter_ac4_ims.dll` and `Object_0000.exe` from the AC4
+    zip to your DEE installation path and add `ac4_2_0 = 320` under the
+    `[default_bitrates]` section in your config file.
+- mono input for TrueHD encoding error handling
+- FLAC recommendation prompt for lossless mono/stereo encoding
+
+# deew 2.9.5:
+- remove `-map 0:a:index` from `ffmpeg_args` if `-filter_complex` is present
+  somewhere in the command, so new ffmpeg versions can be used
+
+# deew 2.9.4:
+- allow new python version to be used
+
 # deew 2.9.3:
 - fixed spaces in paths
   (`quote` parameter was not working in `wpc()` if `is_wsl` was false)

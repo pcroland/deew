@@ -1,10 +1,10 @@
-[![builds](https://img.shields.io/github/workflow/status/pcroland/deew/Build%20and%20publish?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
+[![builds](https://img.shields.io/github/actions/workflow/status/pcroland/deew/build.yaml?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
 [![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
 [![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
 [![pypi_downloads](https://img.shields.io/pypi/dm/deew?color=70920c&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/deew)
 [![license](https://img.shields.io/github/license/pcroland/deew?color=blueviolet&style=flat-square)](https://github.com/pcroland/deew/blob/master/LICENSE)
 \
-[![telegram](https://img.shields.io/endpoint?color=1d93d2&style=flat-square&url=https://cadoth.net/tgmembercount%3Fchat_id=deew_support%26name=Discussion%2520and%2520Support)](https://t.me/deew_support)
+[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeew_support)](https://t.me/deew_support)
 [![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
 [![issues](https://img.shields.io/github/issues/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
 \
@@ -20,8 +20,8 @@
 
 ## DDP encode-olás még sosem volt ilyen egyszerű!
 
-![img](https://telegra.ph/file/efd2a1d3519bdf87fca03.gif)
-<!---https://i.kek.sh/Mk3qQ0QGWUj.gif--->
+![img](https://telegra.ph/file/4e75ac457c8f122dfc9a9.gif)
+<!---https://i.kek.sh/f2Iv7nZ2ucf.gif--->
 
 # Leírás
 - kezeli a Dolby XML input baromságait a háttérben, rendes CLI felületet adva
@@ -32,7 +32,7 @@
 - támogatja a WSL útvonalak konvertálását a DEE Windows verziójához (lásd config)
 - hibás bitráta megadása esetén kiválasztja a legközelebbi megengedettet
 - automatikus mintavételezésiráta-konvertálás ffmpeg soxr resamplerét használva nem támogatott mintavételezési ráta esetén
-  - DD/DDP esetén a mintavételezési rátát 48 kHz-re konvertálja
+  - DD/DDP/AC4 esetén a mintavételezési rátát 48 kHz-re konvertálja
   - TrueHD esetén a mintavételezési rátát 48 kHz-re konvertálja, ha a forrásé kisebb mint 72 kHz, fölötte 96 kHz-re
 - automatikus csatornafelcserélés 7.1-es forrásoknál (DEE valamiért megcseréli az Ls, Rs csatornákat az Lrs, Rrs-sel)
 - automatikus dialnorm beállítás
@@ -98,7 +98,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 2.9.3
+deew 3.0.1
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
             [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
@@ -113,7 +113,7 @@ FLAGS:
                               select audio track index of input(s)
   -o, --output DIRECTORY      default: current directory
                               specifies output directory
-  -f, --format FORMAT         options: dd / ddp / thd
+  -f, --format FORMAT         options: dd / ddp / ac4 / thd
                               default: ddp
   -b, --bitrate BITRATE       options: run -lb/--list-bitrates
                               default: run -c/--config
@@ -160,8 +160,8 @@ DDP@768 encode-olása
 `deew -dm 2 -f dd -b 192 -i *.ec3`\
 DD@192 encode-olása stereo downmixeléssel
 
-`deew -f dd -b 448 -t 4 -i S01`\
-DD@448 encode-olása 4 threadet használva (az input egy mappa)
+`deew -f dd -b 448 -in 4 -i S01`\
+DD@448 encode-olása 4 instance-et használva (az input egy mappa)
 
 `deew -f thd -i *w64`\
 TrueHD encode-olása

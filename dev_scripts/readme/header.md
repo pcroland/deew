@@ -1,10 +1,10 @@
-[![builds](https://img.shields.io/github/workflow/status/pcroland/deew/Build%20and%20publish?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
+[![builds](https://img.shields.io/github/actions/workflow/status/pcroland/deew/build.yaml?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
 [![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
 [![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
 [![pypi_downloads](https://img.shields.io/pypi/dm/deew?color=70920c&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/deew)
 [![license](https://img.shields.io/github/license/pcroland/deew?color=blueviolet&style=flat-square)](https://github.com/pcroland/deew/blob/master/LICENSE)
 \
-[![telegram](https://img.shields.io/endpoint?color=1d93d2&style=flat-square&url=https://cadoth.net/tgmembercount%3Fchat_id=deew_support%26name=Discussion%2520and%2520Support)](https://t.me/deew_support)
+[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeew_support)](https://t.me/deew_support)
 [![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
 [![issues](https://img.shields.io/github/issues/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
 \
