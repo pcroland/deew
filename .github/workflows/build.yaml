@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -56,17 +56,17 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Set up libraries
         run: |
           python -m pip install wheel poetry
-          python -m pip install "https://yt-dlp.github.io/Pyinstaller-Builds/x86_64/pyinstaller-5.8.0-py3-none-any.whl"
+          python -m pip install "https://github.com/webcomics/pyinstaller-builder/releases/download/snapshot/pyinstaller-6.3.0-py3-none-any.whl"
           python -m pip install .
 
       - name: Build
