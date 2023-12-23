@@ -1,3 +1,6 @@
+# deew 3.1.0:
+- update `pyproject.toml` and `poetry.lock`
+
 # deew 3.0.1:
 - added ac4 to format error message
 - fixed `allowed_bitrates` in `ac4_20`
