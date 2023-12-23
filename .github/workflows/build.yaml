@@ -66,10 +66,11 @@ jobs:
           python -m pip install "https://github.com/webcomics/pyinstaller-builder/releases/download/snapshot/pyinstaller-6.3.0-py3-none-any.whl"
           python -m pip install .
 
-      - name: Fetch changelog and version
+      - name: Fetch version
         run: |
           $version=$(python -c "print(open('changelog.md', 'r').read().split('\n')[0].split(' ')[2].replace(':', ''))")
-          echo "RELEASE_VERSION=$version" >> "$GITHUB_ENV"
+          echo "Version: $version"
+          echo "RELEASE_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Build
         run: |
