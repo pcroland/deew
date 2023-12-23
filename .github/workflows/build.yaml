@@ -36,6 +36,7 @@ jobs:
           changelog=$(cat changelog.txt)
           echo -e "Version: $version\n\nChangelog:\n$changelog"
           echo "RELEASE_VERSION=$version" >> "$GITHUB_OUTPUT"
+          echo "RELEASE_VERSION=$version" >> "$GITHUB_ENV"
 
       - name: Move dist/deew to deew_linux
         run: mv dist/deew deew_linux
