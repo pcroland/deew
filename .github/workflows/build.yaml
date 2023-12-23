@@ -29,7 +29,6 @@ jobs:
 
       - name: Fetch changelog and version
         run: |
-          python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> changelog.txt
           version=$(python -c "print(open('changelog.md', 'r').read().split('\n')[0].split(' ')[2].replace(':', ''))")
           changelog=$(cat changelog.txt)
           echo -e "Version: $version\n\nChangelog:\n$changelog"
