@@ -1,3 +1,6 @@
+# deew 3.1.1:
+- use custom PyInstaller for less virus flagging
+
 # deew 3.1.0:
 - update `pyproject.toml` and `poetry.lock`
 
