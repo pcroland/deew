@@ -62,7 +62,7 @@ jobs:
       - name: Set up libraries
         run: |
           python -m pip install wheel poetry
-          python -m pip install "https://github.com/pcroland/Pyinstaller-Builds/releases/download/PyInstaller/pyinstaller-6.3.0-x86_64.whl"
+          python -m pip install "https://github.com/pcroland/Pyinstaller-Builds/releases/download/PyInstaller/pyinstaller-6.3.0-py3-none-win_amd64.whl"
           python -m pip install .
 
       - name: Fetch version
