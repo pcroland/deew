@@ -6,7 +6,8 @@
 \
 [![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeew_support)](https://t.me/deew_support)
 [![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
-[![issues](https://img.shields.io/github/issues/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
+[![open_issues](https://img.shields.io/github/issues/pcroland/deew?color=718bcd&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
+[![closed_issues](https://img.shields.io/github/issues-closed/pcroland/deew?color=253e80&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues?q=is%3Aissue+is%3Aclosed)
 \
 [![name](https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20osx-eeeeee?style=flat-square)](https://github.com/pcroland/deew)
 [![name](https://img.shields.io/pypi/pyversions/deew?logo=Python&logoColor=eeeeee&color=eeeeee&style=flat-square)](https://github.com/pcroland/deew)
