@@ -1,3 +1,6 @@
+# deew 3.1.3:
+- fix #37: Only show basename for already existing intermediate files
+
 # deew 3.1.2:
 - fix `&` in filename by bpoxy
 

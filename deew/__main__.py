@@ -45,7 +45,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base, xml_ac4_base
 
 prog_name = 'deew'
-prog_version = '3.1.2'
+prog_version = '3.1.3'
 
 simplens = SimpleNamespace()
 
@@ -933,7 +933,7 @@ def main() -> None:
 
         ffmpeg_print_list.append(ffmpeg_args_print)
         dee_print_list.append(dee_args_print)
-        if intermediate_exists: intermediate_exists_list.append(filelist[i])
+        if intermediate_exists: intermediate_exists_list.append(os.path.basename(filelist[i]))
 
         delay_in_filename = re.match(r'.+DELAY ([-|+]?[0-9]+m?s)\..+', filelist[i])
         if delay_in_filename:
