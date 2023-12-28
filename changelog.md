@@ -1,3 +1,6 @@
+# deew 3.1.2:
+- fix `&` in filename by bpoxy
+
 # deew 3.1.1:
 - use custom PyInstaller for less virus flagging
 
