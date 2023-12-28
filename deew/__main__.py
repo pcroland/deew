@@ -403,7 +403,7 @@ def rwpc(p: str) -> str:
 
 def save_xml(f: str, xml: dict[str, Any]) -> None:
     with open(f, 'w', encoding='utf-8') as fd:
-        fd.write(xmltodict.unparse(xml, pretty=True, indent='  '))
+        fd.write(xmltodict.unparse(xml, pretty=True, indent='  ').replace('&amp;', '&'))
 
 
 def basename(fl: str, format_: str, quote: bool=False, sanitize: bool=False, stripdelay: bool=False) -> str:
