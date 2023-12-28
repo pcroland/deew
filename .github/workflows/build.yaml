@@ -1,4 +1,8 @@
 name: Build and publish
+
+env:
+  RELEASE_VERSION:
+
 on:
   repository_dispatch:
 
