@@ -70,17 +70,17 @@ jobs:
       - name: Install Python
         run: |
           # Run the Python installer silently
-          Start-Process -Wait -FilePath .\python-installer.exe -ArgumentList '/quiet', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
+          Start-Process -Wait -FilePath .\python-installer.exe -ArgumentList '/quiet', 'InstallAllUsers=1', '/AddToPath=1', 'Include_test=0'
 
       - name: Verify Python installation
         run: |
-          "D:\Program Files\Python312\python.exe" --version
+          python --version
 
       - name: Set up libraries
         run: |
-          "D:\Program Files\Python312\python.exe" -m pip install wheel poetry
-          "D:\Program Files\Python312\python.exe" -m pip install "https://github.com/pcroland/Pyinstaller-Builds/releases/download/PyInstaller/pyinstaller-6.3.0-py3-none-win_amd64.whl"
-          "D:\Program Files\Python312\python.exe" -m pip install .
+          python -m pip install wheel poetry
+          python -m pip install "https://github.com/pcroland/Pyinstaller-Builds/releases/download/PyInstaller/pyinstaller-6.3.0-py3-none-win_amd64.whl"
+          python -m pip install .
 
       - name: Fetch version
         run: |
@@ -90,7 +90,7 @@ jobs:
 
       - name: Build
         run: |
-          "D:\Program Files\Python312\python.exe" -m pyinstaller -F __main__.py -n deew --icon logo/icon.ico
+          python -m pyinstaller -F __main__.py -n deew --icon logo/icon.ico
 
       - name: Move dist/deew.exe to deew.exe
         run: mv dist/deew.exe deew.exe
