@@ -65,7 +65,7 @@ jobs:
 
       - name: Set up Python
         run: |
-          wget https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python-3.12.1-amd64-full.exe -O python-installer.exe
+          Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python-3.12.1-amd64-full.exe" -OutFile "python-installer.exe"
           ./python-installer.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
 
       - name: Set up libraries
