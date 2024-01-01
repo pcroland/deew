@@ -74,13 +74,13 @@ jobs:
 
       - name: Verify Python installation
         run: |
-          python --version
+          "C:\Program Files\Python312\python.exe" --version
 
       - name: Set up libraries
         run: |
-          python -m pip install wheel poetry
-          python -m pip install "https://github.com/pcroland/Pyinstaller-Builds/releases/download/PyInstaller/pyinstaller-6.3.0-py3-none-win_amd64.whl"
-          python -m pip install .
+          "C:\Program Files\Python312\python.exe" -m pip install wheel poetry
+          "C:\Program Files\Python312\python.exe" -m pip install "https://github.com/pcroland/Pyinstaller-Builds/releases/download/PyInstaller/pyinstaller-6.3.0-py3-none-win_amd64.whl"
+          "C:\Program Files\Python312\python.exe" -m pip install .
 
       - name: Fetch version
         run: |
@@ -90,7 +90,7 @@ jobs:
 
       - name: Build
         run: |
-          python -m pyinstaller -F __main__.py -n deew --icon logo/icon.ico
+          "C:\Program Files\Python312\python.exe" -m pyinstaller -F __main__.py -n deew --icon logo/icon.ico
 
       - name: Move dist/deew.exe to deew.exe
         run: mv dist/deew.exe deew.exe
