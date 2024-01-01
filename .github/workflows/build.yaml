@@ -63,10 +63,18 @@ jobs:
       #   with:
       #     python-version: "3.12"
 
-      - name: Set up Python
+      - name: Download Python installer
         run: |
-          Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python-3.12.1-amd64-full.exe" -OutFile "python-installer.exe"
-          ./python-installer.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+          Invoke-WebRequest -Uri 'https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python-3.12.1-amd64-full.exe' -OutFile 'python-installer.exe'
+
+      - name: Install Python
+        run: |
+          # Run the Python installer silently
+          Start-Process -Wait -FilePath .\python-installer.exe -ArgumentList '/quiet', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
+
+      - name: Verify Python installation
+        run: |
+          python --version
 
       - name: Set up libraries
         run: |
