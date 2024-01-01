@@ -58,16 +58,10 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      # - name: Set up Python
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: "3.12"
-
       - name: Set up Python
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python-3.12.1-amd64-full.exe" -OutFile "python-installer.exe"
-          ./setup.ps1
-          python --version
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Set up libraries
         run: |
