@@ -23,7 +23,7 @@ description_placeholder
 - ha DEE `Failed to load library "...dll".` hibákat dob deew használatakor, telepítsd fel a [VisualCppRedist AIO](https://github.com/abbodi1406/vcredist/releases)-t
 
 # deew telepítése
-### standalone buildet használva (Windows 7-11/Linux):
+### standalone buildet használva (Windows 8-11/Linux):
 - tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - futtasd: `deew`\
 *(terminálból futtasd, duplaklikk nem fog működni)*

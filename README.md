@@ -62,7 +62,7 @@
 - if DEE throws `Failed to load library "...dll".` errors when you run deew install [VisualCppRedist AIO](https://github.com/abbodi1406/vcredist/releases)
 
 # deew installation
-### with standalone build (Windows 7-11/Linux):
+### with standalone build (Windows 8-11/Linux):
 - grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
 - run with: `deew`\
 *(run the binary from terminal, doubleclicking it won't work)*
