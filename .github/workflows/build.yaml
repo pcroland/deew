@@ -67,7 +67,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri 'https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python-3.12.1-amd64-full.exe' -OutFile 'python-installer.exe'
           Start-Process -Wait -FilePath .\python-installer.exe -ArgumentList '/quiet', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0'
-          $username = $env:GITHUB_ACTOR
+          $username = [System.IO.Path]::GetFileName($env:USERPROFILE)
           $python_path = Get-ChildItem -Path "C:\Users\$username\AppData\Local\Programs\Python" | Select-Object -Last 1
           $env:Path += ";$python_path"
           $python_path = Join-Path $python_path "Scripts"
