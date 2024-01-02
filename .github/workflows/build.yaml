@@ -98,8 +98,8 @@ jobs:
 
       - name: Upload release to PyPI
         run: |
-          poetry build
-          poetry publish -u __token__ -p "${{ secrets.PYPI_TOKEN }}"
+          python -m poetry build
+          python -m poetry publish -u __token__ -p "${{ secrets.PYPI_TOKEN }}"
 
       - name: Send Telegram notifications
         continue-on-error: true
