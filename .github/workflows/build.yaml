@@ -58,20 +58,17 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
       # - name: Set up Python
-      #   run: |
-      #     Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python.3.12.1.nupkg" -OutFile "python.3.12.1.nupkg"
-      #     mkdir "C:\custom_python"
-      #     nuget --version
-      #     nuget install python -Source "python.3.12.1.nupkg" -OutputDirectory "C:\custom_python"
-      #     echo "C:\custom_python" >> $GITHUB_PATH
-      #     echo "C:\custom_python\Scripts" >> $GITHUB_PATH
-      #     python --version
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
+
+      - name: Set up Python
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python.3.12.1.nupkg" -OutFile "python.3.12.1.nupkg"
+          mkdir "C:\pywin7"
+          nuget install python -Source $(Get-Location) -OutputDirectory "C:\pywin7\"
+          echo "C:\pywin7\python.3.12.1\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Set up libraries
         run: |
@@ -87,7 +84,7 @@ jobs:
 
       - name: Build
         run: |
-          python -m pyinstaller -F __main__.py -n deew --icon logo/icon.ico
+          python -m PyInstaller -F __main__.py -n deew --icon logo/icon.ico
 
       - name: Move dist/deew.exe to deew.exe
         run: mv dist/deew.exe deew.exe
