@@ -1,7 +1,3 @@
-# deew 3.2.0:
-- add Windows 7 support with custom Python build:
-  https://github.com/adang1345/PythonWin7
-
 # deew 3.1.3:
 - fix #37: Only show basename for already existing intermediate files
 

@@ -58,20 +58,20 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      # - name: Set up Python
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: "3.12"
-
       - name: Set up Python
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python.3.12.1.nupkg" -OutFile "python.3.12.1.nupkg"
-          mkdir "C:\custom_python"
-          nuget --version
-          nuget install python -Source "python.3.12.1.nupkg" -OutputDirectory "C:\custom_python"
-          echo "C:\custom_python" >> $GITHUB_PATH
-          echo "C:\custom_python\Scripts" >> $GITHUB_PATH
-          python --version
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # - name: Set up Python
+      #   run: |
+      #     Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python.3.12.1.nupkg" -OutFile "python.3.12.1.nupkg"
+      #     mkdir "C:\custom_python"
+      #     nuget --version
+      #     nuget install python -Source "python.3.12.1.nupkg" -OutputDirectory "C:\custom_python"
+      #     echo "C:\custom_python" >> $GITHUB_PATH
+      #     echo "C:\custom_python\Scripts" >> $GITHUB_PATH
+      #     python --version
 
       - name: Set up libraries
         run: |
