@@ -67,6 +67,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri "https://github.com/adang1345/PythonWin7/raw/master/3.12.1/python.3.12.1.nupkg" -OutFile "python.3.12.1.nupkg"
           mkdir "C:\custom_python"
+          nuget --version
           nuget install python -Source "python.3.12.1.nupkg" -OuputDirectory "C:\custom_python"
           echo "C:\custom_python" >> $GITHUB_PATH
           echo "C:\custom_python\Scripts" >> $GITHUB_PATH
