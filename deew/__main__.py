@@ -45,7 +45,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_dd_ddp_base, xml_thd_base, xml_ac4_base
 
 prog_name = 'deew'
-prog_version = '3.2.0'
+prog_version = '3.2.1'
 
 simplens = SimpleNamespace()
 
@@ -318,7 +318,7 @@ def parse_version_string(inp: list) -> str:
     try:
         v = subprocess.run(inp, capture_output=True, encoding='utf-8').stdout
         v = v.split('\n')[0].split(' ')[2]
-        v = v.replace(',', '').replace('-static', '')
+        v = v.replace(',', '').replace('-static', '').replace('-master', '')
         if len(v) > 30:
             v = f'{v[0:27]}...'
     except Exception:

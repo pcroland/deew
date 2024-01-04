@@ -1,3 +1,6 @@
+# deew 3.2.1:
+- handle `-master` in dee's version string
+
 # deew 3.2.0:
 - add Windows 7 support with custom Python build:
   https://github.com/adang1345/PythonWin7
