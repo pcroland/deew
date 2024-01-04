@@ -14,8 +14,8 @@ import subprocess
 import sys
 import tempfile
 import time
-from builtins import print as oprint
 from base64 import b64decode
+from builtins import print as oprint
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import timedelta
@@ -42,7 +42,7 @@ sys.path.append('.')
 from deew.bitrates import allowed_bitrates
 from deew.logos import logos
 from deew.messages import error_messages
-from deew.xml_base import xml_dd_ddp_base, xml_thd_base, xml_ac4_base
+from deew.xml_base import xml_ac4_base, xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
 prog_version = '3.2.1'
