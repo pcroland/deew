@@ -318,7 +318,7 @@ def parse_version_string(inp: list) -> str:
     try:
         v = subprocess.run(inp, capture_output=True, encoding='utf-8').stdout
         v = v.split('\n')[0].split(' ')[2]
-        v = v.replace(',', '').replace('-static', '').replace('-master', '')
+        v = v.replace(',', '').replace('-static', '')
         if len(v) > 30:
             v = f'{v[0:27]}...'
     except Exception:
@@ -477,7 +477,7 @@ def encode(task_id: TaskID, settings: list) -> None:
 
             progress = re.search(r'Stage progress: ([0-9]+\.[0-9])', line)
             if progress and progress[1] != '100.0':
-                if aformat != 'thd' and version.parse(simplens.dee_version) >= version.parse('5.2.0') and not encoding_step:
+                if aformat != 'thd' and version.parse(simplens.dee_version.replace('-master', '')) >= version.parse('5.2.0') and not encoding_step:
                     pb.update(task_id=task_id, completed=float(progress[1]) / 4)
                 else:
                     pb.update(task_id=task_id, completed=float(progress[1]))
