@@ -240,7 +240,7 @@ def generate_config(standalone: bool, conf1: str, conf2: str, conf_dir: str) -> 
 # If full path is specified, that will be used.
 ffmpeg_path = 'ffmpeg'
 ffprobe_path = 'ffprobe'
-dee_path = 'dee.exe'
+dee_path = 'dee'
 
 # If this is empty, the default OS temporary directory will be used (or `temp` next to the script if you use the exe).
 # You can also specify an absolute path or a path relative to the current directory.
