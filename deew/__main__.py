@@ -45,7 +45,7 @@ from deew.messages import error_messages
 from deew.xml_base import xml_ac4_base, xml_dd_ddp_base, xml_thd_base
 
 prog_name = 'deew'
-prog_version = '3.2.1'
+prog_version = '3.2.2'
 
 simplens = SimpleNamespace()
 
@@ -487,7 +487,18 @@ def encode(task_id: TaskID, settings: list) -> None:
     pb.update(task_id=task_id, completed=100)
 
     if not args.keeptemp:
-        os.remove(os.path.join(config['temp_path'], basename(fl, 'wav')))
+        wav_file = os.path.join(config['temp_path'], basename(fl, 'wav'))
+        del_time = 0
+        while os.path.exists(wav_file) and del_time < 10:
+            try:
+                os.remove(wav_file)
+            except PermissionError:
+                # likely dee still use it
+                del_time += 1
+                time.sleep(1)
+
+        if os.path.exists(wav_file):
+            print(f'[bold yellow]Failed to delete:[/bold yellow] {wav_file}')
         os.remove(os.path.join(config['temp_path'], basename(fl, 'xml', sanitize=True)))
 
     if args.format.lower() == 'thd':
@@ -673,7 +684,7 @@ def main() -> None:
     else:
         outchannels = channels
 
-    if outchannels in [1, 2] and aformat in ['dd', 'ddp']:
+    if outchannels in [1, 2] and aformat in ['dd', 'ddp'] and not args.measure_only:
         if args.no_prompt:
             print('Consider using [bold cyan]qaac[/bold cyan] or [bold cyan]opus[/bold cyan] for \
 [bold yellow]mono[/bold yellow] and [bold yellow]stereo[/bold yellow] encoding.')
@@ -806,12 +817,13 @@ def main() -> None:
             summary.add_row('Channels', channel_number_to_name(channels))
             summary.add_row('Bit depth', str(bit_depth), end_section=True)
 
-        if config['summary_sections']['output_info']:
-            summary.add_row('[bold yellow]Output')
-            summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
-            summary.add_row('Channels', 'immersive stereo' if aformat == 'ac4' else channel_number_to_name(outchannels))
-            summary.add_row('Bitrate', 'N/A' if aformat == 'thd' else f'{str(bitrate)} kbps')
-            summary.add_row('Dialnorm', 'auto (0)' if args.dialnorm == 0 else f'{str(args.dialnorm)} dB', end_section=True)
+        if not args.measure_only:
+            if config['summary_sections']['output_info']:
+                summary.add_row('[bold yellow]Output')
+                summary.add_row('Format', 'TrueHD' if aformat == 'thd' else aformat.upper())
+                summary.add_row('Channels', 'immersive stereo' if aformat == 'ac4' else channel_number_to_name(outchannels))
+                summary.add_row('Bitrate', 'N/A' if aformat == 'thd' else f'{str(bitrate)} kbps')
+                summary.add_row('Dialnorm', 'auto (0)' if args.dialnorm == 0 else f'{str(args.dialnorm)} dB', end_section=True)
 
         if config['summary_sections']['other']:
             if args.delay:
