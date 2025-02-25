@@ -1,3 +1,7 @@
+# deew 3.2.2:
+- remove unnecessary thing for measure only
+- try to fix temp delete
+
 # deew 3.2.1:
 - handle `-master` in dee's version string
 
