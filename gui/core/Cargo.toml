@@ -1,0 +1,24 @@
+[package]
+name = "deew-gui-core"
+version = "0.1.0"
+description = "Tauri-independent backend of the deew GUI"
+authors = ["pcroland <pcroland@protonmail.ch>"]
+license = "MIT"
+repository = "https://github.com/pcrlnd/deew"
+edition = "2024"
+
+[lib]
+name = "deew_gui_core"
+
+[dependencies]
+portable-pty = "0.9"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "1"
+which = "8"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[dev-dependencies]
+tempfile = "3"

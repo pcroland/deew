@@ -1,23 +1,20 @@
-[![builds](https://img.shields.io/github/actions/workflow/status/pcroland/deew/build.yaml?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
-[![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
-[![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
-[![pypi_downloads](https://img.shields.io/pypi/dm/deew?color=70920c&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/deew)
-[![license](https://img.shields.io/github/license/pcroland/deew?color=blueviolet&style=flat-square)](https://github.com/pcroland/deew/blob/master/LICENSE)
+[![builds](https://img.shields.io/github/actions/workflow/status/pcrlnd/deew/build-cli.yaml?logo=github&style=flat-square)](https://github.com/pcrlnd/deew/actions/workflows/build-cli.yaml)
+[![github_release](https://img.shields.io/github/v/release/pcrlnd/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcrlnd/deew/releases)
+[![license](https://img.shields.io/github/license/pcrlnd/deew?color=blueviolet&style=flat-square)](https://github.com/pcrlnd/deew/blob/main/LICENSE)
 \
-[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeew_supp)](https://t.me/deew_supp)
-[![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
-[![open_issues](https://img.shields.io/github/issues/pcroland/deew?color=718bcd&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
-[![closed_issues](https://img.shields.io/github/issues-closed/pcroland/deew?color=253e80&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues?q=is%3Aissue+is%3Aclosed)
+[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeew_support)](https://t.me/deew_support)
+[![commits](https://img.shields.io/github/last-commit/pcrlnd/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcrlnd/deew/commits/main)
+[![open_issues](https://img.shields.io/github/issues/pcrlnd/deew?color=718bcd&logo=github&style=flat-square)](https://github.com/pcrlnd/deew/issues)
+[![closed_issues](https://img.shields.io/github/issues-closed/pcrlnd/deew?color=253e80&logo=github&style=flat-square)](https://github.com/pcrlnd/deew/issues?q=is%3Aissue+is%3Aclosed)
 \
-[![name](https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20osx-eeeeee?style=flat-square)](https://github.com/pcroland/deew)
-[![name](https://img.shields.io/pypi/pyversions/deew?logo=Python&logoColor=eeeeee&color=eeeeee&style=flat-square)](https://github.com/pcroland/deew)
+[![name](https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20osx-eeeeee?style=flat-square)](https://github.com/pcrlnd/deew)
 [![name](https://img.shields.io/badge/DEE-5.1.0--5.2.1-green?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg==&color=eeeeee&style=flat-square)](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)
 <hr>
-<p align="center"><img width="192" src="https://raw.githubusercontent.com/pcroland/deew/main/logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
+<p align="center"><img width="192" src="https://raw.githubusercontent.com/pcrlnd/deew/main/logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
 
 
-<p align="center"><a href="https://github.com/pcroland/deew/blob/main/README.md">English readme</a>
- • <a href="https://github.com/pcroland/deew/blob/main/README_hu.md">Magyar leírás</a></p>
+<p align="center"><a href="https://github.com/pcrlnd/deew/blob/main/README.md">English readme</a>
+ • <a href="https://github.com/pcrlnd/deew/blob/main/README_hu.md">Magyar leírás</a></p>
 
 ## DDP encode-olás még sosem volt ilyen egyszerű!
 
@@ -29,7 +26,7 @@
 - átkonvertálja az inputokat RF64-re, amit már DEE is tud kezelni
   - a bitmélységet, csatornák számát és egyéb infókat a forrásból parse-olja
 - minden input fájlhoz generál egy XML fájlt a beállítások alapján
-- a script thread poolingot használ batch encodingra (lásd config)
+- több kódolást párhuzamosan futtat batch encodingnál (lásd config)
 - támogatja a WSL útvonalak konvertálását a DEE Windows verziójához (lásd config)
 - hibás bitráta megadása esetén kiválasztja a legközelebbi megengedettet
 - automatikus mintavételezésiráta-konvertálás ffmpeg soxr resamplerét használva nem támogatott mintavételezési ráta esetén
@@ -43,12 +40,12 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - akár videó inputokkal is működik (az első audió kerül kiválasztásra)
-- csicsás terminálkimenet rich használatával
+- színes terminálkimenet élő folyamatjelző sávokkal
 - sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
 - delay parse-olása fájlnévből
+- opcionális asztali GUI (deew-gui) és webes felület (deew-web), amik összeállítják neked a parancsot, és megjelenítik az élő kimenetet
 
 # Követelmények
-- Python *(nincs rá szükséged, ha a standalone buildet használod)*
 - ffmpeg
 - ffprobe
 - Dolby Encoding Engine
@@ -62,19 +59,39 @@
 - ha DEE `Failed to load library "...dll".` hibákat dob deew használatakor, telepítsd fel a [VisualCppRedist AIO](https://github.com/abbodi1406/vcredist/releases)-t
 
 # deew telepítése
-### standalone buildet használva (Windows 7-11/Linux):
-- tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
-- futtasd: `deew`\
+### standalone buildet használva (Windows 10-11/Linux):
+- tölsd le a legfrissebb buildet (`deew` / `deew.exe`) innen: [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases)
+- Linuxon tedd futtathatóvá: `chmod +x deew`
+- futtasd: `deew` (Windowson `deew.exe`)\
 *(terminálból futtasd, duplaklikk nem fog működni)*
-- az első futtatáskor készíteni fog egy config fájlt, válaszd ki, hogy melyik elérést szeretnéd használni
-- frissítés: tölsd le a legfrissebb buildet innen: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- az első futtatáskor készíteni fog egy config fájlt a deew binary mellé
+- frissítés: tölsd le a legfrissebb buildet innen: [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases)
 
-### Python környezetet használva (Windows/Linux/macOS):
-- telepítsd a Pythont és pip-et, ha még nincs fent
-- futtasd a következő parancsot: `pip install deew`
+### forrásból buildelve (Windows/Linux/macOS):
+- telepítsd a Rustot, ha még nincs fent: [https://rustup.rs](https://rustup.rs)
+- futtasd a következő parancsot: `cargo install deew`
 - futtasd: `deew`
 - az első futtatáskor készíteni fog egy config fájlt
-- frissítés: `pip install deew --upgrade`
+- frissítés: futtasd újra ugyanezt a parancsot: `cargo install deew`
+
+*Az eredeti Python implementáció referenciaként a [`python/`](python/) mappában található.*
+
+# GUI
+- tölsd le a `deew-gui` / `deew-gui.exe` fájlt innen: [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases), és told a CLI binárisod mellé ugyanabba a mappába (a mellette lévő `deew` fájlt keresi, Windowson `deew.exe`-t)
+- Linuxon tedd futtathatóvá a binárisokat: `chmod +x deew deew-gui`
+- Linuxon szükség van a WebKitGTK runtime-ra: `libwebkit2gtk-4.1-0` (Debian/Ubuntu), `webkit2gtk4.1` (Fedora), `webkit2gtk-4.1` (Arch)
+- Windows 10/11 már tartalmazza a szükséges WebView2 runtime-ot
+- a GUI saját verziószámot használ, a CLI-tól függetlenül
+- forrásból buildelve: `cd gui && npm install && npm run tauri build -- --no-bundle` (a binárist a `gui/target/release/` mappában találod), fejlesztéshez használd: `npm run tauri dev`
+
+# Web UI
+- a `deew-web` a GUI a böngésződben, jól jön egy headless szerveren / NAS-on, ahol a DEE fut
+- tölsd le a `deew-web` / `deew-web.exe` fájlt innen: [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases), és told a CLI binárisod mellé ugyanabba a mappába, Linuxon futtasd: `chmod +x deew-web`
+- indítsd el, és nyisd meg: [http://127.0.0.1:8765](http://127.0.0.1:8765), a `--host 0.0.0.0`-val más gépekről is elérhető lesz, a `--port`-tal pedig a portot változtathatod
+- nem kell hozzá WebKit, egyetlen binárisról van szó (a Linuxos statikus)
+- bejelentkezés: futtasd a `deew-web --hash-password` parancsot, és másold az eredményt a `config.toml` (a CLI mellett) `[deew_web]` szekciójának `pass` mezőjébe, a `user` mezőt is töltsd ki, üresen hagyva nincs bejelentkezés
+- alapból csak a localhoston figyel, bárki, aki eléri, futtathat deew-t és böngészheti a gép fájljait, és sima HTTP-t használ, ezért ha az internetre kiteszed, tegyél elé TLS-t tudó reverse proxyt
+- forrásból buildelve: `cd gui && npm install && npm run build && cargo build -p deew-web --release` (a binárist a `gui/target/release/` mappában találod)
 
 # Rendszer PATH változók beállítása
 Ha nem szeretnéd a teljes elérési utat használni a binárisokhoz a configban, vagy amikor CLI-ből használod őket, javaslom a rendszer PATH változók beállítását
@@ -99,7 +116,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Használat
 ```
 ❯ deew -h
-deew 3.2.1
+deew 3.5.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
             [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
@@ -145,10 +162,10 @@ FLAGS:
   -fb, --force-bluray         force bluray profile for 7.1 DDP encoding (768-1664 kbps)
   -lb, --list-bitrates        list bitrates that DEE can do for DD and DDP encoding
   -la, --long-argument        print ffmpeg and DEE arguments for each input
-  -np, --no-prompt            disables prompt
+  -np, --no-prompt            skip confirmation questions, print them as notes and continue
   -pl, --print-logos          show all logo variants you can set in the config
   -cl, --changelog            show changelog
-  -c, --config                show config and config location(s)
+  -c, --config                show config and config location
   -gc, --generate-config      generate a new config
 ```
 # Példák

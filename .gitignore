@@ -2,6 +2,9 @@
 __pycache__
 .python-version
 
+# rust
+/target
+
 # pyinstaller
 build
 release
@@ -12,9 +15,17 @@ dist
 # terminalizer
 term_render.yml
 
+# gui
+gui/node_modules
+gui/dist
+gui/target
+gui/src-tauri/binaries
+gui/src-tauri/gen/schemas
+
 # deew
-temp*
-test*
+/temp*
+/test*
+!/tests/
 *.ac3
 *.ac4
 *.eb3
@@ -30,3 +41,4 @@ test*
 *.pcm
 *.mka
 *.mkv
+.venv/

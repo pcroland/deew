@@ -1,0 +1,480 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { open } from "@tauri-apps/plugin-dialog"
+import { getCurrentWebview } from "@tauri-apps/api/webview"
+
+import { CommandBar } from "@/components/command-bar"
+import { runOutcome, type RunOutcome } from "@/lib/run-outcome"
+import {
+  FileBrowserDialog,
+  type BrowseRequest,
+} from "@/components/file-browser-dialog"
+import { OptionsForm } from "@/components/options-form"
+import { TerminalPane, type TerminalHandle } from "@/components/terminal-pane"
+import { TitleBar } from "@/components/title-bar"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { WebToolbar } from "@/components/web-toolbar"
+import {
+  DEFAULT_BITRATE,
+  DEFAULT_OPTIONS,
+  buildArgs,
+  detectPlatform,
+  formatCommand,
+  infoArgs,
+  relevantBitrates,
+  relevantDownmixes,
+  validate,
+  type DeewOptions,
+  type InfoFlag,
+} from "@/lib/deew-args"
+import {
+  errorStatus,
+  exitStatus,
+  finishedStatus,
+  prompt,
+  stoppedStatus,
+  successStatus,
+} from "@/lib/terminal-format"
+import { stateAction } from "@/lib/run-client"
+import { useProbe } from "@/lib/use-probe"
+import { errorMessage } from "@/lib/web-api"
+import {
+  cliVersion,
+  connectRunEvents,
+  defaultBitrates,
+  inTauri,
+  inWeb,
+  reconnectRunSocket,
+  resizePty,
+  runDeew,
+  stopDeew,
+  writeStdin,
+} from "@/lib/runner"
+
+const platform = detectPlatform(navigator.userAgent)
+
+function addUnique(list: string[], extra: string[]): string[] {
+  const seen = new Set(list)
+  const out = [...list]
+  for (const p of extra) {
+    if (!seen.has(p)) {
+      seen.add(p)
+      out.push(p)
+    }
+  }
+  return out
+}
+
+export function App({ onLogout }: { onLogout?: () => void }) {
+  const [options, setOptions] = useState<DeewOptions>({ ...DEFAULT_OPTIONS })
+  const [running, setRunning] = useState(false)
+  const [outcome, setOutcome] = useState<RunOutcome | null>(null)
+  const [endCount, setEndCount] = useState(0)
+  const [dragging, setDragging] = useState(false)
+  const terminal = useRef<TerminalHandle>(null)
+  const runningRef = useRef(false)
+  const stoppedRef = useRef(false)
+  // When this tab started the job; null for a job it only attached to.
+  const startedAtRef = useRef<number | null>(null)
+  // Web: this tab sent `start` and the server has not confirmed it yet.
+  const awaitingStartRef = useRef(false)
+  // Web: server events are handled strictly in order (attaching is async).
+  const eventChain = useRef<Promise<void>>(Promise.resolve())
+  const [browseRequest, setBrowseRequest] = useState<BrowseRequest | null>(null)
+  const versionRef = useRef<string | null>(null)
+  // Whether an empty prompt is the last thing in the terminal.
+  const promptShownRef = useRef(false)
+  const [defaults, setDefaults] = useState<Record<string, number>>({})
+
+  const args = useMemo(() => buildArgs(options), [options])
+  const command = useMemo(() => formatCommand(args, platform), [args])
+  const problems = useMemo(() => validate(options), [options])
+  const canRun = options.inputs.length > 0 && problems.length === 0
+
+  const trackIndex = /^\d+$/.test(options.trackIndex.trim())
+    ? Number.parseInt(options.trackIndex, 10)
+    : null
+  const probe = useProbe(options.inputs, trackIndex)
+  const channels = probe.status === "done" ? probe.summary.channels : null
+  const downmix = relevantDownmixes(channels).includes(options.downmix)
+    ? options.downmix
+    : "none"
+  const downmixes = relevantDownmixes(channels)
+  const bitrateInfo = relevantBitrates({
+    format: options.format,
+    channels,
+    downmix,
+    forceStandard: options.forceStandard,
+    forceBluray: options.forceBluray,
+  })
+  // A downmix or bitrate that the probed layout cannot do goes back to the
+  // default (adjusting state while rendering, as React recommends for derived
+  // state).
+  const bitrateInvalid =
+    options.bitrate !== DEFAULT_BITRATE &&
+    !bitrateInfo.bitrates.includes(Number(options.bitrate))
+  if (downmix !== options.downmix || bitrateInvalid) {
+    setOptions({
+      ...options,
+      downmix,
+      bitrate: bitrateInvalid ? DEFAULT_BITRATE : options.bitrate,
+    })
+  }
+
+  const addInputs = useCallback((paths: string[]) => {
+    setOptions((o) => ({ ...o, inputs: addUnique(o.inputs, paths) }))
+  }, [])
+
+  // Drag & drop of files / folders onto the window.
+  useEffect(() => {
+    if (!inTauri()) return
+    let unlisten: (() => void) | undefined
+    let cancelled = false
+    getCurrentWebview()
+      .onDragDropEvent((event) => {
+        const p = event.payload
+        if (p.type === "enter" || p.type === "over") setDragging(true)
+        else if (p.type === "leave") setDragging(false)
+        else if (p.type === "drop") {
+          setDragging(false)
+          if (!runningRef.current) addInputs(p.paths)
+        }
+      })
+      .then((fn) => {
+        if (cancelled) fn()
+        else unlisten = fn
+      })
+      .catch((e) => console.error("drag & drop unavailable", e))
+    return () => {
+      cancelled = true
+      unlisten?.()
+    }
+  }, [addInputs])
+
+  const pick = async (directory: boolean, multiple: boolean) => {
+    // No native dialogs in a browser: browse the server's file system.
+    if (inWeb()) {
+      return new Promise<string[]>((resolve) =>
+        setBrowseRequest({
+          directory,
+          resolve: (paths) => {
+            setBrowseRequest(null)
+            resolve(paths)
+          },
+        })
+      )
+    }
+    const selected = await open({ directory, multiple })
+    if (selected === null) return []
+    return Array.isArray(selected) ? selected : [selected]
+  }
+
+  const loadVersion = useCallback(async () => {
+    if (versionRef.current) return
+    try {
+      versionRef.current = await cliVersion()
+    } catch (error) {
+      console.warn("deew version unavailable", error)
+    }
+  }, [])
+
+  // Re-read after every job: the user may have just generated or edited it.
+  const refreshDefaults = useCallback(() => {
+    defaultBitrates().then(setDefaults).catch(console.warn)
+  }, [])
+
+  useEffect(() => {
+    refreshDefaults()
+  }, [refreshDefaults])
+
+  // Shows an empty prompt unless one is already there.
+  const showPrompt = useCallback((term: TerminalHandle) => {
+    if (promptShownRef.current) return
+    promptShownRef.current = true
+    term.write(prompt(versionRef.current))
+  }, [])
+
+  // The first prompt, once the version is known (or failed to load).
+  useEffect(() => {
+    let cancelled = false
+    void loadVersion().then(() => {
+      // A job attached in the meantime has written its own prompt.
+      if (!cancelled && terminal.current && !runningRef.current) {
+        showPrompt(terminal.current)
+      }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [loadVersion, showPrompt])
+
+  // Writes a status line, making sure it starts on a fresh line.
+  const writeStatus = useCallback(
+    async (term: TerminalHandle, text: string) => {
+      await term.flush()
+      if (term.cursorX() !== 0) term.write("\r\n")
+      term.write(`${text}\r\n`)
+    },
+    []
+  )
+
+  // The status line of a finished job, then a blank line and a fresh prompt.
+  const finish = useCallback(
+    async (term: TerminalHandle, status: string) => {
+      await writeStatus(term, status)
+      term.write("\r\n")
+      showPrompt(term)
+      refreshDefaults()
+    },
+    [writeStatus, showPrompt, refreshDefaults]
+  )
+
+  // The prompt line with the arguments of a job that is starting / running.
+  const printStart = useCallback(
+    async (term: TerminalHandle, runArgs: string[]) => {
+      await loadVersion()
+      await term.flush()
+      // The args go after the prompt that is already shown.
+      showPrompt(term)
+      promptShownRef.current = false
+      term.write(`${formatCommand(runArgs, platform)}\r\n`)
+    },
+    [loadVersion, showPrompt]
+  )
+
+  // The job ended (any mode): status line, blank line and a fresh prompt.
+  // `code` is undefined when the outcome is unknown (connection lost).
+  // Web: fires if the server never acknowledges a start (dead socket).
+  const startTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  )
+  const clearStartTimer = useCallback(() => {
+    clearTimeout(startTimerRef.current)
+    startTimerRef.current = undefined
+  }, [])
+  useEffect(() => clearStartTimer, [clearStartTimer])
+
+  const endRun = useCallback(
+    (term: TerminalHandle, code: number | null | undefined) => {
+      const startedAt = startedAtRef.current
+      clearStartTimer()
+      runningRef.current = false
+      awaitingStartRef.current = false
+      setRunning(false)
+      setOutcome(runOutcome({ stopped: stoppedRef.current, code }))
+      setEndCount((n) => n + 1)
+      const status = stoppedRef.current
+        ? stoppedStatus()
+        : code === undefined
+          ? exitStatus(null)
+          : code !== 0
+            ? exitStatus(code)
+            : // An attached job's start is unknown, so no duration.
+              startedAt === null
+              ? finishedStatus()
+              : successStatus(performance.now() - startedAt)
+      void finish(term, status)
+    },
+    [finish, clearStartTimer]
+  )
+
+  const failRun = useCallback(
+    (term: TerminalHandle, message: string) => {
+      clearStartTimer()
+      runningRef.current = false
+      awaitingStartRef.current = false
+      setRunning(false)
+      setOutcome(runOutcome({ error: true }))
+      setEndCount((n) => n + 1)
+      void finish(term, errorStatus(message))
+    },
+    [finish, clearStartTimer]
+  )
+
+  const start = useCallback(
+    async (runArgs: string[]) => {
+      const term = terminal.current
+      if (!term || runningRef.current) return
+      runningRef.current = true
+      awaitingStartRef.current = inWeb()
+      stoppedRef.current = false
+      setRunning(true)
+      await printStart(term, runArgs)
+      // Focusing opens the on-screen keyboard on phones.
+      if (!window.matchMedia("(pointer: coarse)").matches) term.focus()
+      startedAtRef.current = performance.now()
+      try {
+        const { cols, rows } = term.size()
+        // Tauri reports through the handlers, the web through `attachWeb`.
+        await runDeew(runArgs, cols, rows, {
+          onOutput: (bytes) => term.write(bytes),
+          onExit: (code) => endRun(term, code),
+        })
+        if (awaitingStartRef.current) {
+          clearStartTimer()
+          startTimerRef.current = setTimeout(() => {
+            startTimerRef.current = undefined
+            if (awaitingStartRef.current && runningRef.current) {
+              failRun(
+                term,
+                "no response from deew-web (connection lost?), try again"
+              )
+              reconnectRunSocket()
+            }
+          }, 5000)
+        }
+      } catch (error) {
+        failRun(term, errorMessage(error))
+      }
+    },
+    [printStart, endRun, failRun, clearStartTimer]
+  )
+
+  // Web: a job that this tab did not start (page reload, another tab) is
+  // shown like a local one: prompt + args, then its output.
+  const attachWeb = useCallback(
+    async (
+      term: TerminalHandle,
+      runArgs: string[],
+      startedAt: number | null
+    ) => {
+      runningRef.current = true
+      stoppedRef.current = false
+      startedAtRef.current = startedAt
+      setRunning(true)
+      await printStart(term, runArgs)
+    },
+    [printStart]
+  )
+
+  // Web: the run socket. The server pushes the state on every (re)connect and
+  // broadcasts started / exit / output of any job, whoever started it.
+  useEffect(() => {
+    if (!inWeb()) return
+    const enqueue = (
+      handle: (term: TerminalHandle) => void | Promise<void>
+    ) => {
+      eventChain.current = eventChain.current
+        .then(() => {
+          const term = terminal.current
+          return term ? handle(term) : undefined
+        })
+        .catch(console.error)
+    }
+    return connectRunEvents({
+      onState: (serverRunning, runArgs) =>
+        enqueue(async (term) => {
+          const action = stateAction(runningRef.current, serverRunning)
+          if (action === "attach") {
+            await attachWeb(term, runArgs ?? [], null)
+          } else if (action === "reattach") {
+            // The whole output is replayed: start over.
+            term.reset()
+            promptShownRef.current = false
+            await printStart(term, runArgs ?? [])
+          } else if (action === "lost") {
+            endRun(term, undefined)
+          }
+        }),
+      onStarted: (runArgs) =>
+        enqueue(async (term) => {
+          clearStartTimer()
+          awaitingStartRef.current = false
+          // Started by this tab: already shown.
+          if (!runningRef.current) {
+            await attachWeb(term, runArgs, performance.now())
+          }
+        }),
+      onOutput: (bytes) => enqueue((term) => term.write(bytes)),
+      onExit: (code) =>
+        enqueue((term) => {
+          if (runningRef.current) endRun(term, code)
+        }),
+      onError: (message) =>
+        enqueue((term) => {
+          if (runningRef.current && awaitingStartRef.current) {
+            clearStartTimer()
+            failRun(term, message)
+          } else {
+            console.error("deew-web:", message)
+          }
+        }),
+    })
+  }, [attachWeb, printStart, endRun, failRun, clearStartTimer])
+
+  const run = () => {
+    if (canRun) void start(args)
+  }
+  const runInfo = (flag: InfoFlag) => void start(infoArgs(flag))
+
+  const onTerminalData = useCallback((data: string) => {
+    if (runningRef.current) writeStdin(data).catch(console.error)
+  }, [])
+  const onTerminalResize = useCallback((cols: number, rows: number) => {
+    if (runningRef.current) resizePty(cols, rows).catch(console.error)
+  }, [])
+
+  return (
+    <TooltipProvider delay={400}>
+      <div className="flex h-full flex-col">
+        {inTauri() && <TitleBar menuDisabled={running} onRunInfo={runInfo} />}
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-none">
+          <div
+            className={`flex h-full flex-col gap-3 p-3 ${
+              inTauri() ? "min-h-[533px]" : "min-h-[560px]"
+            }`}
+          >
+            <OptionsForm
+              value={options}
+              onChange={setOptions}
+              dragging={dragging}
+              disabled={running}
+              probe={probe}
+              bitrateInfo={bitrateInfo}
+              defaultBitrates={defaults}
+              downmixChoices={downmixes}
+              toolbar={
+                inWeb() && (
+                  <WebToolbar
+                    menuDisabled={running}
+                    onRunInfo={runInfo}
+                    onLogout={onLogout}
+                  />
+                )
+              }
+              onAddFiles={async () => addInputs(await pick(false, true))}
+              onAddFolders={async () => addInputs(await pick(true, true))}
+              onPickOutput={async () => {
+                const [dir] = await pick(true, false)
+                if (dir) setOptions((o) => ({ ...o, output: dir }))
+              }}
+            />
+
+            <CommandBar
+              command={command}
+              problems={problems}
+              running={running}
+              runState={running ? "running" : (outcome ?? "idle")}
+              endCount={endCount}
+              canRun={canRun}
+              onRun={run}
+              onStop={() => {
+                stoppedRef.current = true
+                void stopDeew().catch(console.error)
+              }}
+            />
+
+            <TerminalPane
+              ref={terminal}
+              className="min-h-40 flex-1 overflow-hidden rounded-lg border border-input p-2"
+              onData={onTerminalData}
+              onResize={onTerminalResize}
+            />
+          </div>
+        </div>
+      </div>
+      <FileBrowserDialog request={browseRequest} />
+    </TooltipProvider>
+  )
+}
+
+export default App

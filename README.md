@@ -1,23 +1,20 @@
-[![builds](https://img.shields.io/github/actions/workflow/status/pcroland/deew/build.yaml?logo=github&style=flat-square)](https://github.com/pcroland/deew/actions/workflows/build.yaml)
-[![github_release](https://img.shields.io/github/v/release/pcroland/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcroland/deew/releases)
-[![pypi_release](https://img.shields.io/pypi/v/deew?label=PyPI&logo=pypi&logoColor=ffffff&color=70920c&style=flat-square)](https://pypi.org/project/deew)
-[![pypi_downloads](https://img.shields.io/pypi/dm/deew?color=70920c&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/deew)
-[![license](https://img.shields.io/github/license/pcroland/deew?color=blueviolet&style=flat-square)](https://github.com/pcroland/deew/blob/master/LICENSE)
+[![builds](https://img.shields.io/github/actions/workflow/status/pcrlnd/deew/build-cli.yaml?logo=github&style=flat-square)](https://github.com/pcrlnd/deew/actions/workflows/build-cli.yaml)
+[![github_release](https://img.shields.io/github/v/release/pcrlnd/deew?logo=github&color=70920c&style=flat-square)](https://github.com/pcrlnd/deew/releases)
+[![license](https://img.shields.io/github/license/pcrlnd/deew?color=blueviolet&style=flat-square)](https://github.com/pcrlnd/deew/blob/main/LICENSE)
 \
-[![telegram](https://img.shields.io/endpoint?label=Discussion%20%26%20support&style=flat-square&url=https%3A%2F%2Fx0.gs%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Ddeewsupp)](https://t.me/deewsupp)
-[![commits](https://img.shields.io/github/last-commit/pcroland/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcroland/deew/commits/main)
-[![open_issues](https://img.shields.io/github/issues/pcroland/deew?color=718bcd&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues)
-[![closed_issues](https://img.shields.io/github/issues-closed/pcroland/deew?color=253e80&logo=github&style=flat-square)](https://github.com/pcroland/deew/issues?q=is%3Aissue+is%3Aclosed)
+[![Telegram](https://telegram-badge.vercel.app/api/telegram-badge?channelId=@deew_supp&style=flat-square&label=Discussion+and+support)](https://t.me/deew_supp)
+[![commits](https://img.shields.io/github/last-commit/pcrlnd/deew?color=355ab8&logo=github&style=flat-square)](https://github.com/pcrlnd/deew/commits/main)
+[![open_issues](https://img.shields.io/github/issues/pcrlnd/deew?color=718bcd&logo=github&style=flat-square)](https://github.com/pcrlnd/deew/issues)
+[![closed_issues](https://img.shields.io/github/issues-closed/pcrlnd/deew?color=253e80&logo=github&style=flat-square)](https://github.com/pcrlnd/deew/issues?q=is%3Aissue+is%3Aclosed)
 \
-[![name](https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20osx-eeeeee?style=flat-square)](https://github.com/pcroland/deew)
-[![name](https://img.shields.io/pypi/pyversions/deew?logo=Python&logoColor=eeeeee&color=eeeeee&style=flat-square)](https://github.com/pcroland/deew)
+[![name](https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20osx-eeeeee?style=flat-square)](https://github.com/pcrlnd/deew)
 [![name](https://img.shields.io/badge/DEE-5.1.0--5.2.1-green?logoColor=white&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAA9ElEQVQokZXSzypFURQG8N89LsnEv1KGBp5CKU9wBygPIJ5AeYM7MjLAzMBAmRuYyszU3AOgG6GQpZ19OM69Tny1Wu39rVXfWt9qRcQaljCOUbygh3c/MYQJDOMZ9zhvYwEb+hG1n9aAmlaBkfzYwQo2cZUbqnGJdSxjP/eMiYi9+MRiRKjEWXzjpMZ1MnNUVORM1+R1ck6jrNa4qZJrD5irRFrUHW4aahRNJN7w2lTQpCBhBpN/VfBU4w5yTr53a1war0/BPK7zQW1lS0tsYxa7eMDcFxMRhxW7/ovjpOAUj9madMppabe/nHKyOvWkcXu4+AAd1Ju1TsOvFgAAAABJRU5ErkJggg==&color=eeeeee&style=flat-square)](https://customer.dolby.com/content-creation-and-delivery/dolby-encoding-engine-with-ac-4)
 <hr>
+<p align="center"><img width="192" src="https://raw.githubusercontent.com/pcrlnd/deew/main/logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
 
-<p align="center"><img width="192" src="https://raw.githubusercontent.com/pcroland/deew/main/logo/logo.svg"><br>Dolby Encoding Engine Wrapper</p>
 
-<p align="center"><a href="https://github.com/pcroland/deew/blob/main/README.md">English readme</a>
- • <a href="https://github.com/pcroland/deew/blob/main/README_hu.md">Magyar leírás</a></p>
+<p align="center"><a href="https://github.com/pcrlnd/deew/blob/main/README.md">English readme</a>
+ • <a href="https://github.com/pcrlnd/deew/blob/main/README_hu.md">Magyar leírás</a></p>
 
 ## DDP encoding has never been so easy!
 
@@ -29,7 +26,7 @@
 - converts inputs to RF64 which DEE can use
   - bit depth, number of channels and other infos are parsed from the source
 - an XML file will be generated for each input based on the settings
-- the script utilizes thread pooling for batch encoding (see config)
+- runs multiple encodes in parallel for batch encoding (see config)
 - supports WSL path conversion for the Windows version of DEE (see config)
 - in case of an invalid bitrate it will pick the closest allowed one
 - automatic sample rate conversion using ffmpeg's soxr resampler in case of an unsupported sample rate
@@ -43,12 +40,12 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - works even with video inputs (first audio will be selected)
-- fancy terminal output using rich
+- colored terminal output with live progress bars
 - versatile delay option that supports ms, s and also frame@fps formats
 - parsing delay from filenames
+- optional desktop GUI (deew-gui) and web UI (deew-web) that build the command for you and show the live output
 
 # Requirements
-- Python *(you don't need it if you use a standalone build of deew)*
 - ffmpeg
 - ffprobe
 - Dolby Encoding Engine
@@ -62,19 +59,39 @@
 - if DEE throws `Failed to load library "...dll".` errors when you run deew install [VisualCppRedist AIO](https://github.com/abbodi1406/vcredist/releases)
 
 # deew installation
-### with standalone build (Windows 7-11/Linux):
-- grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
-- run with: `deew`\
+### with standalone build (Windows 10-11/Linux):
+- grab the latest build (`deew` / `deew.exe`) from: [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases)
+- on Linux make it executable: `chmod +x deew`
+- run with: `deew` (`deew.exe` on Windows)\
 *(run the binary from terminal, doubleclicking it won't work)*
-- on the first run it will create a config file, choose where you want to keep it
-- updating: grab the latest build from: [https://github.com/pcroland/deew/releases](https://github.com/pcroland/deew/releases)
+- on the first run it will create a config file next to the deew binary
+- updating: grab the latest build from: [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases)
 
-### with Python environment (Windows/Linux/macOS):
-- install Python and pip if you don't have it already
-- run: `pip install deew`
+### build from source (Windows/Linux/macOS):
+- install Rust if you don't have it already: [https://rustup.rs](https://rustup.rs)
+- run: `cargo install deew`
 - run with: `deew`
 - on the first run it will create a config file
-- updating: `pip install deew --upgrade`
+- updating: run the same command again: `cargo install deew`
+
+*The original Python implementation is kept in the [`python/`](python/) folder for reference.*
+
+# GUI
+- download `deew-gui` / `deew-gui.exe` from [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases) and put it in the same folder as the CLI binary (it looks for `deew` next to itself, `deew.exe` on Windows)
+- on Linux make the binaries executable: `chmod +x deew deew-gui`
+- Linux needs the WebKitGTK runtime: `libwebkit2gtk-4.1-0` (Debian/Ubuntu), `webkit2gtk4.1` (Fedora), `webkit2gtk-4.1` (Arch)
+- Windows 10/11 already include the needed WebView2 runtime
+- the GUI has its own version number, independent from the CLI
+- build from source: `cd gui && npm install && npm run tauri build -- --no-bundle` (the binary will be in `gui/target/release/`), for development use `npm run tauri dev`
+
+# Web UI
+- `deew-web` is the GUI in your browser, handy for a headless server / NAS that runs DEE
+- download `deew-web` / `deew-web.exe` from [https://github.com/pcrlnd/deew/releases](https://github.com/pcrlnd/deew/releases) and put it in the same folder as the CLI binary, on Linux run `chmod +x deew-web`
+- run it and open [http://127.0.0.1:8765](http://127.0.0.1:8765), use `--host 0.0.0.0` to make it reachable from other machines and `--port` to change the port
+- no WebKit needed, it is a single binary (the Linux one is static)
+- login: run `deew-web --hash-password` and paste the result into the `[deew_web]` section of `config.toml` (next to the CLI) as `pass`, set `user` too, leave them empty for no login
+- by default it only listens on localhost, anyone who can reach it can run deew and browse the files of the machine, and it speaks plain HTTP, so put it behind a TLS reverse proxy if you expose it to the internet
+- build from source: `cd gui && npm install && npm run build && cargo build -p deew-web --release` (the binary will be in `gui/target/release/`)
 
 # Setup system PATH variable
 If you don't want to use full paths for the binaries in your config or when you use them from CLI, I suggest to setup system PATH variables
@@ -99,7 +116,7 @@ PATH="/usr/local/bin/ffmpeg:$PATH"
 # Usage
 ```
 ❯ deew -h
-deew 3.2.1
+deew 3.5.0
 
 USAGE: deew [-h] [-v] [-i [INPUT ...]] [-ti INDEX] [-o DIRECTORY] [-f FORMAT]
             [-b BITRATE] [-dm CHANNELS] [-d DELAY] [-r DRC] [-dn DIALNORM]
@@ -145,10 +162,10 @@ FLAGS:
   -fb, --force-bluray         force bluray profile for 7.1 DDP encoding (768-1664 kbps)
   -lb, --list-bitrates        list bitrates that DEE can do for DD and DDP encoding
   -la, --long-argument        print ffmpeg and DEE arguments for each input
-  -np, --no-prompt            disables prompt
+  -np, --no-prompt            skip confirmation questions, print them as notes and continue
   -pl, --print-logos          show all logo variants you can set in the config
   -cl, --changelog            show changelog
-  -c, --config                show config and config location(s)
+  -c, --config                show config and config location
   -gc, --generate-config      generate a new config
 ```
 # Examples
@@ -172,4 +189,4 @@ encode TrueHD
 encode multiple formats/bitrates while creating the temp file only once
 
 # Discussion and Support
-[https://t.me/deewsupport](https://t.me/deewsupport)
+[https://t.me/deew_support](https://t.me/deew_support)

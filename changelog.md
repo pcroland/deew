@@ -1,3 +1,12 @@
+# deew 3.5.0:
+- rewritten in Rust, single binary with no Python runtime needed (the Python version is kept in the `python/` folder)
+- config is only read from `config.toml` next to the deew binary, `-gc` no longer asks for a location
+- encoding summary: `Input(s)` header, new `Directory` row in Output, clearer Delay row (`0ms`, `Nms`, `Nms (parsed from filenames)`, `mixed (parsed from filenames)`)
+- inputs with different bit depths are supported (`mixed bit depth`)
+- clearer `-np` description
+- new optional desktop GUI (`deew-gui`) and web UI (`deew-web`), see the README
+- config: new optional `[deew_web]` section for the web UI login
+
 # deew 3.2.2:
 - remove unnecessary thing for measure only
 - try to fix temp delete

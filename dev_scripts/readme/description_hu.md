@@ -2,7 +2,7 @@
 - átkonvertálja az inputokat RF64-re, amit már DEE is tud kezelni
   - a bitmélységet, csatornák számát és egyéb infókat a forrásból parse-olja
 - minden input fájlhoz generál egy XML fájlt a beállítások alapján
-- a script thread poolingot használ batch encodingra (lásd config)
+- több kódolást párhuzamosan futtat batch encodingnál (lásd config)
 - támogatja a WSL útvonalak konvertálását a DEE Windows verziójához (lásd config)
 - hibás bitráta megadása esetén kiválasztja a legközelebbi megengedettet
 - automatikus mintavételezésiráta-konvertálás ffmpeg soxr resamplerét használva nem támogatott mintavételezési ráta esetén
@@ -16,6 +16,7 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - akár videó inputokkal is működik (az első audió kerül kiválasztásra)
-- csicsás terminálkimenet rich használatával
+- színes terminálkimenet élő folyamatjelző sávokkal
 - sokoldalú delay opció, ami támogat ms, s and és frame@fps formát is
 - delay parse-olása fájlnévből
+- opcionális asztali GUI (deew-gui) és webes felület (deew-web), amik összeállítják neked a parancsot, és megjelenítik az élő kimenetet

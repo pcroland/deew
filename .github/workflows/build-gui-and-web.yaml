@@ -1,0 +1,142 @@
+name: Build GUI and web
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to upload to (empty = latest release)
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  resolve-tag:
+    name: Resolve release tag
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.resolve.outputs.tag }}
+
+    steps:
+      - name: Resolve release tag
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          tag="$INPUT_TAG"
+          if [ -z "$tag" ]; then
+            tag=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName -q .tagName) || true
+          fi
+          if [ -z "$tag" ]; then
+            echo "::error::No release found. Create a release first or pass the tag input."
+            exit 1
+          fi
+          echo "Uploading to release: $tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+  linux:
+    name: Linux
+    runs-on: ubuntu-22.04
+    needs: resolve-tag
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Install Tauri dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev musl-tools
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: gui/package-lock.json
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-unknown-linux-musl
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target
+            gui -> target
+
+      - name: Install npm dependencies
+        working-directory: gui
+        run: npm ci
+
+      - name: Build deew-gui (also builds the frontend)
+        working-directory: gui
+        run: npm run tauri build -- --no-bundle
+
+      - name: Build deew-web (static musl binary)
+        working-directory: gui
+        run: cargo build -p deew-web --release --locked --target x86_64-unknown-linux-musl
+
+      - name: Move binaries to deew-gui and deew-web
+        run: |
+          mv gui/target/release/deew-gui deew-gui
+          mv gui/target/x86_64-unknown-linux-musl/release/deew-web deew-web
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ needs.resolve-tag.outputs.tag }}
+          files: |
+            deew-gui
+            deew-web
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    needs: resolve-tag
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: gui/package-lock.json
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target
+            gui -> target
+
+      - name: Install npm dependencies
+        working-directory: gui
+        run: npm ci
+
+      - name: Build deew-gui (also builds the frontend)
+        working-directory: gui
+        run: npm run tauri build -- --no-bundle
+
+      - name: Build deew-web
+        working-directory: gui
+        run: cargo build -p deew-web --release --locked
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ needs.resolve-tag.outputs.tag }}
+          files: |
+            gui/target/release/deew-gui.exe
+            gui/target/release/deew-web.exe

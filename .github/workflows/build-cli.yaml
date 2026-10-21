@@ -1,0 +1,136 @@
+name: Build CLI
+
+env:
+  RELEASE_VERSION:
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  linux-build:
+    name: Linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Install musl tools
+        run: sudo apt-get update && sudo apt-get install -y musl-tools
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-unknown-linux-musl
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Build
+        run: cargo build --release --locked --target x86_64-unknown-linux-musl
+
+      - name: Create changelog file
+        run: python -c "print('\n'.join(open('changelog.md', 'r').read().split('\n\n# deew')[0].split('\n')[1:]))" >> changelog.txt
+
+      - name: Fetch changelog and version
+        run: |
+          version=$(python -c "print(open('changelog.md', 'r').read().split('\n')[0].split(' ')[2].replace(':', ''))")
+          changelog=$(cat changelog.txt)
+          echo -e "Version: $version\n\nChangelog:\n$changelog"
+          echo "RELEASE_VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Move target/x86_64-unknown-linux-musl/release/deew to deew
+        run: mv target/x86_64-unknown-linux-musl/release/deew deew
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          body_path: changelog.txt
+          files: deew
+
+  windows-build:
+    name: Windows
+    runs-on: windows-latest
+    needs: linux-build
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Fetch version
+        run: |
+          $version=$(python -c "print(open('changelog.md', 'r').read().split('\n')[0].split(' ')[2].replace(':', ''))")
+          echo "Version: $version"
+          echo "RELEASE_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Build
+        run: cargo build --release --locked
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          files: target/release/deew.exe
+
+  crates-io:
+    name: crates.io
+    runs-on: ubuntu-latest
+    needs: [linux-build, windows-build]
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Check version
+        run: |
+          version=$(python -c "print(open('changelog.md', 'r').read().split('\n')[0].split(' ')[2].replace(':', ''))")
+          crate_version=$(cargo metadata --no-deps --format-version 1 | python -c "import json, sys; print(json.load(sys.stdin)['packages'][0]['version'])")
+          echo "changelog.md: $version, Cargo.toml: $crate_version"
+          if [ "$version" != "$crate_version" ]; then
+            echo "::error::Cargo.toml version ($crate_version) doesn't match changelog.md ($version)"
+            exit 1
+          fi
+          echo "CRATE_VERSION=$crate_version" >> "$GITHUB_ENV"
+
+      - name: Check if already published
+        id: published
+        run: |
+          status=$(curl -s -o /dev/null -w '%{http_code}' -A 'deew release workflow (https://github.com/pcrlnd/deew)' "https://crates.io/api/v1/crates/deew/$CRATE_VERSION")
+          case "$status" in
+            200)
+              echo "deew $CRATE_VERSION is already on crates.io, skipping publish"
+              echo "exists=true" >> "$GITHUB_OUTPUT"
+              ;;
+            404)
+              echo "exists=false" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "::error::crates.io returned HTTP $status"
+              exit 1
+              ;;
+          esac
+
+      - name: Publish
+        if: steps.published.outputs.exists == 'false'
+        run: cargo publish --locked
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_TOKEN }}

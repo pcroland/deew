@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "deew",
+  "version": "0.1.0",
+  "identifier": "io.github.pcroland.deew",
+  "build": {
+    "beforeDevCommand": "node scripts/build-sidecar.mjs && npm run dev",
+    "devUrl": "http://localhost:3000",
+    "beforeBuildCommand": "node scripts/build-sidecar.mjs && npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "deew",
+        "width": 1100,
+        "height": 900,
+        "center": true,
+        "decorations": false,
+        "visible": false,
+        "minWidth": 800,
+        "minHeight": 620
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "externalBin": [
+      "binaries/deew"
+    ],
+    "shortDescription": "Dolby Encoding Engine Wrapper",
+    "longDescription": "Desktop GUI for deew, a wrapper around the Dolby Encoding Engine.",
+    "category": "Utility"
+  },
+  "mainBinaryName": "deew-gui"
+}

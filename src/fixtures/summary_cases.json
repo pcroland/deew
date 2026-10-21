@@ -1,0 +1,3250 @@
+[
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 250,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ 24                                │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ DDP                               │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ 1024 kbps                         │\n│ Dialnorm        │ auto (0)                          │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 2.5                               │\n│ Delay           │ 0ms                               │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 80,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ 24                                │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ DDP                               │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ 1024 kbps                         │\n│ Dialnorm        │ auto (0)                          │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 2.5                               │\n│ Delay           │ 0ms                               │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 60,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ 24                                │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ DDP                               │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ 1024 kbps                         │\n│ Dialnorm        │ auto (0)                          │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 2.5                               │\n│ Delay           │ 0ms                               │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ couldn't fetch           │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ 24                       │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ DDP                      │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ 1024 kbps                │\n│ Dialnorm        │ auto (0)                 │\n│ Directory       │ /mnt/x/code/deew4/targe… │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 2.5                      │\n│ Delay           │ 0ms                      │\n│ Temp path       │ /mnt/x/code/deew4/targe… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ couldn't fetch     │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ 24                 │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ DDP                │\n│ Channels        │ 5.1                │\n│ Bitrate         │ 1024 kbps          │\n│ Dialnorm        │ auto (0)           │\n│ Directory       │ /mnt/x/code/deew4… │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 2.5                │\n│ Delay           │ 0ms                │\n│ Temp path       │ /mnt/x/code/deew4… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ 24             │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ DDP            │\n│ Channels      │ 5.1            │\n│ Bitrate       │ 1024 kbps      │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ /mnt/x/code/d… │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ 0ms            │\n│ Temp path     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ 24           │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ DDP          │\n│ Channels    │ 5.1          │\n│ Bitrate     │ 1024 kbps    │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ /mnt/x/code… │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ 0ms          │\n│ Temp path   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ 24        │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /mnt/x/c… │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ 0ms       │\n│ Temp path │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 250,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ mixed bit depth                   │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ TrueHD                            │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ N/A                               │\n│ Dialnorm        │ -27 dB                            │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 4                                 │\n│ Delay           │ -5.1ms                            │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 80,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ mixed bit depth                   │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ TrueHD                            │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ N/A                               │\n│ Dialnorm        │ -27 dB                            │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 4                                 │\n│ Delay           │ -5.1ms                            │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 60,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ mixed bit depth                   │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ TrueHD                            │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ N/A                               │\n│ Dialnorm        │ -27 dB                            │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 4                                 │\n│ Delay           │ -5.1ms                            │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ couldn't fetch           │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ mixed bit depth          │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ TrueHD                   │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ N/A                      │\n│ Dialnorm        │ -27 dB                   │\n│ Directory       │ /mnt/x/code/deew4/targe… │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 4                        │\n│ Delay           │ -5.1ms                   │\n│ Temp path       │ /mnt/x/code/deew4/targe… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ couldn't fetch     │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ mixed bit depth    │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ TrueHD             │\n│ Channels        │ 5.1                │\n│ Bitrate         │ N/A                │\n│ Dialnorm        │ -27 dB             │\n│ Directory       │ /mnt/x/code/deew4… │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 4                  │\n│ Delay           │ -5.1ms             │\n│ Temp path       │ /mnt/x/code/deew4… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ mixed bit      │\n│               │ depth          │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ TrueHD         │\n│ Channels      │ 5.1            │\n│ Bitrate       │ N/A            │\n│ Dialnorm      │ -27 dB         │\n│ Directory     │ /mnt/x/code/d… │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 4              │\n│ Delay         │ -5.1ms         │\n│ Temp path     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ mixed bit    │\n│             │ depth        │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ TrueHD       │\n│ Channels    │ 5.1          │\n│ Bitrate     │ N/A          │\n│ Dialnorm    │ -27 dB       │\n│ Directory   │ /mnt/x/code… │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 4            │\n│ instances   │              │\n│ Delay       │ -5.1ms       │\n│ Temp path   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "thd",
+   "outchannels": 6,
+   "bitrate": null,
+   "dialnorm": -27,
+   "files": 2,
+   "instances": 4.0,
+   "delay": "-5.1ms",
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "-5.1ms"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ mixed bit │\n│           │ depth     │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ TrueHD    │\n│ Channels  │ 5.1       │\n│ Bitrate   │ N/A       │\n│ Dialnorm  │ -27 dB    │\n│ Directory │ /mnt/x/c… │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 4         │\n│ instances │           │\n│ Delay     │ -5.1ms    │\n│ Temp path │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 250,
+  "expected": "           Encoding summary           \n┌─────────────────┬──────────────────┐\n│ Version         │ 3.5.0            │\n│ Latest          │ couldn't fetch   │\n├─────────────────┼──────────────────┤\n│ DEE version     │ 5.2.1            │\n│ ffmpeg version  │ 7.1.5            │\n│ ffprobe version │ 7.1.5            │\n├─────────────────┼──────────────────┤\n│ Input(s)        │                  │\n│ Channels        │ 5.1              │\n│ Bit depth       │ 24               │\n├─────────────────┼──────────────────┤\n│ Output          │                  │\n│ Format          │ AC4              │\n│ Channels        │ immersive stereo │\n│ Bitrate         │ 320 kbps         │\n│ Dialnorm        │ auto (0)         │\n│ Directory       │ /tmp/ou[t]/de[ew │\n├─────────────────┼──────────────────┤\n│ Other           │                  │\n│ Files           │ 2                │\n│ Max instances   │ 2.5              │\n│ Delay           │ 400ms            │\n│ Temp path       │ /tmp/de[ew       │\n└─────────────────┴──────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 80,
+  "expected": "           Encoding summary           \n┌─────────────────┬──────────────────┐\n│ Version         │ 3.5.0            │\n│ Latest          │ couldn't fetch   │\n├─────────────────┼──────────────────┤\n│ DEE version     │ 5.2.1            │\n│ ffmpeg version  │ 7.1.5            │\n│ ffprobe version │ 7.1.5            │\n├─────────────────┼──────────────────┤\n│ Input(s)        │                  │\n│ Channels        │ 5.1              │\n│ Bit depth       │ 24               │\n├─────────────────┼──────────────────┤\n│ Output          │                  │\n│ Format          │ AC4              │\n│ Channels        │ immersive stereo │\n│ Bitrate         │ 320 kbps         │\n│ Dialnorm        │ auto (0)         │\n│ Directory       │ /tmp/ou[t]/de[ew │\n├─────────────────┼──────────────────┤\n│ Other           │                  │\n│ Files           │ 2                │\n│ Max instances   │ 2.5              │\n│ Delay           │ 400ms            │\n│ Temp path       │ /tmp/de[ew       │\n└─────────────────┴──────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 60,
+  "expected": "           Encoding summary           \n┌─────────────────┬──────────────────┐\n│ Version         │ 3.5.0            │\n│ Latest          │ couldn't fetch   │\n├─────────────────┼──────────────────┤\n│ DEE version     │ 5.2.1            │\n│ ffmpeg version  │ 7.1.5            │\n│ ffprobe version │ 7.1.5            │\n├─────────────────┼──────────────────┤\n│ Input(s)        │                  │\n│ Channels        │ 5.1              │\n│ Bit depth       │ 24               │\n├─────────────────┼──────────────────┤\n│ Output          │                  │\n│ Format          │ AC4              │\n│ Channels        │ immersive stereo │\n│ Bitrate         │ 320 kbps         │\n│ Dialnorm        │ auto (0)         │\n│ Directory       │ /tmp/ou[t]/de[ew │\n├─────────────────┼──────────────────┤\n│ Other           │                  │\n│ Files           │ 2                │\n│ Max instances   │ 2.5              │\n│ Delay           │ 400ms            │\n│ Temp path       │ /tmp/de[ew       │\n└─────────────────┴──────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 46,
+  "expected": "           Encoding summary           \n┌─────────────────┬──────────────────┐\n│ Version         │ 3.5.0            │\n│ Latest          │ couldn't fetch   │\n├─────────────────┼──────────────────┤\n│ DEE version     │ 5.2.1            │\n│ ffmpeg version  │ 7.1.5            │\n│ ffprobe version │ 7.1.5            │\n├─────────────────┼──────────────────┤\n│ Input(s)        │                  │\n│ Channels        │ 5.1              │\n│ Bit depth       │ 24               │\n├─────────────────┼──────────────────┤\n│ Output          │                  │\n│ Format          │ AC4              │\n│ Channels        │ immersive stereo │\n│ Bitrate         │ 320 kbps         │\n│ Dialnorm        │ auto (0)         │\n│ Directory       │ /tmp/ou[t]/de[ew │\n├─────────────────┼──────────────────┤\n│ Other           │                  │\n│ Files           │ 2                │\n│ Max instances   │ 2.5              │\n│ Delay           │ 400ms            │\n│ Temp path       │ /tmp/de[ew       │\n└─────────────────┴──────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 40,
+  "expected": "           Encoding summary           \n┌─────────────────┬──────────────────┐\n│ Version         │ 3.5.0            │\n│ Latest          │ couldn't fetch   │\n├─────────────────┼──────────────────┤\n│ DEE version     │ 5.2.1            │\n│ ffmpeg version  │ 7.1.5            │\n│ ffprobe version │ 7.1.5            │\n├─────────────────┼──────────────────┤\n│ Input(s)        │                  │\n│ Channels        │ 5.1              │\n│ Bit depth       │ 24               │\n├─────────────────┼──────────────────┤\n│ Output          │                  │\n│ Format          │ AC4              │\n│ Channels        │ immersive stereo │\n│ Bitrate         │ 320 kbps         │\n│ Dialnorm        │ auto (0)         │\n│ Directory       │ /tmp/ou[t]/de[ew │\n├─────────────────┼──────────────────┤\n│ Other           │                  │\n│ Files           │ 2                │\n│ Max instances   │ 2.5              │\n│ Delay           │ 400ms            │\n│ Temp path       │ /tmp/de[ew       │\n└─────────────────┴──────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ 24             │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ AC4            │\n│ Channels      │ immersive      │\n│               │ stereo         │\n│ Bitrate       │ 320 kbps       │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ /tmp/ou[t]/de… │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ 400ms          │\n│ Temp path     │ /tmp/de[ew     │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ 24           │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ AC4          │\n│ Channels    │ immersive    │\n│             │ stereo       │\n│ Bitrate     │ 320 kbps     │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ /tmp/ou[t]/… │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ 400ms        │\n│ Temp path   │ /tmp/de[ew   │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ac4",
+   "outchannels": 2,
+   "bitrate": 320,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": "+10@pal",
+   "temp": "/tmp/de[ew",
+   "output": "/tmp/ou[t]/de[ew",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "400ms"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ 24        │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ AC4       │\n│ Channels  │ immersive │\n│           │ stereo    │\n│ Bitrate   │ 320 kbps  │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /tmp/ou[… │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ 400ms     │\n│ Temp path │ /tmp/de[… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 7.1                               │\n│ Bit depth       │ 32                                │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 12                                │\n│ Max instances   │ 1                                 │\n│ Delay           │ 1520ms (parsed from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 7.1                               │\n│ Bit depth       │ 32                                │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 12                                │\n│ Max instances   │ 1                                 │\n│ Delay           │ 1520ms (parsed from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ couldn't fetch                    │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ 5.2.1                             │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ 7.1.5                             │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 7.1                               │\n│ Bit depth       │ 32                                │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 12                                │\n│ Max instances   │ 1                                 │\n│ Delay           │ 1520ms (parsed from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ couldn't fetch           │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 7.1                      │\n│ Bit depth       │ 32                       │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 12                       │\n│ Max instances   │ 1                        │\n│ Delay           │ 1520ms (parsed from      │\n│                 │ filenames)               │\n│ Temp path       │ /mnt/x/code/deew4/targe… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ couldn't fetch     │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 7.1                │\n│ Bit depth       │ 32                 │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 12                 │\n│ Max instances   │ 1                  │\n│ Delay           │ 1520ms (parsed     │\n│                 │ from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 7.1            │\n│ Bit depth     │ 32             │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 12             │\n│ Max instances │ 1              │\n│ Delay         │ 1520ms (parsed │\n│               │ from           │\n│               │ filenames)     │\n│ Temp path     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 7.1          │\n│ Bit depth   │ 32           │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 12           │\n│ Max         │ 1            │\n│ instances   │              │\n│ Delay       │ 1520ms       │\n│             │ (parsed from │\n│             │ filenames)   │\n│ Temp path   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 8,
+   "measure_only": true,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 12,
+   "instances": 1.0,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 7.1       │\n│ Bit depth │ 32        │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 12        │\n│ Max       │ 1         │\n│ instances │           │\n│ Delay     │ 1520ms    │\n│           │ (parsed   │\n│           │ from      │\n│           │ filename… │\n│ Temp path │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 250,
+  "expected": "                   Encoding summary                   \n┌─────────────────┬──────────────────────────────────┐\n│ DEE version     │ 5.2.1                            │\n│ ffmpeg version  │ 7.1.5                            │\n│ ffprobe version │ 7.1.5                            │\n├─────────────────┼──────────────────────────────────┤\n│ Input(s)        │                                  │\n│ Channels        │ 5.1                              │\n│ Bit depth       │ mixed bit depth                  │\n├─────────────────┼──────────────────────────────────┤\n│ Output          │                                  │\n│ Format          │ DDP                              │\n│ Channels        │ 5.1                              │\n│ Bitrate         │ 1024 kbps                        │\n│ Dialnorm        │ auto (0)                         │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out │\n└─────────────────┴──────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 80,
+  "expected": "                   Encoding summary                   \n┌─────────────────┬──────────────────────────────────┐\n│ DEE version     │ 5.2.1                            │\n│ ffmpeg version  │ 7.1.5                            │\n│ ffprobe version │ 7.1.5                            │\n├─────────────────┼──────────────────────────────────┤\n│ Input(s)        │                                  │\n│ Channels        │ 5.1                              │\n│ Bit depth       │ mixed bit depth                  │\n├─────────────────┼──────────────────────────────────┤\n│ Output          │                                  │\n│ Format          │ DDP                              │\n│ Channels        │ 5.1                              │\n│ Bitrate         │ 1024 kbps                        │\n│ Dialnorm        │ auto (0)                         │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out │\n└─────────────────┴──────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 60,
+  "expected": "                   Encoding summary                   \n┌─────────────────┬──────────────────────────────────┐\n│ DEE version     │ 5.2.1                            │\n│ ffmpeg version  │ 7.1.5                            │\n│ ffprobe version │ 7.1.5                            │\n├─────────────────┼──────────────────────────────────┤\n│ Input(s)        │                                  │\n│ Channels        │ 5.1                              │\n│ Bit depth       │ mixed bit depth                  │\n├─────────────────┼──────────────────────────────────┤\n│ Output          │                                  │\n│ Format          │ DDP                              │\n│ Channels        │ 5.1                              │\n│ Bitrate         │ 1024 kbps                        │\n│ Dialnorm        │ auto (0)                         │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out │\n└─────────────────┴──────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ mixed bit depth          │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ DDP                      │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ 1024 kbps                │\n│ Dialnorm        │ auto (0)                 │\n│ Directory       │ /mnt/x/code/deew4/targe… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ mixed bit depth    │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ DDP                │\n│ Channels        │ 5.1                │\n│ Bitrate         │ 1024 kbps          │\n│ Dialnorm        │ auto (0)           │\n│ Directory       │ /mnt/x/code/deew4… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ mixed bit      │\n│               │ depth          │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ DDP            │\n│ Channels      │ 5.1            │\n│ Bitrate       │ 1024 kbps      │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ mixed bit    │\n│             │ depth        │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ DDP          │\n│ Channels    │ 5.1          │\n│ Bitrate     │ 1024 kbps    │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ mixed bit │\n│           │ depth     │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                Encoding summary                \n┌───────────┬──────────────────────────────────┐\n│ Version   │ 3.5.0                            │\n│ Latest    │ couldn't fetch                   │\n├───────────┼──────────────────────────────────┤\n│ Output    │                                  │\n│ Format    │ DDP                              │\n│ Channels  │ 5.1                              │\n│ Bitrate   │ 1024 kbps                        │\n│ Dialnorm  │ auto (0)                         │\n│ Directory │ /mnt/x/code/deew4/target/e2e/out │\n└───────────┴──────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                Encoding summary                \n┌───────────┬──────────────────────────────────┐\n│ Version   │ 3.5.0                            │\n│ Latest    │ couldn't fetch                   │\n├───────────┼──────────────────────────────────┤\n│ Output    │                                  │\n│ Format    │ DDP                              │\n│ Channels  │ 5.1                              │\n│ Bitrate   │ 1024 kbps                        │\n│ Dialnorm  │ auto (0)                         │\n│ Directory │ /mnt/x/code/deew4/target/e2e/out │\n└───────────┴──────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                Encoding summary                \n┌───────────┬──────────────────────────────────┐\n│ Version   │ 3.5.0                            │\n│ Latest    │ couldn't fetch                   │\n├───────────┼──────────────────────────────────┤\n│ Output    │                                  │\n│ Format    │ DDP                              │\n│ Channels  │ 5.1                              │\n│ Bitrate   │ 1024 kbps                        │\n│ Dialnorm  │ auto (0)                         │\n│ Directory │ /mnt/x/code/deew4/target/e2e/out │\n└───────────┴──────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌───────────┬────────────────────────────────┐\n│ Version   │ 3.5.0                          │\n│ Latest    │ couldn't fetch                 │\n├───────────┼────────────────────────────────┤\n│ Output    │                                │\n│ Format    │ DDP                            │\n│ Channels  │ 5.1                            │\n│ Bitrate   │ 1024 kbps                      │\n│ Dialnorm  │ auto (0)                       │\n│ Directory │ /mnt/x/code/deew4/target/e2e/… │\n└───────────┴────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌───────────┬──────────────────────────┐\n│ Version   │ 3.5.0                    │\n│ Latest    │ couldn't fetch           │\n├───────────┼──────────────────────────┤\n│ Output    │                          │\n│ Format    │ DDP                      │\n│ Channels  │ 5.1                      │\n│ Bitrate   │ 1024 kbps                │\n│ Dialnorm  │ auto (0)                 │\n│ Directory │ /mnt/x/code/deew4/targe… │\n└───────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────┬────────────────────┐\n│ Version   │ 3.5.0              │\n│ Latest    │ couldn't fetch     │\n├───────────┼────────────────────┤\n│ Output    │                    │\n│ Format    │ DDP                │\n│ Channels  │ 5.1                │\n│ Bitrate   │ 1024 kbps          │\n│ Dialnorm  │ auto (0)           │\n│ Directory │ /mnt/x/code/deew4… │\n└───────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌───────────┬────────────────┐\n│ Version   │ 3.5.0          │\n│ Latest    │ couldn't fetch │\n├───────────┼────────────────┤\n│ Output    │                │\n│ Format    │ DDP            │\n│ Channels  │ 5.1            │\n│ Bitrate   │ 1024 kbps      │\n│ Dialnorm  │ auto (0)       │\n│ Directory │ /mnt/x/code/d… │\n└───────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": false,
+    "input_info": false,
+    "output_info": true,
+    "other": false
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    32
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                  Encoding summary                   \n┌───────────────┬───────────────────────────────────┐\n│ Other         │                                   │\n│ Files         │ 2                                 │\n│ Max instances │ 2.5                               │\n│ Delay         │ mixed (parsed from filenames)     │\n│ Temp path     │ /mnt/x/code/deew4/target/e2e/temp │\n└───────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                  Encoding summary                   \n┌───────────────┬───────────────────────────────────┐\n│ Other         │                                   │\n│ Files         │ 2                                 │\n│ Max instances │ 2.5                               │\n│ Delay         │ mixed (parsed from filenames)     │\n│ Temp path     │ /mnt/x/code/deew4/target/e2e/temp │\n└───────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                  Encoding summary                   \n┌───────────────┬───────────────────────────────────┐\n│ Other         │                                   │\n│ Files         │ 2                                 │\n│ Max instances │ 2.5                               │\n│ Delay         │ mixed (parsed from filenames)     │\n│ Temp path     │ /mnt/x/code/deew4/target/e2e/temp │\n└───────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌───────────────┬────────────────────────────┐\n│ Other         │                            │\n│ Files         │ 2                          │\n│ Max instances │ 2.5                        │\n│ Delay         │ mixed (parsed from         │\n│               │ filenames)                 │\n│ Temp path     │ /mnt/x/code/deew4/target/… │\n└───────────────┴────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌───────────────┬──────────────────────┐\n│ Other         │                      │\n│ Files         │ 2                    │\n│ Max instances │ 2.5                  │\n│ Delay         │ mixed (parsed from   │\n│               │ filenames)           │\n│ Temp path     │ /mnt/x/code/deew4/t… │\n└───────────────┴──────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ mixed (parsed  │\n│               │ from           │\n│               │ filenames)     │\n│ Temp path     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ mixed        │\n│             │ (parsed from │\n│             │ filenames)   │\n│ Temp path   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": false,
+    "binaries": false,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ mixed     │\n│           │ (parsed   │\n│           │ from      │\n│           │ filename… │\n│ Temp path │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                       Encoding summary                       \n┌─────────────────┬──────────────────────────────────────────┐\n│ Version         │ 3.5.0                                    │\n│ Latest          │ 3.3.0                                    │\n├─────────────────┼──────────────────────────────────────────┤\n│ DEE version     │ 5.2.1-master-with-a-very-long-version... │\n│ ffmpeg version  │ 7.1.5                                    │\n│ ffprobe version │ 7.1.5                                    │\n├─────────────────┼──────────────────────────────────────────┤\n│ Other           │                                          │\n│ Files           │ 2                                        │\n│ Max instances   │ 2.5                                      │\n│ Delay           │ 1520ms (parsed from filenames)           │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp        │\n└─────────────────┴──────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                       Encoding summary                       \n┌─────────────────┬──────────────────────────────────────────┐\n│ Version         │ 3.5.0                                    │\n│ Latest          │ 3.3.0                                    │\n├─────────────────┼──────────────────────────────────────────┤\n│ DEE version     │ 5.2.1-master-with-a-very-long-version... │\n│ ffmpeg version  │ 7.1.5                                    │\n│ ffprobe version │ 7.1.5                                    │\n├─────────────────┼──────────────────────────────────────────┤\n│ Other           │                                          │\n│ Files           │ 2                                        │\n│ Max instances   │ 2.5                                      │\n│ Delay           │ 1520ms (parsed from filenames)           │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp        │\n└─────────────────┴──────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                      Encoding summary                      \n┌─────────────────┬────────────────────────────────────────┐\n│ Version         │ 3.5.0                                  │\n│ Latest          │ 3.3.0                                  │\n├─────────────────┼────────────────────────────────────────┤\n│ DEE version     │ 5.2.1-master-with-a-very-long-version… │\n│ ffmpeg version  │ 7.1.5                                  │\n│ ffprobe version │ 7.1.5                                  │\n├─────────────────┼────────────────────────────────────────┤\n│ Other           │                                        │\n│ Files           │ 2                                      │\n│ Max instances   │ 2.5                                    │\n│ Delay           │ 1520ms (parsed from filenames)         │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp      │\n└─────────────────┴────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ 3.3.0                    │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1-master-with-a-ver… │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 2.5                      │\n│ Delay           │ 1520ms (parsed from      │\n│                 │ filenames)               │\n│ Temp path       │ /mnt/x/code/deew4/targe… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ 3.3.0              │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1-master-with… │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 2.5                │\n│ Delay           │ 1520ms (parsed     │\n│                 │ from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ 3.3.0          │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1-master-… │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ 1520ms (parsed │\n│               │ from           │\n│               │ filenames)     │\n│ Temp path     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ 3.3.0        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1-maste… │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ 1520ms       │\n│             │ (parsed from │\n│             │ filenames)   │\n│ Temp path   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": false,
+    "output_info": false,
+    "other": true
+   },
+   "latest": "3.3.0",
+   "dee": "5.2.1-master-with-a-very-long-version...",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 2,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 2,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ 3.3.0     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1-ma… │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ 1520ms    │\n│           │ (parsed   │\n│           │ from      │\n│           │ filename… │\n│ Temp path │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 250,
+  "expected": "                                             Encoding summary                                              \n┌─────────────────┬───────────────────────────────────────────────────────────────────────────────────────┐\n│ Version         │ 3.5.0                                                                                 │\n│ Latest          │ couldn't fetch                                                                        │\n├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤\n│ DEE version     │ 5.2.1                                                                                 │\n│ ffmpeg version  │ 7.1.5                                                                                 │\n│ ffprobe version │ 7.1.5                                                                                 │\n├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤\n│ Input(s)        │                                                                                       │\n│ Channels        │ 5.1                                                                                   │\n│ Bit depth       │ 24                                                                                    │\n├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤\n│ Output          │                                                                                       │\n│ Format          │ DDP                                                                                   │\n│ Channels        │ 5.1                                                                                   │\n│ Bitrate         │ 1024 kbps                                                                             │\n│ Dialnorm        │ auto (0)                                                                              │\n│ Directory       │ /mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name │\n├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤\n│ Other           │                                                                                       │\n│ Files           │ 2                                                                                     │\n│ Max instances   │ 2.5                                                                                   │\n│ Delay           │ 0ms                                                                                   │\n│ Temp path       │ /mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name                │\n└─────────────────┴───────────────────────────────────────────────────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 80,
+  "expected": "                                Encoding summary                                \n┌─────────────────┬────────────────────────────────────────────────────────────┐\n│ Version         │ 3.5.0                                                      │\n│ Latest          │ couldn't fetch                                             │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ DEE version     │ 5.2.1                                                      │\n│ ffmpeg version  │ 7.1.5                                                      │\n│ ffprobe version │ 7.1.5                                                      │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ Input(s)        │                                                            │\n│ Channels        │ 5.1                                                        │\n│ Bit depth       │ 24                                                         │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ Output          │                                                            │\n│ Format          │ DDP                                                        │\n│ Channels        │ 5.1                                                        │\n│ Bitrate         │ 1024 kbps                                                  │\n│ Dialnorm        │ auto (0)                                                   │\n│ Directory       │ /mnt/x/code/deew4 a b/target/e2e/out with spaces/and       │\n│                 │ another very long directory name                           │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ Other           │                                                            │\n│ Files           │ 2                                                          │\n│ Max instances   │ 2.5                                                        │\n│ Delay           │ 0ms                                                        │\n│ Temp path       │ /mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a    │\n│                 │ very long name                                             │\n└─────────────────┴────────────────────────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 60,
+  "expected": "                      Encoding summary                      \n┌─────────────────┬────────────────────────────────────────┐\n│ Version         │ 3.5.0                                  │\n│ Latest          │ couldn't fetch                         │\n├─────────────────┼────────────────────────────────────────┤\n│ DEE version     │ 5.2.1                                  │\n│ ffmpeg version  │ 7.1.5                                  │\n│ ffprobe version │ 7.1.5                                  │\n├─────────────────┼────────────────────────────────────────┤\n│ Input(s)        │                                        │\n│ Channels        │ 5.1                                    │\n│ Bit depth       │ 24                                     │\n├─────────────────┼────────────────────────────────────────┤\n│ Output          │                                        │\n│ Format          │ DDP                                    │\n│ Channels        │ 5.1                                    │\n│ Bitrate         │ 1024 kbps                              │\n│ Dialnorm        │ auto (0)                               │\n│ Directory       │ /mnt/x/code/deew4 a b/target/e2e/out   │\n│                 │ with spaces/and another very long      │\n│                 │ directory name                         │\n├─────────────────┼────────────────────────────────────────┤\n│ Other           │                                        │\n│ Files           │ 2                                      │\n│ Max instances   │ 2.5                                    │\n│ Delay           │ 0ms                                    │\n│ Temp path       │ /mnt/x/code/deew4 a b/target/e2e/temp  │\n│                 │ with spaces/and a very long name       │\n└─────────────────┴────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ couldn't fetch           │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ 24                       │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ DDP                      │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ 1024 kbps                │\n│ Dialnorm        │ auto (0)                 │\n│ Directory       │ /mnt/x/code/deew4 a      │\n│                 │ b/target/e2e/out with    │\n│                 │ spaces/and another very  │\n│                 │ long directory name      │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 2.5                      │\n│ Delay           │ 0ms                      │\n│ Temp path       │ /mnt/x/code/deew4 a      │\n│                 │ b/target/e2e/temp with   │\n│                 │ spaces/and a very long   │\n│                 │ name                     │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ couldn't fetch     │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ 24                 │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ DDP                │\n│ Channels        │ 5.1                │\n│ Bitrate         │ 1024 kbps          │\n│ Dialnorm        │ auto (0)           │\n│ Directory       │ /mnt/x/code/deew4  │\n│                 │ a b/target/e2e/out │\n│                 │ with spaces/and    │\n│                 │ another very long  │\n│                 │ directory name     │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 2.5                │\n│ Delay           │ 0ms                │\n│ Temp path       │ /mnt/x/code/deew4  │\n│                 │ a                  │\n│                 │ b/target/e2e/temp  │\n│                 │ with spaces/and a  │\n│                 │ very long name     │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ 24             │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ DDP            │\n│ Channels      │ 5.1            │\n│ Bitrate       │ 1024 kbps      │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ /mnt/x/code/d… │\n│               │ a              │\n│               │ b/target/e2e/… │\n│               │ with           │\n│               │ spaces/and     │\n│               │ another very   │\n│               │ long directory │\n│               │ name           │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ 0ms            │\n│ Temp path     │ /mnt/x/code/d… │\n│               │ a              │\n│               │ b/target/e2e/… │\n│               │ with           │\n│               │ spaces/and a   │\n│               │ very long name │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ 24           │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ DDP          │\n│ Channels    │ 5.1          │\n│ Bitrate     │ 1024 kbps    │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ /mnt/x/code… │\n│             │ a            │\n│             │ b/target/e2… │\n│             │ with         │\n│             │ spaces/and   │\n│             │ another very │\n│             │ long         │\n│             │ directory    │\n│             │ name         │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ 0ms          │\n│ Temp path   │ /mnt/x/code… │\n│             │ a            │\n│             │ b/target/e2… │\n│             │ with         │\n│             │ spaces/and a │\n│             │ very long    │\n│             │ name         │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4 a b/target/e2e/temp with spaces/and a very long name",
+   "output": "/mnt/x/code/deew4 a b/target/e2e/out with spaces/and another very long directory name",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "0ms"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ 24        │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /mnt/x/c… │\n│           │ a         │\n│           │ b/target… │\n│           │ with      │\n│           │ spaces/a… │\n│           │ another   │\n│           │ very long │\n│           │ directory │\n│           │ name      │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ 0ms       │\n│ Temp path │ /mnt/x/c… │\n│           │ a         │\n│           │ b/target… │\n│           │ with      │\n│           │ spaces/a… │\n│           │ a very    │\n│           │ long name │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                                              Encoding summary                                               \n┌─────────────────┬─────────────────────────────────────────────────────────────────────────────────────────┐\n│ Version         │ 3.5.0                                                                                   │\n│ Latest          │ couldn't fetch                                                                          │\n├─────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤\n│ DEE version     │ 5.2.1                                                                                   │\n│ ffmpeg version  │ 7.1.5                                                                                   │\n│ ffprobe version │ 7.1.5                                                                                   │\n├─────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤\n│ Input(s)        │                                                                                         │\n│ Channels        │ 5.1                                                                                     │\n│ Bit depth       │ 24                                                                                      │\n├─────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤\n│ Output          │                                                                                         │\n│ Format          │ DDP                                                                                     │\n│ Channels        │ 5.1                                                                                     │\n│ Bitrate         │ 1024 kbps                                                                               │\n│ Dialnorm        │ auto (0)                                                                                │\n│ Directory       │ C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more       │\n├─────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤\n│ Other           │                                                                                         │\n│ Files           │ 2                                                                                       │\n│ Max instances   │ 2.5                                                                                     │\n│ Delay           │ -24ms (parsed from filenames)                                                           │\n│ Temp path       │ C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more │\n└─────────────────┴─────────────────────────────────────────────────────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                                Encoding summary                                \n┌─────────────────┬────────────────────────────────────────────────────────────┐\n│ Version         │ 3.5.0                                                      │\n│ Latest          │ couldn't fetch                                             │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ DEE version     │ 5.2.1                                                      │\n│ ffmpeg version  │ 7.1.5                                                      │\n│ ffprobe version │ 7.1.5                                                      │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ Input(s)        │                                                            │\n│ Channels        │ 5.1                                                        │\n│ Bit depth       │ 24                                                         │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ Output          │                                                            │\n│ Format          │ DDP                                                        │\n│ Channels        │ 5.1                                                        │\n│ Bitrate         │ 1024 kbps                                                  │\n│ Dialnorm        │ auto (0)                                                   │\n│ Directory       │ C:/Users/someone with                                      │\n│                 │ space/Music/deew-extremely-long-output-folder-name/and/mo… │\n├─────────────────┼────────────────────────────────────────────────────────────┤\n│ Other           │                                                            │\n│ Files           │ 2                                                          │\n│ Max instances   │ 2.5                                                        │\n│ Delay           │ -24ms (parsed from filenames)                              │\n│ Temp path       │ C:/Users/someone with                                      │\n│                 │ space/AppData/Local/Temp/deew-extremely-long-folder-name/… │\n└─────────────────┴────────────────────────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                      Encoding summary                      \n┌─────────────────┬────────────────────────────────────────┐\n│ Version         │ 3.5.0                                  │\n│ Latest          │ couldn't fetch                         │\n├─────────────────┼────────────────────────────────────────┤\n│ DEE version     │ 5.2.1                                  │\n│ ffmpeg version  │ 7.1.5                                  │\n│ ffprobe version │ 7.1.5                                  │\n├─────────────────┼────────────────────────────────────────┤\n│ Input(s)        │                                        │\n│ Channels        │ 5.1                                    │\n│ Bit depth       │ 24                                     │\n├─────────────────┼────────────────────────────────────────┤\n│ Output          │                                        │\n│ Format          │ DDP                                    │\n│ Channels        │ 5.1                                    │\n│ Bitrate         │ 1024 kbps                              │\n│ Dialnorm        │ auto (0)                               │\n│ Directory       │ C:/Users/someone with                  │\n│                 │ space/Music/deew-extremely-long-outpu… │\n├─────────────────┼────────────────────────────────────────┤\n│ Other           │                                        │\n│ Files           │ 2                                      │\n│ Max instances   │ 2.5                                    │\n│ Delay           │ -24ms (parsed from filenames)          │\n│ Temp path       │ C:/Users/someone with                  │\n│                 │ space/AppData/Local/Temp/deew-extreme… │\n└─────────────────┴────────────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ couldn't fetch           │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ 24                       │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ DDP                      │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ 1024 kbps                │\n│ Dialnorm        │ auto (0)                 │\n│ Directory       │ C:/Users/someone with    │\n│                 │ space/Music/deew-extrem… │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 2.5                      │\n│ Delay           │ -24ms (parsed from       │\n│                 │ filenames)               │\n│ Temp path       │ C:/Users/someone with    │\n│                 │ space/AppData/Local/Tem… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ couldn't fetch     │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ 24                 │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ DDP                │\n│ Channels        │ 5.1                │\n│ Bitrate         │ 1024 kbps          │\n│ Dialnorm        │ auto (0)           │\n│ Directory       │ C:/Users/someone   │\n│                 │ with               │\n│                 │ space/Music/deew-… │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 2.5                │\n│ Delay           │ -24ms (parsed from │\n│                 │ filenames)         │\n│ Temp path       │ C:/Users/someone   │\n│                 │ with               │\n│                 │ space/AppData/Loc… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ 24             │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ DDP            │\n│ Channels      │ 5.1            │\n│ Bitrate       │ 1024 kbps      │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ C:/Users/some… │\n│               │ with           │\n│               │ space/Music/d… │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ -24ms (parsed  │\n│               │ from           │\n│               │ filenames)     │\n│ Temp path     │ C:/Users/some… │\n│               │ with           │\n│               │ space/AppData… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ 24           │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ DDP          │\n│ Channels    │ 5.1          │\n│ Bitrate     │ 1024 kbps    │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ C:/Users/so… │\n│             │ with         │\n│             │ space/Music… │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ -24ms        │\n│             │ (parsed from │\n│             │ filenames)   │\n│ Temp path   │ C:/Users/so… │\n│             │ with         │\n│             │ space/AppDa… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "C:/Users/someone with space/AppData/Local/Temp/deew-extremely-long-folder-name/and/more",
+   "output": "C:/Users/someone with space/Music/deew-extremely-long-output-folder-name/and/more",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "-24ms (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ 24        │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ C:/Users… │\n│           │ with      │\n│           │ space/Mu… │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ -24ms     │\n│           │ (parsed   │\n│           │ from      │\n│           │ filename… │\n│ Temp path │ C:/Users… │\n│           │ with      │\n│           │ space/Ap… │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                 Encoding summary                  \n┌─────────────────┬───────────────────────────────┐\n│ Version         │ 3.5.0                         │\n│ Latest          │ couldn't fetch                │\n├─────────────────┼───────────────────────────────┤\n│ DEE version     │ 5.2.1                         │\n│ ffmpeg version  │ 7.1.5                         │\n│ ffprobe version │ 7.1.5                         │\n├─────────────────┼───────────────────────────────┤\n│ Input(s)        │                               │\n│ Channels        │ 5.1                           │\n│ Bit depth       │ mixed bit depth               │\n├─────────────────┼───────────────────────────────┤\n│ Output          │                               │\n│ Format          │ DDP                           │\n│ Channels        │ 5.1                           │\n│ Bitrate         │ 1024 kbps                     │\n│ Dialnorm        │ auto (0)                      │\n│ Directory       │ /ä/ö/日本語/出力              │\n├─────────────────┼───────────────────────────────┤\n│ Other           │                               │\n│ Files           │ 2                             │\n│ Max instances   │ 2.5                           │\n│ Delay           │ mixed (parsed from filenames) │\n│ Temp path       │ /ä/ö/日本語/文字              │\n└─────────────────┴───────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                 Encoding summary                  \n┌─────────────────┬───────────────────────────────┐\n│ Version         │ 3.5.0                         │\n│ Latest          │ couldn't fetch                │\n├─────────────────┼───────────────────────────────┤\n│ DEE version     │ 5.2.1                         │\n│ ffmpeg version  │ 7.1.5                         │\n│ ffprobe version │ 7.1.5                         │\n├─────────────────┼───────────────────────────────┤\n│ Input(s)        │                               │\n│ Channels        │ 5.1                           │\n│ Bit depth       │ mixed bit depth               │\n├─────────────────┼───────────────────────────────┤\n│ Output          │                               │\n│ Format          │ DDP                           │\n│ Channels        │ 5.1                           │\n│ Bitrate         │ 1024 kbps                     │\n│ Dialnorm        │ auto (0)                      │\n│ Directory       │ /ä/ö/日本語/出力              │\n├─────────────────┼───────────────────────────────┤\n│ Other           │                               │\n│ Files           │ 2                             │\n│ Max instances   │ 2.5                           │\n│ Delay           │ mixed (parsed from filenames) │\n│ Temp path       │ /ä/ö/日本語/文字              │\n└─────────────────┴───────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                 Encoding summary                  \n┌─────────────────┬───────────────────────────────┐\n│ Version         │ 3.5.0                         │\n│ Latest          │ couldn't fetch                │\n├─────────────────┼───────────────────────────────┤\n│ DEE version     │ 5.2.1                         │\n│ ffmpeg version  │ 7.1.5                         │\n│ ffprobe version │ 7.1.5                         │\n├─────────────────┼───────────────────────────────┤\n│ Input(s)        │                               │\n│ Channels        │ 5.1                           │\n│ Bit depth       │ mixed bit depth               │\n├─────────────────┼───────────────────────────────┤\n│ Output          │                               │\n│ Format          │ DDP                           │\n│ Channels        │ 5.1                           │\n│ Bitrate         │ 1024 kbps                     │\n│ Dialnorm        │ auto (0)                      │\n│ Directory       │ /ä/ö/日本語/出力              │\n├─────────────────┼───────────────────────────────┤\n│ Other           │                               │\n│ Files           │ 2                             │\n│ Max instances   │ 2.5                           │\n│ Delay           │ mixed (parsed from filenames) │\n│ Temp path       │ /ä/ö/日本語/文字              │\n└─────────────────┴───────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ couldn't fetch           │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ 5.2.1                    │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ 7.1.5                    │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ mixed bit depth          │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ DDP                      │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ 1024 kbps                │\n│ Dialnorm        │ auto (0)                 │\n│ Directory       │ /ä/ö/日本語/出力         │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 2.5                      │\n│ Delay           │ mixed (parsed from       │\n│                 │ filenames)               │\n│ Temp path       │ /ä/ö/日本語/文字         │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ couldn't fetch     │\n├─────────────────┼────────────────────┤\n│ DEE version     │ 5.2.1              │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ 7.1.5              │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ mixed bit depth    │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ DDP                │\n│ Channels        │ 5.1                │\n│ Bitrate         │ 1024 kbps          │\n│ Dialnorm        │ auto (0)           │\n│ Directory       │ /ä/ö/日本語/出力   │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 2.5                │\n│ Delay           │ mixed (parsed from │\n│                 │ filenames)         │\n│ Temp path       │ /ä/ö/日本語/文字   │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ couldn't fetch │\n├───────────────┼────────────────┤\n│ DEE version   │ 5.2.1          │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ 7.1.5          │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ mixed bit      │\n│               │ depth          │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ DDP            │\n│ Channels      │ 5.1            │\n│ Bitrate       │ 1024 kbps      │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ /ä/ö/日本語/ … │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ mixed (parsed  │\n│               │ from           │\n│               │ filenames)     │\n│ Temp path     │ /ä/ö/日本語/ … │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ couldn't     │\n│             │ fetch        │\n├─────────────┼──────────────┤\n│ DEE version │ 5.2.1        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ 7.1.5        │\n│ version     │              │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ mixed bit    │\n│             │ depth        │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ DDP          │\n│ Channels    │ 5.1          │\n│ Bitrate     │ 1024 kbps    │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ /ä/ö/日本語… │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ mixed        │\n│             │ (parsed from │\n│             │ filenames)   │\n│ Temp path   │ /ä/ö/日本語… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "couldn't fetch",
+   "dee": "5.2.1",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "7.1.5",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/ä/ö/日本語/文字",
+   "output": "/ä/ö/日本語/出力",
+   "bit_depths": [
+    16,
+    24
+   ],
+   "delay_text": "mixed (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ couldn't  │\n│           │ fetch     │\n├───────────┼───────────┤\n│ DEE       │ 5.2.1     │\n│ version   │           │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ 7.1.5     │\n│ version   │           │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ mixed bit │\n│           │ depth     │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /ä/ö/日 … │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ mixed     │\n│           │ (parsed   │\n│           │ from      │\n│           │ filename… │\n│ Temp path │ /ä/ö/日 … │\n└───────────┴───────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 250,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ 3.3.0 !!!                         │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ couldn't parse                    │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ couldn't parse                    │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ 24                                │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ DDP                               │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ 1024 kbps                         │\n│ Dialnorm        │ auto (0)                          │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 2.5                               │\n│ Delay           │ 1520ms (parsed from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 80,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ 3.3.0 !!!                         │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ couldn't parse                    │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ couldn't parse                    │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ 24                                │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ DDP                               │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ 1024 kbps                         │\n│ Dialnorm        │ auto (0)                          │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 2.5                               │\n│ Delay           │ 1520ms (parsed from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 60,
+  "expected": "                   Encoding summary                    \n┌─────────────────┬───────────────────────────────────┐\n│ Version         │ 3.5.0                             │\n│ Latest          │ 3.3.0 !!!                         │\n├─────────────────┼───────────────────────────────────┤\n│ DEE version     │ couldn't parse                    │\n│ ffmpeg version  │ 7.1.5                             │\n│ ffprobe version │ couldn't parse                    │\n├─────────────────┼───────────────────────────────────┤\n│ Input(s)        │                                   │\n│ Channels        │ 5.1                               │\n│ Bit depth       │ 24                                │\n├─────────────────┼───────────────────────────────────┤\n│ Output          │                                   │\n│ Format          │ DDP                               │\n│ Channels        │ 5.1                               │\n│ Bitrate         │ 1024 kbps                         │\n│ Dialnorm        │ auto (0)                          │\n│ Directory       │ /mnt/x/code/deew4/target/e2e/out  │\n├─────────────────┼───────────────────────────────────┤\n│ Other           │                                   │\n│ Files           │ 2                                 │\n│ Max instances   │ 2.5                               │\n│ Delay           │ 1520ms (parsed from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4/target/e2e/temp │\n└─────────────────┴───────────────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 46,
+  "expected": "               Encoding summary               \n┌─────────────────┬──────────────────────────┐\n│ Version         │ 3.5.0                    │\n│ Latest          │ 3.3.0 !!!                │\n├─────────────────┼──────────────────────────┤\n│ DEE version     │ couldn't parse           │\n│ ffmpeg version  │ 7.1.5                    │\n│ ffprobe version │ couldn't parse           │\n├─────────────────┼──────────────────────────┤\n│ Input(s)        │                          │\n│ Channels        │ 5.1                      │\n│ Bit depth       │ 24                       │\n├─────────────────┼──────────────────────────┤\n│ Output          │                          │\n│ Format          │ DDP                      │\n│ Channels        │ 5.1                      │\n│ Bitrate         │ 1024 kbps                │\n│ Dialnorm        │ auto (0)                 │\n│ Directory       │ /mnt/x/code/deew4/targe… │\n├─────────────────┼──────────────────────────┤\n│ Other           │                          │\n│ Files           │ 2                        │\n│ Max instances   │ 2.5                      │\n│ Delay           │ 1520ms (parsed from      │\n│                 │ filenames)               │\n│ Temp path       │ /mnt/x/code/deew4/targe… │\n└─────────────────┴──────────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 40,
+  "expected": "            Encoding summary            \n┌─────────────────┬────────────────────┐\n│ Version         │ 3.5.0              │\n│ Latest          │ 3.3.0 !!!          │\n├─────────────────┼────────────────────┤\n│ DEE version     │ couldn't parse     │\n│ ffmpeg version  │ 7.1.5              │\n│ ffprobe version │ couldn't parse     │\n├─────────────────┼────────────────────┤\n│ Input(s)        │                    │\n│ Channels        │ 5.1                │\n│ Bit depth       │ 24                 │\n├─────────────────┼────────────────────┤\n│ Output          │                    │\n│ Format          │ DDP                │\n│ Channels        │ 5.1                │\n│ Bitrate         │ 1024 kbps          │\n│ Dialnorm        │ auto (0)           │\n│ Directory       │ /mnt/x/code/deew4… │\n├─────────────────┼────────────────────┤\n│ Other           │                    │\n│ Files           │ 2                  │\n│ Max instances   │ 2.5                │\n│ Delay           │ 1520ms (parsed     │\n│                 │ from filenames)    │\n│ Temp path       │ /mnt/x/code/deew4… │\n└─────────────────┴────────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 34,
+  "expected": "         Encoding summary         \n┌───────────────┬────────────────┐\n│ Version       │ 3.5.0          │\n│ Latest        │ 3.3.0 !!!      │\n├───────────────┼────────────────┤\n│ DEE version   │ couldn't parse │\n│ ffmpeg        │ 7.1.5          │\n│ version       │                │\n│ ffprobe       │ couldn't parse │\n│ version       │                │\n├───────────────┼────────────────┤\n│ Input(s)      │                │\n│ Channels      │ 5.1            │\n│ Bit depth     │ 24             │\n├───────────────┼────────────────┤\n│ Output        │                │\n│ Format        │ DDP            │\n│ Channels      │ 5.1            │\n│ Bitrate       │ 1024 kbps      │\n│ Dialnorm      │ auto (0)       │\n│ Directory     │ /mnt/x/code/d… │\n├───────────────┼────────────────┤\n│ Other         │                │\n│ Files         │ 2              │\n│ Max instances │ 2.5            │\n│ Delay         │ 1520ms (parsed │\n│               │ from           │\n│               │ filenames)     │\n│ Temp path     │ /mnt/x/code/d… │\n└───────────────┴────────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 30,
+  "expected": "       Encoding summary       \n┌─────────────┬──────────────┐\n│ Version     │ 3.5.0        │\n│ Latest      │ 3.3.0 !!!    │\n├─────────────┼──────────────┤\n│ DEE version │ couldn't     │\n│             │ parse        │\n│ ffmpeg      │ 7.1.5        │\n│ version     │              │\n│ ffprobe     │ couldn't     │\n│ version     │ parse        │\n├─────────────┼──────────────┤\n│ Input(s)    │              │\n│ Channels    │ 5.1          │\n│ Bit depth   │ 24           │\n├─────────────┼──────────────┤\n│ Output      │              │\n│ Format      │ DDP          │\n│ Channels    │ 5.1          │\n│ Bitrate     │ 1024 kbps    │\n│ Dialnorm    │ auto (0)     │\n│ Directory   │ /mnt/x/code… │\n├─────────────┼──────────────┤\n│ Other       │              │\n│ Files       │ 2            │\n│ Max         │ 2.5          │\n│ instances   │              │\n│ Delay       │ 1520ms       │\n│             │ (parsed from │\n│             │ filenames)   │\n│ Temp path   │ /mnt/x/code… │\n└─────────────┴──────────────┘\n"
+ },
+ {
+  "params": {
+   "sections": {
+    "deew_info": true,
+    "binaries": true,
+    "input_info": true,
+    "output_info": true,
+    "other": true
+   },
+   "latest": "[bold green]3.3.0[/bold green] !!!",
+   "dee": "[red]couldn't parse",
+   "ffmpeg": "7.1.5",
+   "ffprobe": "[red]couldn't parse",
+   "channels": 6,
+   "measure_only": false,
+   "format": "ddp",
+   "outchannels": 6,
+   "bitrate": 1024,
+   "dialnorm": 0,
+   "files": 2,
+   "instances": 2.5,
+   "delay": null,
+   "temp": "/mnt/x/code/deew4/target/e2e/temp",
+   "output": "/mnt/x/code/deew4/target/e2e/out",
+   "bit_depths": [
+    24,
+    24
+   ],
+   "delay_text": "1520ms (parsed from filenames)"
+  },
+  "width": 25,
+  "expected": "    Encoding summary     \n┌───────────┬───────────┐\n│ Version   │ 3.5.0     │\n│ Latest    │ 3.3.0 !!! │\n├───────────┼───────────┤\n│ DEE       │ couldn't  │\n│ version   │ parse     │\n│ ffmpeg    │ 7.1.5     │\n│ version   │           │\n│ ffprobe   │ couldn't  │\n│ version   │ parse     │\n├───────────┼───────────┤\n│ Input(s)  │           │\n│ Channels  │ 5.1       │\n│ Bit depth │ 24        │\n├───────────┼───────────┤\n│ Output    │           │\n│ Format    │ DDP       │\n│ Channels  │ 5.1       │\n│ Bitrate   │ 1024 kbps │\n│ Dialnorm  │ auto (0)  │\n│ Directory │ /mnt/x/c… │\n├───────────┼───────────┤\n│ Other     │           │\n│ Files     │ 2         │\n│ Max       │ 2.5       │\n│ instances │           │\n│ Delay     │ 1520ms    │\n│           │ (parsed   │\n│           │ from      │\n│           │ filename… │\n│ Temp path │ /mnt/x/c… │\n└───────────┴───────────┘\n"
+ }
+]

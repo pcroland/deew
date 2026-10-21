@@ -2,7 +2,7 @@
 - converts inputs to RF64 which DEE can use
   - bit depth, number of channels and other infos are parsed from the source
 - an XML file will be generated for each input based on the settings
-- the script utilizes thread pooling for batch encoding (see config)
+- runs multiple encodes in parallel for batch encoding (see config)
 - supports WSL path conversion for the Windows version of DEE (see config)
 - in case of an invalid bitrate it will pick the closest allowed one
 - automatic sample rate conversion using ffmpeg's soxr resampler in case of an unsupported sample rate
@@ -16,6 +16,7 @@
   `deew -f dd -b 640 -i input -k`\
   `deew -f ddp -i input`
 - works even with video inputs (first audio will be selected)
-- fancy terminal output using rich
+- colored terminal output with live progress bars
 - versatile delay option that supports ms, s and also frame@fps formats
 - parsing delay from filenames
+- optional desktop GUI (deew-gui) and web UI (deew-web) that build the command for you and show the live output
