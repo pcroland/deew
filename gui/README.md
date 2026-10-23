@@ -1,18 +1,14 @@
+<p align="center"><a href="https://github.com/pcrlnd/deew/blob/main/gui/README.md">English readme</a>
+ • <a href="https://github.com/pcrlnd/deew/blob/main/gui/README_hu.md">Magyar leírás</a></p>
+
 # deew GUI
 
 Desktop front end for [deew](../README.md), built with Tauri v2, React, shadcn/ui
 and xterm.js (scaffolded with [tauri-ui](https://github.com/agmmnn/tauri-ui)).
-deew runs inside a pseudo-terminal (`portable-pty`), so progress bars, colors and
-prompts work, and what you type in the terminal pane goes to the process.
-
-The deew binary is bundled as a Tauri sidecar (`bundle.externalBin`). Tauri puts
-it next to the app executable (`target/<profile>/deew` in dev, `/usr/bin/deew`
-in a deb, `Contents/MacOS/deew` in a macOS app, `deew.exe` on Windows).
 
 ## Requirements
 
-Node.js 22+, a Rust toolchain and the
-[Tauri system dependencies](https://tauri.app/start/prerequisites/)
+Node.js 22+, a Rust toolchain and the [Tauri system dependencies](https://tauri.app/start/prerequisites/)
 (on Linux: WebKitGTK 4.1, libsoup 3, GTK 3, ...).
 
 ## Commands

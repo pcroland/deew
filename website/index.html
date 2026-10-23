@@ -99,10 +99,10 @@
         </div>
         <figure class="hero-figure">
           <img
-            src="terminal.png"
-            alt="Output of deew --help in a terminal"
-            width="1940"
-            height="2160"
+            src="terminal.gif"
+            alt="Animated terminal recording of deew encoding several files in parallel"
+            width="1402"
+            height="1290"
             fetchpriority="high"
           />
         </figure>
@@ -110,28 +110,6 @@
     </header>
 
     <main>
-      <section id="batch" class="band" aria-labelledby="batch-h">
-        <div class="container batch-grid">
-          <div>
-            <h2 id="batch-h">Batch encoding</h2>
-            <p class="lead">
-              Since DEE only uses 2 threads for any given encoding task, deew
-              aims to speed up the encoding time for multiple input files by
-              starting multiple processes simultaneously based on the CPU's
-              thread count.
-            </p>
-          </div>
-          <img
-            class="shot"
-            src="terminal.gif"
-            alt="Animated terminal recording of deew encoding several files in parallel"
-            width="1402"
-            height="1290"
-            loading="lazy"
-          />
-        </div>
-      </section>
-
       <section id="features" class="container section" aria-labelledby="features-h">
         <h2 id="features-h">Features</h2>
         <p class="section-intro">
@@ -143,22 +121,7 @@
           <li class="feature">
             <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
             <div class="feature-body">
-              <p>handles Dolby's XML input fuckery in the background, giving you a proper CLI interface</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>converts inputs to RF64 which DEE can use</p>
-              <ul class="feature-sub">
-                <li>bit depth, number of channels and other infos are parsed from the source</li>
-              </ul>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>an XML file will be generated for each input based on the settings</p>
+              <p>handles Dolby's XML input fuckery and creating the RF64 intermediate in the background, giving you a proper tool</p>
             </div>
           </li>
           <li class="feature">
@@ -171,12 +134,6 @@
             <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
             <div class="feature-body">
               <p>supports WSL path conversion for the Windows version of DEE (see config)</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>in case of an invalid bitrate it will pick the closest allowed one</p>
             </div>
           </li>
           <li class="feature">
@@ -198,49 +155,19 @@
           <li class="feature">
             <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
             <div class="feature-body">
-              <p>automatic dialnorm setting</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
               <p>automatically compensates for DEE's 256 sample delay (DD and DDP encoding)</p>
             </div>
           </li>
           <li class="feature">
             <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
             <div class="feature-body">
-              <p>checks if intermediate file is already created so you can encode different formats/bitrates using a single intermediate file, for example:<br /><code>deew -f dd -b 448 -i input -k</code><br /><code>deew -f dd -b 640 -i input -k</code><br /><code>deew -f ddp -i input</code></p>
+              <p>works even with video inputs</p>
             </div>
           </li>
           <li class="feature">
             <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
             <div class="feature-body">
-              <p>works even with video inputs (first audio will be selected)</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>colored terminal output with live progress bars</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>versatile delay option that supports ms, s and also frame@fps formats</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>parsing delay from filenames</p>
-            </div>
-          </li>
-          <li class="feature">
-            <svg class="icon" aria-hidden="true"><use href="#i-circle-check" /></svg>
-            <div class="feature-body">
-              <p>optional desktop GUI (deew-gui) and web UI (deew-web) that build the command for you and show the live output</p>
+              <p>versatile delay option that supports ms, s and also frame@fps formats, parsing delay from filenames also supported</p>
             </div>
           </li>
           <!-- features:end -->

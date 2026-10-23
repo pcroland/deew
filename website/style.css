@@ -75,6 +75,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* page background: webp, png where image-set() with type() isn't supported */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background: url("bg.png") center / cover no-repeat;
+  background-image: image-set(url("bg.webp") type("image/webp"), url("bg.png") type("image/png"));
+}
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
@@ -139,7 +146,7 @@ h2 { font-size: 1.875rem; line-height: 2.25rem; font-weight: 600; letter-spacing
 .btn-hero { height: 2.75rem; padding-inline: 1.25rem; font-size: 1rem; line-height: 1.5rem; }
 
 /* ---------- hero ---------- */
-.hero { position: relative; overflow: hidden; }
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
 .hero-bg {
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background-image:
@@ -158,14 +165,9 @@ h1 {
 .hint { margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.25rem; color: var(--muted-foreground); }
 .hero-figure { width: 100%; max-width: 28rem; margin-inline: auto; }
 .hero-figure img {
-  width: 100%; border-radius: var(--radius-xl);
-  box-shadow: 0 0 0 1px var(--border), 0 25px 50px -12px rgb(0 0 0 / 0.6);
+  width: 100%;
+  filter: drop-shadow(0 20px 25px rgb(0 0 0 / 0.5));
 }
-
-/* ---------- batch ---------- */
-.band { border-block: 1px solid var(--border); background: color-mix(in oklch, var(--card) 40%, transparent); }
-.batch-grid { display: grid; align-items: center; gap: 2.5rem; padding-block: 4rem; }
-.shot { width: 100%; border-radius: var(--radius-xl); box-shadow: 0 0 0 1px var(--border); }
 
 /* ---------- features ---------- */
 .features { display: grid; gap: 0.75rem; margin-top: 2rem; }
@@ -311,7 +313,6 @@ h1 {
 @media (min-width: 64rem) {
   .hero-grid { grid-template-columns: 1.1fr 0.9fr; padding-bottom: 6rem; }
   .hero-figure { max-width: none; }
-  .batch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

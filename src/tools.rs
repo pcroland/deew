@@ -107,12 +107,21 @@ fn windows_temp() -> Result<String, String> {
     )))
 }
 
-/// The temp directory: the configured one, else `%TEMP%\deew` (WSL), else
-/// `temp` next to the executable. Absolute and normalised, not yet created.
+/// Whether `path` is on a Windows drive mounted by WSL (`/mnt/<letter>`).
+fn on_windows_drive(path: &Path) -> bool {
+    path.to_string_lossy()
+        .strip_prefix("/mnt/")
+        .and_then(|rest| rest.split('/').next())
+        .is_some_and(|drive| drive.len() == 1 && drive.as_bytes()[0].is_ascii_alphabetic())
+}
+
+/// The temp directory: the configured one, else `temp` next to the
+/// executable, else `%TEMP%\deew` (WSL with the executable outside a Windows
+/// drive, which DEE can't reach). Absolute and normalised, not yet created.
 pub fn temp_path(configured: &str, nonnative: bool, exe_dir: &Path) -> String {
     let chosen = if !configured.is_empty() {
         configured.to_string()
-    } else if nonnative {
+    } else if nonnative && !on_windows_drive(exe_dir) {
         match windows_temp() {
             Ok(path) => path,
             Err(message) => error_line(&escape(&message)),
@@ -262,6 +271,25 @@ mod tests {
         assert_eq!(temp_path("/data/tmp/", false, exe_dir), "/data/tmp");
         assert_eq!(temp_path("", false, exe_dir), "/opt/deew/temp");
         assert_eq!(temp_path("/data/tmp", true, exe_dir), "/data/tmp");
+        assert_eq!(
+            temp_path("", true, Path::new("/mnt/c/tools")),
+            "/mnt/c/tools/temp"
+        );
+    }
+
+    #[test]
+    fn windows_drive_detection() {
+        for (path, expected) in [
+            ("/mnt/c", true),
+            ("/mnt/c/tools", true),
+            ("/mnt/D/tools", true),
+            ("/mnt/wsl/tools", false),
+            ("/mnt/", false),
+            ("/home/me/.local/bin", false),
+            ("/usr/local/bin", false),
+        ] {
+            assert_eq!(on_windows_drive(Path::new(path)), expected, "{path:?}");
+        }
     }
 
     #[test]

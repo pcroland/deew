@@ -1,3 +1,7 @@
+# deew 3.5.1:
+- WSL with `dee.exe`: if the deew binary is on a Windows drive (`/mnt/c` etc.), the default temp directory is `temp` next to it instead of the Windows temp directory
+- updated the `temp_path` description in the default config
+
 # deew 3.5.0:
 - rewritten in Rust, single binary with no Python runtime needed (the Python version is kept in the `python/` folder)
 - config is only read from `config.toml` next to the deew binary, `-gc` no longer asks for a location

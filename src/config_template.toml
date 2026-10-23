@@ -6,7 +6,8 @@ ffmpeg_path = 'ffmpeg'
 ffprobe_path = 'ffprobe'
 dee_path = 'dee.exe'
 
-# If this is empty, the default OS temporary directory will be used (or `temp` next to the script if you use the exe).
+# If this is empty, 'temp' next to the binary will be used.
+# On WSL with dee.exe, if the binary isn't on a Windows drive (/mnt/c etc.), the Windows temp directory will be used instead.
 # You can also specify an absolute path or a path relative to the current directory.
 temp_path = ''
 
